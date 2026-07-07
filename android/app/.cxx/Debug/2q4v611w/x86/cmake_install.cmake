@@ -44,7 +44,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
+  include("/Volumes/thiagoHD/Projects/my-boxy-rn/android/app/.cxx/Debug/2q4v611w/x86/RNGetRandomValuesSpec_autolinked_build/cmake_install.cmake")
   include("/Volumes/thiagoHD/Projects/my-boxy-rn/android/app/.cxx/Debug/2q4v611w/x86/safeareacontext_autolinked_build/cmake_install.cmake")
+  include("/Volumes/thiagoHD/Projects/my-boxy-rn/android/app/.cxx/Debug/2q4v611w/x86/rnsvg_autolinked_build/cmake_install.cmake")
 
 endif()
 

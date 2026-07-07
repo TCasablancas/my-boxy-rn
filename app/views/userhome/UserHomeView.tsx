@@ -1,5 +1,6 @@
-import { View, StyleSheet, StatusBar, ScrollView, Text, Image, FlatList } from 'react-native';
+import { View, StyleSheet, StatusBar, Text, Image, FlatList } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import MBHeaderUserContent from '../../components/header/MBHeaderUserContent';
 
 export default function UserHomeView() {
   const backgroundColor = '#F0E5E4';
@@ -69,7 +70,7 @@ export default function UserHomeView() {
       <View style={[{ backgroundColor: backgroundColor }, styles.container]}>
         <View style={[styles.contentWrapper]}>
           <View style={styles.headerContainer}>
-            <Text>Lorem Ipsum</Text>
+            <MBHeaderUserContent userName="Thiago Silva" userAlias="thyagoacsilva" />
           </View>
           <FlatList
             data={homeProducts}
@@ -85,20 +86,6 @@ export default function UserHomeView() {
             numColumns={2}
             contentContainerStyle={{ paddingBottom: 16 }}
           />
-          {/* <ScrollView 
-            style={styles.scrollView} 
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ flexGrow: 1 }}
-          >
-            {homeProducts.map((product) => (
-              <View key={product.id} style={styles.productContainer}>
-                <Image source={{ uri: product.imageUri }} style={styles.productImage} />
-                <Text style={styles.productTitle}>{product.title}</Text>
-                {/* <Text>{product.description}</Text>
-                <Text style={styles.productPrice}>{product.price}</Text>
-              </View>
-            ))}
-          </ScrollView> */}
         </View>
       </View>
     </SafeAreaProvider>
@@ -131,11 +118,12 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     width: '100%', 
-    height: 80, 
+    height: 100, 
     backgroundColor: 'transparent',
     paddingVertical: 16,
   },
 
+  // Product Styles
   productContainer: {
     paddingHorizontal: 8,
     marginVertical: 8,
@@ -152,10 +140,11 @@ const styles = StyleSheet.create({
   productTitle: {
     fontSize: 12,
     color: '#4c4c4c',
-    fontWeight: 'bold',
+    fontFamily: 'SNPro-Bold'
   },
   productPrice: {
     fontSize: 16,
     color: '#b3b3b3',
+    fontFamily: 'SNPro-Regular'
   },
 });

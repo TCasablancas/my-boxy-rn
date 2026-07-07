@@ -1,5 +1,6 @@
 {
   "buildFiles": [
+    "/Volumes/thiagoHD/Projects/my-boxy-rn/node_modules/react-native-get-random-values/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/Volumes/thiagoHD/Projects/my-boxy-rn/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt",
     "/Volumes/thiagoHD/Projects/my-boxy-rn/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup/CMakeLists.txt"
   ],
@@ -29,6 +30,11 @@
         "/Users/thiago/.gradle/caches/9.3.1/transforms/2b7c23aa4547eb79508e5d3aa3f2bc7a/transformed/react-android-0.86.0-debug/prefab/modules/jsi/libs/android.x86_64/libjsi.so",
         "/Users/thiago/.gradle/caches/9.3.1/transforms/2b7c23aa4547eb79508e5d3aa3f2bc7a/transformed/react-android-0.86.0-debug/prefab/modules/reactnative/libs/android.x86_64/libreactnative.so"
       ]
+    },
+    "react_codegen_RNGetRandomValuesSpec::@6e1160200c59ddcfca1e": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "react_codegen_RNGetRandomValuesSpec"
     },
     "react_codegen_safeareacontext::@7984cd80db47aa7b952a": {
       "toolchain": "toolchain",
