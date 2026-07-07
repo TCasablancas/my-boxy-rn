@@ -4,11 +4,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { PlatformPressable } from '@react-navigation/elements';
 import { PrimaryColors } from './app/common/colors/Colors';
-
-import UserHomeView from './app/views/userhome/UserHomeView';
 import { Icons } from './app/common/constants/Icons';
 import { IconsCommunication } from './app/common/constants/IconsCommunication';
 import { IconsActions } from './app/common/constants/IconsActions';
+
+import UserHomeView from './app/views/userhome/UserHomeView';
+import UserFavoritesView from './app/views/favorites/UserFavoritesView';
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -57,7 +58,7 @@ export default function App() {
           })}
         />
         <Tab.Screen 
-          name="curtidos" component={UserHomeView} 
+          name="curtidos" component={UserFavoritesView} 
           options={({ route }) => ({
             ...tabScreenOptions,
             tabBarIcon: ({ focused, color }) => {

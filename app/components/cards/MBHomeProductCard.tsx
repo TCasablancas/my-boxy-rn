@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
   productTitle: {
     fontSize: 12,
     color: '#4c4c4c',
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SNPro-Regular',
     lineHeight: 12,
   },
   productPrice: {
     fontSize: 16,
     color: '#b3b3b3',
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SNPro-Bold',
     lineHeight: 20,
   },
   currency: {

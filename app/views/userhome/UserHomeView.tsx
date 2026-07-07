@@ -90,7 +90,6 @@ export default function UserHomeView() {
       <View style={[{ backgroundColor: backgroundColor }, styles.container]}>
         <View style={[styles.contentWrapper]}>
           <View style={styles.headerContainer}>
-            {/* <MBHeaderUserContent userName="Thiago Silva" userAlias="thyagoacsilva" /> */}
             <MBHeaderUserSimple userName="Thiago Silva" userAlias="thyagoacsilva" />
           </View>
           <FlatList

@@ -16,10 +16,6 @@ ios/.prev_diff_args
 # --------------------------------------------------------------------
 # Android-specific
 # --------------------------------------------------------------------
-android/app/build/intermediates/cxx/Debug/2q4v611w/obj/armeabi-v7a/libreactnative.so
-android/app/build/intermediates/cxx/Debug/2q4v611w/obj/x86/libreactnative.so
-android/app/build/intermediates/cxx/Debug/2q4v611w/obj/arm64-v8a/libreactnative.so
-android/app/build/intermediates/cxx/Debug/2q4v611w/obj/x86_64/libreactnative.so
 android/app/build/outputs/apk/debug/app-debug.apk
 android/build/
 android/app/build/
