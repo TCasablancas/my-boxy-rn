@@ -6,6 +6,12 @@ ios/Pods/ReactNativeCore-artifacts/reactnative-core-0.86.0-debug.tar.gz
 ios/Pods/React-Core-prebuilt/React.xcframework/ios-arm64/React.framework/React
 ios/Pods/React-Core-prebuilt/React.xcframework/ios-arm64_x86_64-maccatalyst/React.framework/Versions/A/React
 ios/Pods/React-Core-prebuilt/React.xcframework/ios-arm64_x86_64-simulator/React.framework/React
+ios/build/
+ios/DerivedData/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
+ios/*.xcodeproj/project.xcworkspace/xcuserdata/
+ios/.prev_diff_args
 
 # --------------------------------------------------------------------
 # Android-specific
@@ -15,3 +21,21 @@ android/app/build/intermediates/cxx/Debug/2q4v611w/obj/x86/libreactnative.so
 android/app/build/intermediates/cxx/Debug/2q4v611w/obj/arm64-v8a/libreactnative.so
 android/app/build/intermediates/cxx/Debug/2q4v611w/obj/x86_64/libreactnative.so
 android/app/build/outputs/apk/debug/app-debug.apk
+android/build/
+android/app/build/
+android/.gradle/
+android/local.properties
+android/*.iml
+android/.idea/
+
+# --------------------------------------------------------------------
+# JavaScript / Metro bundler artifacts
+# --------------------------------------------------------------------
+.metro/
+*.bundle
+*.jsbundle
+
+# --------------------------------------------------------------------
+# Fastlane and dependency caching (optional but recommended)
+# --------------------------------------------------------------------
+ios/Pods/
