@@ -23,6 +23,7 @@ android/app/build/intermediates/cxx/Debug/2q4v611w/obj/x86_64/libreactnative.so
 android/app/build/outputs/apk/debug/app-debug.apk
 android/build/
 android/app/build/
+android/app/.cxx/
 android/.gradle/
 android/local.properties
 android/*.iml
