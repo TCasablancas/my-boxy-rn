@@ -69,6 +69,7 @@ export default function UserFavoritesView() {
             )}
             keyExtractor={(item) => item.id}
             style={styles.flatList}
+            contentContainerStyle={{ gap: 8 }}
           />
         </View>
       </View>

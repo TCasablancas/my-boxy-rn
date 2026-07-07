@@ -4,12 +4,12 @@ import Svg, {
 } from 'react-native-svg';
 
 export const IconsActions = {
-  trash: ({ strokeColor = '#000', fillColor = '', ...props }) => (
+  trash: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       fill={fillColor}
       viewBox="0 0 24 24"
-      strokeWidth={2.5}
+      strokeWidth={2.0}
       stroke={strokeColor}
       className="size-6"
       {...props}
