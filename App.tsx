@@ -8,6 +8,7 @@ import { PrimaryColors } from './app/common/colors/Colors';
 import UserHomeView from './app/views/userhome/UserHomeView';
 import { Icons } from './app/common/constants/Icons';
 import { IconsCommunication } from './app/common/constants/IconsCommunication';
+import { IconsActions } from './app/common/constants/IconsActions';
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -47,7 +48,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator screenOptions={screenOptions}>
         <Tab.Screen 
-          name="Home" component={UserHomeView} 
+          name="início" component={UserHomeView} 
           options={({ route }) => ({
             ...tabScreenOptions,
             tabBarIcon: ({ focused, color }) => {
@@ -56,7 +57,7 @@ export default function App() {
           })}
         />
         <Tab.Screen 
-          name="Curtidos" component={UserHomeView} 
+          name="curtidos" component={UserHomeView} 
           options={({ route }) => ({
             ...tabScreenOptions,
             tabBarIcon: ({ focused, color }) => {
@@ -65,7 +66,7 @@ export default function App() {
           })}
         />
         <Tab.Screen 
-          name="Carteira" component={UserHomeView} 
+          name="carteira" component={UserHomeView} 
           options={({ route }) => ({
             ...tabScreenOptions,
             tabBarIcon: ({ focused, color }) => {
@@ -74,7 +75,7 @@ export default function App() {
           })}
         />
         <Tab.Screen 
-          name="Notificações" component={UserHomeView} 
+          name="notificações" component={UserHomeView} 
           options={({ route }) => ({
             ...tabScreenOptions,
             tabBarIcon: ({ focused, color }) => {
@@ -83,11 +84,11 @@ export default function App() {
           })}
         />
         <Tab.Screen 
-          name="Perfil" component={UserHomeView} 
+          name="mais" component={UserHomeView} 
           options={({ route }) => ({
             ...tabScreenOptions,
             tabBarIcon: ({ focused, color }) => {
-              return <Icons.userCircle width={20} height={20} color={color} />;
+              return <IconsActions.squareFour width={20} height={20} strokeColor={color} />;
             }, tabBarButton
           })}
         />

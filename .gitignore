@@ -28,6 +28,16 @@ android/.gradle/
 android/local.properties
 android/*.iml
 android/.idea/
+build/
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+.cxx/
+*.keystore
+!debug.keystore
+.kotlin/
 
 # --------------------------------------------------------------------
 # JavaScript / Metro bundler artifacts
@@ -40,3 +50,10 @@ android/.idea/
 # Fastlane and dependency caching (optional but recommended)
 # --------------------------------------------------------------------
 ios/Pods/
+
+# --------------------------------------------------------------------
+# Node JS
+# --------------------------------------------------------------------
+node_modules/
+npm-debug.log
+yarn-error.log

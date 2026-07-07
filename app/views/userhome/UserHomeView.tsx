@@ -2,6 +2,7 @@ import { View, StyleSheet, StatusBar, Text, Image, FlatList } from 'react-native
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import MBHeaderUserContent from '../../components/header/MBHeaderUserContent';
 import MBHomeProductCard from '../../components/cards/MBHomeProductCard';
+import MBHeaderUserSimple from '../../components/header/MBHeaderUserSimple';
 
 export default function UserHomeView() {
   const backgroundColor = '#F0E5E4';
@@ -89,7 +90,8 @@ export default function UserHomeView() {
       <View style={[{ backgroundColor: backgroundColor }, styles.container]}>
         <View style={[styles.contentWrapper]}>
           <View style={styles.headerContainer}>
-            <MBHeaderUserContent userName="Thiago Silva" userAlias="thyagoacsilva" />
+            {/* <MBHeaderUserContent userName="Thiago Silva" userAlias="thyagoacsilva" /> */}
+            <MBHeaderUserSimple userName="Thiago Silva" userAlias="thyagoacsilva" />
           </View>
           <FlatList
             data={homeProducts}

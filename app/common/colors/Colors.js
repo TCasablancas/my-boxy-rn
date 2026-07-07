@@ -2,6 +2,7 @@ export const PrimaryColors = {
   primary: '#D8023F',
   primaryDark: '#B4225A',
   primaryLight: '#FDE2EC',
+  gold: '#FBBF24',
 };
 
 // Fluxo de cadastro: cor de apoio

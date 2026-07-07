@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text, Image } from 'react-native';
 import MBFavoriteBtn from '../buttons/MBFavoriteBtn';
 import { Icons } from '../../common/constants/Icons';
+import { PrimaryColors } from '../../common/colors/Colors';
 
 interface Product {
   id: string;
@@ -24,7 +25,7 @@ export default function MBHomeProductCard({
         </View>
         {product.rating && (
           <View style={styles.ratingWrapper}>
-            <Icons.star width={12} height={12} fill={'#F5AC02'} />
+            <Icons.star width={12} height={12} fill={PrimaryColors.gold} />
             <Text style={styles.ratingText}>{product.rating}</Text>
           </View>
         )}
