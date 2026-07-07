@@ -1,6 +1,7 @@
 import { View, StyleSheet, StatusBar, Text, Image, FlatList } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import MBHeaderUserContent from '../../components/header/MBHeaderUserContent';
+import MBHomeProductCard from '../../components/cards/MBHomeProductCard';
 
 export default function UserHomeView() {
   const backgroundColor = '#F0E5E4';
@@ -77,11 +78,12 @@ export default function UserHomeView() {
             style={styles.scrollView} 
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <View style={styles.productContainer}>
-                <Image source={{ uri: item.imageUri }} style={styles.productImage} />
-                <Text style={styles.productTitle}>{item.title}</Text>
-                <Text style={styles.productPrice}>{item.price}</Text>
-              </View>
+              <MBHomeProductCard product={{
+                id: item.id,
+                title: item.title,
+                price: `${item.price.toFixed(2)}`,
+                imageUri: item.imageUri
+              }} />
             )}
             numColumns={2}
             contentContainerStyle={{ paddingBottom: 16 }}
@@ -121,30 +123,5 @@ const styles = StyleSheet.create({
     height: 100, 
     backgroundColor: 'transparent',
     paddingVertical: 16,
-  },
-
-  // Product Styles
-  productContainer: {
-    paddingHorizontal: 8,
-    marginVertical: 8,
-    flex: 1,
-    width: '50%',
-  },
-  productImage: {
-    width: '100%',
-    height: 160,
-    resizeMode: 'cover',
-    marginBottom: 4,
-    borderRadius: 8,
-  },
-  productTitle: {
-    fontSize: 12,
-    color: '#4c4c4c',
-    fontFamily: 'SNPro-Bold'
-  },
-  productPrice: {
-    fontSize: 16,
-    color: '#b3b3b3',
-    fontFamily: 'SNPro-Regular'
   },
 });

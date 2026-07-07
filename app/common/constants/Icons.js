@@ -350,7 +350,7 @@ export const Icons = {
       </Defs>
     </Svg>
   ),
-  heart: ({ strokeColor = '#000', fillColor = '', ...props }) => (
+  heart: ({ strokeColor = '#000', fillColor = 'transparent', ...props }) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       fill={fillColor}
