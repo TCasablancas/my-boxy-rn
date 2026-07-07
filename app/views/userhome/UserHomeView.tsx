@@ -13,6 +13,9 @@ export default function UserHomeView() {
       description: 'Planta de grama em pote para decoração e jardinagem.',
       price: 29.99,
       imageUri: 'https://cultured.guru/wp-content/uploads/2019/09/FullSizeRender-1.jpg',
+      storeName: 'Gardening Co.',
+      storeImageUri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRNCAanOzvGxJsBzy7Ubfet7WBEIhjy0seSNYKNlWBF_EaE_T5TYCClt8&s=10',
+      rating: 4,
       isFavourite: true,
     },
     {
@@ -21,6 +24,8 @@ export default function UserHomeView() {
       description: 'Mini terrário com rolha para decoração e jardinagem.',
       price: 79.99,
       imageUri: 'https://wondrwood.com/cdn/shop/articles/terrarium_steps.jpg?v=1634833473',
+      storeName: 'Plant Store',
+      storeImageUri: 'https://thumbs.dreamstime.com/b/plant-market-logo-design-house-plant-shop-garden-plant-nursery-store-vector-design-market-stall-flower-pot-plant-logotype-250412974.jpg',
       isFavourite: false,
     },
     {
@@ -29,6 +34,9 @@ export default function UserHomeView() {
       description: 'Terrário externo de mesa para decoração e jardinagem.',
       price: 149.99,
       imageUri: 'https://blog.papermart.com/wp-content/uploads/2024/04/2024-EarthDay-Mason-Jar-Planters_1080x1080.jpg',
+      storeName: 'Loja de Plantas',
+      storeImageUri: 'https://thumbs.dreamstime.com/b/plant-market-logo-design-house-plant-shop-garden-plant-nursery-store-vector-design-market-stall-flower-pot-plant-logotype-250412974.jpg',
+      rating: 5,
       isFavourite: true,
     },
     {
@@ -37,6 +45,9 @@ export default function UserHomeView() {
       description: 'Vaso de suculenta para decoração e jardinagem.',
       price: 199.99,
       imageUri: 'https://www.thegardener.co.za/wp-content/uploads/2025/07/3-12-683x1024.png',
+      storeName: 'Plant Shop',
+      storeImageUri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYqtPusjji-GhXuqkiXJPlEzAx-VcHzbUU8tJJIW5KHsKXRnxnpl3n_5s&s=10',
+      rating: 4,
       isFavourite: false,
     },
     {
@@ -45,6 +56,9 @@ export default function UserHomeView() {
       description: 'Planta carnívora pendular para decoração e jardinagem.',
       price: 249.99,
       imageUri: 'https://www.monkeyjars.com/img/plant.jpg?_cchid=b15f930c04b4eb892ef0e63cac44d9fc',
+      storeName: 'Loja de Plantas',
+      storeImageUri: 'https://thumbs.dreamstime.com/b/plant-market-logo-design-house-plant-shop-garden-plant-nursery-store-vector-design-market-stall-flower-pot-plant-logotype-250412974.jpg',
+      rating: 3,
       isFavourite: true,
     },
     {
@@ -53,6 +67,8 @@ export default function UserHomeView() {
       description: 'Terrário fechado, com tampa, para mesa.',
       price: 249.99,
       imageUri: 'https://img.drz.lazcdn.com/static/bd/p/04efdc1ca1e2b33f92c2ff260def6daf.jpg_960x960q80.jpg_.webp',
+      storeName: 'Loja de Plantas',
+      storeImageUri: 'https://thumbs.dreamstime.com/b/plant-market-logo-design-house-plant-shop-garden-plant-nursery-store-vector-design-market-stall-flower-pot-plant-logotype-250412974.jpg',
       isFavourite: true,
     },
     {
@@ -61,6 +77,8 @@ export default function UserHomeView() {
       description: 'Suculenta, no vaso, com tampa para decoração de mesa.',
       price: 249.99,
       imageUri: 'https://www.housedigest.com/img/gallery/12-beautiful-houseplants-you-can-grow-in-glass-jars-bottles/succulents-1720462391.jpg',
+      storeName: 'Loja de Plantas',
+      storeImageUri: 'https://thumbs.dreamstime.com/b/plant-market-logo-design-house-plant-shop-garden-plant-nursery-store-vector-design-market-stall-flower-pot-plant-logotype-250412974.jpg',
       isFavourite: true,
     }
   ];
@@ -82,7 +100,10 @@ export default function UserHomeView() {
                 id: item.id,
                 title: item.title,
                 price: `${item.price.toFixed(2)}`,
-                imageUri: item.imageUri
+                imageUri: item.imageUri,
+                storeName: item.storeName,
+                storeImageUri: item.storeImageUri,
+                rating: item.rating,
               }} />
             )}
             numColumns={2}
@@ -109,7 +130,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 16,
     right: 16,
-    bottom: 16,
+    bottom: 8,
     borderRadius: 12,
   },
   scrollView: {
@@ -122,6 +143,6 @@ const styles = StyleSheet.create({
     width: '100%', 
     height: 100, 
     backgroundColor: 'transparent',
-    paddingVertical: 16,
+    // paddingVertical: 16,
   },
 });

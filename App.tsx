@@ -29,6 +29,10 @@ export default function App() {
   const tabScreenOptions = {
     tabBarInactiveTintColor: 'gray',
     tabBarActiveTintColor: mainColor,
+    tabBarLabelStyle: {
+      fontSize: 11,
+      fontFamily: 'SNPro-Bold',
+    },
   };
 
   const tabBarButton = (props: any) => (
@@ -70,7 +74,7 @@ export default function App() {
           })}
         />
         <Tab.Screen 
-          name="Alertas" component={UserHomeView} 
+          name="Notificações" component={UserHomeView} 
           options={({ route }) => ({
             ...tabScreenOptions,
             tabBarIcon: ({ focused, color }) => {
@@ -79,7 +83,7 @@ export default function App() {
           })}
         />
         <Tab.Screen 
-          name="Settings" component={UserHomeView} 
+          name="Perfil" component={UserHomeView} 
           options={({ route }) => ({
             ...tabScreenOptions,
             tabBarIcon: ({ focused, color }) => {
