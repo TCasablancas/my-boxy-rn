@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#888',
     fontFamily: 'SNPro-Bold',
+    lineHeight: 16,
   },
   currency: {
     fontSize: 12,

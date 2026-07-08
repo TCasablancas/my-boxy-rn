@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F0E5E4',
+    width: '100%',
   },
   contentWrapper: {
     flex: 1,

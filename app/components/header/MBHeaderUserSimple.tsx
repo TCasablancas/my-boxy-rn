@@ -4,9 +4,16 @@ import { Icons } from '../../common/constants/Icons';
 import { IconsActions } from '../../common/constants/IconsActions';
 import MBRoundedIconBtn from '../buttons/MBRoundedIconBtn';
 
+interface MBHeaderUserSimpleProps {
+  userName: string;
+  userAlias: string;
+  onPressSearch: () => void;
+  onPressCart: () => void;
+}
+
 export default function MBHeaderUserSimple({ 
-  userName, userAlias 
-}: { userName: string; userAlias: string }) {
+  userName, userAlias, onPressSearch, onPressCart
+}: MBHeaderUserSimpleProps) {
   return (
     <View style={styles.container}>
       <View style={styles.picWrapper}>
@@ -20,8 +27,8 @@ export default function MBHeaderUserSimple({
         <Icons.chevronDown width={12} height={12} />
       </View>
       <View style={styles.iconsWrapper}>
-        <MBRoundedIconBtn icon={<IconsActions.search width={16} height={16} />} onPress={() => {}} />
-        <MBRoundedIconBtn icon={<Icons.cart width={16} height={16} />} onPress={() => {}} />
+        <MBRoundedIconBtn icon={<IconsActions.search width={16} height={16} />} onPress={onPressSearch} />
+        <MBRoundedIconBtn icon={<Icons.cart width={16} height={16} />} onPress={onPressCart} />
       </View>
     </View>
   );

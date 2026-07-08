@@ -10,6 +10,7 @@ import { IconsActions } from './app/common/constants/IconsActions';
 
 import UserHomeView from './app/views/userhome/UserHomeView';
 import UserFavoritesView from './app/views/favorites/UserFavoritesView';
+import MoreConfigsView from './app/views/moreconfigs/MoreConfigsView';
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -85,7 +86,7 @@ export default function App() {
           })}
         />
         <Tab.Screen 
-          name="mais" component={UserHomeView} 
+          name="mais" component={MoreConfigsView} 
           options={({ route }) => ({
             ...tabScreenOptions,
             tabBarIcon: ({ focused, color }) => {
