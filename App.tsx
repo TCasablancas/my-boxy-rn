@@ -14,6 +14,8 @@ import UserHomeView from './app/views/userhome/UserHomeView';
 import UserFavoritesView from './app/views/favorites/UserFavoritesView';
 import MoreConfigsView from './app/views/moreconfigs/MoreConfigsView';
 import UserProfileView from './app/views/userprofile/UserProfileView';
+import WalletView from './app/views/wallet/WalletView';
+import NotificationsView from './app/views/notifications/NotificationsView';
 import MoreConfigsPlaceholderView from './app/views/moreconfigs/MoreConfigsPlaceholderView';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
@@ -46,8 +48,8 @@ function MainTabs() {
   const screenArrData = [
     { name: 'início' as const, component: UserHomeView, icon: Icons.home },
     { name: 'curtidos' as const, component: UserFavoritesView, icon: Icons.heart },
-    { name: 'carteira' as const, component: UserHomeView, icon: Icons.wallet },
-    { name: 'notificações' as const, component: UserHomeView, icon: IconsCommunication.notification },
+    { name: 'carteira' as const, component: WalletView, icon: Icons.wallet },
+    { name: 'notificações' as const, component: NotificationsView, icon: IconsCommunication.notification },
     { name: 'mais' as const, component: MoreConfigsView, icon: IconsActions.squareFour },
   ];
 

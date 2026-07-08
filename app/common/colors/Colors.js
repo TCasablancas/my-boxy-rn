@@ -32,3 +32,7 @@ export const NeutralColors = {
   white: '#FFFFFF',
   black: '#000000',
 };
+
+export const OverlayColors = {
+  shadow: 'rgba(17, 24, 39, 0.08)',
+};

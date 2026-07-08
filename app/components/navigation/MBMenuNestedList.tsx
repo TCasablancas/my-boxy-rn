@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { Icons } from '../../common/constants/Icons';
+import { PrimaryColors } from '../../common/colors/Colors';
 
 interface MBMenuNestedListProps {
   title?: string;
@@ -16,6 +17,7 @@ export default function MBMenuNestedList({
         <Text style={styles.nestTitle}>{title || 'More Configs View'}</Text>
         <View style={styles.nestWrapper}>
           {items.map((item) => (
+            <>
             <Pressable 
               key={item.id} 
               style={styles.nestItemWrapper} 
@@ -27,6 +29,8 @@ export default function MBMenuNestedList({
               </View>
               <Icons.chevronRight width={12} height={12} />
             </Pressable>
+            { item.id !== items[items.length - 1].id && <View style={styles.separator} /> }
+            </>
           ))}
         </View>
       </View>
@@ -72,5 +76,10 @@ const styles = StyleSheet.create({
   },
   iconWrapper: {
     marginRight: 8,
+  },
+  separator: {
+    height: 1,
+    backgroundColor: PrimaryColors.background,
+    marginHorizontal: 16,
   },
 });

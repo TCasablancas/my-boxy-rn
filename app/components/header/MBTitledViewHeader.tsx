@@ -4,16 +4,18 @@ import { NeutralColors } from '../../common/colors/Colors';
 interface MBTitledViewHeaderProps {
   title: string;
   description?: string;
+  btnsLeft?: React.ReactNode;
   btnsRight?: React.ReactNode;
 }
 
 export default function MBTitledViewHeader({
-  title, description, btnsRight
+  title, description, btnsLeft, btnsRight
 }: MBTitledViewHeaderProps) {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#F0E5E4" />
       <View style={styles.contentWrapper}>
+        {btnsLeft && <View style={styles.btnsLeftWrapper}>{btnsLeft}</View>}
         <View style={styles.textWrapper}>
           <Text style={styles.title}>{title}</Text>
           {description && <Text style={styles.description}>{description}</Text>}
@@ -26,23 +28,33 @@ export default function MBTitledViewHeader({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: 40,
     backgroundColor: '#F0E5E4',
     width: '100%',
+    justifyContent: 'center',
   },
   contentWrapper: {
-    flex: 1,
+    // flex: 1,
     paddingHorizontal: 16,
     paddingTop: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  btnsLeftWrapper: {
+    position: 'absolute',
+    left: 0,
   },
   btnsRightWrapper: {
     position: 'absolute',
-    right: 16,
-    top: 16,
+    right: 0,
   },
   textWrapper: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
     flexDirection: 'column',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   title: {

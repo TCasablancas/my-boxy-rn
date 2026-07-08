@@ -35,19 +35,22 @@ export default function MoreConfigsView() {
       <ScrollView style={styles.contentWrapper}>
         <MBTitledViewHeader 
           title="Configurações"
-          btnsRight={<MBRoundedIconBtn 
-            icon={<Icons.barcode width={16} height={16} />} 
-            onPress={() => {}}
-          />}
+          // btnsRight={<MBRoundedIconBtn 
+          //   icon={<Icons.barcode width={16} height={16} />} 
+          //   onPress={() => {}}
+          // />}
         />
         <View style={styles.listWrapper}>
           {nestedListItems.map((nestedList) => (
-            <MBMenuNestedList 
-              key={nestedList.id}
-              title={nestedList.label}
-              items={nestedList.items}
-              onPress={handleNavigateFromMenu}
-            />
+            <>
+              <MBMenuNestedList 
+                key={nestedList.id}
+                title={nestedList.label}
+                items={nestedList.items}
+                onPress={handleNavigateFromMenu}
+              />
+              {nestedList.items.length-1  && <View style={{ marginBottom: 16 }} />}
+            </>
           ))}
         </View>
       </ScrollView>

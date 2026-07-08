@@ -8,6 +8,15 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 First, you will need to run **Metro**, the JavaScript build tool for React Native.
 
+Before starting Metro, make sure your Node.js version matches this project requirement (`>= 22.11.0`).
+
+If you use `nvm`, run:
+
+```sh
+nvm install
+nvm use
+```
+
 To start the Metro dev server, run the following command from the root of your React Native project:
 
 ```sh
