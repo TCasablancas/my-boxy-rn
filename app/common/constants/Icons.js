@@ -1063,13 +1063,13 @@ export const Icons = {
       />
     </Svg>
   ),
-  star: ({ stroke = 'none', fill = 'none', ...props }) => (
+  star: ({ strokeColor = 'none', fillColor = 'none', ...props }) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      fill={fill}
+      fill={fillColor}
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke={stroke}
+      strokeWidth={2.0}
+      stroke={strokeColor}
       className="size-6"
       {...props}
     >

@@ -3,13 +3,17 @@ import { Icons } from '../../common/constants/Icons';
 import { View, Text, StyleSheet } from 'react-native';
 
 interface MBTagWithLabelProps {
+  id?: string;
   label?: string;
   icon?: React.ReactNode;
+  backgroundColor?: string;
 }
 
-export default function MBTagWithLabel({ label, icon }: MBTagWithLabelProps) {
+export default function MBTagWithLabel({ 
+  id, label, icon, backgroundColor
+}: MBTagWithLabelProps) {
   return (
-    <View style={styles.tagContainer}>
+    <View style={[styles.tagContainer, backgroundColor && { backgroundColor }]} key={id}>
       <View style={styles.iconContainer}>{icon}</View>
       <Text style={styles.label}>{label}</Text>
     </View>
@@ -18,12 +22,12 @@ export default function MBTagWithLabel({ label, icon }: MBTagWithLabelProps) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 8,
   },
   tagContainer: {
-    backgroundColor: PrimaryColors.primaryLight,
     borderRadius: 20,
     padding: 4,
     flexDirection: 'row',

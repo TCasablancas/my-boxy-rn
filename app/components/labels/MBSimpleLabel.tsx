@@ -3,35 +3,33 @@ import { PrimaryColors } from '../../common/colors/Colors';
 
 interface MBSimpleLabelProps {
   text: string;
+  icon?: React.ReactNode;
   backgroundColor?: string;
   textColor?: string;
-  fontSize?: number;
-  paddingHorizontal?: number;
-  paddingVertical?: number;
-  borderRadius?: number;
 }
 
 export default function MBSimpleLabel({
-  text,
-  backgroundColor = PrimaryColors.primary,
-  textColor = 'white',
-  fontSize = 14,
-  paddingHorizontal = 8,
-  paddingVertical = 4,
-  borderRadius = 4,
+  text, icon, backgroundColor, textColor,
 }: MBSimpleLabelProps) {
   return (
-    <View style={[styles.labelContainer, { backgroundColor, paddingHorizontal, paddingVertical, borderRadius }]}>
-      <Text style={[styles.labelText, { color: textColor, fontSize }]}>{text}</Text>
+    <View style={[styles.labelContainer, { backgroundColor }]}>
+      {icon && <View style={styles.iconContainer}>{icon}</View>}
+      <Text style={[styles.labelText, { color: textColor }]}>{text}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   labelContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
     alignSelf: 'flex-start',
   },
   labelText: {
     fontFamily: 'SNPro-Regular',
+  },
+  iconContainer: {
+    marginRight: 4,
   },
 });

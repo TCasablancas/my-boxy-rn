@@ -253,7 +253,7 @@ export default function MBProductCarousel({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 16,
+    // marginBottom: 16,
   },
   sliderWrapper: {
     width: '100%',
