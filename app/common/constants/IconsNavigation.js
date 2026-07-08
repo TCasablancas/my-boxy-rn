@@ -264,4 +264,21 @@ export const IconsNavigation = {
       />
     </Svg>
   ),
+  arrowTurnDownRight: ({ color = '#000', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={2.0}
+      stroke={color}
+      className="size-6"
+      {...props}
+    >
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="m16.49 12 3.75 3.75m0 0-3.75 3.75m3.75-3.75H3.74V4.499"
+      />
+    </Svg>
+  ),
 };

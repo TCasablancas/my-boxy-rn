@@ -20,6 +20,7 @@ import { IconsActions } from '../../common/constants/IconsActions';
 import MBSimpleLabel from '../../components/labels/MBSimpleLabel';
 import MBStoreProductHeader from '../../components/header/MBStoreProductHeader';
 import MBTextWithTitle from '../../components/labels/MBTextWithTitle';
+import ProductCommentsSection from '../../sections/comments/ProductCommentsSection';
 
 export default function ProductDetailView() {
   const safeAreaInsets = useSafeAreaInsets();
@@ -145,6 +146,7 @@ export default function ProductDetailView() {
             </View>
             <MBTextWithTitle title="Descrição" text={productDetail.description} />
             <MBTextWithTitle title="Detalhe do Produto" text={productDetail.description} />
+            <ProductCommentsSection />
           </View>
         </Animated.ScrollView>
         <View style={styles.bottomActionRow}>
@@ -187,7 +189,6 @@ const styles = StyleSheet.create({
   },
   contentArea: {
     flex: 1,
-    // paddingHorizontal: 16,
     marginBottom: 84,
   },
   contentWrapper: {
