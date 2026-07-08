@@ -4,17 +4,11 @@ import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
 import { Icons } from '../../common/constants/Icons';
 import MBMenuNestedList from '../../components/navigation/MBMenuNestedList';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../navigation/types';
+import MainNavigation from '../../common/navigation/MainNavigation';
 
 import { nestedListItems } from './../../common/MoreConfigsData';
 
-type MoreConfigsViewNavigationProp = NativeStackNavigationProp<RootStackParamList>;
-
 export default function MoreConfigsView() {
-  const navigation = useNavigation<MoreConfigsViewNavigationProp>();
-
   const menuItemPathById = useMemo(() => {
     return nestedListItems
       .flatMap((nestedList) => nestedList.items)
@@ -27,7 +21,7 @@ export default function MoreConfigsView() {
   function handleNavigateFromMenu(itemId: string) {
     const targetPath = menuItemPathById[itemId];
     if (!targetPath) return;
-    navigation.push(targetPath);
+    MainNavigation.push(targetPath);
   }
 
   return (

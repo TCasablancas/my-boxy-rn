@@ -5,7 +5,6 @@ interface MBMainBtnProps {
   title: string;
   onPress: () => void;
   isDisabled?: boolean;
-  hasIcon?: boolean;
   icon?: React.ReactNode;
   textColor?: string;
   backgroundColor?: string;
@@ -19,7 +18,6 @@ export default function MBMainBtn({
   title,
   onPress,
   isDisabled = false,
-  hasIcon = false,
   icon,
   textColor,
   backgroundColor,
@@ -46,7 +44,7 @@ export default function MBMainBtn({
       disabled={isDisabled}
     >
       <View style={styles.buttonContent}>
-        {hasIcon && <View style={styles.iconContainer}>{icon}</View>}
+        {icon && <View style={styles.iconContainer}>{icon}</View>}
         <Text style={[styles.buttonText, { textAlign, color: resolvedTextColor }]}>{title}</Text>
       </View>
     </Pressable>
@@ -55,10 +53,11 @@ export default function MBMainBtn({
 
 const styles = StyleSheet.create({
   button: {
+    flex: 1,
     backgroundColor: PrimaryColors.primary,
     paddingVertical: 10,
     paddingHorizontal: 26,
-    borderRadius: 8,
+    borderRadius: 16,
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
@@ -66,20 +65,15 @@ const styles = StyleSheet.create({
   buttonContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'center',
   },
   buttonText: {
-    flex: 1,
     color: 'white',
     fontSize: 16,
     fontFamily: 'SNPro-Regular',
-    width: '100%',
-    textAlign: 'left',
   },
   iconContainer: {
-    width: 24,
-    height: 24,
     backgroundColor: PrimaryColors.primary,
-    borderRadius: 12,
+    marginRight: 8,
   },
 });

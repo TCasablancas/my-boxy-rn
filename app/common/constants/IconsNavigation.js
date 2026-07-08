@@ -4,21 +4,43 @@ import Svg, {
 } from 'react-native-svg';
 
 export const IconsNavigation = {
-  chevronRight: ({ color = '#000', ...props }) => (
+  pin: ({ fillColor = 'none', strokeColor = 'currentColor', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill={fillColor}
+      viewBox="0 0 24 24"
+      strokeWidth={2.0}
+      stroke={strokeColor}
+      className="size-6"
+      {...props}
+    >
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+      />
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+      />
+    </Svg>
+  ),
+  chevronRight: ({ fillColor = 'none', strokeColor = 'currentColor', ...props }) => (
     <Svg
       width="24px"
       height="24px"
-      strokeWidth={1.5}
+      strokeWidth={2.0}
       viewBox="0 0 24 24"
-      fill="none"
+      fill={fillColor}
       xmlns="http://www.w3.org/2000/svg"
       color={color}
       {...props}
     >
       <Path
         d="M9 6L15 12L9 18"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />

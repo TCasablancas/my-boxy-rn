@@ -5,12 +5,14 @@ import { useUserHomeBottomsheetState } from './UserHomeHooks';
 import MBHomeProductCard from '../../components/cards/MBHomeProductCard';
 import MBHeaderUserSimple from '../../components/header/MBHeaderUserSimple';
 import { HomeSearchBottomsheet, HomeChartBottomsheet } from './UserHomeBottomsheets';
-
 import { homeProducts, homeTags, homeCategories } from '../../common/UserHomeData';
+import MainNavigation from '../../common/navigation/MainNavigation';
+import ProductDetailView from '../productdetail/ProductDetailView';
 
 export default function UserHomeView() {
   const backgroundColor = '#F0E5E4';
   const bottomsheetState = useUserHomeBottomsheetState();
+
   const {
     isSearchBottomsheetVisible, 
     openSearchBottomsheet, 
@@ -50,6 +52,12 @@ export default function UserHomeView() {
                 storeName: item.storeName,
                 storeImageUri: item.storeImageUri,
                 rating: item.rating,
+                onPress: () => {
+                  MainNavigation.push(ProductDetailView, { productId: item.id });
+                },
+                onPressFavorite: () => {
+                  // Handle favorite press
+                },
               }} />
             )}
             numColumns={2}

@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
 import MBFavoriteBtn from '../buttons/MBFavoriteBtn';
 import { Icons } from '../../common/constants/Icons';
 import { PrimaryColors } from '../../common/colors/Colors';
@@ -11,13 +11,15 @@ interface Product {
   storeName: string;
   storeImageUri: string;
   rating?: number;
+  onPress?: () => void;
+  onPressFavorite?: () => void;
 }
 
 export default function MBHomeProductCard({ 
-    product 
+    product
 }: { product: Product }) {
   return (
-    <View style={styles.productContainer}>
+    <Pressable style={styles.productContainer} onPress={product.onPress}>
       <View style={styles.storeInfoWrapper}>
         <View style={styles.nameImageWrapper}>
           <Image source={{ uri: product.storeImageUri }} style={styles.storeImage} />
@@ -32,7 +34,7 @@ export default function MBHomeProductCard({
       </View>
       <View>
         <View style={styles.imageWrapper}>
-          <View style={styles.favoriteBtnWrapper}><MBFavoriteBtn /></View>
+          <View style={styles.favoriteBtnWrapper}><MBFavoriteBtn onPress={product.onPressFavorite} /></View>
           <Image source={{ uri: product.imageUri }} style={styles.productImage} />
         </View>
         <View style={styles.textWrapper}>
@@ -40,7 +42,7 @@ export default function MBHomeProductCard({
           <Text style={styles.productPrice}><Text style={styles.currency}>R$ </Text>{product.price}</Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
