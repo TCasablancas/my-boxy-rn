@@ -97,7 +97,7 @@ function MainTabs() {
       {screenArrData.map((screen, index) => (
         <Tab.Screen
           key={index}
-          name={screen.name}
+          name={screen.name as keyof MainTabParamList}
           component={screen.component}
           options={{
             ...tabScreenOptions,

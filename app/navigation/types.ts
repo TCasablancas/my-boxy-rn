@@ -5,6 +5,8 @@ export type MainTabParamList = {
   curtidos: undefined;
   carteira: undefined;
   'notificações': undefined;
+  compras: undefined;
+  busca: undefined;
   mais: undefined;
 };
 

@@ -4,8 +4,8 @@ import { getUserHomeViewModel } from './UserHomeViewModel';
 import { useUserHomeBottomsheetState } from './UserHomeHooks';
 import MBHomeProductCard from '../../components/cards/MBHomeProductCard';
 import MBHeaderUserSimple from '../../components/header/MBHeaderUserSimple';
-import { HomeSearchBottomsheet, HomeChartBottomsheet } from './UserHomeBottomsheets';
-import { homeProducts, homeTags, homeCategories } from '../../common/UserHomeData';
+import { HomeChartBottomsheet } from './UserHomeBottomsheets';
+import { homeProducts } from '../../common/UserHomeData';
 import MainNavigation from '../../common/navigation/MainNavigation';
 import ProductDetailView from '../productdetail/ProductDetailView';
 
@@ -14,16 +14,14 @@ export default function UserHomeView() {
   const bottomsheetState = useUserHomeBottomsheetState();
 
   const {
-    isSearchBottomsheetVisible, 
-    openSearchBottomsheet, 
-    closeSearchBottomsheet,
-    searchText,
-    setSearchText,
-    clearSearchText,
     isChartBottomsheetVisible,
     openChartBottomsheet,
     closeChartBottomsheet,
   } = getUserHomeViewModel(bottomsheetState);
+
+  function navigateToSearchView() {
+    MainNavigation.navigate('MainTabs', { screen: 'busca' });
+  }
 
   return (
     <>
@@ -35,7 +33,7 @@ export default function UserHomeView() {
             <MBHeaderUserSimple 
               userName="Thiago Silva" 
               userAlias="thyagoacsilva" 
-              onPressSearch={openSearchBottomsheet} 
+              onPressNotifications={navigateToSearchView} 
               onPressCart={openChartBottomsheet} 
             />
           </View>
@@ -66,16 +64,6 @@ export default function UserHomeView() {
         </View>
       </View>
     </SafeAreaProvider>
-
-    <HomeSearchBottomsheet 
-      tags={homeTags}
-      categories={homeCategories}
-      isVisible={isSearchBottomsheetVisible} 
-      onClose={closeSearchBottomsheet}
-      searchText={searchText}
-      onChangeSearchText={setSearchText}
-      onClearSearch={clearSearchText}
-    />
 
     <HomeChartBottomsheet 
       isVisible={isChartBottomsheetVisible} 

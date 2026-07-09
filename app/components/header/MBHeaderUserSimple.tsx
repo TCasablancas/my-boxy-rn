@@ -1,18 +1,18 @@
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 import MyBoxyIcon from '../../../assets/images/my_boxy_icon.svg';
 import { Icons } from '../../common/constants/Icons';
-import { IconsActions } from '../../common/constants/IconsActions';
 import MBRoundedIconBtn from '../buttons/MBRoundedIconBtn';
+import { IconsCommunication } from '../../common/constants/IconsCommunication';
 
 interface MBHeaderUserSimpleProps {
   userName: string;
   userAlias: string;
-  onPressSearch: () => void;
+  onPressNotifications: () => void;
   onPressCart: () => void;
 }
 
 export default function MBHeaderUserSimple({ 
-  userName, userAlias, onPressSearch, onPressCart
+  userName, userAlias, onPressNotifications, onPressCart
 }: MBHeaderUserSimpleProps) {
   return (
     <View style={styles.container}>
@@ -27,8 +27,14 @@ export default function MBHeaderUserSimple({
         <Icons.chevronDown width={12} height={12} />
       </View>
       <View style={styles.iconsWrapper}>
-        <MBRoundedIconBtn icon={<IconsActions.search width={16} height={16} />} onPress={onPressSearch} />
-        <MBRoundedIconBtn icon={<Icons.cart width={16} height={16} />} onPress={onPressCart} />
+        <MBRoundedIconBtn 
+          icon={<IconsCommunication.notification width={16} height={16} />} 
+          onPress={onPressNotifications} 
+        />
+        <MBRoundedIconBtn 
+          icon={<Icons.cart width={16} height={16} />} 
+          onPress={onPressCart} 
+        />
       </View>
     </View>
   );
