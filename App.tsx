@@ -20,6 +20,8 @@ import UserFavoritesView from './app/views/favorites/UserFavoritesView';
 import MoreConfigsView from './app/views/moreconfigs/MoreConfigsView';
 import UserProfileView from './app/views/userprofile/UserProfileView';
 import WalletView from './app/views/wallet/WalletView';
+import MyShopView from './app/views/myshop/MyShopView';
+import SearchView from './app/views/search/SearchView';
 import NotificationsView from './app/views/notifications/NotificationsView';
 import MoreConfigsPlaceholderView from './app/views/moreconfigs/MoreConfigsPlaceholderView';
 import ProductDetailView from './app/views/productdetail/ProductDetailView';
@@ -56,8 +58,8 @@ function MainTabs() {
   const screenArrData = [
     { name: 'início' as const, component: UserHomeView, icon: Icons.home },
     { name: 'curtidos' as const, component: UserFavoritesView, icon: Icons.heart },
-    { name: 'carteira' as const, component: WalletView, icon: Icons.wallet },
-    { name: 'notificações' as const, component: NotificationsView, icon: IconsCommunication.notification },
+    { name: 'compras' as const, component: MyShopView, icon: Icons.bag },
+    { name: 'busca' as const, component: SearchView, icon: IconsActions.search },
     { name: 'mais' as const, component: MoreConfigsView, icon: IconsActions.squareFour },
   ];
 
@@ -125,13 +127,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%', 
-    height: '100%', 
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

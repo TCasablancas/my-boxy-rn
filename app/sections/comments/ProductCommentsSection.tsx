@@ -1,11 +1,9 @@
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import MBTitleWithLinkRight from '../../components/header/MBTitleWithLinkRight';
 import { Icons } from '../../common/constants/Icons';
-import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
-import MBHeaderUserComment from '../../components/header/MBHeaderUserComment';
-import { IconsNavigation } from '../../common/constants/IconsNavigation';
+import { PrimaryColors } from '../../common/colors/Colors';
 import UserComment from './UserComment';
-import MBMainBtn from '../../components/buttons/MBMainBtn';
+import MBMainBtn, { MBMainBtnType } from '../../components/buttons/MBMainBtn';
 import { IconsActions } from '../../common/constants/IconsActions';
 
 export default function ProductCommentsSection({}) {
@@ -41,8 +39,8 @@ export default function ProductCommentsSection({}) {
         <MBMainBtn 
           title="comentar" 
           icon={<IconsActions.chatBubbleDouble width={16} height={16} strokeColor={PrimaryColors.primary} />}
-          onPress={() => {}} 
-          outlined={true}
+          onPress={() => {}}
+          buttonType={MBMainBtnType.OUTLINED}
         />
       </View>
     </View>

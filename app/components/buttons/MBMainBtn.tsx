@@ -7,6 +7,7 @@ export enum MBMainBtnType {
   DARK = 'dark',
   DISABLED = 'disabled',
   CUSTOM = 'custom',
+  OUTLINED = 'outlined',
 }
 
 interface MBMainBtnProps {
@@ -15,7 +16,6 @@ interface MBMainBtnProps {
   icon?: React.ReactNode;
   position?: 'absolute' | 'relative';
   textAlign?: 'center' | 'left' | 'right';
-  outlined?: boolean;
   buttonType?: MBMainBtnType | 'primary';
   onClick?: () => void;
   backgroundColor?: string;
@@ -28,7 +28,6 @@ export default function MBMainBtn({
   onClick,
   icon,
   textAlign = 'center',
-  outlined = false,
   buttonType = MBMainBtnType.NORMAL,
   backgroundColor,
   textColor,
@@ -45,17 +44,20 @@ export default function MBMainBtn({
       case MBMainBtnType.DISABLED:
         return '#D6D6D6';
       case MBMainBtnType.CUSTOM:
-        return backgroundColor || '#D8023F';
+        return backgroundColor || '#6ABA02';
       case MBMainBtnType.NORMAL:
-        return '#D8023F';
+        return '#6ABA02';
+      case MBMainBtnType.OUTLINED:
+        return 'transparent';
       default:
-        return '#D8023F';
+        return '#6ABA02';
     }
   })();
 
   const resolvedTextColor = (() => {
     if (resolvedType === MBMainBtnType.DISABLED) return '#8A8A8A';
     if (resolvedType === MBMainBtnType.NORMAL) return '#FFFFFF';
+    if (resolvedType === MBMainBtnType.OUTLINED) return PrimaryColors.primary;
     if (textColor) return textColor;
     return getContrastingTextColor(resolvedBackgroundColor);
   })();
@@ -66,7 +68,8 @@ export default function MBMainBtn({
   return (
     <Pressable
       style={[
-        styles.button, outlined ? styles.outlinedButton : {}, 
+        styles.button, 
+        MBMainBtnType.OUTLINED === resolvedType && styles.outlinedButton,
         {
           backgroundColor: resolvedBackgroundColor,
           // width: size === 'main' ? '100%' : 'auto',
