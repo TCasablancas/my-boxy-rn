@@ -1,3 +1,27 @@
+import { CommentProps } from "../../models/CommentsModel";
+import { StoreTag } from "../../models/TagsModel";
+import { StoreHeaderProfileProps } from "../storeprofile/StoreProfileModel";
+
+export interface ProductDetailProps {
+  productId: string;
+  stock: number;
+  title: string;
+  price: string;
+  images: string[];
+  storeData: StoreHeaderProfileProps;
+  tags: StoreTag[];
+  rating: number;
+  likes: number;
+  description: string;
+  details: string;
+  isFavorite?: boolean;
+  comments: CommentProps[];
+  moreFromStore: ProductCarouselItem[];
+  youLike: ProductCarouselItem[];
+  onPress: () => void;
+  onPressFavorite: () => void;
+}
+
 export interface ProductCarouselItem {
   id: string;
   imageUri: string;
@@ -7,15 +31,8 @@ export interface ProductCarouselItem {
   isFavorite?: boolean;
 }
 
-export interface ProductDetailContent {
-  seller: string;
-  subtitle: string;
-  title: string;
-  price: string;
-  description: string;
-  rating: number;
-  comments: any[];
-  favorite: number;
-  tags: { id: string; label: string; icon?: React.ReactNode }[];
-  isFavorite?: boolean;
+export interface ProductDetailScreenState {
+  productId: string;
+  productDetail: ProductDetailProps;
+  carouselItems: ProductCarouselItem[];
 }

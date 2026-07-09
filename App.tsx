@@ -47,9 +47,11 @@ const MORE_CONFIG_PATHS = [
   'PrivacyView',
   'TermsAndConditionsView',
   'AboutMyBoxyView',
+  'NotificationsView',
 ] as const;
 
 registerNavigationTarget('ProductDetailView', ProductDetailView);
+registerNavigationTarget('NotificationsView', NotificationsView);
 
 function MainTabs() {
   const backgroundColor = 'white';

@@ -6,8 +6,11 @@ import MBHomeProductCard from '../../components/cards/MBHomeProductCard';
 import MBHeaderUserSimple from '../../components/header/MBHeaderUserSimple';
 import { HomeChartBottomsheet } from './UserHomeBottomsheets';
 import { homeProducts } from '../../common/UserHomeData';
-import MainNavigation from '../../common/navigation/MainNavigation';
+import MainNavigation, { registerNavigationTarget } from '../../common/navigation/MainNavigation';
 import ProductDetailView from '../productdetail/ProductDetailView';
+import NotificationsView from '../notifications/NotificationsView';
+
+registerNavigationTarget('NotificationsView', NotificationsView);
 
 export default function UserHomeView() {
   const backgroundColor = 'white';
@@ -19,8 +22,8 @@ export default function UserHomeView() {
     closeChartBottomsheet,
   } = getUserHomeViewModel(bottomsheetState);
 
-  function navigateToSearchView() {
-    MainNavigation.navigate('MainTabs', { screen: 'busca' });
+  function pushNotificationsView() {
+    MainNavigation.push(NotificationsView);
   }
 
   return (
@@ -31,9 +34,9 @@ export default function UserHomeView() {
         <View style={[styles.contentWrapper]}>
           <View style={styles.headerContainer}>
             <MBHeaderUserSimple 
-              userName="Thiago Silva" 
+              userName="Thiago Silva"
               userAlias="thyagoacsilva" 
-              onPressNotifications={navigateToSearchView} 
+              onPressNotifications={pushNotificationsView} 
               onPressCart={openChartBottomsheet} 
             />
           </View>
