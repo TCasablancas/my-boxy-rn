@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { homeProducts } from '../../common/UserHomeData';
 import type { ProductCarouselItem, ProductDetailContent } from './ProductDetailModel';
 import { Alert } from 'react-native';
+import { Icons } from '../../common/constants/Icons';
 
 const MIN_QUANTITY = 1;
 const MAX_QUANTITY = 99;
@@ -14,6 +15,11 @@ const PRODUCT_DETAIL_CONTENT: ProductDetailContent = {
 	price: '537,00',
 	description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ',
   comments: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"],
+  tags: [
+    { id: 'plants', label: 'Plantas', },
+    { id: 'home', label: 'Para casa', },
+    { id: 'new', label: 'Novidade',},
+  ],
 };
 
 export const useProductDetailViewModel = () => {

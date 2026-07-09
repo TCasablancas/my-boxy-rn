@@ -24,6 +24,7 @@ interface MBProductCarouselProps {
   title?: string;
   subtitle?: string;
   autoPlayDuration?: number;
+  tags?: { id: string; label: string; icon?: React.ReactNode }[];
 }
 
 const DEFAULT_ITEMS: MBProductCarouselItem[] = [
@@ -42,7 +43,7 @@ const DEFAULT_ITEMS: MBProductCarouselItem[] = [
 ];
 
 export default function MBProductCarousel({
-  items, title, subtitle, autoPlayDuration = DEFAULT_AUTOPLAY_DURATION,
+  items, title, subtitle, autoPlayDuration = DEFAULT_AUTOPLAY_DURATION, tags,
 }: MBProductCarouselProps) {
   const carouselItems = useMemo(() => {
     const source = items && items.length > 0 ? items : DEFAULT_ITEMS;
@@ -211,8 +212,9 @@ export default function MBProductCarousel({
         <MBPlayPauseBtn isPlaying={isPlaying} onPress={togglePlayPause} />
 
         <View style={styles.tagsContainer}>
-          <MBTagWithLabel label="Novo" />
-          <MBTagWithLabel label="Oferta" />
+          {tags?.map((tag) => (
+            <MBTagWithLabel key={tag.id} label={tag.label} icon={tag.icon} backgroundColor='white' />
+          ))}
         </View>
       </View>
 

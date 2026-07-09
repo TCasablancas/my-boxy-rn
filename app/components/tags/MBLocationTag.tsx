@@ -19,7 +19,7 @@ export default function MBLocationTag({
 
 const styles = StyleSheet.create({
   locationTag: {
-    backgroundColor: '#E0E0E0',
+    backgroundColor: '#EBEBEB',
     borderRadius: 100,
     paddingHorizontal: 10,
     paddingVertical: 4,

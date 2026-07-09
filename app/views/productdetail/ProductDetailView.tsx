@@ -19,8 +19,9 @@ import MBSimpleLabel from '../../components/labels/MBSimpleLabel';
 import MBStoreProductHeader from '../../components/header/MBStoreProductHeader';
 import MBTextWithTitle from '../../components/labels/MBTextWithTitle';
 import ProductCommentsSection from '../../sections/comments/ProductCommentsSection';
-import ProductRatingSection from '../../sections/productrating/ProductRatingSection';
+import ProductRatingSection from '../../sections/product/ProductRatingSection';
 import MBIconInfoContainer from '../../components/containers/MBIconInfoContainer';
+import ProductCarouselSmSection from '../../sections/product/ProductCarouselSmSection';
 
 export default function ProductDetailView() {
   const safeAreaInsets = useSafeAreaInsets();
@@ -54,11 +55,6 @@ export default function ProductDetailView() {
             style={[styles.headerBackground, { opacity: headerBackgroundOpacity }]}
           />
           <MBTitledViewHeader
-            midComponent={
-              <View style={{ flexDirection: 'row', alignItems: 'center', columnGap: 8 }}>
-                <MBLocationTag locationName={'Santos · SP'} onPress={() => {}} />
-              </View>
-            }
             btnsLeft={
               <MBRoundedIconBtn 
                 icon={<Icons.arrowBack width={16} height={16} />}
@@ -86,15 +82,13 @@ export default function ProductDetailView() {
           scrollEventThrottle={16}
         >
           <View onLayout={(event) => setCarouselHeight(event.nativeEvent.layout.height)}>
-            <MBProductCarousel items={carouselItems} autoPlayDuration={3000} />
+            <MBProductCarousel items={carouselItems} autoPlayDuration={3000} tags={productDetail.tags} />
           </View>
           <View style={styles.contentWrapper}>
             <View style={styles.firstItemsWrapper}>
               <View style={styles.contentTopWrapper}>
                 <MBStoreProductHeader />
-                <MBTagWithLabel 
-                  label="Novo" icon={<Icons.arrowBack width={16} height={16} color="white" />}
-                />
+                <MBLocationTag locationName={'Santos · SP'} onPress={() => {}} />
               </View>
               <View style={styles.titleColumn}>
                 <View style={styles.headerLeft}>
@@ -155,6 +149,8 @@ export default function ProductDetailView() {
             <MBTextWithTitle title="Descrição" text={productDetail.description} />
             <MBTextWithTitle title="Detalhe do Produto" text={productDetail.description} />
             <ProductCommentsSection />
+            <ProductCarouselSmSection title="Mais dessa loja" products={[]} />
+            <ProductCarouselSmSection title="Você vai gostar" products={[]} />
           </View>
           <View style={{ height: 16 }} />
         </Animated.ScrollView>
@@ -210,8 +206,6 @@ const styles = StyleSheet.create({
   headerBackground: {
     ...StyleSheet.absoluteFill,
     backgroundColor: 'white',
-    borderBottomLeftRadius: 16,
-    borderBottomRightRadius: 16,
   },
   titleColumn: {
     width: '100%',

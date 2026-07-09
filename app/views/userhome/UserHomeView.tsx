@@ -10,7 +10,7 @@ import MainNavigation from '../../common/navigation/MainNavigation';
 import ProductDetailView from '../productdetail/ProductDetailView';
 
 export default function UserHomeView() {
-  const backgroundColor = '#F0E5E4';
+  const backgroundColor = 'white';
   const bottomsheetState = useUserHomeBottomsheetState();
 
   const {
@@ -97,21 +97,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     position: 'absolute',
     top: 0,
-    left: 16,
-    right: 16,
+    left: 8,
+    right: 8,
     bottom: 8,
     borderRadius: 12,
   },
   scrollView: {
-    backgroundColor: 'white',
+    backgroundColor: '#EBEBEB',
     borderRadius: 12,
     // flexWrap: 'wrap',
     // flexDirection: 'row',
   },
   headerContainer: {
     width: '100%', 
-    height: 100, 
+    height: 70, 
     backgroundColor: 'transparent',
-    // paddingVertical: 16,
+    paddingHorizontal: 8,
   },
 });

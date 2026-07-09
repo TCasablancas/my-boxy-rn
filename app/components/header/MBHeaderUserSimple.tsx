@@ -37,11 +37,10 @@ export default function MBHeaderUserSimple({
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
-    backgroundColor: '#F0E5E4',
+    backgroundColor: 'white',
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
-    position: 'relative',
   },
   picWrapper: {
     width: 50,

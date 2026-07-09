@@ -50,7 +50,7 @@ const MORE_CONFIG_PATHS = [
 registerNavigationTarget('ProductDetailView', ProductDetailView);
 
 function MainTabs() {
-  const backgroundColor = '#F0E5E4';
+  const backgroundColor = 'white';
   const mainColor = PrimaryColors.primary;
 
   const screenArrData = [
