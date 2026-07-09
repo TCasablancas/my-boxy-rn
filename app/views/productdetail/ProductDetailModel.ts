@@ -8,4 +8,7 @@ export interface ProductDetailContent {
   title: string;
   price: string;
   description: string;
+  rating: number;
+  comments: any[];
+  favorite: number;
 }

@@ -5,7 +5,7 @@ import { PrimaryColors } from '../../common/colors/Colors';
 export default function MBFavoriteBtn({ onPress }: { onPress?: () => void }) {
   return (
     <Pressable style={styles.favoriteBtnContainer} onPress={onPress}>
-      <Icons.heart width={22} height={22} strokeColor={PrimaryColors.primary} />
+      <Icons.heart width={22} height={22} strokeColor={'red'} />
     </Pressable>
   );
 }
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 12,
-    backgroundColor: PrimaryColors.primaryLight,
+    backgroundColor: '#EBEBEB',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -5,8 +5,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MBMainBtn from '../../components/buttons/MBMainBtn';
 import { PrimaryColors } from '../../common/colors/Colors';
 import MBProductCarousel from '../../components/carousel/MBProductCarousel';
-import MBDivider from '../../components/global/MBDivider';
-import MBMainCounter from '../../components/counter/MBMainCounter';
 import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
 import { Icons } from '../../common/constants/Icons';
@@ -21,6 +19,8 @@ import MBSimpleLabel from '../../components/labels/MBSimpleLabel';
 import MBStoreProductHeader from '../../components/header/MBStoreProductHeader';
 import MBTextWithTitle from '../../components/labels/MBTextWithTitle';
 import ProductCommentsSection from '../../sections/comments/ProductCommentsSection';
+import ProductRatingSection from '../../sections/productrating/ProductRatingSection';
+import MBIconInfoContainer from '../../components/containers/MBIconInfoContainer';
 
 export default function ProductDetailView() {
   const safeAreaInsets = useSafeAreaInsets();
@@ -89,81 +89,75 @@ export default function ProductDetailView() {
             <MBProductCarousel items={carouselItems} autoPlayDuration={3000} />
           </View>
           <View style={styles.contentWrapper}>
-            <View style={styles.contentTopWrapper}>
-              <MBStoreProductHeader />
-              <MBTagWithLabel 
-                label="Novo" 
-                icon={<Icons.arrowBack width={16} height={16} color="white" />}
-              />
-            </View>
-            <View style={styles.titleColumn}>
-              <View style={styles.headerLeft}>
-                <Text style={styles.subtitleText}>{productDetail.subtitle}</Text>
-                <Text style={styles.titleText}>{productDetail.title}</Text>
-              </View>
-              <View style={styles.priceContainer}>
-                <MBPriceContainer 
-                  price={productDetail.price} 
-                  tags={[
-                    <MBTagWithLabel 
-                      id="new"
-                      label="Novo" 
-                      icon={<Icons.arrowBack width={16} height={16} color="white" />}
-                    />,
-                    <MBTagWithLabel 
-                      id="new"
-                      label="Novo" 
-                      icon={<Icons.arrowBack width={16} height={16} color="white" />}
-                    />
-                  ]}
+            <View style={styles.firstItemsWrapper}>
+              <View style={styles.contentTopWrapper}>
+                <MBStoreProductHeader />
+                <MBTagWithLabel 
+                  label="Novo" icon={<Icons.arrowBack width={16} height={16} color="white" />}
                 />
-                <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', columnGap: 8, padding: 12, backgroundColor: 'white', borderRadius: 8 }}>
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', columnGap: 8 }}>
-                    <MBSimpleLabel 
-                      text={'3.5'} 
-                      icon={<Icons.star width={16} height={16} fillColor="gray" />} 
-                    />
-                    <View style={{ height: '100%', backgroundColor: 'gray', flex: 1, width: 1 }} />
-                    <MBSimpleLabel 
-                      text={'235'} 
-                      icon={<IconsActions.chatBubbleDouble width={16} height={16} strokeColor="gray" />} 
-                    />
+              </View>
+              <View style={styles.titleColumn}>
+                <View style={styles.headerLeft}>
+                  <Text style={styles.subtitleText}>{productDetail.subtitle}</Text>
+                  <Text style={styles.titleText}>{productDetail.title}</Text>
+                </View>
+                <View style={styles.priceContainer}>
+                  <MBPriceContainer 
+                    price={productDetail.price} 
+                    tags={[
+                      <MBTagWithLabel 
+                        id="plants" label="Plantas" 
+                        icon={<Icons.arrowBack width={14} height={14} color="white" />}
+                      />,
+                      <MBTagWithLabel 
+                        id="home" label="Para casa" 
+                        icon={<Icons.home width={14} height={14} color="white" />}
+                      />,
+                      <MBTagWithLabel 
+                        id="new" label="Novidade" 
+                        icon={<Icons.star width={14} height={14} strokeColor="white" />}
+                      />
+                    ]}
+                  />
+                </View>
+                <View style={styles.mainActionRow}>
+                  <MBRoundedIconBtn 
+                    icon={<Icons.share width={16} height={16} />} 
+                    onPress={() => {}} 
+                  />
+                  <View style={styles.buttonWrapper}>
+                    <MBMainBtn title="+ carrinho" onPress={addToCart} />
                   </View>
+                  <MBFavoriteBtn />
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <MBIconInfoContainer 
+                    icon={<Icons.star width={26} height={26} fillColor="#EDB20E" />} 
+                    title={productDetail.rating.toString()} 
+                    description="de 5 estrelas"
+                    onPressItem={(itemId) => {}} 
+                  />
+                  <MBIconInfoContainer 
+                    icon={<IconsActions.chatBubbleDouble width={26} height={26} strokeColor="black" />} 
+                    title={`${productDetail.comments.length}`}
+                    description={'comentaram'}
+                    onPressItem={(itemId) => {}} 
+                  />
+                  <MBIconInfoContainer 
+                    icon={<Icons.heart width={26} height={26} />} 
+                    title={productDetail.favorite.toString()} 
+                    description="curtiram"
+                    onPressItem={(itemId) => {}} 
+                  />
                 </View>
               </View>
-            </View>
-            <View style={styles.productActionsWrapper}>
-              <MBMainBtn 
-                title="Detalhes" 
-                icon={<Icons.bag width={16} height={16} color="white" />}
-                onPress={() => {}} 
-              />
-              <MBMainBtn 
-                title="Perguntas" 
-                icon={<IconsActions.chatBubbleDouble width={16} height={16} strokeColor="white" />}
-                onPress={() => {}} 
-              />
             </View>
             <MBTextWithTitle title="Descrição" text={productDetail.description} />
             <MBTextWithTitle title="Detalhe do Produto" text={productDetail.description} />
             <ProductCommentsSection />
           </View>
+          <View style={{ height: 16 }} />
         </Animated.ScrollView>
-        <View style={styles.bottomActionRow}>
-          {/* <MBMainCounter
-            value={quantity}
-            onDecrement={decreaseQuantity}
-            onIncrement={increaseQuantity}
-          /> */}
-          <MBRoundedIconBtn 
-            icon={<Icons.share width={16} height={16} />} 
-            onPress={() => {}} 
-          />
-          <View style={styles.buttonWrapper}>
-            <MBMainBtn title="+ carrinho" onPress={addToCart} />
-          </View>
-          <MBFavoriteBtn />
-        </View>
       </View>
     </View>
   );
@@ -185,21 +179,25 @@ const safeAreaStyles = ({ safeAreaInsets = { top: 0, bottom: 0 } }: {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: PrimaryColors.background,
+    // backgroundColor: PrimaryColors.background,
+    backgroundColor: 'white',
   },
   contentArea: {
     flex: 1,
-    marginBottom: 84,
+    // marginBottom: 82,
   },
   contentWrapper: {
     borderRadius: 16,
     paddingHorizontal: 16,
+    gap: 16,
   },
   contentTopWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 4,
+  },
+  firstItemsWrapper: {
   },
   headerWrapper: {
     position: 'absolute',
@@ -211,7 +209,7 @@ const styles = StyleSheet.create({
   },
   headerBackground: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: PrimaryColors.background,
+    backgroundColor: 'white',
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
   },
@@ -221,13 +219,17 @@ const styles = StyleSheet.create({
   headerLeft: {
     flex: 1,
     minWidth: 0,
+    alignItems: 'center',
   },
-  productActionsWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 16,
-    gap: 16,
-  },
+  // productActionsWrapper: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   marginVertical: 16,
+  //   gap: 16,
+  // },
+  // couponWrapper: {
+
+  // },
   priceContainer: {
     gap: 16,
     marginVertical: 16,
@@ -241,7 +243,7 @@ const styles = StyleSheet.create({
     fontFamily: 'SNPro-Regular',
   },
   titleText: {
-    color: PrimaryColors.primary,
+    color: 'black',
     fontSize: 22,
     fontFamily: 'SNPro-Bold',
     lineHeight: 24,
@@ -251,17 +253,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'SNPro-Regular',
   },
-  bottomActionRow: {
+  mainActionRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     columnGap: 12,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    paddingHorizontal: 16,
-    backgroundColor: 'white',
     paddingVertical: 16,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,

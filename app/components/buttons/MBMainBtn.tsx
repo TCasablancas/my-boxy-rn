@@ -6,12 +6,9 @@ interface MBMainBtnProps {
   onPress: () => void;
   isDisabled?: boolean;
   icon?: React.ReactNode;
-  textColor?: string;
-  backgroundColor?: string;
   position?: 'absolute' | 'relative';
-  size?: 'main' | 'small';
-  rounded?: boolean;
   textAlign?: 'center' | 'left' | 'right';
+  outlined?: boolean;
 }
 
 export default function MBMainBtn({
@@ -19,15 +16,9 @@ export default function MBMainBtn({
   onPress,
   isDisabled = false,
   icon,
-  textColor,
-  backgroundColor,
-  position = 'relative',
-  size = 'main',
-  rounded = true,
   textAlign = 'center',
+  outlined = false,
 }: MBMainBtnProps) {
-  const resolvedTextColor = textColor || 'white';
-  const resolvedBackgroundColor = backgroundColor || PrimaryColors.primary;
 
   const handlePress = () => {
     if (!isDisabled) {
@@ -37,15 +28,13 @@ export default function MBMainBtn({
 
   return (
     <Pressable
-      style={[
-        styles.button,
-      ]}
+      style={[styles.button, outlined ? styles.outlinedButton : {}]}
       onPress={handlePress}
       disabled={isDisabled}
     >
       <View style={styles.buttonContent}>
         {icon && <View style={styles.iconContainer}>{icon}</View>}
-        <Text style={[styles.buttonText, { textAlign, color: resolvedTextColor }]}>{title}</Text>
+        <Text style={[styles.buttonText, outlined ? styles.outlinedButtonText : {}, { textAlign }]}>{title}</Text>
       </View>
     </Pressable>
   );
@@ -54,11 +43,11 @@ export default function MBMainBtn({
 const styles = StyleSheet.create({
   button: {
     flex: 1,
-    backgroundColor: PrimaryColors.primary,
+    backgroundColor: '#6ABA02',
     paddingVertical: 10,
     paddingHorizontal: 26,
     borderRadius: 16,
-    height: 50,
+    height: 46,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -73,7 +62,14 @@ const styles = StyleSheet.create({
     fontFamily: 'SNPro-Regular',
   },
   iconContainer: {
-    backgroundColor: PrimaryColors.primary,
     marginRight: 8,
+  },
+  outlinedButton: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: PrimaryColors.primary,
+  },
+  outlinedButtonText: {
+    color: PrimaryColors.primary,
   },
 });

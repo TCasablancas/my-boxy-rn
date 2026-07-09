@@ -14,7 +14,7 @@ export default function MBTitledViewHeader({
 }: MBTitledViewHeaderProps) {
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#F0E5E4" />
+      <StatusBar barStyle="dark-content" backgroundColor="white" />
       <View style={styles.contentWrapper}>
         {btnsLeft && <View style={styles.btnsLeftWrapper}>{btnsLeft}</View>}
         <View style={styles.textWrapper}>

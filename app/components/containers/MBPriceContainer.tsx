@@ -24,10 +24,11 @@ export default function MBPriceContainer({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 8,
     paddingHorizontal: 12,
-    backgroundColor: 'white',
     borderRadius: 8,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   priceContainer: {
     flexDirection: 'row',
@@ -36,12 +37,12 @@ const styles = StyleSheet.create({
   priceCurrencyText: {
     fontSize: 14,
     fontFamily: 'SNPro-Regular',
-    color: '#000',
+    color: '#1F6607',
   },
   priceText: {
-    fontSize: 24,
+    fontSize: 36,
     fontFamily: 'SNPro-Bold',
-    color: '#000',
+    color: '#1F6607',
   },
   tagsContainer: {
     flexDirection: 'row',

@@ -1,4 +1,4 @@
-import { View, StyleSheet, StatusBar, Text, Image, FlatList } from 'react-native';
+import { View, StyleSheet, Text, Image, FlatList } from 'react-native';
 
 export default function MBStoreProductHeader() {
   return (
