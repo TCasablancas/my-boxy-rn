@@ -1,40 +1,84 @@
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { PrimaryColors } from '../../common/colors/Colors';
+import getContrastingTextColor from '../../common/constants/ColorsHandler';
+
+export enum MBMainBtnType {
+  NORMAL = 'normal',
+  DARK = 'dark',
+  DISABLED = 'disabled',
+  CUSTOM = 'custom',
+}
 
 interface MBMainBtnProps {
   title: string;
   onPress: () => void;
-  isDisabled?: boolean;
   icon?: React.ReactNode;
   position?: 'absolute' | 'relative';
   textAlign?: 'center' | 'left' | 'right';
   outlined?: boolean;
+  buttonType?: MBMainBtnType | 'primary';
+  onClick?: () => void;
+  backgroundColor?: string;
+  textColor?: string;
 }
 
 export default function MBMainBtn({
   title,
   onPress,
-  isDisabled = false,
+  onClick,
   icon,
   textAlign = 'center',
   outlined = false,
+  buttonType = MBMainBtnType.NORMAL,
+  backgroundColor,
+  textColor,
 }: MBMainBtnProps) {
 
-  const handlePress = () => {
-    if (!isDisabled) {
-      onPress();
+  const resolvedType = buttonType ?? (backgroundColor || textColor
+    ? MBMainBtnType.CUSTOM
+    : MBMainBtnType.NORMAL);
+
+  const resolvedBackgroundColor = (() => {
+    switch (resolvedType) {
+      case MBMainBtnType.DARK:
+        return "#000";
+      case MBMainBtnType.DISABLED:
+        return '#D6D6D6';
+      case MBMainBtnType.CUSTOM:
+        return backgroundColor || '#D8023F';
+      case MBMainBtnType.NORMAL:
+        return '#D8023F';
+      default:
+        return '#D8023F';
     }
-  };
+  })();
+
+  const resolvedTextColor = (() => {
+    if (resolvedType === MBMainBtnType.DISABLED) return '#8A8A8A';
+    if (resolvedType === MBMainBtnType.NORMAL) return '#FFFFFF';
+    if (textColor) return textColor;
+    return getContrastingTextColor(resolvedBackgroundColor);
+  })();
+
+  const isDisabled = resolvedType === MBMainBtnType.DISABLED;
+  const handlePress = onClick ?? onPress ?? (() => {});
 
   return (
     <Pressable
-      style={[styles.button, outlined ? styles.outlinedButton : {}]}
+      style={[
+        styles.button, outlined ? styles.outlinedButton : {}, 
+        {
+          backgroundColor: resolvedBackgroundColor,
+          // width: size === 'main' ? '100%' : 'auto',
+          opacity: isDisabled ? 0.8 : 1,
+        },
+      ]}
       onPress={handlePress}
       disabled={isDisabled}
     >
       <View style={styles.buttonContent}>
         {icon && <View style={styles.iconContainer}>{icon}</View>}
-        <Text style={[styles.buttonText, outlined ? styles.outlinedButtonText : {}, { textAlign }]}>{title}</Text>
+        <Text style={[styles.buttonText, { textAlign, color: resolvedTextColor }]}>{title}</Text>
       </View>
     </Pressable>
   );

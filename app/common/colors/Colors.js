@@ -37,3 +37,8 @@ export const NeutralColors = {
 export const OverlayColors = {
   shadow: 'rgba(17, 24, 39, 0.08)',
 };
+
+export const GradientColors = {
+  gradient: ['#1d0504', '#8f4257', '#ffb28b'],
+  neutralGradient: ['#F2F2F7', '#E5E5EA', '#D1D1D6'],
+};
