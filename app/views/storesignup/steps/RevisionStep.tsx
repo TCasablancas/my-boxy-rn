@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-
-import { KeyboardAwareScreen } from '@/components/KeyboardAwareScreen';
-import { StepProgressHeader } from '@/components/StepProgressHeader';
-import { SummaryRow } from '@/components/SummaryRow';
+import { v4 as uuidv4 } from 'uuid';
+import { KeyboardAwareScreen } from '../../../sections/global/KeyboarAwareScreen';
+// import { StepProgressHeader } from '@/components/StepProgressHeader';
+import MBSummaryRow from '../../../components/global/MBSummaryRow';
 import MBMainBtn, { MBMainBtnType } from '../../../components/buttons/MBMainBtn';
 
 import { useStoreSignup } from '../../../common/contexts/StoreSignupContext';
@@ -26,7 +26,7 @@ export function RevisionStep({ navigation, onSubmit }: Props) {
     try {
       const now = new Date().toISOString();
       const payload: StoreSignupModel = {
-        storeId: crypto.randomUUID(), // troque pelo gerador de ID já usado no projeto, se houver
+        storeId: uuidv4(), // troque pelo gerador de ID já usado no projeto, se houver
         storeOwner: {
           userId: draft.storeOwner.userId ?? '',
           name: draft.storeOwner.name ?? '',
@@ -56,16 +56,16 @@ export function RevisionStep({ navigation, onSubmit }: Props) {
 
   return (
     <KeyboardAwareScreen>
-      <StepProgressHeader title="Revisão" subtitle="Confira os dados antes de criar sua loja" currentStep={6} totalSteps={6} />
+      {/* <StepProgressHeader title="Revisão" subtitle="Confira os dados antes de criar sua loja" currentStep={6} totalSteps={6} /> */}
 
       <View style={{ gap: 12 }}>
-        <SummaryRow label="Proprietário" value={draft.storeOwner.name} />
-        <SummaryRow label="E-mail do proprietário" value={draft.storeOwner.email} />
-        <SummaryRow label="Nome da loja" value={draft.storeName} />
-        <SummaryRow label="Alias" value={draft.storeAlias} />
-        <SummaryRow label="Telefone da loja" value={draft.storePhoneNumber} />
-        <SummaryRow label="E-mail da loja" value={draft.storeEmail} />
-        <SummaryRow
+        <MBSummaryRow label="Proprietário" value={draft.storeOwner.name} />
+        <MBSummaryRow label="E-mail do proprietário" value={draft.storeOwner.email} />
+        <MBSummaryRow label="Nome da loja" value={draft.storeName} />
+        <MBSummaryRow label="Alias" value={draft.storeAlias} />
+        <MBSummaryRow label="Telefone da loja" value={draft.storePhoneNumber} />
+        <MBSummaryRow label="E-mail da loja" value={draft.storeEmail} />
+        <MBSummaryRow
           label="Endereço"
           value={draft.storeAddress ? `${draft.storeAddress.rua ?? ''}, ${draft.storeAddress.numero ?? ''}` : ''}
         />

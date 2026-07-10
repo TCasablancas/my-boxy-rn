@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native';
-import { NeutralColors } from '../../common/colors/Colors';
+import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 
 interface MBTitleDescriptedProps {
   title: string;
@@ -17,7 +17,7 @@ export default function MBTitleDescripted({
     <View style={[styles.container, style]}>
       <Text style={[
         styles.title, 
-        { color: colorTitle ? colorTitle : '#D8023F', textAlign: alignment }
+        { color: colorTitle ? colorTitle : PrimaryColors.primary, textAlign: alignment }
       ]}>{title}</Text>
       <Text style={[
         styles.description, 
@@ -29,7 +29,7 @@ export default function MBTitleDescripted({
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 16,
+    paddingVertical: 8,
   },
   title: {
     fontFamily: 'SNPro-Bold',

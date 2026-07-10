@@ -56,9 +56,6 @@ export const MBStepperHeader: React.FC<MBStepperHeaderProps> = ({ steps, current
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: spacing.lg,
-    paddingTop: spacing.md,
-    paddingBottom: spacing.md,
     gap: spacing.sm,
   },
   track: { 

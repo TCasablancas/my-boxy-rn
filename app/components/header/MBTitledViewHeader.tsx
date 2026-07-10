@@ -1,5 +1,6 @@
 import { View, StyleSheet, StatusBar, Text, Image, FlatList } from 'react-native';
 import { NeutralColors } from '../../common/colors/Colors';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface MBTitledViewHeaderProps {
   title?: string;
@@ -12,8 +13,10 @@ interface MBTitledViewHeaderProps {
 export default function MBTitledViewHeader({
   title, description, midComponent, btnsLeft, btnsRight
 }: MBTitledViewHeaderProps) {
+  const safeAreaInsets = useSafeAreaInsets();
+  
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: safeAreaInsets.top }]}>
       <StatusBar 
         barStyle="dark-content" 
         backgroundColor="white"
@@ -33,13 +36,13 @@ export default function MBTitledViewHeader({
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 8,
+    marginTop: 8,
+    marginBottom: 16,
     height: 40,
     width: '100%',
     justifyContent: 'center',
   },
   contentWrapper: {
-    // flex: 1,
     paddingHorizontal: 16,
     paddingTop: 16,
     flexDirection: 'row',
@@ -63,8 +66,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 28,
+    fontSize: 20,
     fontFamily: 'SNPro-Bold',
+    color: NeutralColors.textSecondary,
   },
   description: {
     fontSize: 16,

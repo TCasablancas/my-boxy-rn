@@ -11,7 +11,6 @@ import { IconsActions } from './app/common/icons/IconsActions';
 import { MainTabParamList, RootStackParamList } from './app/navigation/types';
 import {
   navigationRef,
-  registerNavigationTarget,
   setMainNavigationReady,
 } from './app/common/navigation/MainNavigation';
 
@@ -25,6 +24,7 @@ import SearchView from './app/views/search/SearchView';
 import NotificationsView from './app/views/notifications/NotificationsView';
 import MoreConfigsPlaceholderView from './app/views/moreconfigs/MoreConfigsPlaceholderView';
 import ProductDetailView from './app/views/productdetail/ProductDetailView';
+import { UserHomeStoreSignupView } from './app/views/userhome/UserHomeNavigation';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -49,9 +49,6 @@ const MORE_CONFIG_PATHS = [
   'AboutMyBoxyView',
   'NotificationsView',
 ] as const;
-
-registerNavigationTarget('ProductDetailView', ProductDetailView);
-registerNavigationTarget('NotificationsView', NotificationsView);
 
 function MainTabs() {
   const backgroundColor = 'white';
@@ -122,6 +119,7 @@ export default function App() {
         <RootStack.Screen name="MainTabs" component={MainTabs} />
         <RootStack.Screen name="UserProfileView" component={UserProfileView} />
         <RootStack.Screen name="ProductDetailView" component={ProductDetailView} />
+        <RootStack.Screen name="UserHomeStoreSignupView" component={UserHomeStoreSignupView} />
         {MORE_CONFIG_PATHS.filter((path) => path !== 'UserProfileView').map((path) => (
           <RootStack.Screen key={path} name={path} component={MoreConfigsPlaceholderView} />
         ))}

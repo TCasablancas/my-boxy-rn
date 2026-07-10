@@ -2,74 +2,58 @@ import { View, StyleSheet, Text, Image, FlatList } from 'react-native';
 import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
 import { Icons } from '../../common/icons/Icons';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
-import MBStoreProductHeader from '../../components/header/MBStoreProductHeader';
-import MBUserFavoriteCard from '../../components/cards/MBUserFavoriteCard';
+import { NeutralColors } from '../../common/colors/Colors';
+import MBHomeProductCard from '../../components/cards/MBHomeProductCard';
+import ProductDetailView from '../productdetail/ProductDetailView';
+import MainNavigation from '../../common/navigation/MainNavigation';
 
-const sampleData = [
-  { id: '1', 
-    itemPic: 'https://cultured.guru/wp-content/uploads/2019/09/FullSizeRender-1.jpg', 
-    name: 'Item 1', 
-    price: 10.99 
-  },
-  { id: '2', 
-    itemPic: 'https://wondrwood.com/cdn/shop/articles/terrarium_steps.jpg?v=1634833473', 
-    name: 'Item 2', 
-    price: 15.49 
-  },
-  { id: '3', 
-    itemPic: 'https://via.placeholder.com/150', 
-    name: 'Item 3', 
-    price: 7.99 
-  },
-  { id: '4', 
-    itemPic: 'https://via.placeholder.com/150', 
-    name: 'Item 4', 
-    price: 12.99 
-  },
-  { id: '5', 
-    itemPic: 'https://via.placeholder.com/150', 
-    name: 'Item 5', 
-    price: 9.99 
-  },
-  { id: '6', 
-    itemPic: 'https://via.placeholder.com/150', 
-    name: 'Item 3', 
-    price: 7.99 
-  },
-  { id: '7', 
-    itemPic: 'https://via.placeholder.com/150', 
-    name: 'Item 4', 
-    price: 12.99 
-  },
-  { id: '8', 
-    itemPic: 'https://via.placeholder.com/150', 
-    name: 'Item 5', 
-    price: 9.99 
-  },
-];
+import { homeProducts } from '../../common/UserHomeData';
+import { IconsActions } from '../../common/icons/IconsActions';
 
 export default function UserFavoritesView() {
+
   return (
     <View style={styles.container}>
       <View style={styles.contentWrapper}>
         <View style={styles.headerWrapper}>
           <MBTitledViewHeader 
-            title="Curtidas"
+            title="Curtidos"
             btnsRight={<MBRoundedIconBtn 
-              icon={<Icons.barcode width={16} height={16} />} 
+              icon={<IconsActions.filter width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
               onPress={() => {}}
             />}
           />
         </View>
         <View style={styles.listWrapper}>
           <FlatList
-            data={sampleData}
+            data={homeProducts}
+            numColumns={2}
+            // ListHeaderComponent={
+            //   <View style={{ paddingVertical: 8 }}> 
+            //     <HomeCarouselListHeader />
+            //   </View>
+            // }
             renderItem={({ item }) => (
-              <MBUserFavoriteCard item={item} />
+              <MBHomeProductCard product={{
+                productId: item.productId,
+                title: item.title,
+                price: `${item.price.toFixed(2)}`,
+                imageUri: item.imageUri,
+                storeName: item.storeName,
+                storeImageUri: item.storeImageUri,
+                rating: item.rating,
+                onPress: () => {
+                  MainNavigation.push(ProductDetailView, { productId: item.productId });
+                },
+                onPressFavorite: () => {
+                  // Handle favorite press
+                },
+              }} />
             )}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.productId}
             style={styles.flatList}
-            contentContainerStyle={{ gap: 8 }}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.listContainer}
           />
         </View>
       </View>
@@ -80,37 +64,31 @@ export default function UserFavoritesView() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F0E5E4',
+    backgroundColor: 'white',
   },
   contentWrapper: {
     flex: 1,
-    paddingHorizontal: 16,
-    paddingTop: 16,
+    paddingHorizontal: 8,
+    paddingVertical: 16,
     flexDirection: 'column',
   },
   headerWrapper: {
-    flex: 1,
+    padding: 8,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
   },
   listWrapper: {
-    position: 'absolute',
-    top: 120,
-    left: 16,
-    right: 16,
-    bottom: 0,
-    flex: 1,
-    marginTop: 16,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
+    marginBottom: 42,
+    paddingBottom: 16,
+    borderRadius: 16,
     padding: 8,
-    marginBottom: 8,
   },
   flatList: {
-    flex: 1,
     width: '100%',
     height: '100%',
     borderRadius: 8,
+  },
+  listContainer: {
+    gap: 8,
   },
 });

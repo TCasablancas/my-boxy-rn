@@ -2,7 +2,7 @@ import { Icons } from './icons/Icons';
 
 export const homeProducts = [
     {
-      id: '1',
+      productId: '1',
       title: 'Grama de Pote',
       description: 'Planta de grama em pote para decoração e jardinagem.',
       price: 29.99,
@@ -13,7 +13,7 @@ export const homeProducts = [
       isFavourite: true,
     },
     {
-      id: '2',
+      productId: '2',
       title: 'Mini terrário com Rolha',
       description: 'Mini terrário com rolha para decoração e jardinagem.',
       price: 79.99,
@@ -23,7 +23,7 @@ export const homeProducts = [
       isFavourite: false,
     },
     {
-      id: '3',
+      productId: '3',
       title: 'Terrário Externo de Mesa',
       description: 'Terrário externo de mesa para decoração e jardinagem.',
       price: 149.99,
@@ -34,7 +34,7 @@ export const homeProducts = [
       isFavourite: true,
     },
     {
-      id: '4',
+      productId: '4',
       title: 'Vaso Suculenta Mesa',
       description: 'Vaso de suculenta para decoração e jardinagem.',
       price: 199.99,
@@ -45,7 +45,7 @@ export const homeProducts = [
       isFavourite: false,
     },
     {
-      id: '5',
+      productId: '5',
       title: 'Carnivora Pendular',
       description: 'Planta carnívora pendular para decoração e jardinagem.',
       price: 249.99,
@@ -56,7 +56,7 @@ export const homeProducts = [
       isFavourite: true,
     },
     {
-      id: '6',
+      productId: '6',
       title: 'Terrário Fechado',
       description: 'Terrário fechado, com tampa, para mesa.',
       price: 249.99,
@@ -66,7 +66,7 @@ export const homeProducts = [
       isFavourite: true,
     },
     {
-      id: '7',
+      productId: '7',
       title: 'Suculeta de Tampa',
       description: 'Suculenta, no vaso, com tampa para decoração de mesa.',
       price: 249.99,

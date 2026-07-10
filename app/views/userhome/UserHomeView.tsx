@@ -1,25 +1,26 @@
-import { View, StyleSheet, StatusBar, Text, Image, FlatList, Animated } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { View, StyleSheet, StatusBar, FlatList, Animated } from 'react-native';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getUserHomeViewModel } from './UserHomeViewModel';
 import { useUserHomeBottomsheetState } from './UserHomeHooks';
 import MBHomeProductCard from '../../components/cards/MBHomeProductCard';
 import MBHeaderUserSimple from '../../components/header/MBHeaderUserSimple';
 import { HomeChartBottomsheet } from './UserHomeBottomsheets';
 import { homeProducts } from '../../common/UserHomeData';
-import MainNavigation, { registerNavigationTarget } from '../../common/navigation/MainNavigation';
-import ProductDetailView from '../productdetail/ProductDetailView';
-import NotificationsView from '../notifications/NotificationsView';
 import HomeCarouselListHeader from '../../sections/home/HomeCarouselListHeader';
 import { useRef } from 'react';
 import MBLocationTag from '../../components/tags/MBLocationTag';
-import MBMainBtn, { MBMainBtnType } from '../../components/buttons/MBMainBtn';
-import { Icons } from '../../common/icons/Icons';
-import MBTextBtn from '../../components/buttons/MBTextBtn';
-
-registerNavigationTarget('NotificationsView', NotificationsView);
+import {
+  openCarouselTarget,
+  openNotifications,
+  openProductDetail,
+  openStoreSignup,
+  openUserProfile,
+  userHomeCarouselItems,
+} from './UserHomeNavigation';
+import MBOutlinedSmBtn from '../../components/buttons/MBOutlinedSmBtn';
 
 export default function UserHomeView() {
-  const backgroundColor = 'white';
+  const safeAreaInsets = useSafeAreaInsets();
   const bottomsheetState = useUserHomeBottomsheetState();
   const userDataHeight = useRef(new Animated.Value(0)).current;
   const userDataOpacity = useRef(new Animated.Value(0)).current;
@@ -30,15 +31,11 @@ export default function UserHomeView() {
     closeChartBottomsheet,
   } = getUserHomeViewModel(bottomsheetState);
 
-  function pushNotificationsView() {
-    MainNavigation.push(NotificationsView);
-  }
-
   function openUserData() {
     userDataHeight.stopAnimation((currentValue) => {
       const shouldOpen = currentValue < 60;
       Animated.timing(userDataHeight, {
-        toValue: shouldOpen ? 120 : 0,
+        toValue: shouldOpen ? 90 : 0,
         duration: 260,
         useNativeDriver: false,
       }).start();
@@ -53,14 +50,14 @@ export default function UserHomeView() {
   return (
     <>
     <SafeAreaProvider>
-      <StatusBar barStyle={'light-content'} backgroundColor={backgroundColor} />
-      <View style={[{ backgroundColor: backgroundColor }, styles.container]}>
+      <StatusBar barStyle={'light-content'} backgroundColor={"#fff"} translucent={true} />
+      <View style={[styles.container]}>
         <View style={[styles.contentWrapper]}>
-          <View style={styles.headerContainer}>
+          <View style={[styles.headerContainer, { paddingTop: safeAreaInsets.top }]}>
             <MBHeaderUserSimple 
               userName="Thiago Silva"
               userAlias="thyagoacsilva" 
-              onPressNotifications={pushNotificationsView} 
+              onPressNotifications={openNotifications} 
               onPressCart={openChartBottomsheet} 
               onPressUserData={openUserData}
             />
@@ -68,26 +65,27 @@ export default function UserHomeView() {
           <Animated.View style={[styles.userDataWrapper, { height: userDataHeight }]}>
             <Animated.View style={[styles.userDataContent, { opacity: userDataOpacity }]}>
               <MBLocationTag locationName={'Santos · SP'} onPress={() => {}} />
-              {/* <MBMainBtn title="Minha loja" buttonType={MBMainBtnType.OUTLINED} onPress={() => {}} /> */}
               <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 16, width: '100%' }}>
-                <MBTextBtn title="Ver meus dados" onPress={() => {}} />
-                <MBTextBtn title="Ver minha loja" onPress={() => {}} />
+                {/* <MBTextBtn title="Ver meus dados" onPress={openUserProfile} />
+                <MBTextBtn title="Ver minha loja" onPress={openStoreSignup} /> */}
+                <MBOutlinedSmBtn title="Ver meus dados" onPress={openUserProfile} />
+                <MBOutlinedSmBtn title="Ver minha loja" onPress={openStoreSignup} />
               </View>
             </Animated.View>
           </Animated.View>
           <FlatList
             data={homeProducts}
             style={styles.scrollView} 
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.productId}
             showsVerticalScrollIndicator={false}
             ListHeaderComponent={
               <View style={{ paddingVertical: 8 }}> 
-                <HomeCarouselListHeader />
+                <HomeCarouselListHeader items={userHomeCarouselItems} onPressItem={openCarouselTarget} />
               </View>
             }
             renderItem={({ item }) => (
               <MBHomeProductCard product={{
-                id: item.id,
+                productId: item.productId,
                 title: item.title,
                 price: `${item.price.toFixed(2)}`,
                 imageUri: item.imageUri,
@@ -95,7 +93,7 @@ export default function UserHomeView() {
                 storeImageUri: item.storeImageUri,
                 rating: item.rating,
                 onPress: () => {
-                  MainNavigation.push(ProductDetailView, { productId: item.id });
+                  openProductDetail(item.productId);
                 },
                 onPressFavorite: () => {
                   // Handle favorite press
@@ -124,6 +122,7 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'white',
   },
   contentWrapper: {
     backgroundColor: 'transparent',
@@ -143,6 +142,7 @@ const styles = StyleSheet.create({
     height: 70, 
     backgroundColor: 'transparent',
     paddingHorizontal: 8,
+    marginVertical: 24,
   },
   userDataWrapper: {
     width: '100%',

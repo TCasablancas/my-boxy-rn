@@ -2,22 +2,11 @@ import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
 import MBFavoriteBtn from '../buttons/MBFavoriteBtn';
 import { Icons } from '../../common/icons/Icons';
 import { PrimaryColors } from '../../common/colors/Colors';
-
-interface Product {
-  id: string;
-  title: string;
-  price: string;
-  imageUri: string;
-  storeName: string;
-  storeImageUri: string;
-  rating?: number;
-  onPress?: () => void;
-  onPressFavorite?: () => void;
-}
+import { ProductProps } from '../../models/ProductCardModel';
 
 export default function MBHomeProductCard({ 
     product
-}: { product: Product }) {
+}: { product: ProductProps }) {
   return (
     <Pressable style={styles.productContainer} onPress={product.onPress}>
       <View style={styles.storeInfoWrapper}>

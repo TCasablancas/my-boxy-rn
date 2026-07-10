@@ -1,27 +1,22 @@
 import React from 'react';
 import { View } from 'react-native';
-
-import { KeyboardAwareScreen } from '@/components/KeyboardAwareScreen';
-import { StepProgressHeader } from '@/components/StepProgressHeader';
-import { FloatingLabelInput } from '@/components/FloatingLabelInput';
-import { PrimaryButton } from '@/components/PrimaryButton';
-import { slugify } from '@/utils/text';
+import { KeyboardAwareScreen } from '../../../sections/global/KeyboarAwareScreen';
+// import { StepProgressHeader } from '@/components/StepProgressHeader';
+import MBFloatingLabelInput from '../../../components/labels/MBFloatingLabelInput';
+import MBMainBtn, { MBMainBtnType } from '../../../components/buttons/MBMainBtn';
+import { slugify } from '../../../common/types/Text';
 
 import { useStoreSignup } from '../../../common/contexts/StoreSignupContext';
 import { StoreSignupStep } from '../../../common/types/StoreSignupTypes';
+import { GlobalNavigationProps } from '../../../models/NavigationModel';
 
-interface Props {
-  navigation: { navigate: (screen: string) => void; goBack: () => void };
-}
-
-export function StoreDataStep({ navigation }: Props) {
+export function StoreDataStep({ navigation }: GlobalNavigationProps) {
   const { state, dispatch, goNext, goBack } = useStoreSignup();
   const { draft } = state;
 
   const update = (patch: Partial<typeof draft>) => dispatch({ type: 'UPDATE_STORE', patch });
 
   const handleChangeName = (value: string) => {
-    // gera o alias automaticamente a partir do nome, mas deixa o usuário editar depois
     update({ storeName: value, storeAlias: draft.storeAlias || slugify(value) });
   };
 
@@ -29,19 +24,19 @@ export function StoreDataStep({ navigation }: Props) {
 
   return (
     <KeyboardAwareScreen>
-      <StepProgressHeader title="Dados da loja" subtitle="Como sua loja vai aparecer para os compradores" currentStep={3} totalSteps={6} />
+      {/* <StepProgressHeader title="Dados da loja" subtitle="Como sua loja vai aparecer para os compradores" currentStep={3} totalSteps={6} /> */}
 
       <View style={{ gap: 16 }}>
-        <FloatingLabelInput label="Nome da loja" value={draft.storeName ?? ''} onChangeText={handleChangeName} />
+        <MBFloatingLabelInput label="Nome da loja" value={draft.storeName ?? ''} onChangeText={handleChangeName} />
 
-        <FloatingLabelInput
+        <MBFloatingLabelInput
           label="Alias (usado na URL da loja)"
           value={draft.storeAlias ?? ''}
           onChangeText={(v) => update({ storeAlias: slugify(v) })}
           autoCapitalize="none"
         />
 
-        <FloatingLabelInput
+        <MBFloatingLabelInput
           label="Descrição da loja"
           value={draft.storeDescription ?? ''}
           onChangeText={(v) => update({ storeDescription: v })}
@@ -50,8 +45,16 @@ export function StoreDataStep({ navigation }: Props) {
         />
       </View>
 
-      <PrimaryButton label="Continuar" onPress={() => goNext(StoreSignupStep.DadosLoja, navigation)} disabled={!canContinue} />
-      <PrimaryButton label="Voltar" variant="ghost" onPress={() => goBack(StoreSignupStep.DadosLoja, navigation)} />
+      <MBMainBtn 
+        title="Continuar" 
+        onPress={() => goNext(StoreSignupStep.DadosLoja, navigation)} 
+        buttonType={canContinue ? MBMainBtnType.NORMAL : MBMainBtnType.DISABLED} 
+      />
+      <MBMainBtn 
+        title="Voltar" 
+        buttonType={MBMainBtnType.DISABLED} 
+        onPress={() => goBack(StoreSignupStep.DadosLoja, navigation)} 
+      />
     </KeyboardAwareScreen>
   );
 }

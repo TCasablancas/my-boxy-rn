@@ -1,6 +1,6 @@
 import React from 'react';
-import { KeyboardAwareScreen } from '@/components/KeyboardAwareScreen';
-import { StepProgressHeader } from '@/components/StepProgressHeader';
+import { KeyboardAwareScreen } from '../../../sections/global/KeyboarAwareScreen';
+// import { StepProgressHeader } from '@/components/StepProgressHeader';
 import MBMainBtn, { MBMainBtnType } from '../../../components/buttons/MBMainBtn';
 import { StepEndereco } from '../../usersignup/steps/StepEndereco';
 import { useStoreSignup } from '../../../common/contexts/StoreSignupContext';
@@ -15,7 +15,7 @@ export function AddressStep({ navigation }: GlobalNavigationProps) {
 
   return (
     <KeyboardAwareScreen>
-      <StepProgressHeader title="Endereço da loja" subtitle="Onde sua loja está localizada" currentStep={5} totalSteps={6} />
+      {/* <StepProgressHeader title="Endereço da loja" subtitle="Onde sua loja está localizada" currentStep={5} totalSteps={6} /> */}
 
       <StepEndereco
         data={storeAddress}

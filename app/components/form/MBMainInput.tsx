@@ -33,23 +33,20 @@ const CONTAINER_HEIGHT = 64;
  *   que o campo fique visível acima do teclado.
  */
 export const MBMainInput = forwardRef<TextInput, AppInputProps>(
-  (
-    {
-      label,
-      value,
-      onChangeText,
-      error,
-      helperText,
-      loading,
-      leftIcon,
-      rightAdornment,
-      secureTextEntry,
-      onFocus,
-      onBlur,
-      ...rest
-    },
-    ref,
-  ) => {
+  ({ 
+    label, 
+    value, 
+    onChangeText, 
+    error, 
+    helperText, 
+    loading,
+    leftIcon, 
+    rightAdornment, 
+    secureTextEntry, 
+    onFocus, 
+    onBlur, 
+    ...rest 
+  }, ref,) => {
     const [isFocused, setIsFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const borderAnim = useRef(new Animated.Value(0)).current;
@@ -72,9 +69,9 @@ export const MBMainInput = forwardRef<TextInput, AppInputProps>(
       Animated.timing(borderAnim, { toValue, duration: 150, useNativeDriver: false }).start();
     };
 
-    // const animateLabel = (toValue: number) => {
-    //   Animated.timing(labelAnim, { toValue, duration: 150, useNativeDriver: false }).start();
-    // };
+    const animateLabel = (toValue: number) => {
+      Animated.timing(labelAnim, { toValue, duration: 150, useNativeDriver: false }).start();
+    };
 
     const borderColor = borderAnim.interpolate({
       inputRange: [0, 1],
@@ -101,7 +98,7 @@ export const MBMainInput = forwardRef<TextInput, AppInputProps>(
               {label}
             </Animated.Text>
 
-            <Animated.View style={[ styles.inputWrapper, { opacity: 1, transform: [{ translateY: inputTranslateY }] }]}>
+            <Animated.View style={[ styles.inputWrapper, { transform: [{ translateY: inputTranslateY }] }]}>
               <TextInput
                 ref={setRefs}
                 style={styles.input}
@@ -170,7 +167,9 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderRadius: 12,
     backgroundColor: NeutralColors.backgroundAlt,
-    padding: 10,
+    paddingTop: 8,
+    paddingBottom: 16,
+    paddingHorizontal: 8,
     shadowColor: OverlayColors.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 1,
@@ -187,16 +186,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   floatingLabel: {
-    // flex: 1,
-    paddingTop: 8,
+    flex: 1,
     ...typography.label,
     fontFamily: 'SNPro-Regular',
     color: NeutralColors.textPlaceholder,
   },
   input: {
+    flex: 1,
     fontSize: 16,
     color: NeutralColors.text,
     fontFamily: 'SNPro-Regular',
+    width: '100%',
+    backgroundColor: 'transparent',
   },
   adornment: {
     marginLeft: spacing.sm,

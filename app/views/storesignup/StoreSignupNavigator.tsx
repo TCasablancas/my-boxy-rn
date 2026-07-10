@@ -13,11 +13,11 @@ import { RevisionStep } from './steps/RevisionStep';
 
 const Stack = createNativeStackNavigator();
 
-interface Props {
+interface StoreSignupNavigatorProps {
   onSubmit: (payload: StoreSignupModel) => Promise<void>;
 }
 
-export function StoreSignupNavigator({ onSubmit }: Props) {
+export default function StoreSignupNavigator({ onSubmit }: StoreSignupNavigatorProps) {
   return (
     <StoreSignupProvider>
       <Stack.Navigator initialRouteName={StoreSignupStep.Documento} screenOptions={{ headerShown: false }}>

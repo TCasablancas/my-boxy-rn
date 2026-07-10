@@ -1,21 +1,24 @@
 import React, { useCallback, useRef } from 'react';
-import { View, Text } from 'react-native';
-
-// Componentes e utilitários já existentes no projeto — trocar pelos nomes/paths reais:
-import { KeyboardAwareScreen } from '@/components/KeyboardAwareScreen';
+import { View, Text, StyleSheet } from 'react-native';
+import { KeyboardAwareScreen } from '../../../sections/global/KeyboarAwareScreen';
 import { MBStepperHeader } from '../../../components/stepper/MBStepperHeader';
 import { MBMainInput } from '../../../components/form/MBMainInput';
-import { OptionToggle } from '@/components/OptionToggle';
-import { InlineInfoCard } from '@/components/InlineInfoCard';
+import MBOptionToggle from '../../../components/selectors/MBOptionToggle';
+import MBInlineInfoCard from '../../../components/cards/MBInlineInfoCard';
 import MBMainBtn, { MBMainBtnType } from '../../../components/buttons/MBMainBtn';
 import { maskCPF } from '../../../common/constants/Masks';
 import { isValidCPF } from '../../../common/constants/Validators';
-import { useDebouncedCallback } from '@/hooks/useDebouncedCallback';
-
+import { useDebouncedCallback } from '../StoreSignupHooks';
 import { useStoreSignup } from '../../../common/contexts/StoreSignupContext';
 import { StoreSignupStep } from '../../../common/types/StoreSignupTypes';
 import { findUserByCpf, getCurrentAuthenticatedUser } from '../../../common/constants/StoreOwnerSearch';
 import { STORE_SIGNUP_STEP_LABELS } from '../StoreSignupModel';
+import MBTitledViewHeader from '../../../components/header/MBTitledViewHeader';
+import MBRoundedIconBtn from '../../../components/buttons/MBRoundedIconBtn';
+import { NeutralColors } from '../../../common/colors/Colors';
+import MBTitleDescripted from '../../../components/texts/MBTitleDescripted';
+import { Icons } from '../../../common/icons/Icons';
+import MainNavigation from '../../../common/navigation/MainNavigation';
 
 interface Props {
   navigation: { navigate: (screen: string) => void; goBack: () => void };
@@ -79,53 +82,73 @@ export function DocumentStep({ navigation }: Props) {
   };
 
   return (
-    <KeyboardAwareScreen>
-      <MBStepperHeader
-        steps={STORE_SIGNUP_STEP_LABELS}
-        currentIndex={1}
-      />
-
-      <View style={{ gap: 16 }}>
-        <OptionToggle
-          label="Usar dados da minha conta já cadastrada"
-          value={documentSource === 'existingAccount'}
-          onChange={handleUseExistingAccount}
+    <View style={styles.container}>
+      <KeyboardAwareScreen>
+        <MBTitledViewHeader
+          btnsLeft={
+            <MBRoundedIconBtn 
+              icon={<Icons.arrowBack width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+              onPress={() => {MainNavigation.pop();}}
+            />
+          }
         />
-
-        <MBMainInput
-          label="CPF"
-          value={cpf}
-          onChangeText={handleChangeCpf}
-          keyboardType="numeric"
-          maxLength={14}
-          editable={documentSource === 'manual'}
+        <MBStepperHeader steps={STORE_SIGNUP_STEP_LABELS} currentIndex={0} />
+        <MBTitleDescripted 
+          title="Dados do Proprietário"
+          description="Se você já possui uma conta de usuário, podemos preencher automaticamente os dados."
         />
-
-        {isSearchingCpf && <Text>Buscando cadastro com este CPF...</Text>}
-
-        {!isSearchingCpf && existingUserMatch && !hasAppliedAutofill && (
-          <InlineInfoCard
-            title="Encontramos um cadastro com este CPF"
-            description={`Podemos preencher automaticamente os dados de ${existingUserMatch.name} nos próximos passos.`}
-            actionLabel="Usar estes dados"
-            onAction={handleApplyAutofill}
+        <View>
+          <MBMainInput
+            label="CPF"
+            value={cpf}
+            onChangeText={handleChangeCpf}
+            keyboardType="numeric"
+            maxLength={14}
+            editable={documentSource === 'manual'}
           />
-        )}
-
-        {hasAppliedAutofill && existingUserMatch && (
-          <InlineInfoCard
-            title="Dados preenchidos automaticamente"
-            description={`Vamos usar as informações de ${existingUserMatch.name}. Você poderá revisar tudo no próximo passo.`}
-            actionLabel="Preencher manualmente"
-            onAction={() => dispatch({ type: 'DISMISS_AUTOFILL' })}
+          {isSearchingCpf && <Text>Buscando cadastro com este CPF...</Text>}
+          {!isSearchingCpf && existingUserMatch && !hasAppliedAutofill && (
+            <MBInlineInfoCard
+              title="Encontramos um cadastro com este CPF"
+              description={`Podemos preencher automaticamente os dados de ${existingUserMatch.name} nos próximos passos.`}
+              actionLabel="Usar estes dados"
+              onAction={handleApplyAutofill}
+            />
+          )}
+          {hasAppliedAutofill && existingUserMatch && (
+            <MBInlineInfoCard
+              title="Dados preenchidos automaticamente"
+              description={`Vamos usar as informações de ${existingUserMatch.name}. Você poderá revisar tudo no próximo passo.`}
+              actionLabel="Preencher manualmente"
+              onAction={() => dispatch({ type: 'DISMISS_AUTOFILL' })}
+            />
+          )}
+          <MBOptionToggle
+            label="Usar dados da minha conta pessoal"
+            value={documentSource === 'existingAccount'}
+            onChange={handleUseExistingAccount}
           />
-        )}
+        </View>
+      </KeyboardAwareScreen>
+      <View style={styles.buttonWrapper}>
+        <MBMainBtn 
+          title="Continuar" 
+          onPress={handleContinue} 
+          buttonType={ canContinue ? MBMainBtnType.NORMAL : MBMainBtnType.DISABLED } 
+        />
       </View>
-
-      <MBMainBtn 
-        title="Continuar" 
-        onPress={handleContinue} buttonType={ canContinue ? MBMainBtnType.NORMAL : MBMainBtnType.DISABLED } 
-      />
-    </KeyboardAwareScreen>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  buttonWrapper: {
+    position: 'absolute',
+    bottom: 16,
+    left: 16,
+    right: 16,
+  }
+});

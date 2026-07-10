@@ -10,36 +10,37 @@ export const typography = {
 
   h1: {
     fontSize: 26,
-    fontWeight: '800' as const,
+    fontFamily: 'SNPro-Bold',
     lineHeight: 32,
   },
   h2: {
     fontSize: 20,
-    fontWeight: '700' as const,
+    fontFamily: 'SNPro-Bold',
     lineHeight: 26,
   },
   body: {
     fontSize: 15,
-    fontWeight: '400' as const,
+    fontFamily: 'SNPro-Regular',
     lineHeight: 21,
   },
   bodyBold: {
     fontSize: 15,
-    fontWeight: '600' as const,
+    fontFamily: 'SNPro-Bold',
     lineHeight: 21,
   },
   caption: {
     fontSize: 13,
-    fontWeight: '400' as const,
-    lineHeight: 18,
+    fontFamily: 'SNPro-Regular',
+    lineHeight: 16,
   },
   label: {
     fontSize: 13,
+    fontFamily: 'SNPro-Regular',
     lineHeight: 16,
   },
   button: {
     fontSize: 16,
-    fontWeight: '700' as const,
+    fontFamily: 'SNPro-Bold',
   },
 };
 

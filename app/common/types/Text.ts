@@ -1,0 +1,16 @@
+/**
+ * Converte um texto livre em um alias/slug seguro para URL:
+ * remove acentos, caracteres especiais, espaços múltiplos, e coloca em minúsculo.
+ * Ex: "Ateliê da Ana  " -> "atelie-da-ana"
+ */
+export function slugify(text: string): string {
+  return text
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // remove acentos
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '') // remove caracteres especiais
+    .replace(/\s+/g, '-') // espaços -> hífen
+    .replace(/-+/g, '-') // colapsa hífens repetidos
+    .replace(/^-|-$/g, ''); // remove hífen no início/fim
+}

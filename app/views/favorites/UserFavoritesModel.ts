@@ -3,10 +3,10 @@ import { StoreHeaderProfileProps } from "../storeprofile/StoreProfileModel";
 
 export interface UserFavoritesProps {
   userId: string;
-  favoriteProducts: FavoriteProduct[];
+  favoriteProducts: FavoriteProductProps[];
 }
 
-export interface FavoriteProduct {
+export interface FavoriteProductProps {
   favoriteId: string;
   title: string;
   price: string;
@@ -17,7 +17,7 @@ export interface FavoriteProduct {
   isFavorite: boolean;
 }
 
-export interface UserFavoritesScreenState {
+export interface UserFavoritesProps {
   userId: string;
-  favoriteProducts: FavoriteProduct[];
+  favoriteProducts: FavoriteProductProps[];
 }

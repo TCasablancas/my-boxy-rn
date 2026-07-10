@@ -26,7 +26,7 @@ export const NeutralColors = {
   background: '#EBEBEB',
   backgroundAlt: '#FAFAFA',
   border: '#E5E7EB',
-  borderFocus: '#D8023F',
+  borderFocus: '#6ABA02',
   text: '#111827',
   textSecondary: '#6B7280',
   textPlaceholder: '#9CA3AF',
