@@ -1,8 +1,8 @@
 import { View, StyleSheet, Text, Image } from 'react-native';
 import MBStoreProductHeader from '../header/MBStoreProductHeader';
-import { IconsNavigation } from '../../common/constants/IconsNavigation';
-import { IconsActions } from '../../common/constants/IconsActions';
-import { Icons } from '../../common/constants/Icons';
+import { IconsNavigation } from '../../common/icons/IconsNavigation';
+import { IconsActions } from '../../common/icons/IconsActions';
+import { Icons } from '../../common/icons/Icons';
 
 interface MBUserFavoriteCardProps {
   item: {

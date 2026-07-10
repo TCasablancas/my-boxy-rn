@@ -319,4 +319,31 @@ export const IconsActions = {
       />
     </Svg>
   ),
+  edit: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      width="24px"
+      height="24px"
+      strokeWidth={2.0}
+      viewBox="0 0 24 24"
+      fill={fillColor}
+      xmlns="http://www.w3.org/2000/svg"
+      color="#000000"
+      {...props}
+    >
+      <Path
+        d="M3 21L12 21H21"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M12.2218 5.82839L15.0503 2.99996L20 7.94971L17.1716 10.7781M12.2218 5.82839L6.61522 11.435C6.42769 11.6225 6.32233 11.8769 6.32233 12.1421L6.32233 16.6776L10.8579 16.6776C11.1231 16.6776 11.3774 16.5723 11.565 16.3847L17.1716 10.7781M12.2218 5.82839L17.1716 10.7781"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  ),
 };

@@ -23,7 +23,7 @@ export const StateColors = {
 
 // Fluxo de cadastro: neutros
 export const NeutralColors = {
-  background: '#FFFFFF',
+  background: '#EBEBEB',
   backgroundAlt: '#FAFAFA',
   border: '#E5E7EB',
   borderFocus: '#D8023F',
@@ -32,6 +32,7 @@ export const NeutralColors = {
   textPlaceholder: '#9CA3AF',
   white: '#FFFFFF',
   black: '#000000',
+
 };
 
 export const OverlayColors = {

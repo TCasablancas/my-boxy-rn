@@ -5,9 +5,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PlatformPressable } from '@react-navigation/elements';
 import { PrimaryColors } from './app/common/colors/Colors';
-import { Icons } from './app/common/constants/Icons';
-import { IconsCommunication } from './app/common/constants/IconsCommunication';
-import { IconsActions } from './app/common/constants/IconsActions';
+import { Icons } from './app/common/icons/Icons';
+import { IconsCommunication } from './app/common/icons/IconsCommunication';
+import { IconsActions } from './app/common/icons/IconsActions';
 import { MainTabParamList, RootStackParamList } from './app/navigation/types';
 import {
   navigationRef,
@@ -58,7 +58,7 @@ function MainTabs() {
   const mainColor = PrimaryColors.primary;
 
   const screenArrData = [
-    { name: 'início' as const, component: UserHomeView, icon: Icons.home },
+    { name: 'início' as const, component: UserHomeView, icon: Icons.homeSimpleBar },
     { name: 'curtidos' as const, component: UserFavoritesView, icon: Icons.heart },
     { name: 'compras' as const, component: MyShopView, icon: Icons.bag },
     { name: 'busca' as const, component: SearchView, icon: IconsActions.search },

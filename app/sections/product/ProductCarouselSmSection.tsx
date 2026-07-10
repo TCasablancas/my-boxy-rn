@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import MBTitleWithLinkRight from '../../components/header/MBTitleWithLinkRight';
-import { Icons } from '../../common/constants/Icons';
+import { Icons } from '../../common/icons/Icons';
 
 interface ProductCarouselSmSectionProps {
   title?: string;

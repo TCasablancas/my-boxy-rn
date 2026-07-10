@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, Pressable } from 'react-native';
-import { Icons } from '../../common/constants/Icons';
-import { PrimaryColors } from '../../common/colors/Colors';
+import { Icons } from '../../common/icons/Icons';
+import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 
 interface MBMenuNestedListProps {
   title?: string;
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     marginTop: 8,
     gap: 8,
     padding: 8,
-    backgroundColor: '#fff',
-    borderRadius: 8,
+    borderRadius: 16,
+    backgroundColor: NeutralColors.background,
   },
   nestTitle: {
     fontSize: 18,
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 8,
     paddingHorizontal: 16,
-    // backgroundColor: '#d3d3d3',
     borderRadius: 8,
   },
   nestItemText: {
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 1,
-    backgroundColor: PrimaryColors.background,
+    backgroundColor: NeutralColors.border,
     marginHorizontal: 16,
   },
 });

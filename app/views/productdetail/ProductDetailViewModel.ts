@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { homeProducts } from '../../common/UserHomeData';
 import type { ProductCarouselItem, ProductDetailContent } from './ProductDetailModel';
 import { Alert } from 'react-native';
-import { Icons } from '../../common/constants/Icons';
+import { Icons } from '../../common/icons/Icons';
 
 const MIN_QUANTITY = 1;
 const MAX_QUANTITY = 99;

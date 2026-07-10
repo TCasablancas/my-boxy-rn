@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView, Pressable } from 'react-native';
 import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
-import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
-import { Icons } from '../../common/constants/Icons';
 import MBMenuNestedList from '../../components/navigation/MBMenuNestedList';
 import MainNavigation from '../../common/navigation/MainNavigation';
-
 import { nestedListItems } from './../../common/MoreConfigsData';
+import MBHeaderUserConfig from '../../components/header/MBHeaderUserConfig';
+import { IconsActions } from '../../common/icons/IconsActions';
+import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
 
 export default function MoreConfigsView() {
   const menuItemPathById = useMemo(() => {
@@ -27,14 +27,16 @@ export default function MoreConfigsView() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.contentWrapper}>
-        <MBTitledViewHeader 
-          title="Configurações"
-          // btnsRight={<MBRoundedIconBtn 
-          //   icon={<Icons.barcode width={16} height={16} />} 
-          //   onPress={() => {}}
-          // />}
-        />
+        <MBTitledViewHeader title="Configurações" />
         <View style={styles.listWrapper}>
+            <MBHeaderUserConfig />
+            <View style={styles.editBtnWrapper}>
+              <MBRoundedIconBtn 
+                icon={<IconsActions.edit width={16} height={16} strokeColor="#000" />} 
+                backgroundColor="white"
+                onPress={() => MainNavigation.push('UserProfileView')} 
+              />
+            </View>
           {nestedListItems.map((nestedList) => (
             <>
               <MBMenuNestedList 
@@ -55,7 +57,7 @@ export default function MoreConfigsView() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F0E5E4',
+    backgroundColor: 'white',
   },
   contentWrapper: {
     flex: 1,
@@ -67,8 +69,12 @@ const styles = StyleSheet.create({
   },
   listWrapper: {
     marginTop: 16,
-    padding: 16,
     gap: 16,
     borderRadius: 12,
+  },
+  editBtnWrapper: {
+    position: 'absolute',
+    right: 16,
+    top: 16,
   },
 });

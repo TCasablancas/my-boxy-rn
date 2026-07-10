@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
-import { Icons } from '../../common/constants/Icons';
-import { IconsActions } from '../../common/constants/IconsActions';
+import { Icons } from '../../common/icons/Icons';
+import { IconsActions } from '../../common/icons/IconsActions';
 
 export default function MBPlayPauseBtn({ isPlaying, onPress }: { isPlaying: boolean; onPress: () => void }) {
   return (

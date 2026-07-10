@@ -1,4 +1,4 @@
-import { Icons } from '../common/constants/Icons';
+import { Icons } from './icons/Icons';
 
 export const homeProducts = [
     {

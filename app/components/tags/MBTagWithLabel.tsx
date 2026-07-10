@@ -1,5 +1,5 @@
 import { PrimaryColors } from '../../common/colors/Colors';
-import { Icons } from '../../common/constants/Icons';
+import { Icons } from '../../common/icons/Icons';
 import { View, Text, StyleSheet } from 'react-native';
 
 interface MBTagWithLabelProps {

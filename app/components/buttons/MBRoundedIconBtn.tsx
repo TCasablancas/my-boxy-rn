@@ -1,11 +1,17 @@
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 
+interface MBRoundedIconBtnProps {
+  icon: React.ReactNode;
+  backgroundColor?: string;
+  onPress: () => void;
+}
+
 export default function MBRoundedIconBtn({ 
-    icon, onPress
-}: { icon: React.ReactNode; onPress: () => void }) {
+    icon, backgroundColor, onPress
+}: MBRoundedIconBtnProps) {
   return (
     <Pressable onPress={onPress}>
-      <View style={styles.roundedIconBtnContainer}>
+      <View style={[styles.roundedIconBtnContainer, backgroundColor && { backgroundColor }]}>
         <View style={styles.roundedIconBtnWrapper}>
           {icon}
         </View>

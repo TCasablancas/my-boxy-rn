@@ -3,7 +3,7 @@ import {
   Animated, Dimensions, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import { MBProgressDot } from './MBProgressDot';
-import { Icons } from '../../common/constants/Icons';
+import { Icons } from '../../common/icons/Icons';
 import { setTabSwipeLocked } from '../../common/navigation/tabSwipeLock';
 import MBTagWithLabel from '../../components/tags/MBTagWithLabel';
 import { PrimaryColors } from '../../common/colors/Colors';

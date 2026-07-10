@@ -1,5 +1,5 @@
 import { View, Image, StyleSheet } from 'react-native';
-import { Icons } from '../../common/constants/Icons';
+import { Icons } from '../../common/icons/Icons';
 import { PrimaryColors } from '../../common/colors/Colors';
 
 function DSEmptyImageView() {

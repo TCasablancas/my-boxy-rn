@@ -5,7 +5,7 @@ import {
 import { NeutralColors, OverlayColors, PrimaryColors, StateColors } from '../../common/colors/Colors';
 import { radius, spacing, typography } from '../../common/constants/Typgraphy';
 import { nodeHandleOf, useKeyboardScroll } from '../../common/contexts/KeyboardScrollContext';
-import { IconsActions } from '../../common/constants/IconsActions';
+import { IconsActions } from '../../common/icons/IconsActions';
 
 interface AppInputProps extends Omit<TextInputProps, 'onChangeText'> {
   label: string;

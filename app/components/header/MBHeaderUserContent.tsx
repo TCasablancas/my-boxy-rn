@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
-import { Icons } from '../../common/constants/Icons';
-import { IconsActions } from '../../common/constants/IconsActions';
-import { IconsCommunication } from '../../common/constants/IconsCommunication';
+import { Icons } from '../../common/icons/Icons';
+import { IconsActions } from '../../common/icons/IconsActions';
+import { IconsCommunication } from '../../common/icons/IconsCommunication';
 
 export default function MBHeaderUserContent({ 
     userName, userAlias

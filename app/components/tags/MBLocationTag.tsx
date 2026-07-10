@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { IconsNavigation } from '../../common/constants/IconsNavigation';
+import { IconsNavigation } from '../../common/icons/IconsNavigation';
 
 interface MBLocationTagProps {
   locationName: string;

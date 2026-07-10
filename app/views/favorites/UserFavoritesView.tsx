@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, Image, FlatList } from 'react-native';
 import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
-import { Icons } from '../../common/constants/Icons';
+import { Icons } from '../../common/icons/Icons';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
 import MBStoreProductHeader from '../../components/header/MBStoreProductHeader';
 import MBUserFavoriteCard from '../../components/cards/MBUserFavoriteCard';

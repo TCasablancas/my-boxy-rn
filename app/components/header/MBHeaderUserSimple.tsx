@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import { View, StyleSheet, Text, Pressable, Animated } from 'react-native';
 import MyBoxyIcon from '../../../assets/images/my_boxy_icon.svg';
-import { Icons } from '../../common/constants/Icons';
+import { Icons } from '../../common/icons/Icons';
 import MBRoundedIconBtn from '../buttons/MBRoundedIconBtn';
-import { IconsCommunication } from '../../common/constants/IconsCommunication';
+import { IconsCommunication } from '../../common/icons/IconsCommunication';
 
 interface MBHeaderUserSimpleProps {
   userName: string;

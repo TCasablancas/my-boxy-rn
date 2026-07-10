@@ -13,7 +13,7 @@ import HomeCarouselListHeader from '../../sections/home/HomeCarouselListHeader';
 import { useRef } from 'react';
 import MBLocationTag from '../../components/tags/MBLocationTag';
 import MBMainBtn, { MBMainBtnType } from '../../components/buttons/MBMainBtn';
-import { Icons } from '../../common/constants/Icons';
+import { Icons } from '../../common/icons/Icons';
 import MBTextBtn from '../../components/buttons/MBTextBtn';
 
 registerNavigationTarget('NotificationsView', NotificationsView);

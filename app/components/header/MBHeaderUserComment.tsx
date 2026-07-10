@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { IconsActions } from '../../common/constants/IconsActions';
-import { IconsNavigation } from '../../common/constants/IconsNavigation';
+import { IconsActions } from '../../common/icons/IconsActions';
+import { IconsNavigation } from '../../common/icons/IconsNavigation';
 
 interface MBHeaderUserCommentProps {
   userName: string;

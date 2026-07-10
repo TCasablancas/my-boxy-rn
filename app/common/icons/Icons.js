@@ -21,6 +21,33 @@ export const Icons = {
       />
     </Svg>
   ),
+  homeSimpleBar: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      width="24px"
+      height="24px"
+      strokeWidth={2.0}
+      viewBox="0 0 24 24"
+      fill={fillColor}
+      xmlns="http://www.w3.org/2000/svg"
+      color={strokeColor}
+      {...props}
+    >
+      <Path
+        d="M17 21H7C4.79086 21 3 19.2091 3 17V10.7076C3 9.30887 3.73061 8.01175 4.92679 7.28679L9.92679 4.25649C11.2011 3.48421 12.7989 3.48421 14.0732 4.25649L19.0732 7.28679C20.2694 8.01175 21 9.30887 21 10.7076V17C21 19.2091 19.2091 21 17 21Z"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M9 17H15"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  ),
   user: ({ color = '#000', ...props }) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
@@ -1077,6 +1104,28 @@ export const Icons = {
         strokeLinecap="round"
         strokeLinejoin="round"
         d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+      />
+    </Svg>
+  ),
+  camera: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill={fillColor}
+      viewBox="0 0 24 24"
+      strokeWidth={2.0}
+      stroke={strokeColor}
+      className="size-6"
+      {...props}
+    >
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
+      />
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
       />
     </Svg>
   ),

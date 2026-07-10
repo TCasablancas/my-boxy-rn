@@ -1,5 +1,5 @@
 import { View, StyleSheet, Text, TextInput, Pressable } from 'react-native';
-import { IconsActions } from '../../common/constants/IconsActions';
+import { IconsActions } from '../../common/icons/IconsActions';
 
 interface MBSearchTextfieldProps {
   value?: string;

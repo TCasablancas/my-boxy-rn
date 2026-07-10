@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import MBTitleWithLinkRight from '../../components/header/MBTitleWithLinkRight';
-import { Icons } from '../../common/constants/Icons';
+import { Icons } from '../../common/icons/Icons';
 import { PrimaryColors } from '../../common/colors/Colors';
 import UserComment from './UserComment';
 import MBMainBtn, { MBMainBtnType } from '../../components/buttons/MBMainBtn';
-import { IconsActions } from '../../common/constants/IconsActions';
+import { IconsActions } from '../../common/icons/IconsActions';
 
 export default function ProductCommentsSection({}) {
   return(

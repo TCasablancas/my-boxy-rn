@@ -1,22 +1,18 @@
-import { Icons } from './constants/Icons';
+import { Icons } from './icons/Icons';
+import { IconsCommunication } from './icons/IconsCommunication';
 
 export const nestedListItems = [
   {
     id: '1',
     label: 'Para mim',
     items: [
-      { id: '1-1', 
-        icon: <Icons.user width={16} height={16} />, 
-        label: 'Meus Dados', 
-        path: 'UserProfileView',
-      },
       { id: '1-2', 
         icon: <Icons.bag width={16} height={16} />, 
-        label: 'Endereços', 
+        label: 'Meus Endereços', 
         path: 'UserAddressesView',
       },
       { id: '1-3', 
-        icon: <Icons.barcode width={16} height={16} />, 
+        icon: <IconsCommunication.notification width={16} height={16} />, 
         label: 'Notificações', 
         path: 'UserNotificationsView',
       },

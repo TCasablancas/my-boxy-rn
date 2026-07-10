@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
 import MBFavoriteBtn from '../buttons/MBFavoriteBtn';
-import { Icons } from '../../common/constants/Icons';
+import { Icons } from '../../common/icons/Icons';
 import { PrimaryColors } from '../../common/colors/Colors';
 
 interface Product {

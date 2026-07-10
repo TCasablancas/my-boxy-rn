@@ -1,5 +1,5 @@
 import { View, StyleSheet, Text, Pressable } from 'react-native';
-import { Icons } from '../../common/constants/Icons';
+import { Icons } from '../../common/icons/Icons';
 import { PrimaryColors } from '../../common/colors/Colors';
 
 export default function MBFavoriteBtn({ onPress }: { onPress?: () => void }) {
