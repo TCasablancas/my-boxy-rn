@@ -1,4 +1,5 @@
-import { View, StyleSheet, Text, Pressable } from 'react-native';
+import React, { useRef } from 'react';
+import { View, StyleSheet, Text, Pressable, Animated } from 'react-native';
 import MyBoxyIcon from '../../../assets/images/my_boxy_icon.svg';
 import { Icons } from '../../common/constants/Icons';
 import MBRoundedIconBtn from '../buttons/MBRoundedIconBtn';
@@ -9,23 +10,43 @@ interface MBHeaderUserSimpleProps {
   userAlias: string;
   onPressNotifications: () => void;
   onPressCart: () => void;
+  onPressUserData?: () => void;
 }
 
 export default function MBHeaderUserSimple({ 
-  userName, userAlias, onPressNotifications, onPressCart
+  userName, userAlias, onPressNotifications, onPressCart, onPressUserData
 }: MBHeaderUserSimpleProps) {
+  const rotateAnim = useRef(new Animated.Value(0)).current;
+
+  const handlePress = () => {
+    Animated.timing(rotateAnim, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start(() => {
+      rotateAnim.setValue(0); // Reset the animation value for next press
+    });
+  };
+  
+  const rotateInterpolate = rotateAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '180deg'],
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.picWrapper}>
         <MyBoxyIcon width="40" height="40" />
       </View>
-      <View style={styles.userDataWrapper}>
+      <Pressable onPress={() => { handlePress(); onPressUserData && onPressUserData(); }} style={styles.userDataWrapper}>
         <View style={styles.userNameWrapper}>
           <Text style={styles.userName}>{userName}</Text>
           <Text style={styles.userEmail}>{userAlias}</Text>
         </View>
-        <Icons.chevronDown width={12} height={12} />
-      </View>
+        <Animated.View style={{ transform: [{ rotate: rotateInterpolate }] }}>
+          <Icons.chevronDown width={12} height={12} color="#999" />
+        </Animated.View>
+      </Pressable>
       <View style={styles.iconsWrapper}>
         <MBRoundedIconBtn 
           icon={<IconsCommunication.notification width={16} height={16} />} 

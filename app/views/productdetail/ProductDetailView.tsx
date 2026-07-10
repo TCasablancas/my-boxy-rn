@@ -48,7 +48,7 @@ export default function ProductDetailView() {
 
   return (
     <View style={styles.background}>
-      <View style={safeAreaStyles({ safeAreaInsets }).container}>
+      <View style={styles.container}>
         <View style={styles.headerWrapper}>
           <Animated.View
             pointerEvents="none"
@@ -159,28 +159,18 @@ export default function ProductDetailView() {
   );
 }
 
-const safeAreaStyles = ({ safeAreaInsets = { top: 0, bottom: 0 } }: { 
-  safeAreaInsets?: { top: number; bottom: number } 
-}) => StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
-    // marginTop: 16,
-    // marginHorizontal: 16,
-    // marginBottom: (safeAreaInsets?.bottom || 0) + 16,
     justifyContent: 'space-between',
   },
-});
-
-const styles = StyleSheet.create({
   background: {
     flex: 1,
-    // backgroundColor: PrimaryColors.background,
     backgroundColor: 'white',
   },
   contentArea: {
     flex: 1,
-    // marginBottom: 82,
   },
   contentWrapper: {
     borderRadius: 16,

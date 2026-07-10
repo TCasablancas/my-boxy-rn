@@ -133,6 +133,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    height: '100%',
+    width: '100%',
   },
   sheetHost: {
     flex: 1,
@@ -177,14 +179,14 @@ const styles = StyleSheet.create({
   },
   title: {
     width: '100%',
-    fontFamily: 'Sora-Regular',
+    fontFamily: 'SNPro-Regular',
     fontSize: 20,
     marginTop: 16,
     textAlign: 'left',
   },
   description: {
     width: '100%',
-    fontFamily: 'Sora-Light',
+    fontFamily: 'SNPro-Light',
     fontSize: 12,
     color: '#666',
     textAlign: 'left',
