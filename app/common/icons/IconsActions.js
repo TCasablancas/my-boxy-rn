@@ -485,4 +485,41 @@ export const IconsActions = {
       <Path d="M20.2 20.2l1.8 1.8" />
     </Svg>
   ),
+  checkboxSquareRounded: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill={fillColor}
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="icon icon-tabler icons-tabler-outline icon-tabler-square-rounded-check"
+      {...props}
+    >
+      <Path d="M9 12l2 2l4 -4" />
+      <Path d="M12 3c7.2 0 9 1.8 9 9c0 7.2 -1.8 9 -9 9c-7.2 0 -9 -1.8 -9 -9c0 -7.2 1.8 -9 9 -9" />
+    </Svg>
+  ),
+  userDelete: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill={fillColor}
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <Path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+      <Path d="M6 21v-2a4 4 0 0 1 4 -4h3.5" />
+      <Path d="M22 22l-5 -5" />
+      <Path d="M17 22l5 -5" />
+    </Svg>
+  ),
 };

@@ -116,13 +116,13 @@ export const Icons = {
       />
     </Svg>
   ),
-  wallet: ({ color = '#000', ...props }) => (
+  wallet: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      fill={fillColor}
       viewBox="0 0 24 24"
       strokeWidth={2.0}
-      stroke={color}
+      stroke={strokeColor}
       className="size-6"
       {...props}
     >

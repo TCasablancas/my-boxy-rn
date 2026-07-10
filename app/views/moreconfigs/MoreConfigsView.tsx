@@ -9,6 +9,7 @@ import { IconsActions } from '../../common/icons/IconsActions';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
 import MBIconInfoContainer from '../../components/containers/MBIconInfoContainer';
 import { Icons } from '../../common/icons/Icons';
+import MBMainBtn from '../../components/buttons/MBMainBtn';
 
 export default function MoreConfigsView() {
   const menuItemPathById = useMemo(() => {
@@ -70,6 +71,7 @@ export default function MoreConfigsView() {
               {nestedList.items.length-1  && <View style={{ marginBottom: 16 }} />}
             </>
           ))}
+          <MBMainBtn title="Sair" onPress={() => {}} />
         </View>
       </ScrollView>
     </View>
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   listWrapper: {
-    marginTop: 16,
+    marginVertical: 16,
     borderRadius: 12,
   },
   editBtnWrapper: {
@@ -105,6 +107,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     justifyContent: 'space-between', 
     gap: 16, 
-    marginBottom: 16 
   },
 });
