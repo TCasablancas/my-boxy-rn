@@ -346,4 +346,143 @@ export const IconsActions = {
       />
     </Svg>
   ),
+  helpSquare: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      width="24px"
+      height="24px"
+      strokeWidth={2.0}
+      viewBox="0 0 24 24"
+      fill={fillColor}
+      xmlns="http://www.w3.org/2000/svg"
+      color="#000000"
+      {...props}
+    >
+      <Path
+        d="M9 9C9 5.49997 14.5 5.5 14.5 9C14.5 11.5 12 10.9999 12 13.9999"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M12 18.01L12.01 17.9989"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M3 20.4V3.6C3 3.26863 3.26863 3 3.6 3H20.4C20.7314 3 21 3.26863 21 3.6V20.4C21 20.7314 20.7314 21 20.4 21H3.6C3.26863 21 3 20.7314 3 20.4Z"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+      />
+    </Svg>
+  ),
+  helpCircle: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      width="24px"
+      height="24px"
+      strokeWidth={2.0}
+      viewBox="0 0 24 24"
+      fill={fillColor}
+      xmlns="http://www.w3.org/2000/svg"
+      color={strokeColor}
+      {...props}
+    >
+      <Path
+        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M9 9C9 5.49997 14.5 5.5 14.5 9C14.5 11.5 12 10.9999 12 13.9999"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M12 18.01L12.01 17.9989"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  ),
+  infoCircle: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      width="24px"
+      height="24px"
+      strokeWidth={2.0}
+      viewBox="0 0 24 24"
+      fill={fillColor}
+      xmlns="http://www.w3.org/2000/svg"
+      color={strokeColor}
+      {...props}
+    >
+      <Path
+        d="M12 11.5V16.5"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M12 7.51L12.01 7.49889"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+        stroke={strokeColor}
+        strokeWidth={2.0}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  ),
+  infoCircleSolid: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      width="24px"
+      height="24px"
+      viewBox="0 0 24 24"
+      fill={fillColor}
+      xmlns="http://www.w3.org/2000/svg"
+      color={strokeColor}
+      strokeWidth={2.0}
+      {...props}
+    >
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM12 10.75C12.4142 10.75 12.75 11.0858 12.75 11.5V16.5C12.75 16.9142 12.4142 17.25 12 17.25C11.5858 17.25 11.25 16.9142 11.25 16.5V11.5C11.25 11.0858 11.5858 10.75 12 10.75ZM12.5675 8.00075C12.8446 7.69287 12.8196 7.21865 12.5117 6.94156C12.2038 6.66446 11.7296 6.68942 11.4525 6.99731L11.4425 7.00842C11.1654 7.3163 11.1904 7.79052 11.4983 8.06761C11.8062 8.34471 12.2804 8.31975 12.5575 8.01186L12.5675 8.00075Z"
+        fill={fillColor}
+      />
+    </Svg>
+  ),
+  searchBag: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill={fillColor}
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag-search"
+      {...props}
+    >
+      <Path d="M11.5 21h-2.926a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304h11.339a2 2 0 0 1 1.977 2.304l-.117 .761" />
+      <Path d="M9 11v-5a3 3 0 0 1 6 0v5" />
+      <Path d="M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+      <Path d="M20.2 20.2l1.8 1.8" />
+    </Svg>
+  ),
 };

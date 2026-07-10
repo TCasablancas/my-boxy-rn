@@ -7,6 +7,8 @@ import { nestedListItems } from './../../common/MoreConfigsData';
 import MBHeaderUserConfig from '../../components/header/MBHeaderUserConfig';
 import { IconsActions } from '../../common/icons/IconsActions';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
+import MBIconInfoContainer from '../../components/containers/MBIconInfoContainer';
+import { Icons } from '../../common/icons/Icons';
 
 export default function MoreConfigsView() {
   const menuItemPathById = useMemo(() => {
@@ -29,7 +31,12 @@ export default function MoreConfigsView() {
       <ScrollView style={styles.contentWrapper}>
         <MBTitledViewHeader title="Configurações" />
         <View style={styles.listWrapper}>
-            <MBHeaderUserConfig />
+          <View style={styles.headerWrapper}>
+            <MBHeaderUserConfig 
+              userName="Thiago Silva"
+              userAlias="thyagoacsilva"
+              userImageUrl="https://static.wikia.nocookie.net/herois/images/c/c4/MPSS_Mario.webp/revision/latest/thumbnail/width/360/height/360?cb=20220607201508&path-prefix=pt-br"
+            />
             <View style={styles.editBtnWrapper}>
               <MBRoundedIconBtn 
                 icon={<IconsActions.edit width={16} height={16} strokeColor="#000" />} 
@@ -37,6 +44,21 @@ export default function MoreConfigsView() {
                 onPress={() => MainNavigation.push('UserProfileView')} 
               />
             </View>
+          </View>
+          <View style={styles.boxContentWrapper}>
+            <MBIconInfoContainer 
+              icon={<Icons.store width={26} height={26} strokeColor="#EDB20E" />} 
+              title={'187'} 
+              description="lojas seguidas"
+              onPressItem={(itemId) => {}} 
+            />
+            <MBIconInfoContainer 
+              icon={<Icons.shoppingBag width={26} height={26} strokeColor="#EDB20E" />} 
+              title={'45'} 
+              description="compras realizadas"
+              onPressItem={(itemId) => {}} 
+            />
+          </View>
           {nestedListItems.map((nestedList) => (
             <>
               <MBMenuNestedList 
@@ -63,18 +85,26 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     width: '100%',
-    gap: 8,
     padding: 16,
     marginBottom: 8,
+    gap: 8,
+  },
+  headerWrapper: {
+    marginBottom: 16,
   },
   listWrapper: {
     marginTop: 16,
-    gap: 16,
     borderRadius: 12,
   },
   editBtnWrapper: {
     position: 'absolute',
     right: 16,
     top: 16,
+  },
+  boxContentWrapper: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    gap: 16, 
+    marginBottom: 16 
   },
 });

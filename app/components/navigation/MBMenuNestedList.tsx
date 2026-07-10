@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { Icons } from '../../common/icons/Icons';
-import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
+import { NeutralColors } from '../../common/colors/Colors';
 
 interface MBMenuNestedListProps {
   title?: string;
@@ -27,7 +27,7 @@ export default function MBMenuNestedList({
               <View style={styles.textWrapper}>
                 <Text style={styles.nestItemText}>{item.label}</Text>
               </View>
-              <Icons.chevronRight width={12} height={12} />
+              <Icons.chevronRight width={12} height={12} strokeColor={NeutralColors.textSecondary} />
             </Pressable>
             { item.id !== items[items.length - 1].id && <View style={styles.separator} /> }
             </>
@@ -57,13 +57,14 @@ const styles = StyleSheet.create({
   nestTitle: {
     fontSize: 18,
     fontFamily: 'SNPro-Bold',
+    color: NeutralColors.textSecondary,
   },
   nestItemWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingHorizontal: 8,
     borderRadius: 8,
   },
   nestItemText: {
@@ -75,6 +76,11 @@ const styles = StyleSheet.create({
   },
   iconWrapper: {
     marginRight: 8,
+    padding: 4,
+    borderRadius: 8,
+    backgroundColor: NeutralColors.white,
+    borderWidth: 1,
+    borderColor: NeutralColors.white,
   },
   separator: {
     height: 1,

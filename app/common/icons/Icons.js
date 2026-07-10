@@ -48,6 +48,23 @@ export const Icons = {
       />
     </Svg>
   ),
+  lock: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill={fillColor}
+      viewBox="0 0 24 24"
+      strokeWidth={2.0}
+      stroke={strokeColor}
+      className="size-6"
+      {...props}
+    >
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+      />
+    </Svg>
+  ),
   user: ({ color = '#000', ...props }) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
@@ -139,42 +156,60 @@ export const Icons = {
       />
     </Svg>
   ),
-  store: ({ color = '#000', ...props }) => (
+  shoppingBag: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill={fillColor}
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag"
+      {...props}
+    >
+      <Path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304" />
+      <Path d="M9 11v-5a3 3 0 0 1 6 0v5" />
+    </Svg>
+  ),
+  store: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       width="24px"
       height="24px"
-      strokeWidth={2.5}
+      strokeWidth={2.0}
       viewBox="0 0 24 24"
-      fill="none"
+      fill={fillColor}
       xmlns="http://www.w3.org/2000/svg"
-      color={color}
+      color={strokeColor}
       {...props}
     >
       <Path
         d="M3 10V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V10"
-        stroke={color}
-        strokeWidth={2.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
       />
       <Path
         d="M14.8333 21V15C14.8333 13.8954 13.9379 13 12.8333 13H10.8333C9.72874 13 8.83331 13.8954 8.83331 15V21"
-        stroke={color}
-        strokeWidth={2.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeMiterlimit={16}
       />
       <Path
         d="M21.8183 9.36418L20.1243 3.43517C20.0507 3.17759 19.8153 3 19.5474 3H15.5L15.9753 8.70377C15.9909 8.89043 16.0923 9.05904 16.2532 9.15495C16.6425 9.38698 17.4052 9.81699 18 10C19.0158 10.3125 20.5008 10.1998 21.3465 10.0958C21.6982 10.0526 21.9157 9.7049 21.8183 9.36418Z"
-        stroke={color}
-        strokeWidth={2.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
       />
       <Path
         d="M14 10C14.5675 9.82538 15.2879 9.42589 15.6909 9.18807C15.8828 9.07486 15.9884 8.86103 15.9699 8.63904L15.5 3H8.5L8.03008 8.63904C8.01158 8.86103 8.11723 9.07486 8.30906 9.18807C8.71207 9.42589 9.4325 9.82538 10 10C11.493 10.4594 12.507 10.4594 14 10Z"
-        stroke={color}
-        strokeWidth={2.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
       />
       <Path
         d="M3.87567 3.43517L2.18166 9.36418C2.08431 9.7049 2.3018 10.0526 2.6535 10.0958C3.49916 10.1998 4.98424 10.3125 6 10C6.59477 9.81699 7.35751 9.38698 7.74678 9.15495C7.90767 9.05904 8.00913 8.89043 8.02469 8.70377L8.5 3H4.45258C4.18469 3 3.94926 3.17759 3.87567 3.43517Z"
-        stroke={color}
-        strokeWidth={2.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
       />
     </Svg>
   ),
@@ -414,6 +449,23 @@ export const Icons = {
       />
     </Svg>
   ),
+  badgeEmpty: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill={fillColor}
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="icon icon-tabler icons-tabler-outline icon-tabler-rosette"
+      {...props}
+    >
+      <Path d="M5 7.2a2.2 2.2 0 0 1 2.2 -2.2h1a2.2 2.2 0 0 0 1.55 -.64l.7 -.7a2.2 2.2 0 0 1 3.12 0l.7 .7c.412 .41 .97 .64 1.55 .64h1a2.2 2.2 0 0 1 2.2 2.2v1c0 .58 .23 1.138 .64 1.55l.7 .7a2.2 2.2 0 0 1 0 3.12l-.7 .7a2.2 2.2 0 0 0 -.64 1.55v1a2.2 2.2 0 0 1 -2.2 2.2h-1a2.2 2.2 0 0 0 -1.55 .64l-.7 .7a2.2 2.2 0 0 1 -3.12 0l-.7 -.7a2.2 2.2 0 0 0 -1.55 -.64h-1a2.2 2.2 0 0 1 -2.2 -2.2v-1a2.2 2.2 0 0 0 -.64 -1.55l-.7 -.7a2.2 2.2 0 0 1 0 -3.12l.7 -.7a2.2 2.2 0 0 0 .64 -1.55v-1" />
+    </Svg>
+  ),
   badgeCheck: ({ color = '#000', ...props }) => (
     <Svg
       width="24px"
@@ -466,52 +518,52 @@ export const Icons = {
       />
     </Svg>
   ),
-  chevronRight: ({ color = '#000', ...props }) => (
+  chevronRight: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       width="24px"
       height="24px"
-      strokeWidth={1.5}
+      strokeWidth={2.0}
       viewBox="0 0 24 24"
-      fill="none"
+      fill={fillColor}
       xmlns="http://www.w3.org/2000/svg"
-      color={color}
+      stroke={strokeColor}
       {...props}
     >
       <Path
         d="M9 6L15 12L9 18"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
     </Svg>
   ),
-  chevronRightSolid: ({ color = '#000', ...props }) => (
+  chevronRightSolid: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       width="24px"
       height="24px"
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      fill="none"
+      strokeWidth={2.0}
+      fill={fillColor}
       xmlns="http://www.w3.org/2000/svg"
-      color={color}
+      stroke={strokeColor}
       {...props}
     >
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
         d="M8.71299 18.6929C8.43273 18.5768 8.25 18.3033 8.25 18V5.99998C8.25 5.69663 8.43273 5.42315 8.71299 5.30707C8.99324 5.19098 9.31583 5.25515 9.53033 5.46965L15.5303 11.4696C15.8232 11.7625 15.8232 12.2374 15.5303 12.5303L9.53033 18.5303C9.31583 18.7448 8.99324 18.809 8.71299 18.6929Z"
-        fill={color}
+        fill={fillColor}
       />
     </Svg>
   ),
-  chevronDown: ({ color = '#000', ...props }) => (
+  chevronDown: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      fill={fillColor}
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke={color}
+      strokeWidth={2.0}
+      stroke={strokeColor}
       className="size-6"
       {...props}
     >
@@ -522,299 +574,299 @@ export const Icons = {
       />
     </Svg>
   ),
-  qrCode: ({ color = '#000', ...props }) => (
+  qrCode: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       width="24px"
       height="24px"
-      strokeWidth={1.5}
+      strokeWidth={2.0}
       viewBox="0 0 24 24"
-      fill="none"
+      fill={fillColor}
       xmlns="http://www.w3.org/2000/svg"
-      color={color}
+      stroke={strokeColor}
       {...props}
     >
       <Path
         d="M15 12L15 15"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M12 3V6"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M18 12L18 15"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M12 18L21 18"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M18 21H21"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M6 12H9"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M6 6.01111L6.01 6"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M12 12.0111L12.01 12"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M3 12.0111L3.01 12"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M12 9.01111L12.01 9"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M12 15.0111L12.01 15"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M15 21.0111L15.01 21"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M12 21.0111L12.01 21"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M21 12.0111L21.01 12"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M21 15.0111L21.01 15"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M18 6.01111L18.01 6"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M9 3.6V8.4C9 8.73137 8.73137 9 8.4 9H3.6C3.26863 9 3 8.73137 3 8.4V3.6C3 3.26863 3.26863 3 3.6 3H8.4C8.73137 3 9 3.26863 9 3.6Z"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M21 3.6V8.4C21 8.73137 20.7314 9 20.4 9H15.6C15.2686 9 15 8.73137 15 8.4V3.6C15 3.26863 15.2686 3 15.6 3H20.4C20.7314 3 21 3.26863 21 3.6Z"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
         />
       <Path
         d="M6 18.0111L6.01 18"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M9 15.6V20.4C9 20.7314 8.73137 21 8.4 21H3.6C3.26863 21 3 20.7314 3 20.4V15.6C3 15.2686 3.26863 15 3.6 15H8.4C8.73137 15 9 15.2686 9 15.6Z"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
     </Svg>  
   ),
-  scanQerCode: ({ color = '#000', ...props }) => (
+  scanQrCode: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       width="24px"
       height="24px"
-      strokeWidth={1.5}
+      strokeWidth={2.0}
       viewBox="0 0 24 24"
-      fill="none"
+      fill={fillColor}
       xmlns="http://www.w3.org/2000/svg"
-      color={color}
+      color={strokeColor}
       {...props}
     >
       <Path
         d="M9 6.6V8.4C9 8.73137 8.73137 9 8.4 9H6.6C6.26863 9 6 8.73137 6 8.4V6.6C6 6.26863 6.26863 6 6.6 6H8.4C8.73137 6 9 6.26863 9 6.6Z"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M6 12H9"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M15 12V15"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M12 18H15"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M12 12.0111L12.01 12"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M18 12.0111L18.01 12"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M12 15.0111L12.01 15"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M18 15.0111L18.01 15"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M18 18.0111L18.01 18"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M12 9.01111L12.01 9"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M12 6.01111L12.01 6"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M9 15.6V17.4C9 17.7314 8.73137 18 8.4 18H6.6C6.26863 18 6 17.7314 6 17.4V15.6C6 15.2686 6.26863 15 6.6 15H8.4C8.73137 15 9 15.2686 9 15.6Z"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M18 6.6V8.4C18 8.73137 17.7314 9 17.4 9H15.6C15.2686 9 15 8.73137 15 8.4V6.6C15 6.26863 15.2686 6 15.6 6H17.4C17.7314 6 18 6.26863 18 6.6Z"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M18 3H21V6"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M18 21H21V18"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M6 3H3V6"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M6 21H3V18"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
     </Svg>
   ),
-  headset: ({ color = '#000', ...props }) => (
+  headset: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       width={24}
       height={24}
       viewBox="0 0 24 24"
-      fill="none"
-      stroke={color}
+      fill={fillColor}
+      stroke={strokeColor}
       strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -842,35 +894,35 @@ export const Icons = {
       />
     </Svg>
   ),
-  simpleCart: ({ color = '#000', ...props }) => (
+  simpleCart: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       width="24px"
       height="24px"
-      strokeWidth={1.5}
+      strokeWidth={2.0}
       viewBox="0 0 24 24"
-      fill="none"
+      fill={fillColor}
       xmlns="http://www.w3.org/2000/svg"
-      color={color}
+      stroke={strokeColor}
       {...props}
     >
       <Path
         d="M3 6H22L19 16H6L3 6ZM3 6L2.25 3.5"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M11 19.5C11 20.3284 10.3284 21 9.5 21C8.67157 21 8 20.3284 8 19.5"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M17 19.5C17 20.3284 16.3284 21 15.5 21C14.6716 21 14 20.3284 14 19.5"
-        stroke={color}
-        strokeWidth={1.5}
+        stroke={strokeColor}
+        strokeWidth={2.0}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -1036,13 +1088,13 @@ export const Icons = {
       />
     </Svg>
   ),
-  ticket: ({ color = '#000', ...props }) => (
+  ticket: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      fill={fillColor}
       viewBox="0 0 24 24"
       strokeWidth={2.0}
-      stroke={color}
+      stroke={strokeColor}
       className="size-6"
       {...props}
     >
@@ -1053,13 +1105,13 @@ export const Icons = {
       />
     </Svg>
   ),
-  check: ({ color = '#000', ...props }) => (
+  check: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      fill={fillColor}
       viewBox="0 0 24 24"
       strokeWidth={2.0}
-      stroke={color}
+      stroke={strokeColor}
       className="size-6"
       {...props}
     >
@@ -1127,6 +1179,60 @@ export const Icons = {
         strokeLinejoin="round"
         d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
       />
+    </Svg>
+  ),
+  qrCode: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill={fillColor}
+      viewBox="0 0 24 24"
+      strokeWidth={2.0}
+      stroke={strokeColor}
+      className="size-6"
+      {...props}
+    >
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z"
+      />
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z"
+      />
+  </Svg>
+  ),
+  creditCard: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill={fillColor}
+      viewBox="0 0 24 24"
+      strokeWidth={2.0}
+      stroke={strokeColor}
+      className="size-6"
+      {...props}
+    >
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
+      />
+    </Svg>
+  ),
+  history: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill={fillColor}
+      stroke={strokeColor}
+      strokeWidth={2}
+      {...props}
+    >
+      <Path d="M12 8l0 4l2 2" />
+      <Path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5" />
     </Svg>
   ),
 }

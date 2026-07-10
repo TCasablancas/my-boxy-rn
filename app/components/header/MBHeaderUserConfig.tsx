@@ -1,17 +1,24 @@
 import { View, StyleSheet, Text , Image, ScrollView } from 'react-native';
-import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
+import { NeutralColors } from '../../common/colors/Colors';
 
-export default function MBHeaderUserConfig() {
+interface MBHeaderUserConfigProps {
+  userName?: string;
+  userAlias?: string;
+  userImageUrl?: string;
+}
+
+export default function MBHeaderUserConfig({
+  userName, userAlias, userImageUrl
+}: MBHeaderUserConfigProps) {
   return (
     <View style={styles.container}>
       <View style={styles.userInfoWrapper}>
-        <Image
-          source={{ uri: 'https://static.wikia.nocookie.net/herois/images/c/c4/MPSS_Mario.webp/revision/latest/thumbnail/width/360/height/360?cb=20220607201508&path-prefix=pt-br' }}
-          style={styles.userImage}
-        />
+        <View style={styles.userImageWrapper}>
+          <Image source={{ uri: userImageUrl }} style={styles.userImage} />
+        </View>
         <View style={styles.userTextWrapper}>
-          <Text style={styles.userName}>Mario</Text>
-          <Text style={styles.userAlias}>@mario</Text>
+          <Text style={styles.userName}>{userName}</Text>
+          <Text style={styles.userAlias}>@{userAlias}</Text>
         </View>
       </View>
     </View>
@@ -25,6 +32,13 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: NeutralColors.background,
     borderRadius: 16,
+  },
+  userImageWrapper: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'white',
+    overflow: 'hidden',
   },
   userInfoWrapper: {
     flexDirection: 'row',

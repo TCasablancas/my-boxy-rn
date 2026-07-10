@@ -60,7 +60,7 @@ function MainTabs() {
   const screenArrData = [
     { name: 'início' as const, component: UserHomeView, icon: Icons.homeSimpleBar },
     { name: 'curtidos' as const, component: UserFavoritesView, icon: Icons.heart },
-    { name: 'compras' as const, component: MyShopView, icon: Icons.bag },
+    { name: 'compras' as const, component: MyShopView, icon: Icons.shoppingBag },
     { name: 'busca' as const, component: SearchView, icon: IconsActions.search },
     { name: 'mais' as const, component: MoreConfigsView, icon: IconsActions.squareFour },
   ];

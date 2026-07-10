@@ -124,7 +124,7 @@ export default function ProductDetailView() {
                   </View>
                   <MBFavoriteBtn />
                 </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16, }}>
                   <MBIconInfoContainer 
                     icon={<Icons.star width={26} height={26} fillColor="#EDB20E" />} 
                     title={productDetail.rating.toString()} 

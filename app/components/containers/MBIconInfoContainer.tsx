@@ -14,7 +14,8 @@ export default function MBIconInfoContainer({
     <Pressable style={styles.container} onPress={() => onPressItem && onPressItem(title || '')}>
       <View style={styles.mainWrapper}>
         <View style={styles.iconWrapper}>
-          {icon} <Text style={styles.titleText}>{title && title}</Text>
+          {icon} 
+          <Text style={styles.titleText}>{title && title}</Text>
         </View>
         <Text style={styles.subtitleText}>{description && description}</Text>
     </View>
@@ -25,8 +26,7 @@ export default function MBIconInfoContainer({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 12,
-    borderRadius: 8,
+    borderRadius: 16,
   },
   mainWrapper: { 
     flexDirection: 'column', 
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     columnGap: 8, 
     backgroundColor: '#EBEBEB', 
-    borderRadius: 8, 
+    borderRadius: 16, 
     paddingVertical: 8,
     paddingHorizontal: 16, 
   },
