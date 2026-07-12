@@ -10,7 +10,7 @@ import { CadastroScreenProps, USER_SIGNUP_STEP_LABELS } from './UserSignupModel'
 import { useUserSignupViewModel } from './UserSignupViewModel';
 import LinearGradient from 'react-native-linear-gradient';
 
-export const UserSignupView: React.FC<CadastroScreenProps> = ({ onFinish }) => {
+export default function UserSignupView({ onFinish }: CadastroScreenProps) {
   const {
     stepIndex,
     formData,

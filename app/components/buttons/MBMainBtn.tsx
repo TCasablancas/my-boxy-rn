@@ -5,6 +5,7 @@ import getContrastingTextColor from '../../common/constants/ColorsHandler';
 export enum MBMainBtnType {
   NORMAL = 'normal',
   DARK = 'dark',
+  LIGHT = 'light',
   DISABLED = 'disabled',
   CUSTOM = 'custom',
   OUTLINED = 'outlined',
@@ -40,7 +41,9 @@ export default function MBMainBtn({
   const resolvedBackgroundColor = (() => {
     switch (resolvedType) {
       case MBMainBtnType.DARK:
-        return "#000";
+        return PrimaryColors.primaryDark;
+      case MBMainBtnType.LIGHT:
+        return PrimaryColors.primaryLight;
       case MBMainBtnType.DISABLED:
         return '#D6D6D6';
       case MBMainBtnType.CUSTOM:
@@ -57,6 +60,7 @@ export default function MBMainBtn({
   const resolvedTextColor = (() => {
     if (resolvedType === MBMainBtnType.DISABLED) return '#8A8A8A';
     if (resolvedType === MBMainBtnType.NORMAL) return '#FFFFFF';
+    if (resolvedType === MBMainBtnType.LIGHT) return PrimaryColors.primary;
     if (resolvedType === MBMainBtnType.OUTLINED) return PrimaryColors.primary;
     if (textColor) return textColor;
     return getContrastingTextColor(resolvedBackgroundColor);

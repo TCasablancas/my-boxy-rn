@@ -92,6 +92,7 @@ export default function MBMainBottomsheet({
   }
 
   return (
+    <>
     <Modal 
       animationType="slide"
       transparent={true}
@@ -113,19 +114,21 @@ export default function MBMainBottomsheet({
                 <Icons.xMark />
               </Pressable>
             )}
-            <View style={styles.handleCap} />
+            <Pressable onPress={() => {}} style={{ width: '100%', alignItems: 'center', paddingHorizontal: 16 }}>
+              <View style={styles.handleCap} />
               {headerImage && <View style={styles.headerImage}>{headerImage}</View>}
               {title && 
                 <Text style={[styles.title, { textAlign: headerAlign }]}>{title}</Text>}
               {description && 
                 <Text style={[styles.description, { textAlign: headerAlign }]}>{description}</Text>}
-            <View style={styles.contentBox}>{content}</View>
-            {actionButton && <View style={styles.actionButton}>{actionButton}</View>}
-            
+              <View style={styles.contentBox}>{content}</View>
+              {actionButton && <View style={styles.actionButton}>{actionButton}</View>}
+            </Pressable>
           </Animated.View>
         </View>
       </View>
     </Modal>
+    </>
   );
 }
 

@@ -1,18 +1,14 @@
-import React from 'react';
+import React, { createElement, useMemo } from 'react';
 import 'react-native-get-random-values';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PlatformPressable } from '@react-navigation/elements';
-import { PrimaryColors } from './app/common/colors/Colors';
-import { Icons } from './app/common/icons/Icons';
-import { IconsCommunication } from './app/common/icons/IconsCommunication';
-import { IconsActions } from './app/common/icons/IconsActions';
 import { MainTabParamList, RootStackParamList } from './app/navigation/types';
-import {
-  navigationRef,
-  setMainNavigationReady,
-} from './app/common/navigation/MainNavigation';
+import { navigationRef, setMainNavigationReady } from './app/common/navigation/MainNavigation';
+import MBMainBottomsheet from './app/components/bottomsheet/MBMainBottomsheet';
+import { useAppHooks } from './app/AppHooks';
+import { PrimaryColors } from './app/common/colors/Colors';
 
 import UserHomeView from './app/views/userhome/UserHomeView';
 import UserFavoritesView from './app/views/favorites/UserFavoritesView';
@@ -24,7 +20,9 @@ import SearchView from './app/views/search/SearchView';
 import NotificationsView from './app/views/notifications/NotificationsView';
 import MoreConfigsPlaceholderView from './app/views/moreconfigs/MoreConfigsPlaceholderView';
 import ProductDetailView from './app/views/productdetail/ProductDetailView';
+import UserSignupView from './app/views/usersignup/UserSignupView';
 import { UserHomeStoreSignupView } from './app/views/userhome/UserHomeNavigation';
+import { View } from 'react-native';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -48,25 +46,27 @@ const MORE_CONFIG_PATHS = [
   'TermsAndConditionsView',
   'AboutMyBoxyView',
   'NotificationsView',
+  'UserSignupView',
 ] as const;
 
 function MainTabs() {
   const backgroundColor = 'white';
   const mainColor = PrimaryColors.primary;
-
-  const screenArrData = [
-    { name: 'início' as const, component: UserHomeView, icon: Icons.homeSimpleBar },
-    { name: 'curtidos' as const, component: UserFavoritesView, icon: Icons.heart },
-    { name: 'compras' as const, component: MyShopView, icon: Icons.shoppingBag },
-    { name: 'busca' as const, component: SearchView, icon: IconsActions.search },
-    { name: 'mais' as const, component: MoreConfigsView, icon: IconsActions.squareFour },
-  ];
+  const {
+    allowProtectedTabAccess,
+    isLoginBottomsheetVisible,
+    openLoginBottomsheet,
+    closeLoginBottomsheet,
+    blockedBottomsheetTitle,
+    blockedBottomsheetDescription,
+    blockedBottomsheetContent,
+    tabMenuData,
+  } = useAppHooks();
 
   const screenOptions = {
     tabBarStyle: {
       backgroundColor: backgroundColor,
       height: 60,
-      paddingBottom: 8,
       elevation: 0,
       borderTopWidth: 0,
       shadowOpacity: 0,
@@ -92,23 +92,42 @@ function MainTabs() {
   );
 
   return (
-    <Tab.Navigator screenOptions={screenOptions}>
-      {screenArrData.map((screen, index) => (
-        <Tab.Screen
-          key={index}
-          name={screen.name as keyof MainTabParamList}
-          component={screen.component}
-          options={{
-            ...tabScreenOptions,
-            tabBarIcon: ({ color }) => {
-              const IconComponent = screen.icon;
-              return <IconComponent width={20} height={20} stroke={color} strokeColor={color} />;
-            },
-            tabBarButton,
-          }}
-        />
-      ))}
-    </Tab.Navigator>
+    <>
+      <Tab.Navigator screenOptions={screenOptions}>
+        {tabMenuData.map((screen, index) => (
+          <Tab.Screen
+            key={index}
+            name={screen.name as keyof MainTabParamList}
+            component={screen.component}
+            options={{
+              ...tabScreenOptions,
+              tabBarIcon: ({ color }) => {
+                const IconComponent = screen.icon;
+                return <IconComponent width={20} height={20} stroke={color} strokeColor={color} />;
+              },
+              tabBarButton,
+            }}
+            listeners={({ route }) => ({
+              tabPress: (event) => {
+                if (allowProtectedTabAccess || route.name === 'início') {
+                  return;
+                }
+
+                event.preventDefault();
+                openLoginBottomsheet(route.name);
+              },
+            })}
+          />
+        ))}
+      </Tab.Navigator>
+      <MBMainBottomsheet
+        visible={isLoginBottomsheetVisible}
+        title={blockedBottomsheetTitle}
+        description={blockedBottomsheetDescription}
+        content={blockedBottomsheetContent}
+        onClose={closeLoginBottomsheet}
+      />
+    </>
   );
 }
 

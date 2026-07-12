@@ -1,8 +1,8 @@
 export const PrimaryColors = {
   // primary: '#D8023F',
   primary: '#6ABA02',
-  primaryDark: '#B4225A',
-  primaryLight: '#FDE2EC',
+  primaryDark: '#1F6607',
+  primaryLight: '#BFF578',
   gold: '#FBBF24',
   background: '#F0E5E4',
 };

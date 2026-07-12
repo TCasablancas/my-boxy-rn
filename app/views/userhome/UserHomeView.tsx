@@ -1,16 +1,13 @@
 import { View, StyleSheet, StatusBar, FlatList, Animated } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getUserHomeViewModel } from './UserHomeViewModel';
-import { useUserHomeBottomsheetState } from './UserHomeHooks';
-import MBHomeProductCard from '../../components/cards/MBHomeProductCard';
 import MBHeaderUserSimple from '../../components/header/MBHeaderUserSimple';
-import { HomeChartBottomsheet } from './UserHomeBottomsheets';
-import { homeProducts } from '../../common/UserHomeData';
 import HomeCarouselListHeader from '../../sections/home/HomeCarouselListHeader';
-import { useRef } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import MBLocationTag from '../../components/tags/MBLocationTag';
 import {
   openCarouselTarget,
+  openCart,
   openNotifications,
   openProductDetail,
   openStoreSignup,
@@ -18,18 +15,19 @@ import {
   userHomeCarouselItems,
 } from './UserHomeNavigation';
 import MBOutlinedSmBtn from '../../components/buttons/MBOutlinedSmBtn';
+import MBHomeStoreItemCarousel from '../../components/carousel/MBHomeStoreItemCarousel';
+import { HomeStoreSection } from './UserHomeViewModel';
 
-export default function UserHomeView() {
+interface UserHomeViewProps {
+  isUserLoggedIn: boolean;
+}
+
+export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
   const safeAreaInsets = useSafeAreaInsets();
-  const bottomsheetState = useUserHomeBottomsheetState();
   const userDataHeight = useRef(new Animated.Value(0)).current;
   const userDataOpacity = useRef(new Animated.Value(0)).current;
-
-  const {
-    isChartBottomsheetVisible,
-    openChartBottomsheet,
-    closeChartBottomsheet,
-  } = getUserHomeViewModel(bottomsheetState);
+  const { getInitialStoreSections, getNextStoreSections } = useMemo(() => getUserHomeViewModel(), []);
+  const [storeSections, setStoreSections] = useState<HomeStoreSection[]>(() => getInitialStoreSections());
 
   function openUserData() {
     userDataHeight.stopAnimation((currentValue) => {
@@ -47,6 +45,43 @@ export default function UserHomeView() {
     });
   }
 
+  const handleLoadMoreStores = useCallback(() => {
+    setStoreSections((currentSections) => {
+      const nextSections = getNextStoreSections(currentSections.length);
+      return [...currentSections, ...nextSections];
+    });
+  }, [getNextStoreSections]);
+
+  const renderStoreCarousel = useCallback(({ 
+    item, isFirst 
+  }: { item: HomeStoreSection, isFirst: boolean }) => {
+    const products = item.products.map((product) => ({
+      productId: product.productId,
+      title: product.title,
+      price: product.price.toFixed(2),
+      imageUri: product.imageUri,
+      storeName: product.storeName,
+      storeImageUri: product.storeImageUri,
+      rating: product.rating,
+    }));
+
+    return (
+      <View style={{
+        // backgroundColor: '#EBEBEB', 
+        // borderRadius: 16,
+        marginVertical: 8,
+        // borderTopLeftRadius: isFirst ? 16 : 0, borderTopRightRadius: isFirst ? 16 : 0,
+        // marginHorizontal: 16,
+      }}>
+        <MBHomeStoreItemCarousel
+          storeName={item.storeName}
+          products={products}
+          onPressProduct={openProductDetail}
+        />
+      </View>
+    );
+  }, []);
+
   return (
     <>
     <SafeAreaProvider>
@@ -57,60 +92,43 @@ export default function UserHomeView() {
             <MBHeaderUserSimple 
               userName="Thiago Silva"
               userAlias="thyagoacsilva" 
-              onPressNotifications={openNotifications} 
-              onPressCart={openChartBottomsheet} 
+              onPressNotifications={isUserLoggedIn ? openNotifications : undefined} 
+              onPressCart={openCart} 
               onPressUserData={openUserData}
             />
           </View>
           <Animated.View style={[styles.userDataWrapper, { height: userDataHeight }]}>
             <Animated.View style={[styles.userDataContent, { opacity: userDataOpacity }]}>
               <MBLocationTag locationName={'Santos · SP'} onPress={() => {}} />
-              <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 16, width: '100%' }}>
-                {/* <MBTextBtn title="Ver meus dados" onPress={openUserProfile} />
-                <MBTextBtn title="Ver minha loja" onPress={openStoreSignup} /> */}
+              <View style={styles.userActionsWrapper}>
                 <MBOutlinedSmBtn title="Ver meus dados" onPress={openUserProfile} />
                 <MBOutlinedSmBtn title="Ver minha loja" onPress={openStoreSignup} />
               </View>
             </Animated.View>
           </Animated.View>
           <FlatList
-            data={homeProducts}
+            data={storeSections}
             style={styles.scrollView} 
-            keyExtractor={(item) => item.productId}
+            keyExtractor={(item) => item.id}
             showsVerticalScrollIndicator={false}
             ListHeaderComponent={
               <View style={{ paddingVertical: 8 }}> 
                 <HomeCarouselListHeader items={userHomeCarouselItems} onPressItem={openCarouselTarget} />
               </View>
             }
-            renderItem={({ item }) => (
-              <MBHomeProductCard product={{
-                productId: item.productId,
-                title: item.title,
-                price: `${item.price.toFixed(2)}`,
-                imageUri: item.imageUri,
-                storeName: item.storeName,
-                storeImageUri: item.storeImageUri,
-                rating: item.rating,
-                onPress: () => {
-                  openProductDetail(item.productId);
-                },
-                onPressFavorite: () => {
-                  // Handle favorite press
-                },
-              }} />
-            )}
-            numColumns={2}
+            renderItem={({ item, index }) => renderStoreCarousel({ item, isFirst: index === 0 })}
+            onEndReached={handleLoadMoreStores}
+            onEndReachedThreshold={0.5}
+            initialNumToRender={4}
+            maxToRenderPerBatch={4}
+            windowSize={7}
+            removeClippedSubviews
             contentContainerStyle={{ paddingBottom: 16 }}
           />
         </View>
       </View>
     </SafeAreaProvider>
 
-    <HomeChartBottomsheet 
-      isVisible={isChartBottomsheetVisible} 
-      onClose={closeChartBottomsheet} 
-    />
     </>
   );
 }
@@ -128,20 +146,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     position: 'absolute',
     top: 0,
-    left: 8,
-    right: 8,
+    left: 0,
+    right: 0,
     bottom: 8,
     borderRadius: 12,
   },
   scrollView: {
-    backgroundColor: '#EBEBEB',
+    backgroundColor: 'transparent',
     borderRadius: 12,
   },
   headerContainer: {
     width: '100%', 
     height: 70, 
     backgroundColor: 'transparent',
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
     marginVertical: 24,
   },
   userDataWrapper: {
@@ -153,5 +171,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     alignItems: 'center',
     gap: 8,
+  },
+  userActionsWrapper: { 
+    flexDirection: 'row', 
+    justifyContent: 'center', 
+    gap: 16, 
+    width: '100%', 
+    marginTop: 8 
   },
 });

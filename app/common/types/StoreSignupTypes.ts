@@ -1,6 +1,6 @@
 // Tipos reaproveitados do projeto (já existem, não recriados aqui):
 // - AddressProps -> mesma interface usada no cadastro de usuário (CEP, rua, número, bairro, cidade, estado, complemento)
-import { AddressProps } from './Types';
+import { AddressProps } from '../../common/types/Types';
 
 export interface StoreOwnerProps {
   userId: string;

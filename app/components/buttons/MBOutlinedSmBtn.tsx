@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     borderColor: NeutralColors.textSecondary,
     paddingVertical: 8,
     paddingHorizontal: 16,
-    borderRadius: 100,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },

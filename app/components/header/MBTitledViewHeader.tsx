@@ -36,8 +36,7 @@ export default function MBTitledViewHeader({
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 8,
-    marginBottom: 16,
+    marginVertical: 16,
     height: 40,
     width: '100%',
     justifyContent: 'center',

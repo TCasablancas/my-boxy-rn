@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { View, StyleSheet, Text, Pressable, Animated } from 'react-native';
-import MyBoxyIcon from '../../../assets/images/my_boxy_icon.svg';
+import { MyBoxyLogo } from '../../../assets/images/my_boxy_logo.js';
 import { Icons } from '../../common/icons/Icons';
 import MBRoundedIconBtn from '../buttons/MBRoundedIconBtn';
 import { IconsCommunication } from '../../common/icons/IconsCommunication';
@@ -8,8 +8,8 @@ import { IconsCommunication } from '../../common/icons/IconsCommunication';
 interface MBHeaderUserSimpleProps {
   userName: string;
   userAlias: string;
-  onPressNotifications: () => void;
-  onPressCart: () => void;
+  onPressNotifications?: () => void;
+  onPressCart?: () => void;
   onPressUserData?: () => void;
 }
 
@@ -36,7 +36,8 @@ export default function MBHeaderUserSimple({
   return (
     <View style={styles.container}>
       <View style={styles.picWrapper}>
-        <MyBoxyIcon width="40" height="40" />
+        {/* <MyBoxyIcon width="40" height="40" /> */}
+        <MyBoxyLogo.icon width="40" height="40" />
       </View>
       <Pressable onPress={() => { handlePress(); onPressUserData && onPressUserData(); }} style={styles.userDataWrapper}>
         <View style={styles.userNameWrapper}>
@@ -50,11 +51,11 @@ export default function MBHeaderUserSimple({
       <View style={styles.iconsWrapper}>
         <MBRoundedIconBtn 
           icon={<IconsCommunication.notification width={16} height={16} />} 
-          onPress={onPressNotifications} 
+          onPress={onPressNotifications || (() => {})} 
         />
         <MBRoundedIconBtn 
           icon={<Icons.cart width={16} height={16} />} 
-          onPress={onPressCart} 
+          onPress={onPressCart || (() => {})} 
         />
       </View>
     </View>

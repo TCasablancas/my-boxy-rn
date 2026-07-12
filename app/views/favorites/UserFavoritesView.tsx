@@ -3,7 +3,7 @@ import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
 import { Icons } from '../../common/icons/Icons';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
 import { NeutralColors } from '../../common/colors/Colors';
-import MBHomeProductCard from '../../components/cards/MBHomeProductCard';
+import MBHomeProductCard from '../../components/cards/MBMainProductCard';
 import ProductDetailView from '../productdetail/ProductDetailView';
 import MainNavigation from '../../common/navigation/MainNavigation';
 

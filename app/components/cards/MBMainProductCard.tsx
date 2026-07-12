@@ -4,7 +4,7 @@ import { Icons } from '../../common/icons/Icons';
 import { PrimaryColors } from '../../common/colors/Colors';
 import { ProductProps } from '../../models/ProductCardModel';
 
-export default function MBHomeProductCard({ 
+export default function MBMainProductCard({ 
     product
 }: { product: ProductProps }) {
   return (

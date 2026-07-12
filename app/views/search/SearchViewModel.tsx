@@ -1,6 +1,6 @@
 import MainNavigation from '../../common/navigation/MainNavigation';
 import { homeCategories, homeProducts, homeTags } from '../../common/UserHomeData';
-import MBHomeProductCard from '../../components/cards/MBHomeProductCard';
+import MBHomeProductCard from '../../components/cards/MBMainProductCard';
 import ProductDetailView from '../productdetail/ProductDetailView';
 import { useSearchHooks } from './SearchHooks';
 

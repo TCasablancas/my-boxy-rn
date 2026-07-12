@@ -57,6 +57,10 @@ export function openProductDetail(productId: string) {
   MainNavigation.push(ProductDetailView, { productId });
 }
 
+export function openCart() {
+  MainNavigation.push('CartView');
+}
+
 export function openCarouselTarget(item: HomeCarouselItem) {
   if (item.targetView) {
     MainNavigation.push(item.targetView, item.targetParams);
