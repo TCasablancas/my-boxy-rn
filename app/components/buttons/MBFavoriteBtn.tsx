@@ -1,12 +1,23 @@
-import { View, StyleSheet, Text, Pressable } from 'react-native';
-import { Icons } from '../../common/icons/Icons';
-import { PrimaryColors } from '../../common/colors/Colors';
+import { StyleSheet, View } from 'react-native';
+import MBFavoriteIconBtn from './MBFavoriteIconBtn';
 
-export default function MBFavoriteBtn({ onPress }: { onPress?: () => void }) {
+export default function MBFavoriteBtn({
+  isActive,
+  defaultActive,
+  onPress,
+}: {
+  isActive?: boolean;
+  defaultActive?: boolean;
+  onPress?: (nextActive: boolean) => void;
+}) {
   return (
-    <Pressable style={styles.favoriteBtnContainer} onPress={onPress}>
-      <Icons.heart width={22} height={22} strokeColor={'red'} />
-    </Pressable>
+    <View style={styles.favoriteBtnContainer}>
+      <MBFavoriteIconBtn
+        isActive={isActive}
+        defaultActive={defaultActive}
+        onPress={onPress}
+      />
+    </View>
   );
 }
 

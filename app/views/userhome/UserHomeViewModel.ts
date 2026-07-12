@@ -9,14 +9,30 @@ interface HomeFeedProduct {
   storeName: string;
   storeImageUri: string;
   rating?: number;
+  isFavourite?: boolean;
 }
 
 export interface HomeStoreSection {
   id: string;
   storeName: string;
   storeImageUri: string;
+  isFavorite?: boolean;
   products: HomeFeedProduct[];
 }
+
+export interface HomeSingleStoreRowBlock {
+  id: string;
+  type: 'single-row';
+  stores: HomeStoreSection[];
+}
+
+export interface HomeCarouselStoreBlock {
+  id: string;
+  type: 'carousel';
+  store: HomeStoreSection;
+}
+
+export type HomeFeedBlock = HomeSingleStoreRowBlock | HomeCarouselStoreBlock;
 
 const MAX_PRODUCTS_PER_STORE = 10;
 const STORES_BATCH_SIZE = 6;
@@ -32,6 +48,7 @@ function getBaseStoreTemplates(): Omit<HomeStoreSection, 'id'>[] {
       storeMap.set(storeKey, {
         storeName: product.storeName,
         storeImageUri: product.storeImageUri,
+        isFavorite: product.isFavourite,
         products: [{ ...product }],
       });
       return;
@@ -62,9 +79,53 @@ function createStoreSections(
       id: `${template.storeName}-${absoluteIndex}`,
       storeName: template.storeName,
       storeImageUri: template.storeImageUri,
+      isFavorite: template.isFavorite,
       products: template.products,
     };
   });
+}
+
+function createHomeFeedBlocks(storeSections: HomeStoreSection[]): HomeFeedBlock[] {
+  const feedBlocks: HomeFeedBlock[] = [];
+  let pendingSingleStores: HomeStoreSection[] = [];
+
+  const flushPendingSingles = () => {
+    if (!pendingSingleStores.length) {
+      return;
+    }
+
+    feedBlocks.push({
+      id: `single-row-${pendingSingleStores.map((store) => store.id).join('-')}`,
+      type: 'single-row',
+      stores: pendingSingleStores,
+    });
+
+    pendingSingleStores = [];
+  };
+
+  storeSections.forEach((storeSection) => {
+    const shouldRenderAsSingleCard = storeSection.products.length <= 3;
+
+    if (!shouldRenderAsSingleCard) {
+      flushPendingSingles();
+      feedBlocks.push({
+        id: `carousel-${storeSection.id}`,
+        type: 'carousel',
+        store: storeSection,
+      });
+      return;
+    }
+
+    pendingSingleStores.push(storeSection);
+
+    if (pendingSingleStores.length === 2) {
+      flushPendingSingles();
+    }
+  });
+
+  flushPendingSingles();
+
+  return feedBlocks;
 }
 
 export function getUserHomeViewModel() {
@@ -78,8 +139,13 @@ export function getUserHomeViewModel() {
     return createStoreSections(storeTemplates, currentLength, STORES_BATCH_SIZE);
   }
 
+  function getHomeFeedBlocks(storeSections: HomeStoreSection[]) {
+    return createHomeFeedBlocks(storeSections);
+  }
+
   return {
     getInitialStoreSections,
     getNextStoreSections,
+    getHomeFeedBlocks,
   };
 }

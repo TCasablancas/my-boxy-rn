@@ -17,9 +17,10 @@ export default function MBOutlinedSmBtn({ title, onPress }: MBOutlinedSmBtnProps
 const styles = StyleSheet.create({
   button: {
     borderWidth: 1,
-    borderColor: NeutralColors.textSecondary,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    borderColor: NeutralColors.border,
+    backgroundColor: NeutralColors.backgroundAlt,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',

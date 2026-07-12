@@ -23,7 +23,13 @@ export default function MBMainProductCard({
       </View>
       <View>
         <View style={styles.imageWrapper}>
-          <View style={styles.favoriteBtnWrapper}><MBFavoriteBtn onPress={product.onPressFavorite} /></View>
+          <View style={styles.favoriteBtnWrapper}>
+            <MBFavoriteBtn
+              isActive={product.isFavorite ?? product.isFavourite}
+              defaultActive={product.isFavorite ?? product.isFavourite}
+              onPress={product.onPressFavorite}
+            />
+          </View>
           <Image source={{ uri: product.imageUri }} style={styles.productImage} />
         </View>
         <View style={styles.textWrapper}>

@@ -2,22 +2,24 @@ import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 import { ProductProps } from '../../models/ProductCardModel';
 import { PrimaryColors } from '../../common/colors/Colors';
 
-interface MBHomeCarouselProductCardProps {
+interface MBCarouselStoreProductsProps {
   product: ProductProps;
   onPress?: () => void;
 }
 
-export default function MBHomeCarouselProductCard({ 
+export default function MBCarouselStoreProducts({ 
     product, onPress = () => {}
-}: MBHomeCarouselProductCardProps) {
+}: MBCarouselStoreProductsProps) {
   return (
-    <Pressable style={styles.cardContainer} onPress={onPress}>
+    <Pressable style={styles.cardContainer} onPress={product.onPress ?? onPress}>
       <View style={styles.imageWrapper}>
         <Image source={{ uri: product.imageUri }} style={styles.productImage} />
       </View>
       <View style={styles.textWrapper}>
-        <Text style={styles.productTitle}>{product.title}</Text>
-        <Text style={styles.productPrice}><Text style={styles.currency}>R$ </Text>{product.price}</Text>
+        <Text style={styles.productTitle} numberOfLines={2}>{product.title}</Text>
+        <Text style={styles.productPrice}>
+          <Text style={styles.currency}>R$ </Text>{product.price}
+        </Text>
       </View>
     </Pressable>
   );
@@ -42,6 +44,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   textWrapper: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     alignItems: 'flex-start',
   },
   productTitle: {

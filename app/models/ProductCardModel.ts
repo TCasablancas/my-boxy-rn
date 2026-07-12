@@ -6,6 +6,8 @@ export interface ProductProps {
   storeName: string;
   storeImageUri: string;
   rating?: number;
+  isFavorite?: boolean;
+  isFavourite?: boolean;
   onPress?: () => void;
-  onPressFavorite?: () => void;
+  onPressFavorite?: (nextActive: boolean) => void;
 }

@@ -8,7 +8,7 @@ import { MainTabParamList, RootStackParamList } from './app/navigation/types';
 import { navigationRef, setMainNavigationReady } from './app/common/navigation/MainNavigation';
 import MBMainBottomsheet from './app/components/bottomsheet/MBMainBottomsheet';
 import { useAppHooks } from './app/AppHooks';
-import { PrimaryColors } from './app/common/colors/Colors';
+import { NeutralColors, PrimaryColors } from './app/common/colors/Colors';
 
 import UserHomeView from './app/views/userhome/UserHomeView';
 import UserFavoritesView from './app/views/favorites/UserFavoritesView';
@@ -50,7 +50,6 @@ const MORE_CONFIG_PATHS = [
 ] as const;
 
 function MainTabs() {
-  const backgroundColor = 'white';
   const mainColor = PrimaryColors.primary;
   const {
     allowProtectedTabAccess,
@@ -65,7 +64,7 @@ function MainTabs() {
 
   const screenOptions = {
     tabBarStyle: {
-      backgroundColor: backgroundColor,
+      backgroundColor: NeutralColors.backgroundAlt,
       height: 60,
       elevation: 0,
       borderTopWidth: 0,

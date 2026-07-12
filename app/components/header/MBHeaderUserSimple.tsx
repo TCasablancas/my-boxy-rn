@@ -65,7 +65,7 @@ export default function MBHeaderUserSimple({
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,

@@ -1,21 +1,26 @@
 import React, { memo } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, Pressable } from 'react-native';
-import MBHomeCarouselProductCard from '../cards/MBHomeCarouselProductCard';
+import MBHomeCarouselProductCard from '../cards/MBCarouselStoreProducts';
 import { ProductProps } from '../../models/ProductCardModel';
-import { NeutralColors } from '../../common/colors/Colors';
 import MBProductRatingContainer from '../containers/MBProductRatingContainer';
-import { Icons } from '../../common/icons/Icons';
+import MBFavoriteIconBtn from '../buttons/MBFavoriteIconBtn';
 
 interface MBHomeStoreItemCarouselProps {
   storeName: string;
   products: ProductProps[];
+  isStoreFavorite?: boolean;
   onPressProduct: (productId: string) => void;
+  onToggleStoreFavorite?: (nextActive: boolean) => void;
+  onToggleProductFavorite?: (productId: string, nextActive: boolean) => void;
 }
 
 function MBHomeStoreItemCarousel({
   storeName,
   products,
+  isStoreFavorite,
   onPressProduct,
+  onToggleStoreFavorite,
+  onToggleProductFavorite,
 }: MBHomeStoreItemCarouselProps) {
   return (
     <View style={styles.carouselContainer}>
@@ -35,12 +40,16 @@ function MBHomeStoreItemCarousel({
           </View>
         </View>
         <Pressable>
-          <Icons.heart width={22} height={22} strokeColor={NeutralColors.textSecondary} />
+          <MBFavoriteIconBtn
+            isActive={isStoreFavorite}
+            defaultActive={isStoreFavorite}
+            onPress={onToggleStoreFavorite}
+          />
         </Pressable>
       </View>
       <FlatList
         data={products}
-        style={styles.flatList} 
+        style={styles.flatList}
         horizontal
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => item.productId}
@@ -54,14 +63,16 @@ function MBHomeStoreItemCarousel({
               storeName: item.storeName,
               storeImageUri: item.storeImageUri,
               rating: item.rating,
+              isFavorite: item.isFavorite ?? item.isFavourite,
               onPress: () => onPressProduct(item.productId),
+              onPressFavorite: (nextActive) => onToggleProductFavorite?.(item.productId, nextActive),
             }}
           />
         )}
         nestedScrollEnabled
         initialNumToRender={6}
         maxToRenderPerBatch={6}
-        windowSize={5} 
+        windowSize={5}
         removeClippedSubviews
         contentContainerStyle={styles.horizontalContent}
       />
@@ -122,8 +133,9 @@ const styles = StyleSheet.create({
   flatList: {
     width: '100%',
     // backgroundColor: NeutralColors.backgroundAlt,
-    borderRadius: 16,
-    padding: 8,
+    // borderRadius: 16,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
   },
   horizontalContent: {
     paddingBottom: 4,
