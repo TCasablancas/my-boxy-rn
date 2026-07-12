@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Image, FlatList } from 'react-native';
+import { View, StyleSheet, StatusBar, FlatList } from 'react-native';
 import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
 import { Icons } from '../../common/icons/Icons';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
@@ -9,12 +9,14 @@ import MainNavigation from '../../common/navigation/MainNavigation';
 
 import { homeProducts } from '../../common/UserHomeData';
 import { IconsActions } from '../../common/icons/IconsActions';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function UserFavoritesView() {
   return (
-    <View style={styles.container}>
-      <View style={styles.contentWrapper}>
-        <View style={styles.headerWrapper}>
+    <SafeAreaProvider>
+      <StatusBar barStyle="dark-content" backgroundColor={NeutralColors.backgroundAlt} translucent={true} />
+      <View style={styles.container}>
+        <View style={styles.contentWrapper}>
           <MBTitledViewHeader 
             title="Curtidos"
             btnsRight={<MBRoundedIconBtn 
@@ -22,59 +24,54 @@ export default function UserFavoritesView() {
               onPress={() => {}}
             />}
           />
-        </View>
-        <View style={styles.listWrapper}>
-          <FlatList
-            data={homeProducts}
-            numColumns={2}
-            // ListHeaderComponent={
-            //   <View style={{ paddingVertical: 8 }}> 
-            //     <HomeCarouselListHeader />
-            //   </View>
-            // }
-            renderItem={({ item }) => (
-              <MBHomeProductCard product={{
-                productId: item.productId,
-                title: item.title,
-                price: `${item.price.toFixed(2)}`,
-                imageUri: item.imageUri,
-                storeName: item.storeName,
-                storeImageUri: item.storeImageUri,
-                rating: item.rating,
-                onPress: () => {
-                  MainNavigation.push(ProductDetailView, { productId: item.productId });
-                },
-                onPressFavorite: () => {
-                  // Handle favorite press
-                },
-              }} />
-            )}
-            keyExtractor={(item) => item.productId}
-            style={styles.flatList}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.listContainer}
-          />
+          <View style={styles.listWrapper}>
+            <FlatList
+              data={homeProducts}
+              numColumns={2}
+              // ListHeaderComponent={
+              //   <View style={{ paddingVertical: 8 }}> 
+              //     <HomeCarouselListHeader />
+              //   </View>
+              // }
+              renderItem={({ item }) => (
+                <MBHomeProductCard product={{
+                  productId: item.productId,
+                  title: item.title,
+                  price: `${item.price.toFixed(2)}`,
+                  imageUri: item.imageUri,
+                  storeName: item.storeName,
+                  storeImageUri: item.storeImageUri,
+                  rating: item.rating,
+                  onPress: () => {
+                    MainNavigation.push(ProductDetailView, { productId: item.productId });
+                  },
+                  onPressFavorite: () => {
+                    // Handle favorite press
+                  },
+                }} />
+              )}
+              keyExtractor={(item) => item.productId}
+              style={styles.flatList}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={styles.listContainer}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: NeutralColors.backgroundAlt,
   },
   contentWrapper: {
     flex: 1,
     paddingHorizontal: 8,
     paddingVertical: 16,
     flexDirection: 'column',
-  },
-  headerWrapper: {
-    padding: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   listWrapper: {
     marginBottom: 42,

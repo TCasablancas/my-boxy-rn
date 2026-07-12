@@ -4,6 +4,7 @@ import { MyBoxyLogo } from '../../../assets/images/my_boxy_logo.js';
 import { Icons } from '../../common/icons/Icons';
 import MBRoundedIconBtn from '../buttons/MBRoundedIconBtn';
 import { IconsCommunication } from '../../common/icons/IconsCommunication';
+import { NeutralColors } from '../../common/colors/Colors.js';
 
 interface MBHeaderUserSimpleProps {
   userName: string;
@@ -24,7 +25,7 @@ export default function MBHeaderUserSimple({
       duration: 500,
       useNativeDriver: true,
     }).start(() => {
-      rotateAnim.setValue(0); // Reset the animation value for next press
+      rotateAnim.setValue(0);
     });
   };
   
@@ -36,7 +37,6 @@ export default function MBHeaderUserSimple({
   return (
     <View style={styles.container}>
       <View style={styles.picWrapper}>
-        {/* <MyBoxyIcon width="40" height="40" /> */}
         <MyBoxyLogo.icon width="40" height="40" />
       </View>
       <Pressable onPress={() => { handlePress(); onPressUserData && onPressUserData(); }} style={styles.userDataWrapper}>
@@ -45,16 +45,16 @@ export default function MBHeaderUserSimple({
           <Text style={styles.userEmail}>{userAlias}</Text>
         </View>
         <Animated.View style={{ transform: [{ rotate: rotateInterpolate }] }}>
-          <Icons.chevronDown width={12} height={12} color="#999" />
+          <Icons.chevronDown width={12} height={12} strokeColor={NeutralColors.textSecondary} />
         </Animated.View>
       </Pressable>
       <View style={styles.iconsWrapper}>
         <MBRoundedIconBtn 
-          icon={<IconsCommunication.notification width={16} height={16} />} 
+          icon={<IconsCommunication.notification width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
           onPress={onPressNotifications || (() => {})} 
         />
         <MBRoundedIconBtn 
-          icon={<Icons.cart width={16} height={16} />} 
+          icon={<Icons.cart width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
           onPress={onPressCart || (() => {})} 
         />
       </View>
@@ -64,11 +64,16 @@ export default function MBHeaderUserSimple({
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    height: 70,
+    width: '100%',
+    paddingHorizontal: 16,
     paddingVertical: 10,
+    marginTop: 8,
+    marginBottom: 16,
     backgroundColor: 'transparent',
     flexDirection: 'row',
     alignItems: 'center',
-    flex: 1,
   },
   picWrapper: {
     width: 50,

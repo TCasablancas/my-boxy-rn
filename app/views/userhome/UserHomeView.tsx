@@ -36,7 +36,7 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
     userDataHeight.stopAnimation((currentValue) => {
       const shouldOpen = currentValue < 60;
       Animated.timing(userDataHeight, {
-        toValue: shouldOpen ? 90 : 0,
+        toValue: shouldOpen ? 70 : 0,
         duration: 260,
         useNativeDriver: false,
       }).start();
@@ -161,27 +161,27 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
   return (
     <>
     <SafeAreaProvider>
-      <StatusBar barStyle={'light-content'} backgroundColor={NeutralColors.backgroundAlt} />
+      <StatusBar barStyle={'light-content'} backgroundColor={NeutralColors.backgroundAlt} translucent={true} />
       <View style={[styles.container]}>
-        <View style={[styles.contentWrapper]}>
-          <View style={[styles.headerContainer, { paddingTop: safeAreaInsets.top }]}>
-            <MBHeaderUserSimple 
+        <View style={[styles.contentWrapper, { paddingTop: safeAreaInsets.top }]}>
+          <View style={{alignItems: 'center', marginBottom: 8, justifyContent: 'center', width: '100%'}}>
+             <MBHeaderUserSimple 
               userName="Thiago Silva"
               userAlias="thyagoacsilva" 
               onPressNotifications={isUserLoggedIn ? openNotifications : undefined} 
               onPressCart={openCart} 
               onPressUserData={openUserData}
             />
-          </View>
-          <Animated.View style={[styles.userDataWrapper, { height: userDataHeight }]}>
-            <Animated.View style={[styles.userDataContent, { opacity: userDataOpacity }]}>
-              <MBLocationTag locationName={'Santos · SP'} onPress={() => {}} />
-              <View style={styles.userActionsWrapper}>
-                <MBOutlinedSmBtn title="Ver meus dados" onPress={openUserProfile} />
-                <MBOutlinedSmBtn title="Ver minha loja" onPress={openStoreSignup} />
-              </View>
+            <Animated.View style={[styles.userDataWrapper, { height: userDataHeight }]}>
+              <Animated.View style={[styles.userDataContent, { opacity: userDataOpacity }]}>
+                <MBLocationTag locationName={'Santos · SP'} onPress={() => {}} />
+                <View style={styles.userActionsWrapper}>
+                  <MBOutlinedSmBtn title="Ver meus dados" onPress={openUserProfile} />
+                  <MBOutlinedSmBtn title="Ver minha loja" onPress={openStoreSignup} />
+                </View>
+              </Animated.View>
             </Animated.View>
-          </Animated.View>
+          </View>
           <FlatList
             data={feedBlocks}
             style={styles.scrollView} 
@@ -212,47 +212,34 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
-    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: NeutralColors.backgroundAlt,
   },
   contentWrapper: {
-    backgroundColor: 'transparent',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    marginTop: 16,
     borderRadius: 12,
   },
   scrollView: {
     backgroundColor: 'transparent',
     borderRadius: 12,
   },
-  headerContainer: {
-    width: '100%', 
-    height: 70, 
-    backgroundColor: 'transparent',
-    paddingHorizontal: 16,
-    marginVertical: 24,
-  },
   userDataWrapper: {
     width: '100%',
     backgroundColor: 'transparent',
     overflow: 'hidden',
+    alignItems: 'center',
   },
   userDataContent: {
+    width: '100%',
     paddingHorizontal: 8,
     alignItems: 'center',
-    gap: 8,
+    gap: 4,
   },
   userActionsWrapper: { 
     flexDirection: 'row', 
     justifyContent: 'center', 
     gap: 16, 
-    width: '100%', 
     marginTop: 8 
   },
   singleStoreRow: {

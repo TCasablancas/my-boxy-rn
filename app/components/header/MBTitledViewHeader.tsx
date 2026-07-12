@@ -1,4 +1,4 @@
-import { View, StyleSheet, StatusBar, Text, Image, FlatList } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { NeutralColors } from '../../common/colors/Colors';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -17,10 +17,6 @@ export default function MBTitledViewHeader({
   
   return (
     <View style={[styles.container, { paddingTop: safeAreaInsets.top }]}>
-      <StatusBar 
-        barStyle="dark-content" 
-        backgroundColor="white"
-      />
       <View style={styles.contentWrapper}>
         {btnsLeft && <View style={styles.btnsLeftWrapper}>{btnsLeft}</View>}
         <View style={styles.textWrapper}>
@@ -36,14 +32,16 @@ export default function MBTitledViewHeader({
 
 const styles = StyleSheet.create({
   container: {
+    paddingVertical: 16,
+    paddingHorizontal: 8,
     marginVertical: 16,
+    marginTop: 18,
     height: 40,
     width: '100%',
     justifyContent: 'center',
   },
   contentWrapper: {
     paddingHorizontal: 16,
-    paddingTop: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
