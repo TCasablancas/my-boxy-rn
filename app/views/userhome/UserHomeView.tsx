@@ -161,7 +161,7 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
   return (
     <>
     <SafeAreaProvider>
-      <StatusBar barStyle={'light-content'} backgroundColor={NeutralColors.backgroundAlt} translucent={true} />
+      <StatusBar barStyle={'light-content'} backgroundColor={NeutralColors.backgroundAlt} />
       <View style={[styles.container]}>
         <View style={[styles.contentWrapper]}>
           <View style={[styles.headerContainer, { paddingTop: safeAreaInsets.top }]}>

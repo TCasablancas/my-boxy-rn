@@ -13,9 +13,10 @@ interface AppInputProps extends Omit<TextInputProps, 'onChangeText'> {
   onChangeText: (text: string) => void;
   error?: string | null;
   helperText?: string;
-  loading?: boolean; // ex: enquanto busca CEP
-  leftIcon?: React.ReactNode; // ex: ícone de cadeado no campo de senha
-  rightAdornment?: React.ReactNode; // sobrescreve o botão de "olhinho" da senha, se precisar de algo custom
+  loading?: boolean; 
+  leftIcon?: React.ReactNode; 
+  rightAdornment?: React.ReactNode; 
+  isLocked?: boolean; 
 }
 
 const CONTAINER_HEIGHT = 64;
@@ -43,6 +44,7 @@ export const MBMainInput = forwardRef<TextInput, AppInputProps>(
     leftIcon, 
     rightAdornment, 
     secureTextEntry, 
+    isLocked,
     onFocus, 
     onBlur, 
     ...rest 
@@ -117,6 +119,7 @@ export const MBMainInput = forwardRef<TextInput, AppInputProps>(
                   animateBorder(0);
                   onBlur?.(e);
                 }}
+                readOnly={loading || isLocked}
                 {...rest}
               />
             </Animated.View>

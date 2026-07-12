@@ -11,7 +11,6 @@ import { homeProducts } from '../../common/UserHomeData';
 import { IconsActions } from '../../common/icons/IconsActions';
 
 export default function UserFavoritesView() {
-
   return (
     <View style={styles.container}>
       <View style={styles.contentWrapper}>
