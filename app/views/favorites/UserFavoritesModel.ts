@@ -1,23 +1,32 @@
-import { ProductStatusProps } from "../../models/StatusModel";
-import { StoreHeaderProfileProps } from "../storeprofile/StoreProfileModel";
+export type FavoritesTabKey = 'products' | 'stores';
 
-export interface UserFavoritesProps {
-  userId: string;
-  favoriteProducts: FavoriteProductProps[];
-}
-
-export interface FavoriteProductProps {
-  favoriteId: string;
+export interface FavoriteProductItem {
+  productId: string;
   title: string;
   price: string;
   imageUri: string;
-  storeData: StoreHeaderProfileProps;
-  productStatus: ProductStatusProps;
+  storeName: string;
+  storeImageUri: string;
   rating?: number;
-  isFavorite: boolean;
+  isFavourite: boolean;
 }
 
-export interface UserFavoritesProps {
-  userId: string;
-  favoriteProducts: FavoriteProductProps[];
+export interface FavoriteStoreItem {
+  storeId: string;
+  storeName: string;
+  storeImageUri: string;
+  rating?: number;
+  isFavourite: boolean;
+  productsCount: number;
+}
+
+export interface FavoritesFilterOption {
+  id: string;
+  label: string;
+}
+
+export interface UserFavoritesScreenState {
+  activeTab: FavoritesTabKey;
+  selectedFilterId: string;
+  isFilterBottomsheetVisible: boolean;
 }

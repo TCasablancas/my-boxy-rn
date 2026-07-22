@@ -4,7 +4,7 @@ import { StoreHeaderProfileProps } from "../storeprofile/StoreProfileModel";
 
 export interface ProductDetailProps {
   productId: string;
-  stock: number;
+  stock?: number;
   title: string;
   price: string;
   images: string[];

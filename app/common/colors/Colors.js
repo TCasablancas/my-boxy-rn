@@ -5,6 +5,8 @@ export const PrimaryColors = {
   gold: '#FBBF24',
   background: '#F0E5E4',
   mainRed: '#D8023F',
+  mainBlue: '#007AFF',
+  deepBlue: '#1D4ED8',
 };
 
 // Fluxo de cadastro: cor de apoio

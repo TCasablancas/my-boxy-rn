@@ -5,6 +5,7 @@ import { Icons } from '../../common/icons/Icons';
 import MBRoundedIconBtn from '../buttons/MBRoundedIconBtn';
 import { IconsCommunication } from '../../common/icons/IconsCommunication';
 import { NeutralColors } from '../../common/colors/Colors.js';
+import { IconsActions } from '../../common/icons/IconsActions.js';
 
 interface MBHeaderUserSimpleProps {
   userName: string;
@@ -54,7 +55,7 @@ export default function MBHeaderUserSimple({
           onPress={onPressNotifications || (() => {})} 
         />
         <MBRoundedIconBtn 
-          icon={<Icons.cart width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+          icon={<IconsActions.search width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
           onPress={onPressCart || (() => {})} 
         />
       </View>

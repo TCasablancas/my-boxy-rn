@@ -1,4 +1,3 @@
-import React, { createElement, useMemo } from 'react';
 import 'react-native-get-random-values';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -22,7 +21,9 @@ import MoreConfigsPlaceholderView from './app/views/moreconfigs/MoreConfigsPlace
 import ProductDetailView from './app/views/productdetail/ProductDetailView';
 import UserSignupView from './app/views/usersignup/UserSignupView';
 import { UserHomeStoreSignupView } from './app/views/userhome/UserHomeNavigation';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import MBFloatingCartBtn from './app/components/buttons/MBFloatingCartBtn';
+import { useState } from 'react';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -53,14 +54,17 @@ function MainTabs() {
   const mainColor = PrimaryColors.primary;
   const {
     allowProtectedTabAccess,
+    hasRegisteredStore,
     isLoginBottomsheetVisible,
     openLoginBottomsheet,
+    openStoreRequiredBottomsheet,
     closeLoginBottomsheet,
     blockedBottomsheetTitle,
     blockedBottomsheetDescription,
     blockedBottomsheetContent,
     tabMenuData,
   } = useAppHooks();
+  const [activeTabName, setActiveTabName] = useState<string>('início');
 
   const screenOptions = {
     tabBarStyle: {
@@ -87,11 +91,17 @@ function MainTabs() {
       {...props}
       android_ripple={{ color: 'transparent' }}
       pressOpacity={1}
+      style={props.style}
     />
   );
 
   return (
     <>
+      {activeTabName !== 'mais' && (
+        <View style={styles.cartButtonWrapper}> 
+          <MBFloatingCartBtn />
+        </View>
+      )}
       <Tab.Navigator screenOptions={screenOptions}>
         {tabMenuData.map((screen, index) => (
           <Tab.Screen
@@ -102,18 +112,38 @@ function MainTabs() {
               ...tabScreenOptions,
               tabBarIcon: ({ color }) => {
                 const IconComponent = screen.icon;
-                return <IconComponent width={20} height={20} stroke={color} strokeColor={color} />;
+                const isMinhaLojaDisabled = screen.name === 'minha loja' && !hasRegisteredStore;
+                const iconColor = isMinhaLojaDisabled ? '#9CA3AF' : color;
+
+                return <IconComponent width={20} height={20} stroke={iconColor} strokeColor={iconColor} />;
               },
-              tabBarButton,
+              tabBarButton: (props: any) => {
+                const isMinhaLojaDisabled = screen.name === 'minha loja' && !hasRegisteredStore;
+
+                return tabBarButton({
+                  ...props,
+                  style: [props.style, isMinhaLojaDisabled ? styles.disabledTabButton : null],
+                });
+              },
             }}
             listeners={({ route }) => ({
               tabPress: (event) => {
+                const routeName = String(route.name);
+                const isMinhaLojaTab = routeName === 'minha loja';
+
+                if (isMinhaLojaTab && !hasRegisteredStore) {
+                  event.preventDefault();
+                  openStoreRequiredBottomsheet();
+                  return;
+                }
+
                 if (allowProtectedTabAccess || route.name === 'início') {
+                  setActiveTabName(routeName);
                   return;
                 }
 
                 event.preventDefault();
-                openLoginBottomsheet(route.name);
+                openLoginBottomsheet(routeName);
               },
             })}
           />
@@ -145,3 +175,25 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  cartButtonWrapper: { 
+    flex: 1, 
+    width: '100%', 
+    position: 'absolute', 
+    bottom: 68, 
+    zIndex: 100, 
+    alignItems: 'center', 
+    justifyContent: 'center',
+  },
+  disabledTabButton: {
+    opacity: 0.35,
+    backgroundColor: PrimaryColors.primaryLight,
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+    marginHorizontal: 4,
+    marginVertical: 4,
+    padding: 4,
+    top: -4
+  },
+});

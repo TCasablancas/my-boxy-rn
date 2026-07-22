@@ -3,6 +3,11 @@
   "compilerOptions": {
     "types": ["jest"]
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts", "app/views/storesignup/StoreSignupNavigator.tss"],
+  "include": [
+    "**/*.ts", 
+    "**/*.tsx", 
+    "**/*.d.ts", 
+    "app/views/storesignup/StoreSignupNavigator.tss"
+  ],
   "exclude": ["**/node_modules", "**/Pods"]
 }

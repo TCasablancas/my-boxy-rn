@@ -10,8 +10,8 @@ import { MBProgressDot } from '../../components/carousel/MBProgressDot';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SIDE_PEEK_PERCENT = 0.1;
-const CARD_WIDTH = SCREEN_WIDTH * (1 - SIDE_PEEK_PERCENT * 2);
-const CARD_HEIGHT = 160;
+const CARD_WIDTH = SCREEN_WIDTH * (1.05 - SIDE_PEEK_PERCENT * 2);
+const CARD_HEIGHT = 240;
 const CARD_GAP = 8;
 const SNAP_INTERVAL = CARD_WIDTH + CARD_GAP;
 const DEFAULT_AUTOPLAY_DURATION = 4500;

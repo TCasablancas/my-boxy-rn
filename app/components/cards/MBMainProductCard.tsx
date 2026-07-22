@@ -49,7 +49,11 @@ const styles = StyleSheet.create({
     width: '50%',
   },
   imageWrapper: {
+    height: 160,
+    backgroundColor: 'transparent',
     position: 'relative',
+    overflow: 'hidden',
+    borderRadius: 8,
   },
   nameImageWrapper: {
     flexDirection: 'row',
@@ -63,24 +67,23 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 160,
     resizeMode: 'cover',
-    marginBottom: 4,
-    borderRadius: 8,
   },
   productTitle: {
     fontSize: 12,
+    marginTop: 4,
     color: '#4c4c4c',
     fontFamily: 'SNPro-Regular',
     lineHeight: 12,
   },
   productPrice: {
     fontSize: 16,
-    color: PrimaryColors.primary,
+    color: PrimaryColors.mainBlue,
     fontFamily: 'SNPro-Bold',
     lineHeight: 20,
   },
   currency: {
     fontSize: 12,
-    color: PrimaryColors.primary,
+    color: PrimaryColors.mainBlue,
     fontFamily: 'SNPro-Regular'
   },
   storeInfoWrapper: {
@@ -104,6 +107,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginRight: 4,
     backgroundColor: '#ccc',
+    
   },
   favoriteBtnWrapper: {
     position: 'absolute',

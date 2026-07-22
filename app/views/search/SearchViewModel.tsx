@@ -42,14 +42,14 @@ export function useSearchViewModel() {
 		renderProductCard: (item: (typeof homeProducts)[number]) => (
 			<MBHomeProductCard
 				product={{
-					id: item.id,
+					productId: item.productId,
 					title: item.title,
-					price: `${item.price.toFixed(2)}`,
-					imageUri: item.imageUri,
-					storeName: item.storeName,
-					storeImageUri: item.storeImageUri,
+					price: `${parseFloat(item.price).toFixed(2)}`,
+					imageUri: item.images[0],
+					storeName: item.storeData.storeName,
+					storeImageUri: item.storeData.storeImageUri,
 					rating: item.rating,
-					onPress: () => navigateToProduct(item.id),
+					onPress: () => navigateToProduct(item.productId),
 					onPressFavorite: () => {},
 				}}
 			/>

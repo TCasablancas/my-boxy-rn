@@ -1,11 +1,12 @@
 import { useCallback, useMemo, useState } from 'react';
 import { filterSearchProducts, toggleIdSelection } from './SearchService';
 import type { SearchCategory, SearchProduct, SearchTag } from './SearchModel';
+import { ProductProps } from '../../models/ProductCardModel';
 
 type UseSearchHooksParams = {
 	tags: SearchTag[];
 	categories: SearchCategory[];
-	products: SearchProduct[];
+	products: ProductProps[];
 };
 
 export function useSearchHooks({ tags, categories, products }: UseSearchHooksParams) {

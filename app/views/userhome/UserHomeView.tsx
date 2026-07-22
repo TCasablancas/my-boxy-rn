@@ -1,24 +1,34 @@
-import { View, StyleSheet, StatusBar, FlatList, Animated } from 'react-native';
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { getUserHomeViewModel } from './UserHomeViewModel';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { View, StyleSheet, FlatList, Animated } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { NeutralColors } from '../../common/colors/Colors';
+import SafeAreaView from '../../sections/global/SafeAreaView';
+
 import MBHeaderUserSimple from '../../components/header/MBHeaderUserSimple';
-import HomeCarouselListHeader from '../../sections/home/HomeCarouselListHeader';
-import { useCallback, useMemo, useRef, useState } from 'react';
 import MBLocationTag from '../../components/tags/MBLocationTag';
+import HomeCarouselListHeader from '../../sections/home/HomeCarouselListHeader';
+import MBOutlinedSmBtn from '../../components/buttons/MBOutlinedSmBtn';
+import MBHomeStoreItemCarousel from '../../components/carousel/MBHomeStoreItemCarousel';
+import MBMainProductCard from '../../components/cards/MBMainProductCard';
+
 import {
   openCarouselTarget,
-  openCart,
   openNotifications,
   openProductDetail,
+  openSearchView,
   openStoreSignup,
   openUserProfile,
   userHomeCarouselItems,
 } from './UserHomeNavigation';
-import MBOutlinedSmBtn from '../../components/buttons/MBOutlinedSmBtn';
-import MBHomeStoreItemCarousel from '../../components/carousel/MBHomeStoreItemCarousel';
-import MBMainProductCard from '../../components/cards/MBMainProductCard';
-import { HomeFeedBlock, HomeStoreSection } from './UserHomeViewModel';
-import { NeutralColors } from '../../common/colors/Colors';
+import {
+  DEFAULT_HOME_USER_PROFILE,
+  HomeFeedBlock,
+  HomeStoreSection,
+  HomeUserProfile,
+  getUserHomeViewModel,
+  normalizeUserHomeProfile,
+} from './UserHomeViewModel';
+import { getUserHomeData } from './UserHomeService';
 
 interface UserHomeViewProps {
   isUserLoggedIn: boolean;
@@ -28,9 +38,58 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
   const safeAreaInsets = useSafeAreaInsets();
   const userDataHeight = useRef(new Animated.Value(0)).current;
   const userDataOpacity = useRef(new Animated.Value(0)).current;
-  const { getInitialStoreSections, getNextStoreSections, getHomeFeedBlocks } = useMemo(() => getUserHomeViewModel(), []);
-  const [storeSections, setStoreSections] = useState<HomeStoreSection[]>(() => getInitialStoreSections());
+  const [userProfile, setUserProfile] = useState<HomeUserProfile>(DEFAULT_HOME_USER_PROFILE);
+  const [randomProducts, setRandomProducts] = useState<Record<string, unknown>[]>([]);
+  const [useMockFallback, setUseMockFallback] = useState(false);
+
+  const {
+    getInitialStoreSections,
+    getNextStoreSections,
+    getHomeFeedBlocks,
+  } = useMemo(
+    () => getUserHomeViewModel(randomProducts, { useMockFallback }),
+    [randomProducts, useMockFallback],
+  );
+  const [storeSections, setStoreSections] = useState<HomeStoreSection[]>([]);
   const feedBlocks = useMemo(() => getHomeFeedBlocks(storeSections), [getHomeFeedBlocks, storeSections]);
+
+  useEffect(() => {
+    setStoreSections(getInitialStoreSections());
+  }, [getInitialStoreSections]);
+
+  useEffect(() => {
+    let isActive = true;
+
+    async function loadUserHomeData() {
+      try {
+        const { user, profile, randomProducts: nextRandomProducts } = await getUserHomeData();
+
+        if (!isActive) {
+          return;
+        }
+
+        setUserProfile(normalizeUserHomeProfile(profile, user.email));
+        setRandomProducts(nextRandomProducts);
+        setUseMockFallback(false);
+      } catch (error) {
+        console.error('Error fetching user home data:', error);
+
+        if (!isActive) {
+          return;
+        }
+
+        setUserProfile(DEFAULT_HOME_USER_PROFILE);
+        setRandomProducts([]);
+        setUseMockFallback(true);
+      }
+    }
+
+    loadUserHomeData();
+
+    return () => {
+      isActive = false;
+    };
+  }, []);
 
   function openUserData() {
     userDataHeight.stopAnimation((currentValue) => {
@@ -57,34 +116,25 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
 
   const handleToggleStoreFavorite = useCallback((storeId: string, nextActive: boolean) => {
     setStoreSections((currentSections) => currentSections.map((section) => {
-      if (section.id !== storeId) {
+      if (section.storeId !== storeId) {
         return section;
       }
 
-      return {
-        ...section,
-        isFavorite: nextActive,
-      };
+      return { ...section, isFavorite: nextActive, };
     }));
   }, []);
 
   const handleToggleProductFavorite = useCallback((storeId: string, productId: string, nextActive: boolean) => {
     setStoreSections((currentSections) => currentSections.map((section) => {
-      if (section.id !== storeId) {
+      if (section.storeId !== storeId) {
         return section;
       }
 
       return {
         ...section,
         products: section.products.map((product) => {
-          if (product.productId !== productId) {
-            return product;
-          }
-
-          return {
-            ...product,
-            isFavourite: nextActive,
-          };
+          if (product.productId !== productId) { return product; }
+          return { ...product, isFavourite: nextActive, };
         }),
       };
     }));
@@ -94,7 +144,7 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
     const products = item.products.map((product) => ({
       productId: product.productId,
       title: product.title,
-      price: product.price.toFixed(2),
+      price: parseFloat(product.price.toString()).toFixed(2),
       imageUri: product.imageUri,
       storeName: product.storeName,
       storeImageUri: product.storeImageUri,
@@ -103,20 +153,18 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
     }));
 
     return (
-      <View style={{ 
-        backgroundColor: NeutralColors.background, 
-        marginVertical: 8,
-        marginHorizontal: 16,
-        borderRadius: 16,
-      }}>
-        <MBHomeStoreItemCarousel
-          storeName={item.storeName}
-          products={products}
-          isStoreFavorite={item.isFavorite}
-          onPressProduct={openProductDetail}
-          onToggleStoreFavorite={(nextActive) => handleToggleStoreFavorite(item.id, nextActive)}
-          onToggleProductFavorite={(productId, nextActive) => handleToggleProductFavorite(item.id, productId, nextActive)}
-        />
+      <View>
+        <View style={styles.carouselWrapper}>
+          <MBHomeStoreItemCarousel
+            storeName={item.storeName}
+            products={products}
+            isStoreFavorite={item.isFavorite}
+            onPressProduct={openProductDetail}
+            onToggleStoreFavorite={(nextActive) => handleToggleStoreFavorite(item.storeId, nextActive)}
+            onToggleProductFavorite={(productId, nextActive) => handleToggleProductFavorite(item.storeId, productId, nextActive)}
+          />
+        </View>
+        <View style={{width: '100%', height: 4, backgroundColor: 'white', marginVertical: 16, }}></View>
       </View>
     );
   }, [handleToggleProductFavorite, handleToggleStoreFavorite]);
@@ -129,18 +177,20 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
 
           return (
             <MBMainProductCard
-              key={store.id}
+              key={store.storeId}
               product={{
                 productId: product.productId,
                 title: product.title,
-                price: product.price.toFixed(2),
+                price: parseFloat(product.price.toString()).toFixed(2),
                 imageUri: product.imageUri,
                 storeName: product.storeName,
                 storeImageUri: product.storeImageUri,
                 rating: product.rating,
                 isFavourite: product.isFavourite,
                 onPress: () => openProductDetail(product.productId),
-                onPressFavorite: (nextActive) => handleToggleProductFavorite(store.id, product.productId, nextActive),
+                onPressFavorite: (nextActive) => handleToggleProductFavorite(
+                  store.storeId, product.productId, nextActive
+                ),
               }}
             />
           );
@@ -159,22 +209,20 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
   }, [renderSingleStoreRow, renderStoreCarousel]);
 
   return (
-    <>
-    <SafeAreaProvider>
-      <StatusBar barStyle={'light-content'} backgroundColor={NeutralColors.backgroundAlt} translucent={true} />
+    <SafeAreaView children={
       <View style={[styles.container]}>
         <View style={[styles.contentWrapper, { paddingTop: safeAreaInsets.top }]}>
           <View style={{alignItems: 'center', marginBottom: 8, justifyContent: 'center', width: '100%'}}>
-             <MBHeaderUserSimple 
-              userName="Thiago Silva"
-              userAlias="thyagoacsilva" 
+            <MBHeaderUserSimple 
+              userName={userProfile.userName}
+              userAlias={userProfile.userAlias}
               onPressNotifications={isUserLoggedIn ? openNotifications : undefined} 
-              onPressCart={openCart} 
+              onPressCart={openSearchView} 
               onPressUserData={openUserData}
             />
             <Animated.View style={[styles.userDataWrapper, { height: userDataHeight }]}>
               <Animated.View style={[styles.userDataContent, { opacity: userDataOpacity }]}>
-                <MBLocationTag locationName={'Santos · SP'} onPress={() => {}} />
+                <MBLocationTag locationName={userProfile.locationName} onPress={() => {}} />
                 <View style={styles.userActionsWrapper}>
                   <MBOutlinedSmBtn title="Ver meus dados" onPress={openUserProfile} />
                   <MBOutlinedSmBtn title="Ver minha loja" onPress={openStoreSignup} />
@@ -190,6 +238,7 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
             ListHeaderComponent={
               <View style={{ paddingVertical: 8 }}> 
                 <HomeCarouselListHeader items={userHomeCarouselItems} onPressItem={openCarouselTarget} />
+                <View style={{width: '100%', height: 4, backgroundColor: 'white'}}></View>
               </View>
             }
             renderItem={renderFeedBlock}
@@ -203,9 +252,7 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
           />
         </View>
       </View>
-    </SafeAreaProvider>
-
-    </>
+    }/>
   );
 }
 
@@ -215,6 +262,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: NeutralColors.backgroundAlt,
+  },
+  carouselWrapper: { 
+    backgroundColor: NeutralColors.background, 
+    marginVertical: 8,
+    marginHorizontal: 16,
+    borderRadius: 16,
   },
   contentWrapper: {
     marginTop: 16,

@@ -1,4 +1,9 @@
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, StatusBar, FlatList } from 'react-native';
+import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
+import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
+import { IconsActions } from '../../common/icons/IconsActions';
+import { NeutralColors } from '../../common/colors/Colors';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function MyShopView() {
   const products = [
@@ -8,19 +13,28 @@ export default function MyShopView() {
   ];
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>My Shop</Text>
-      <FlatList
-        data={products}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.productItem}>
-            <Text style={styles.productName}>{item.name}</Text>
-            <Text style={styles.productPrice}>{item.price}</Text>
-          </TouchableOpacity>
-        )}
-      />
-    </View>
+    <SafeAreaProvider>
+      <StatusBar barStyle="dark-content" backgroundColor={NeutralColors.backgroundAlt} translucent={true} />
+      <View style={styles.container}>
+        <MBTitledViewHeader 
+          title="Minhas Compras"
+          btnsRight={<MBRoundedIconBtn 
+            icon={<IconsActions.filter width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+            onPress={() => {}}
+          />}
+        />
+        <FlatList
+          data={products}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.productItem}>
+              <Text style={styles.productName}>{item.name}</Text>
+              <Text style={styles.productPrice}>{item.price}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+    </SafeAreaProvider>
   );
 }
 
@@ -28,7 +42,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: NeutralColors.backgroundAlt,
   },
   title: {
     fontSize: 24,

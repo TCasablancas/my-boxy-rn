@@ -20,5 +20,5 @@ export interface StoreHeaderProfileProps {
   storeName: string;
   storeAlias: string;
   storeImageUri: string;
-  storeLocation: StoreLocationProps;
+  storeLocation?: StoreLocationProps;
 }

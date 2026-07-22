@@ -35,6 +35,28 @@ export function renderBlockedTabBottomsheetContent() {
   );
 }
 
+export function getStoreRequiredBottomsheetTitle() {
+  return 'Minha loja indisponivel';
+}
+
+export function getStoreRequiredBottomsheetDescription() {
+  return 'Voce ainda nao possui uma loja cadastrada. Crie sua loja para acessar essa aba.';
+}
+
+export function renderStoreRequiredBottomsheetContent() {
+  return (
+    <View style={[styles.container]}>
+      <MBEmptyImageView />
+      <View style={styles.buttonWrapper}>
+        <MBMainBtn
+          title="Criar minha loja"
+          onPress={() => { MainNavigation.push('UserHomeStoreSignupView'); }}
+        />
+      </View>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     width: '100%',

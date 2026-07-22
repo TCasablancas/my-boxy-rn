@@ -5,6 +5,7 @@ import UserProfileView from '../userprofile/UserProfileView';
 import NotificationsView from '../notifications/NotificationsView';
 import StoreSignupNavigator from '../storesignup/StoreSignupNavigator';
 import type { HomeCarouselItem } from '../../sections/home/HomeCarouselListHeader';
+import SearchView from '../search/SearchView';
 
 export function UserHomeStoreSignupView() {
   return <StoreSignupNavigator onSubmit={async () => {}} />;
@@ -15,6 +16,7 @@ registerNavigationTarget('NotificationsView', NotificationsView);
 registerNavigationTarget('UserHomeStoreSignupView', UserHomeStoreSignupView);
 registerNavigationTarget('StoreSignupNavigator', StoreSignupNavigator);
 registerNavigationTarget('ProductDetailView', ProductDetailView);
+registerNavigationTarget('SearchView', SearchView);
 
 export const userHomeCarouselItems: HomeCarouselItem[] = [
   {
@@ -55,6 +57,10 @@ export function openStoreSignup() {
 
 export function openProductDetail(productId: string) {
   MainNavigation.push(ProductDetailView, { productId });
+}
+
+export function openSearchView() {
+  MainNavigation.push(SearchView);
 }
 
 export function openCart() {

@@ -1,17 +1,55 @@
-import { View, StyleSheet, StatusBar, FlatList } from 'react-native';
+import { View, StyleSheet, StatusBar, FlatList, Image, Pressable, Text, Animated } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
 import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
-import { Icons } from '../../common/icons/Icons';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
-import { NeutralColors } from '../../common/colors/Colors';
+import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 import MBHomeProductCard from '../../components/cards/MBMainProductCard';
-import ProductDetailView from '../productdetail/ProductDetailView';
-import MainNavigation from '../../common/navigation/MainNavigation';
-
-import { homeProducts } from '../../common/UserHomeData';
 import { IconsActions } from '../../common/icons/IconsActions';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import UserFavoritesTabs from './UserFavoritesTabs';
+import UserFavoritesBottomsheet from './UserFavoritesBottomsheet';
+import { useUserFavoritesViewModel } from './UserFavoritesViewModel';
+import { FavoritesTabKey } from './UserFavoritesModel';
+import MBFavoriteIconBtn from '../../components/buttons/MBFavoriteIconBtn';
 
 export default function UserFavoritesView() {
+  const {
+    activeTab,
+    selectedFilterId,
+    isFilterBottomsheetVisible,
+    productCards,
+    storeCards,
+    filterOptions,
+    changeTab,
+    openFilterBottomsheet,
+    closeFilterBottomsheet,
+    setSelectedFilterId,
+  } = useUserFavoritesViewModel();
+
+  const [renderedTab, setRenderedTab] = useState<FavoritesTabKey>(activeTab);
+  const tabOpacity = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    if (activeTab === renderedTab) {
+      return;
+    }
+
+    Animated.timing(tabOpacity, {
+      toValue: 0,
+      duration: 130,
+      useNativeDriver: true,
+    }).start(() => {
+      setRenderedTab(activeTab);
+      Animated.timing(tabOpacity, {
+        toValue: 1,
+        duration: 180,
+        useNativeDriver: true,
+      }).start();
+    });
+  }, [activeTab, renderedTab, tabOpacity]);
+
+  const [columns, setColumns] = useState(2);
+
   return (
     <SafeAreaProvider>
       <StatusBar barStyle="dark-content" backgroundColor={NeutralColors.backgroundAlt} translucent={true} />
@@ -21,43 +59,65 @@ export default function UserFavoritesView() {
             title="Curtidos"
             btnsRight={<MBRoundedIconBtn 
               icon={<IconsActions.filter width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
-              onPress={() => {}}
+              onPress={openFilterBottomsheet}
             />}
           />
+          <UserFavoritesTabs activeTab={activeTab} onChangeTab={changeTab} />
           <View style={styles.listWrapper}>
-            <FlatList
-              data={homeProducts}
-              numColumns={2}
-              // ListHeaderComponent={
-              //   <View style={{ paddingVertical: 8 }}> 
-              //     <HomeCarouselListHeader />
-              //   </View>
-              // }
-              renderItem={({ item }) => (
-                <MBHomeProductCard product={{
-                  productId: item.productId,
-                  title: item.title,
-                  price: `${item.price.toFixed(2)}`,
-                  imageUri: item.imageUri,
-                  storeName: item.storeName,
-                  storeImageUri: item.storeImageUri,
-                  rating: item.rating,
-                  onPress: () => {
-                    MainNavigation.push(ProductDetailView, { productId: item.productId });
-                  },
-                  onPressFavorite: () => {
-                    // Handle favorite press
-                  },
-                }} />
+            <Animated.View style={[styles.tabAnimatedContent, { opacity: tabOpacity }]}> 
+              {renderedTab === 'products' ? (
+                <View>
+                  <FlatList
+                    key={columns}
+                    data={productCards}
+                    numColumns={columns}
+                    renderItem={({ item }) => (
+                      <MBHomeProductCard product={item} />
+                    )}
+                    keyExtractor={(item) => item.productId}
+                    style={styles.flatList}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={styles.listContainer}
+                    ListEmptyComponent={<Text style={styles.emptyText}>Nenhum produto curtido.</Text>}
+                  />
+                </View>
+              ) : (
+                <View>
+                  <FlatList
+                    data={storeCards}
+                    keyExtractor={(item) => item.storeId}
+                    numColumns={2}
+                    style={styles.flatList}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={styles.storeListContainer}
+                    renderItem={({ item }) => (
+                      <Pressable style={styles.storeCard} onPress={item.onPress}>
+                        <View style={styles.storeInfo}>
+                          <View style={styles.storeImageWrapper}>
+                            <Image source={{ uri: item.storeImageUri }} style={styles.storeImage} />
+                          </View>
+                          <Text style={styles.storeName}>{item.storeName}</Text>
+                          <Text style={styles.storeMeta}>{item.productsCount} produtos curtidos</Text>
+                        </View>
+                        {/* <MBFavoriteIconBtn /> */}
+                      </Pressable>
+                    )}
+                    ListEmptyComponent={<Text style={styles.emptyText}>Nenhuma loja curtida.</Text>}
+                  />
+                </View>
               )}
-              keyExtractor={(item) => item.productId}
-              style={styles.flatList}
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={styles.listContainer}
-            />
+            </Animated.View>
           </View>
         </View>
       </View>
+      <UserFavoritesBottomsheet
+        visible={isFilterBottomsheetVisible}
+        activeTab={activeTab}
+        selectedFilterId={selectedFilterId}
+        options={filterOptions}
+        onSelectFilter={setSelectedFilterId}
+        onClose={closeFilterBottomsheet}
+      />
     </SafeAreaProvider>
   );
 }
@@ -74,10 +134,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   listWrapper: {
-    marginBottom: 42,
-    paddingBottom: 16,
+    flex: 1,
+    // marginBottom: 42,
+    // paddingBottom: 16,
     borderRadius: 16,
-    padding: 8,
+    // padding: 8,
+  },
+  tabAnimatedContent: {
+    flex: 1,
   },
   flatList: {
     width: '100%',
@@ -86,5 +150,62 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     gap: 8,
+  },
+  storeListContainer: {
+    width: '100%',
+    gap: 16,
+    paddingTop: 8,
+    paddingBottom: 20,
+    paddingHorizontal: 8,
+  },
+  emptyText: {
+    textAlign: 'center',
+    marginTop: 32,
+    fontFamily: 'SNPro-Regular',
+    color: NeutralColors.textSecondary,
+  },
+  storeCard: {
+    flex: 1,  
+    backgroundColor: '#FFFFFF',
+    borderRadius: 14,
+    padding: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    boxShadow: '0px 1px 12px rgba(0, 0, 0, 0.1)',
+  },
+  storeImageWrapper: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    overflow: 'hidden',
+    backgroundColor: '#E5E7EB',
+  },
+  storeImage: {
+    width: '100%',
+    height: '100%',
+  },
+  storeInfo: {
+    flex: 1,
+    marginLeft: 10,
+  },
+  storeName: {
+    fontSize: 16,
+    fontFamily: 'SNPro-Bold',
+    color: '#1F2937',
+  },
+  storeMeta: {
+    marginTop: 2,
+    fontSize: 12,
+    fontFamily: 'SNPro-Regular',
+    color: NeutralColors.textSecondary,
+  },
+  storeStatus: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: PrimaryColors.primary,
+  },
+  storeStatusOff: {
+    backgroundColor: '#9CA3AF',
   },
 });
