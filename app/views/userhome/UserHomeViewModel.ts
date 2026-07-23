@@ -1,44 +1,15 @@
+import type { 
+  HomeFeedProduct,
+  HomeStoreSection,
+  HomeUserProfile,
+  HomeSingleStoreRowBlock,
+  HomeCarouselStoreBlock,
+} from './UserHomeModel';
 
 import { homeProducts } from '../../common/UserHomeData';
 
+
 type RawHomeEntity = Record<string, unknown>;
-
-interface HomeFeedProduct {
-  productId: string;
-  title: string;
-  price: number;
-  imageUri: string;
-  storeName: string;
-  storeImageUri: string;
-  rating?: number;
-  isFavourite?: boolean;
-}
-
-export interface HomeStoreSection {
-  storeId: string;
-  storeName: string;
-  storeImageUri: string;
-  isFavorite?: boolean;
-  products: HomeFeedProduct[];
-}
-
-export interface HomeUserProfile {
-  userName: string;
-  userAlias: string;
-  locationName: string;
-}
-
-export interface HomeSingleStoreRowBlock {
-  id: string;
-  type: 'single-row';
-  stores: HomeStoreSection[];
-}
-
-export interface HomeCarouselStoreBlock {
-  id: string;
-  type: 'carousel';
-  store: HomeStoreSection;
-}
 
 export type HomeFeedBlock = HomeSingleStoreRowBlock | HomeCarouselStoreBlock;
 

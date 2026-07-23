@@ -7,7 +7,8 @@
     "ios": "npx -y node@22 node_modules/react-native/cli.js run-ios",
     "lint": "eslint .",
     "start": "npx -y node@22 node_modules/react-native/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "npx jetify"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^3.1.1",
@@ -26,6 +27,7 @@
     "react-native-linear-gradient": "^2.8.3",
     "react-native-safe-area-context": "^5.8.0",
     "react-native-screens": "^4.25.2",
+    "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "^15.15.5",
     "react-native-url-polyfill": "^3.0.0",
     "uuid": "^14.0.1"
@@ -48,6 +50,7 @@
     "@types/react-test-renderer": "^19.1.0",
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
+    "jetifier": "^2.0.0",
     "prettier": "2.8.8",
     "react-native-dotenv": "^3.4.11",
     "react-native-svg-transformer": "^1.5.3",

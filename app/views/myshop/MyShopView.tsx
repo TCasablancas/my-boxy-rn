@@ -10,22 +10,12 @@ import MBIconInfoContainer from '../../components/containers/MBIconInfoContainer
 import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
 
-// -->> REMOVER
-import { myShopsData } from '../../common/MyShopsData';
 import MBStatusDot from '../../components/global/MBStatusDot';
-// <<--
+import { getMyShopViewModel } from './MyShopViewModel';
 
 export default function MyShopView() {
-  // -->> REMOVER
-  const products = myShopsData.map((shop) => ({
-    shop_item_id: shop.shop_item_id,
-    name: shop.name,
-    price: shop.price,
-    shop_date: shop.shop_date,
-    status: shop.status,
-  }));
-  // <<--
-
+  const { products } = getMyShopViewModel();
+  
   return (
     <SafeAreaView children={
       <View style={styles.container}>
@@ -41,13 +31,15 @@ export default function MyShopView() {
           style={styles.flatlistWrapper}
           keyExtractor={(item) => item.shop_item_id}
           renderItem={({ item }) => (
-            <TouchableOpacity style={[
-              productItemStyles.productItem, { borderBottomWidth: 3 }
-            ]}>
+            <TouchableOpacity 
+              style={[ productItemStyles.productItem, { borderBottomWidth: 3 } ]}
+              onPress={() => {}}
+            >
               <View style={productItemStyles.iconWrapper}>
                 <MBStatusDot status={item.status} style={productItemStyles.statusDotPosition} />
                 <MBIconInfoContainer 
                   icon={<Icons.badgeCheck width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+                  size={40}
                 />
               </View>
               <View style={productItemStyles.productInformationWrapper}>
@@ -56,10 +48,19 @@ export default function MyShopView() {
                     {item.name}
                   </Text>
                   <Text style={productItemStyles.productShopDate}>
-                    {formatDate(item.shop_date)}
+                    {formatDate(item.shop_date)} • <Text style={productItemStyles.productPrice}>{item.price}</Text>
                   </Text>
                 </View>
-                <Text style={productItemStyles.productPrice}>{item.price}</Text>
+                <View style={{ gap: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
+                  <MBRoundedIconBtn 
+                    icon={<Icons.star width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+                    onPress={() => {}}
+                  />
+                  <MBRoundedIconBtn 
+                    icon={<Icons.cart width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+                    onPress={() => {}}
+                  />
+                </View>
               </View>
             </TouchableOpacity>
           )}
@@ -101,14 +102,14 @@ const productItemStyles = StyleSheet.create({
     textAlign: 'left',
   },
   productPrice: {
-    fontSize: 13,
+    fontSize: 12,
     fontFamily: 'SNPro-Bold',
-    color: '#888',
+    color: PrimaryColors.mainBlue,
   },
   productShopDate: {
     fontSize: 12,
     fontFamily: 'SNPro-Light',
-    color: '#888',
+    color: NeutralColors.textSecondary,
   },
 });
 

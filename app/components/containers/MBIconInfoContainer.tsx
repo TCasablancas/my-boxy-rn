@@ -13,7 +13,7 @@ export default function MBIconInfoContainer({
 }: MBIconInfoContainerProps) {
   return (
     <Pressable style={styles.container} onPress={() => onPressItem && onPressItem(title || '')}>
-      <View style={[styles.mainWrapper, { width: size || 36, height: size || 36 }]}>
+      <View style={[styles.mainWrapper, { width: size || 'auto', height: size || 'auto' }]}>
         <View style={[styles.iconWrapper, title && { flexDirection: 'row' }]}>
           {icon} 
           {title && <Text style={styles.titleText}>{title}</Text>}
