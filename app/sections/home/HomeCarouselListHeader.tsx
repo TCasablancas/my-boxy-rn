@@ -297,10 +297,14 @@ export default function HomeCarouselListHeader({
             style={styles.cardPressable}
             onPress={() => handlePressItem(item)}
           >
-            <ImageBackground source={{ uri: item.imageUri }} style={styles.cardImage} imageStyle={styles.cardImageInner}>
+            <ImageBackground 
+              source={{ uri: item.imageUri }} 
+              style={styles.cardImage} 
+              imageStyle={styles.cardImageInner}
+            >
               <View style={styles.overlay} />
               <View style={styles.textWrapper}>
-                <Text numberOfLines={2} style={styles.title}>
+                <Text numberOfLines={3} style={styles.title}>
                   {item.title}
                 </Text>
               </View>
@@ -342,7 +346,7 @@ const styles = StyleSheet.create({
   cardImage: {
     width: '100%',
     height: '100%',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
   },
   cardImageInner: {
     borderRadius: 8,
@@ -352,13 +356,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.24)',
   },
   textWrapper: {
-    paddingHorizontal: 14,
+    paddingHorizontal: 16,
     paddingVertical: 12,
   },
   title: {
     color: '#FFFFFF',
-    fontSize: 18,
-    fontFamily: 'SNPro-Bold',
+    fontSize: 32,
+    fontWeight: 'bold',
+    left: 8,
+    textShadowColor: 'rgba(0, 0, 0, 0.1)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 12,
   },
   bulletsContainer: {
     flexDirection: 'row',

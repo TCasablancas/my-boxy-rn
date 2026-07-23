@@ -189,10 +189,8 @@ const styles = StyleSheet.create({
   disabledTabButton: {
     opacity: 0.35,
     backgroundColor: PrimaryColors.primaryLight,
-    borderBottomLeftRadius: 8,
-    borderBottomRightRadius: 8,
-    marginHorizontal: 4,
-    marginVertical: 4,
+    borderRadius: 8,
+    margin: 4,
     padding: 4,
     top: -4
   },
