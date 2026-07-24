@@ -1235,4 +1235,38 @@ export const Icons = {
       <Path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5" />
     </Svg>
   ),
+  loginArrow: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill={fillColor}
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke={strokeColor}
+      className="size-6"
+      {...props}
+    >
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
+      />
+    </Svg>
+  ),
+  plusCircle: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill={fillColor}
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke={strokeColor}
+      className="size-6"
+      {...props}
+    >
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+      />
+    </Svg>
+  ),
 }

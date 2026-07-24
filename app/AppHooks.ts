@@ -20,7 +20,7 @@ import UserSignupView from './views/usersignup/UserSignupView';
 type AppBottomsheetType = 'login' | 'store-required' | null;
 
 export function useAppHooks() {
-  const [isUserLoggedIn] = useState(true);
+  const [isUserLoggedIn] = useState(false);
   const [isStoreLoggedIn] = useState(false);
   const [hasRegisteredStore] = useState(false);
   const [isLoginBottomsheetVisible, setIsLoginBottomsheetVisible] = useState(false);
@@ -74,7 +74,7 @@ export function useAppHooks() {
 
   const blockedBottomsheetTitle = getBlockedTabBottomsheetTitle();
   const blockedBottomsheetDescription = activeBlockedTab
-    ? getBlockedTabBottomsheetDescription({ tabName: activeBlockedTab })
+    ? getBlockedTabBottomsheetDescription()
     : getBlockedTabBottomsheetDescription();
 
   const storeRequiredBottomsheetTitle = getStoreRequiredBottomsheetTitle();

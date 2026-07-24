@@ -23,12 +23,13 @@ import {
 import {
   DEFAULT_HOME_USER_PROFILE,
   HomeFeedBlock,
-  HomeStoreSection,
-  HomeUserProfile,
+  HomeFeedProductBlock,
+  HomeUserProfileBlock,
   getUserHomeViewModel,
   normalizeUserHomeProfile,
 } from './UserHomeViewModel';
 import { getUserHomeData } from './UserHomeService';
+import { HomeFeedProduct } from './UserHomeModel';
 
 interface UserHomeViewProps {
   isUserLoggedIn: boolean;
@@ -38,7 +39,7 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
   const safeAreaInsets = useSafeAreaInsets();
   const userDataHeight = useRef(new Animated.Value(0)).current;
   const userDataOpacity = useRef(new Animated.Value(0)).current;
-  const [userProfile, setUserProfile] = useState<HomeUserProfile>(DEFAULT_HOME_USER_PROFILE);
+  const [userProfile, setUserProfile] = useState<HomeUserProfileBlock>(DEFAULT_HOME_USER_PROFILE);
   const [randomProducts, setRandomProducts] = useState<Record<string, unknown>[]>([]);
   const [useMockFallback, setUseMockFallback] = useState(false);
 
@@ -50,7 +51,7 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
     () => getUserHomeViewModel(randomProducts, { useMockFallback }),
     [randomProducts, useMockFallback],
   );
-  const [storeSections, setStoreSections] = useState<HomeStoreSection[]>([]);
+  const [storeSections, setStoreSections] = useState<HomeFeedProductBlock[]>([]);
   const feedBlocks = useMemo(() => getHomeFeedBlocks(storeSections), [getHomeFeedBlocks, storeSections]);
 
   useEffect(() => {
@@ -132,7 +133,7 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
 
       return {
         ...section,
-        products: section.products.map((product) => {
+        products: section.products.map((product: HomeFeedProduct) => {
           if (product.productId !== productId) { return product; }
           return { ...product, isFavourite: nextActive, };
         }),
@@ -140,8 +141,8 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
     }));
   }, []);
 
-  const renderStoreCarousel = useCallback((item: HomeStoreSection) => {
-    const products = item.products.map((product) => ({
+  const renderStoreCarousel = useCallback((item: HomeFeedProductBlock) => {
+    const products = item.products.map((product: HomeFeedProduct) => ({
       productId: product.productId,
       title: product.title,
       price: parseFloat(product.price.toString()).toFixed(2),
@@ -169,7 +170,7 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
     );
   }, [handleToggleProductFavorite, handleToggleStoreFavorite]);
 
-  const renderSingleStoreRow = useCallback((stores: HomeStoreSection[]) => {
+  const renderSingleStoreRow = useCallback((stores: HomeFeedProductBlock[]) => {
     return (
       <View style={styles.singleStoreRow}>
         {stores.map((store) => {

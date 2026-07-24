@@ -160,6 +160,8 @@ function MainTabs() {
         description={blockedBottomsheetDescription}
         content={blockedBottomsheetContent}
         onClose={closeLoginBottomsheet}
+        headerAlign="left"
+        closeButton={true}
       />
     </>
   );
