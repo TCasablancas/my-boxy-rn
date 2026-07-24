@@ -47,21 +47,21 @@ export default function MBMainBtn({
       case MBMainBtnType.DISABLED:
         return '#D6D6D6';
       case MBMainBtnType.CUSTOM:
-        return backgroundColor || '#6ABA02';
+        return backgroundColor || PrimaryColors.primary;
       case MBMainBtnType.NORMAL:
-        return '#6ABA02';
+        return PrimaryColors.primary;
       case MBMainBtnType.OUTLINED:
         return 'transparent';
       default:
-        return '#6ABA02';
+        return PrimaryColors.primary;
     }
   })();
 
   const resolvedTextColor = (() => {
     if (resolvedType === MBMainBtnType.DISABLED) return '#8A8A8A';
     if (resolvedType === MBMainBtnType.NORMAL) return '#FFFFFF';
-    if (resolvedType === MBMainBtnType.LIGHT) return PrimaryColors.primary;
-    if (resolvedType === MBMainBtnType.OUTLINED) return PrimaryColors.primary;
+    if (resolvedType === MBMainBtnType.LIGHT) return PrimaryColors.primaryDark;
+    if (resolvedType === MBMainBtnType.OUTLINED) return PrimaryColors.primaryDark;
     if (textColor) return textColor;
     return getContrastingTextColor(resolvedBackgroundColor);
   })();

@@ -1,51 +1,24 @@
+import type { 
+  HomeFeedProduct,
+  HomeStoreSection,
+  HomeUserProfile,
+  HomeSingleStoreRowBlock,
+  HomeCarouselStoreBlock,
+} from './UserHomeModel';
 
 import { homeProducts } from '../../common/UserHomeData';
 
+
 type RawHomeEntity = Record<string, unknown>;
 
-interface HomeFeedProduct {
-  productId: string;
-  title: string;
-  price: number;
-  imageUri: string;
-  storeName: string;
-  storeImageUri: string;
-  rating?: number;
-  isFavourite?: boolean;
-}
-
-export interface HomeStoreSection {
-  storeId: string;
-  storeName: string;
-  storeImageUri: string;
-  isFavorite?: boolean;
-  products: HomeFeedProduct[];
-}
-
-export interface HomeUserProfile {
-  userName: string;
-  userAlias: string;
-  locationName: string;
-}
-
-export interface HomeSingleStoreRowBlock {
-  id: string;
-  type: 'single-row';
-  stores: HomeStoreSection[];
-}
-
-export interface HomeCarouselStoreBlock {
-  id: string;
-  type: 'carousel';
-  store: HomeStoreSection;
-}
-
 export type HomeFeedBlock = HomeSingleStoreRowBlock | HomeCarouselStoreBlock;
+export type HomeFeedProductBlock = HomeStoreSection;
+export type HomeUserProfileBlock = HomeUserProfile;
 
 const MAX_PRODUCTS_PER_STORE = 10;
 const STORES_BATCH_SIZE = 6;
 
-export const DEFAULT_HOME_USER_PROFILE: HomeUserProfile = {
+export const DEFAULT_HOME_USER_PROFILE: HomeUserProfileBlock = {
   userName: 'Thiago Silva',
   userAlias: 'thyagoacsilva',
   locationName: 'Santos · SP',
@@ -229,7 +202,7 @@ function formatLocation(city?: string, state?: string) {
   return city ?? state ?? DEFAULT_HOME_USER_PROFILE.locationName;
 }
 
-export function normalizeUserHomeProfile(profile: RawHomeEntity | null, fallbackAlias?: string): HomeUserProfile {
+export function normalizeUserHomeProfile(profile: RawHomeEntity | null, fallbackAlias?: string): HomeUserProfileBlock {
   if (!profile) {
     return {
       ...DEFAULT_HOME_USER_PROFILE,
@@ -265,8 +238,8 @@ export function normalizeUserHomeProfile(profile: RawHomeEntity | null, fallback
 function getBaseStoreTemplates(
   sourceProducts: RawHomeEntity[],
   useMockFallback: boolean,
-): HomeStoreSection[] {
-  const storeMap = new Map<string, HomeStoreSection>();
+): HomeFeedProductBlock[] {
+  const storeMap = new Map<string, HomeFeedProductBlock>();
   const normalizedProducts = normalizeHomeProducts(sourceProducts, useMockFallback);
 
   normalizedProducts.forEach((product) => {
@@ -293,10 +266,10 @@ function getBaseStoreTemplates(
 }
 
 function createStoreSections(
-  templates: HomeStoreSection[],
+  templates: HomeFeedProductBlock[],
   startIndex: number,
   count: number,
-): HomeStoreSection[] {
+): HomeFeedProductBlock[] {
   if (!templates.length || count <= 0) {
     return [];
   }
@@ -307,9 +280,9 @@ function createStoreSections(
   }));
 }
 
-function createHomeFeedBlocks(storeSections: HomeStoreSection[]): HomeFeedBlock[] {
+function createHomeFeedBlocks(storeSections: HomeFeedProductBlock[]): HomeFeedBlock[] {
   const feedBlocks: HomeFeedBlock[] = [];
-  let pendingSingleStores: HomeStoreSection[] = [];
+  let pendingSingleStores: HomeFeedProductBlock[] = [];
 
   const flushPendingSingles = () => {
     if (!pendingSingleStores.length) {
@@ -325,7 +298,7 @@ function createHomeFeedBlocks(storeSections: HomeStoreSection[]): HomeFeedBlock[
     pendingSingleStores = [];
   };
 
-  storeSections.forEach((storeSection) => {
+  storeSections.forEach((storeSection: HomeFeedProductBlock) => {
     const shouldRenderAsSingleCard = storeSection.products.length <= 3;
 
     if (!shouldRenderAsSingleCard) {
@@ -364,7 +337,7 @@ export function getUserHomeViewModel(
     return createStoreSections(storeTemplates, currentLength, STORES_BATCH_SIZE);
   }
 
-  function getHomeFeedBlocks(storeSections: HomeStoreSection[]) {
+  function getHomeFeedBlocks(storeSections: HomeFeedProductBlock[]) {
     return createHomeFeedBlocks(storeSections);
   }
 

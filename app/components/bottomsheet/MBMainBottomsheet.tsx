@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Modal, PanResponder, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Modal, PanResponder, Pressable, StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Icons } from '../../common/icons/Icons';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 
 interface MBMainBottomsheetProps {
   title?: string;
@@ -92,43 +94,44 @@ export default function MBMainBottomsheet({
   }
 
   return (
-    <>
-    <Modal 
-      animationType="slide"
-      transparent={true}
-      visible={visible}
-      onRequestClose={closeBottomsheet}
-    >
-      <View style={styles.container}>
-        <Pressable style={styles.backdrop} onPress={closeBottomsheet} />
-        <View style={styles.sheetHost}>
-          <Animated.View
-            style={[styles.content, { transform: [{ translateY }] }]}
-            onLayout={(event) => {
-              setSheetHeight(event.nativeEvent.layout.height);
-            }}
-            {...panResponder.panHandlers}
-          >
-            {closeButton && (
-              <Pressable style={[styles.closeBtn]} onPress={closeBottomsheet}>
-                <Icons.xMark />
-              </Pressable>
-            )}
-            <Pressable onPress={() => {}} style={{ width: '100%', alignItems: 'center', paddingHorizontal: 16 }}>
-              <View style={styles.handleCap} />
-              {headerImage && <View style={styles.headerImage}>{headerImage}</View>}
-              {title && 
-                <Text style={[styles.title, { textAlign: headerAlign }]}>{title}</Text>}
-              {description && 
-                <Text style={[styles.description, { textAlign: headerAlign }]}>{description}</Text>}
-              <View style={styles.contentBox}>{content}</View>
-              {actionButton && <View style={styles.actionButton}>{actionButton}</View>}
-            </Pressable>
-          </Animated.View>
-        </View>
-      </View>
-    </Modal>
-    </>
+      <Modal 
+        animationType="slide"
+        transparent={true}
+        visible={visible}
+        onRequestClose={closeBottomsheet}
+      >
+        <SafeAreaProvider>
+          <StatusBar barStyle="light-content" backgroundColor="rgba(0, 0, 0, 0.75)" />
+          <View style={styles.container}>
+            <Pressable style={styles.backdrop} onPress={closeBottomsheet} />
+            <View style={styles.sheetHost}>
+              <Animated.View
+                style={[styles.content, { transform: [{ translateY }] }]}
+                onLayout={(event) => {
+                  setSheetHeight(event.nativeEvent.layout.height);
+                }}
+                {...panResponder.panHandlers}
+              >
+                {closeButton && (
+                  <Pressable style={[styles.closeBtn]} onPress={closeBottomsheet}>
+                    <Icons.xMarkCircleSolid width={24} height={24} color={NeutralColors.textSecondary} />
+                  </Pressable>
+                )}
+                <Pressable onPress={() => {}} style={{ width: '100%', alignItems: 'center' }}>
+                  <View style={styles.handleCap} />
+                  {headerImage && <View style={styles.headerImage}>{headerImage}</View>}
+                  {title && 
+                    <Text style={[styles.title, { textAlign: headerAlign }]}>{title}</Text>}
+                  {description && 
+                    <Text style={[styles.description, { textAlign: headerAlign }]}>{description}</Text>}
+                  <View style={styles.contentBox}>{content}</View>
+                  {actionButton && <View style={styles.actionButton}>{actionButton}</View>}
+                </Pressable>
+              </Animated.View>
+            </View>
+          </View>
+        </SafeAreaProvider>
+      </Modal>
   );
 }
 
@@ -142,8 +145,8 @@ const styles = StyleSheet.create({
   sheetHost: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingHorizontal: 16,
-    paddingBottom: 24,
+    paddingHorizontal: 8,
+    paddingBottom: 16,
   },
   backdrop: {
     position: 'absolute',
@@ -156,6 +159,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 24,
     padding: 8,
+    paddingTop: 16,
     alignItems: 'center',
     justifyContent: 'flex-end',
     width: '100%',
@@ -170,30 +174,33 @@ const styles = StyleSheet.create({
   },
   closeBtn: {
     position: 'absolute',
-    top: 16,
+    top: 32,
     right: 16,
     zIndex: 10,
   },
   handleCap: {
-    width: 40,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: '#ccc',
+    width: 50,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: NeutralColors.border,
   },
   title: {
     width: '100%',
-    fontFamily: 'SNPro-Regular',
-    fontSize: 20,
+    fontFamily: 'SNPro-Bold',
+    letterSpacing: -0.5,
+    fontSize: 22,
     marginTop: 16,
-    textAlign: 'left',
+    paddingHorizontal: 16,
+    color: PrimaryColors.primaryDark,
   },
   description: {
     width: '100%',
     fontFamily: 'SNPro-Light',
-    fontSize: 12,
-    color: '#666',
-    textAlign: 'left',
-    marginTop: 4,
+    fontSize: 16,
+    color: NeutralColors.textPlaceholder,
+    paddingHorizontal: 16,
+    lineHeight: 19,
+    marginTop: 8,
   },
   headerImage: {
     marginVertical: 12,

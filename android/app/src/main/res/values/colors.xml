@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Add your custom launcher background color here -->
+    <color name="launcher_background">#8EFA00</color>
+    <color name="primary_color">#6ABA02</color>
+    <color name="primary_light">#BFF578</color>
+    <color name="primary_dark">#1F6607</color>
+</resources>

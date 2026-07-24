@@ -1,34 +1,40 @@
-import React, { useMemo, createElement } from 'react';
-import { Text, View, StyleSheet, Pressable } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import MBMainBtn from '../../components/buttons/MBMainBtn';
-import { PrimaryColors } from '../colors/Colors';
-import { MBMainBtnType } from '../../components/buttons/MBMainBtn';
+import { NeutralColors, PrimaryColors } from '../colors/Colors';
+import { MBMainInfoSquareBtnType } from '../../components/buttons/MBMainInfoSquareBtn';
 import MainNavigation, { registerNavigationTarget } from '../navigation/MainNavigation';
 import UserSignupView from '../../views/usersignup/UserSignupView';
 import MBEmptyImageView from '../../components/images/MBEmptyImageView';
+import { Icons } from '../icons/Icons';
+import MBMainInfoSquareBtn from '../../components/buttons/MBMainInfoSquareBtn';
 
 registerNavigationTarget('UserSignupView', UserSignupView);
 
 export function getBlockedTabBottomsheetTitle() {
-  return 'Acesso restrito';
+  return 'Olá estranho, tudo bem?!';
 }
 
-export function getBlockedTabBottomsheetDescription({ tabName }: { tabName?: string } = {}) {
-  return `Faça login para acessar ${tabName || 'essa área do aplicativo'}.`;
+export function getBlockedTabBottomsheetDescription() {
+  return "Se você já conhece a casa, faça login para acessar as sessões. Se for novo por aqui, cadastre-se e conheça mais.";
 }
 
 export function renderBlockedTabBottomsheetContent() {
   return (
     <View style={[styles.container]}>
-      <MBEmptyImageView />
+      {/* <MBEmptyImageView /> */}
       <View style={styles.buttonWrapper}>
-        <MBMainBtn title="Entrar" onPress={() => { MainNavigation.navigate('Login'); }} />
-      </View>
-      <View style={styles.buttonWrapper}>
-        <MBMainBtn 
-          title="Criar conta" 
-          buttonType={MBMainBtnType.LIGHT} 
-          onPress={() => { MainNavigation.push('UserSignupView'); }}
+        <MBMainInfoSquareBtn 
+          icon={<Icons.loginArrow width={26} height={26} strokeColor={PrimaryColors.primary} />}
+          title="Fazer Login"
+          description="Já possuo conta e conheço o aplicativo."
+          onPress={() => { MainNavigation.navigate('Login'); }}
+        />
+        <MBMainInfoSquareBtn 
+          icon={<Icons.plusCircle width={26} height={26} strokeColor={PrimaryColors.primary} />}
+          title="Criar Cadastro"
+          type={MBMainInfoSquareBtnType.LIGHT}
+          description="Não tenho cadastro e quero criar uma conta."
+          onPress={() => { MainNavigation.navigate('UserSignupView'); }}
         />
       </View>
     </View>
@@ -62,12 +68,14 @@ const styles = StyleSheet.create({
     width: '100%',
     gap: 16, 
     alignItems: 'center',
-    paddingTop: 16,
   },
   title: {
+    flex: 1,
     fontSize: 16,
     fontFamily: 'SNPro-Bold',
     color: '#1F2A44',
+    width: '100%',
+    textAlign: 'left',
   },
   description: {
     fontSize: 13,
@@ -76,7 +84,11 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   buttonWrapper: {
-    height: 46,
+    // flex: 1,
+    // height: 46,
+    gap: 16,
     width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

@@ -1,20 +1,23 @@
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar, FlatList } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { IconsActions } from '../../common/icons/IconsActions';
+import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
+import { ShopItemProps } from './MyShopModel';
+import { Icons } from '../../common/icons/Icons';
+import SafeAreaView from '../../sections/global/SafeAreaView';
+import { formatDate } from '../../common/constants/DateFormatter';
+
+import MBIconInfoContainer from '../../components/containers/MBIconInfoContainer';
 import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
-import { IconsActions } from '../../common/icons/IconsActions';
-import { NeutralColors } from '../../common/colors/Colors';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import MBStatusDot from '../../components/global/MBStatusDot';
+import { getMyShopViewModel } from './MyShopViewModel';
 
 export default function MyShopView() {
-  const products = [
-    { id: '1', name: 'Product 1', price: '$10' },
-    { id: '2', name: 'Product 2', price: '$20' },
-    { id: '3', name: 'Product 3', price: '$30' },
-  ];
-
+  const { products } = getMyShopViewModel();
+  
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle="dark-content" backgroundColor={NeutralColors.backgroundAlt} translucent={true} />
+    <SafeAreaView children={
       <View style={styles.container}>
         <MBTitledViewHeader 
           title="Minhas Compras"
@@ -23,20 +26,92 @@ export default function MyShopView() {
             onPress={() => {}}
           />}
         />
-        <FlatList
+        <FlatList<ShopItemProps>
           data={products}
-          keyExtractor={(item) => item.id}
+          style={styles.flatlistWrapper}
+          keyExtractor={(item) => item.shop_item_id}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.productItem}>
-              <Text style={styles.productName}>{item.name}</Text>
-              <Text style={styles.productPrice}>{item.price}</Text>
+            <TouchableOpacity 
+              style={[ productItemStyles.productItem, { borderBottomWidth: 3 } ]}
+              onPress={() => {}}
+            >
+              <View style={productItemStyles.iconWrapper}>
+                <MBStatusDot status={item.status} style={productItemStyles.statusDotPosition} />
+                <MBIconInfoContainer 
+                  icon={<Icons.badgeCheck width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+                  size={40}
+                />
+              </View>
+              <View style={productItemStyles.productInformationWrapper}>
+                <View>
+                  <Text style={productItemStyles.productName} numberOfLines={1}>
+                    {item.name}
+                  </Text>
+                  <Text style={productItemStyles.productShopDate}>
+                    {formatDate(item.shop_date)} • <Text style={productItemStyles.productPrice}>{item.price}</Text>
+                  </Text>
+                </View>
+                <View style={{ gap: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
+                  <MBRoundedIconBtn 
+                    icon={<Icons.star width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+                    onPress={() => {}}
+                  />
+                  <MBRoundedIconBtn 
+                    icon={<Icons.cart width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+                    onPress={() => {}}
+                  />
+                </View>
+              </View>
             </TouchableOpacity>
           )}
         />
       </View>
-    </SafeAreaProvider>
+    } />
   );
 }
+
+const productItemStyles = StyleSheet.create({
+  productItem: {
+    paddingVertical: 12,
+    paddingHorizontal: 8,
+    borderBottomColor: NeutralColors.backgroundAlt,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  iconWrapper: {
+    width: 40, 
+    height: 40,
+  },
+  productInformationWrapper: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    flex: 1, 
+    marginLeft: 8,
+  },
+  statusDotPosition: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    zIndex: 100,
+  },
+  productName: {
+    fontSize: 13,
+    fontFamily: 'SNPro-Light',
+    textAlign: 'left',
+  },
+  productPrice: {
+    fontSize: 12,
+    fontFamily: 'SNPro-Bold',
+    color: PrimaryColors.mainBlue,
+  },
+  productShopDate: {
+    fontSize: 12,
+    fontFamily: 'SNPro-Light',
+    color: NeutralColors.textSecondary,
+  },
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -44,21 +119,9 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: NeutralColors.backgroundAlt,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  productItem: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  productName: {
-    fontSize: 18,
-  },
-  productPrice: {
-    fontSize: 16,
-    color: '#888',
-  },
+  flatlistWrapper: { 
+    backgroundColor: 'white', 
+    borderRadius: 16,
+    paddingBottom: 46,
+  }
 });
