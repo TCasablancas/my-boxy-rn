@@ -35,7 +35,7 @@ export const StepSucesso: React.FC<StepSucessoProps> = ({ data, onGoHome }) => {
           </Text>
 
           <View style={styles.summaryCard}>
-            <Text style={styles.summaryLabel}>Sua loja</Text>
+            <Text style={styles.summaryLabel}>Seus Dados</Text>
             <Text style={styles.summaryValue}>@{data.username}</Text>
           </View>
         </View>

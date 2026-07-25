@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { MBMainInput } from '../../../components/form/MBMainInput';
-import { NeutralColors } from '../../../common/colors/Colors';
+import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
 import { spacing, typography } from '../../../common/constants/Typgraphy';
 import { isValidEmail, isValidPhone } from '../../../common/constants/Validators';
 import { maskPhone } from '../../../common/constants/Masks';
@@ -34,6 +34,7 @@ export const StepContato: React.FC<StepProps> = ({ data, updateData, onNext, onB
     <View style={styles.container}>
       <View style={styles.contentWrapper}>
         <MBTitleDescripted 
+          colorTitle={PrimaryColors.primaryDark}
           title={'Dados para contato'} 
           description={'Vamos usar esses dados para confirmar seu cadastro, pedidos e manter você informado.'} 
         />
@@ -104,14 +105,13 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     paddingTop: spacing.sm,
-    backgroundColor: NeutralColors.background,
   },
   backButtonWrapper: {
     flex: 1,
     position: 'relative',
     textAlign: 'center',
     width: '100%',
-    marginTop: spacing.sm,
+    marginVertical: spacing.md,
     alignItems: 'center',
   },
 });

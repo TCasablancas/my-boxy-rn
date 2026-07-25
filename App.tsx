@@ -6,7 +6,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PlatformPressable } from '@react-navigation/elements';
 import { MainTabParamList, RootStackParamList } from './app/navigation/types';
-import { navigationRef, setMainNavigationReady } from './app/common/navigation/MainNavigation';
+import {
+  DYNAMIC_COMPONENT_ROUTE_NAME,
+  navigationRef,
+  setMainNavigationReady,
+} from './app/common/navigation/MainNavigation';
 import { useAppHooks } from './app/AppHooks';
 import { NeutralColors, PrimaryColors } from './app/common/colors/Colors';
 import SplashScreen from 'react-native-splash-screen';
@@ -23,11 +27,17 @@ import NotificationsView from './app/views/notifications/NotificationsView';
 import MoreConfigsPlaceholderView from './app/views/moreconfigs/MoreConfigsPlaceholderView';
 import ProductDetailView from './app/views/productdetail/ProductDetailView';
 import UserSignupView from './app/views/usersignup/UserSignupView';
+import LoginView from './app/views/login/LoginView';
 import { UserHomeStoreSignupView } from './app/views/userhome/UserHomeNavigation';
 import MBFloatingCartBtn from './app/components/buttons/MBFloatingCartBtn';
+import MainDynamicRouteScreen from './app/common/navigation/MainDynamicRouteScreen';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
+
+function UserSignupRootScreen() {
+  return <UserSignupView onFinish={() => {}} />;
+}
 
 const MORE_CONFIG_PATHS = [
   'UserProfileView',
@@ -47,8 +57,6 @@ const MORE_CONFIG_PATHS = [
   'PrivacyView',
   'TermsAndConditionsView',
   'AboutMyBoxyView',
-  'NotificationsView',
-  'UserSignupView',
 ] as const;
 
 function MainTabs() {
@@ -173,8 +181,13 @@ export default function App() {
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
         <RootStack.Screen name="MainTabs" component={MainTabs} />
         <RootStack.Screen name="UserProfileView" component={UserProfileView} />
+        <RootStack.Screen name="LoginView" component={LoginView} />
+        <RootStack.Screen name="UserSignupView" component={UserSignupRootScreen} />
+        <RootStack.Screen name="NotificationsView" component={NotificationsView} />
+        <RootStack.Screen name="SearchView" component={SearchView} />
         <RootStack.Screen name="ProductDetailView" component={ProductDetailView} />
         <RootStack.Screen name="UserHomeStoreSignupView" component={UserHomeStoreSignupView} />
+        <RootStack.Screen name={DYNAMIC_COMPONENT_ROUTE_NAME} component={MainDynamicRouteScreen} />
         {MORE_CONFIG_PATHS.filter((path) => path !== 'UserProfileView').map((path) => (
           <RootStack.Screen key={path} name={path} component={MoreConfigsPlaceholderView} />
         ))}

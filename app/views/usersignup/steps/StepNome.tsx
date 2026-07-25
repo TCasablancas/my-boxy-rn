@@ -1,13 +1,13 @@
 import React, { useMemo, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { useKeyboard } from '../../../common/constants/UseKeyboard';
 import { MBMainInput } from '../../../components/form/MBMainInput';
-import LinearGradient from 'react-native-linear-gradient';
-import { GradientColors, PrimaryColors } from '../../../common/colors/Colors';
-import { spacing, typography } from '../../../common/constants/Typgraphy';
+import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
 import { isValidFullName, isValidUsername } from '../../../common/constants/Validators';
 import { StepProps } from '../../../common/types/Types';
 import DSMainButton, { MBMainBtnType } from '../../../components/buttons/MBMainBtn';
 import MBTitleDescripted from '../../../components/texts/MBTitleDescripted';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export const StepNome: React.FC<StepProps> = ({ data, updateData, onNext }) => {
   const [touched, setTouched] = useState({ nome: false, username: false });
@@ -33,53 +33,65 @@ export const StepNome: React.FC<StepProps> = ({ data, updateData, onNext }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <MBTitleDescripted 
-        title="Iniciar cadastro"
-        description="Primeiro, como todos vão te encontrar por aqui?"
-      />
+    <KeyboardAvoidingView 
+      style={[styles.container, { paddingBottom: useKeyboard() ? 30 : 0 }]}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 140}
+    >
+      <SafeAreaProvider>
+        <StatusBar barStyle="dark-content" backgroundColor={NeutralColors.backgroundAlt} />
+        <View>
+          <MBTitleDescripted 
+            colorTitle={PrimaryColors.primaryDark}
+            title="Iniciar cadastro"
+            description="Primeiro, como todos vão te encontrar por aqui?"
+          />
 
-      <View style={styles.inputWrapper}>
-        <MBMainInput
-          label="Nome Completo"
-          placeholder="Ex: Maria Oliveira"
-          value={data.nomeCompleto}
-          onChangeText={(text) => updateData({ nomeCompleto: text })}
-          onBlur={() => setTouched((t) => ({ ...t, nome: true }))}
-          error={nomeError}
-          autoCapitalize="words"
-          autoCorrect={false}
-          returnKeyType="next"
-        />
+          <View style={styles.inputWrapper}>
+            <MBMainInput
+              label="Nome Completo"
+              placeholder="Ex: Maria Oliveira"
+              value={data.nomeCompleto}
+              onChangeText={(text) => updateData({ nomeCompleto: text })}
+              onBlur={() => setTouched((t) => ({ ...t, nome: true }))}
+              error={nomeError}
+              autoCapitalize="words"
+              autoCorrect={false}
+              returnKeyType="next"
+            />
 
-        <MBMainInput
-          label="Nome de Usuário"
-          placeholder="Ex: maria.ceramica"
-          value={data.username}
-          onChangeText={(text) => updateData({ username: text.toLowerCase().replace(/\s/g, '') })}
-          onBlur={() => setTouched((t) => ({ ...t, username: true }))}
-          error={usernameError}
-          helperText={!usernameError ? 'Esse será seu @ para todos' : undefined}
-          autoCapitalize="none"
-          autoCorrect={false}
-          returnKeyType="done"
-        />
-      </View>
+            <MBMainInput
+              label="Nome de Usuário"
+              placeholder="Ex: maria.ceramica"
+              value={data.username}
+              onChangeText={(text) => updateData({ username: text.toLowerCase().replace(/\s/g, '') })}
+              onBlur={() => setTouched((t) => ({ ...t, username: true }))}
+              error={usernameError}
+              helperText={!usernameError ? 'Esse será seu @ para todos' : undefined}
+              autoCapitalize="none"
+              autoCorrect={false}
+              returnKeyType="done"
+            />
+          </View>
+        </View>
 
-      <View style={styles.footerDock}>
-        <DSMainButton 
-          title="continuar"
-          onPress={handleContinue}
-          buttonType={!canContinue ? MBMainBtnType.DISABLED : MBMainBtnType.NORMAL}
-        />
-      </View>
-    </View>
+        <View style={styles.footerDock}>
+          <DSMainButton 
+            title="continuar"
+            onPress={handleContinue}
+            buttonType={!canContinue ? MBMainBtnType.DISABLED : MBMainBtnType.NORMAL}
+          />
+        </View>
+      </SafeAreaProvider>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   inputWrapper: {
     gap: 16,

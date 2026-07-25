@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MBMainInput } from '../../../components/form/MBMainInput';
-import { NeutralColors } from '../../../common/colors/Colors';
+import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
 import { spacing, typography } from '../../../common/constants/Typgraphy';
 import { isValidCEP } from '../../../common/constants/Validators';
 import { maskCEP } from '../../../common/constants/Masks';
@@ -63,6 +63,7 @@ export const StepEndereco: React.FC<StepProps> = ({ data, updateData, onNext, on
     <View style={styles.container}>
       <View style={styles.contentWrapper}>
         <MBTitleDescripted 
+          colorTitle={PrimaryColors.primaryDark}
           title="Seu local principal"
           description="Isso ajuda a calcular fretes e onde seus produtos serão entregues. Você pode preencher depois, se preferir."
         />
@@ -185,11 +186,10 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     paddingTop: spacing.sm,
-    backgroundColor: NeutralColors.background,
   },
   subButtonRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: spacing.sm,
+    marginVertical: spacing.md,
   },
 });

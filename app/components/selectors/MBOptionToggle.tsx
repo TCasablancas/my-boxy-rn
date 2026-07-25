@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   label: { 
-    fontSize: 15, 
+    fontSize: 14, 
     flex: 1, 
     marginRight: 12,
     fontFamily: 'SNPro-Regular',

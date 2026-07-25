@@ -7,6 +7,7 @@
     <list default="true" id="bc1b4ae8-bb3e-446d-b837-100564dd5e4a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/2q4v611w/arm64-v8a/.cmake/api/v1/reply/cache-v2-a66814d75cd9f76121cc.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/2q4v611w/arm64-v8a/.cmake/api/v1/reply/cmakeFiles-v1-662c7bffbdcb1e95e534.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/2q4v611w/arm64-v8a/.cmake/api/v1/reply/codemodel-v2-cf203f6a234c4417c54c.json" beforeDir="false" />
