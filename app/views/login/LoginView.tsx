@@ -1,21 +1,26 @@
 import React from 'react';
 import { View, StyleSheet, Text, KeyboardAvoidingView, StatusBar, } from 'react-native';
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
+import { useLoginViewModel } from './LoginViewModel';
+import { IconsSocial } from '../../common/icons/IconsSocial';
+import { Icons } from '../../common/icons/Icons';
 
 import MBMainBtn from '../../components/buttons/MBMainBtn';
 import { MBMainBtnType } from '../../components/buttons/MBMainBtn';
 import { MBMainInput } from '../../components/form/MBMainInput';
-import MBTextBtn from '../../components/buttons/MBTextBtn';
-import MBOptionToggle from '../../components/selectors/MBOptionToggle';
+import MBTextBtn, { MBTextBtnSize } from '../../components/buttons/MBTextBtn';
 
-import { useLoginViewModel } from './LoginViewModel';
-import MBMainSelector from '../../components/selectors/MBMainSelector';
 import MBTextWithSelect from '../../components/selectors/MBTextWithSelect';
 import MBCenterStripeText from '../../components/labels/MBCenterStripeText';
+import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
+import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
+import MBTitleDescripted from '../../components/texts/MBTitleDescripted';
+import MainNavigation from '../../common/navigation/MainNavigation';
 
 export default function LoginView() {
-  const safeAreaInsets = useSafeAreaInsets();
+  const navigation = useNavigation();
   const {
     formData,
     formErrors,
@@ -30,7 +35,7 @@ export default function LoginView() {
 
   const formContentView = (
     <KeyboardAvoidingView style={styles.contentWrapper} behavior="padding">
-      <View style={{flex: 1, gap: 16}}>
+      {/* <View style={{gap: 18, flexDirection: 'column', alignItems: 'stretch', justifyContent: 'space-around'}}> */}
         <MBMainInput
           label={'Email ou usuário'}
           placeholder="seu_email@exemplo.com.br"
@@ -67,55 +72,109 @@ export default function LoginView() {
           buttonType={canSubmit ? MBMainBtnType.NORMAL : MBMainBtnType.DISABLED}
           onPress={() => { onSubmitLogin(); }}
         />
-        <MBCenterStripeText text="faça login também" marginVertical={8} />
-      </View>
+        <MBCenterStripeText text="ou" marginVertical={8} />
+        <Text style={styles.socialMediaDisclaimer}>
+          Faça seu login utilizando sua conta em uma das redes sociais abaixo
+        </Text>
+        <View style={styles.loginWithSocialButtonsWrapper}>
+          <MBRoundedIconBtn 
+            icon={<IconsSocial.facebookSquare width={24} height={24} strokeColor="#FFF" />} 
+            backgroundColor={PrimaryColors.mainBlue}
+            onPress={() => {}}
+          />
+          <MBRoundedIconBtn 
+            icon={<IconsSocial.googleSquare width={24} height={24} strokeColor="#FFF" />} 
+            backgroundColor={PrimaryColors.mainRed}
+            onPress={() => {}}
+          />
+          <MBRoundedIconBtn 
+            icon={<IconsSocial.apple width={24} height={24} fillColor="#000" strokeColor='#000' />}
+            onPress={() => {}}
+          />
+        </View>
+      {/* </View> */}
     </KeyboardAvoidingView>
   );
 
   return (
-    <SafeAreaProvider style={[styles.container, { paddingTop: safeAreaInsets.top }]}>
-      <StatusBar barStyle="dark-content" backgroundColor={'gray'} translucent />
+    <SafeAreaProvider style={[styles.container]}>
+      <StatusBar barStyle="dark-content" backgroundColor={NeutralColors.backgroundAlt} translucent />
+      <MBTitledViewHeader 
+        title="Login"
+        btnsLeft={<MBRoundedIconBtn 
+          icon={<Icons.arrowBack width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+          onPress={() => { MainNavigation.pop(); }}
+        />}
+      />
       <View style={styles.topContentWrapper}>
-        <Text>Login View</Text>
+        <MBTitleDescripted 
+          title="Bem-vindo de volta!"
+          description={
+            <>
+            <Text>Se você já tem cadastro, faça login para continuar.</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={{ fontFamily: 'SNPro-Regular', fontSize: 16, color: NeutralColors.text }}>
+                Se ainda não tem, {''}
+              </Text>
+              <MBTextBtn title={'clique aqui.'} textColor={PrimaryColors.mainBlue} size={MBTextBtnSize.LARGE} /> 
+            </View>
+            </>
+          }
+          alignment="center"
+        />
       </View>
       {formContentView}
-      <View style={styles.footerButtonsWrapper}>
-        <MBTextBtn title={'Política de Privacidade'} textColor={NeutralColors.white} />
-        <Text style={{color: NeutralColors.white}}>·</Text>
-        <MBTextBtn title={'Termos de Serviço'} textColor={NeutralColors.white} />
-      </View>
+      <Text style={styles.footerButtonsWrapper}>
+        Ao criar sua conta, você concorda com a nossa.
+        <MBTextBtn title={'Política de Privacidade e'} textColor={NeutralColors.textSecondary} />
+        <MBTextBtn title={' Termos de Serviço'} textColor={NeutralColors.textSecondary} />
+      </Text>
     </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
+  socialMediaDisclaimer: {
+    fontSize: 14,
+    fontFamily: 'SNPro-Regular',
+    color: NeutralColors.textSecondary,
+    textAlign: 'center',
+  },
   container: {
-    flex: 1,
     padding: 16,
-    gap: 32,
+    gap: 26,
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: 'gray',
+    alignItems: 'stretch',
+    justifyContent: 'space-around',
+    backgroundColor: NeutralColors.backgroundAlt,
   },
   topContentWrapper: {
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 16,
   },
   contentWrapper: {
-    flex: 1,
+    // flex: 1,
+    gap: 16,
     width: '100%',
-    padding: 16,
+    padding: 20,
+    paddingBottom: 32,
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    justifyContent: 'space-around',
     backgroundColor: 'white',
     borderRadius: 16,
+    boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.2)',
+    
   },
   footerButtonsWrapper: {
     flexDirection: 'row', 
     gap: 16,
     justifyContent: 'center',
     alignItems: 'center',
+    textAlign: 'center',
+    fontFamily: 'SNPro-Light',
+    fontSize: 14,
   },
   actionButtonsWrapper: {
     flexDirection: 'row',
@@ -123,5 +182,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginVertical: 8,
+  },
+  loginWithSocialButtonsWrapper: {
+    flexDirection: 'row',
+    gap: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 24,
   },
 });

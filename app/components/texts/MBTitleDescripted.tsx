@@ -3,7 +3,7 @@ import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 
 interface MBTitleDescriptedProps {
   title: string;
-  description?: string;
+  description?: any;
   colorTitle?: string;
   colorDescription?: string;
   alignment?: 'left' | 'center' | 'right';
