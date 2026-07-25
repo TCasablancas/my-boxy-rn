@@ -1,14 +1,14 @@
-import { Text, View, StyleSheet } from 'react-native';
-import MBMainBtn from '../../components/buttons/MBMainBtn';
-import { NeutralColors, PrimaryColors } from '../colors/Colors';
-import { MBMainInfoSquareBtnType } from '../../components/buttons/MBMainInfoSquareBtn';
-import MainNavigation, { registerNavigationTarget } from '../navigation/MainNavigation';
-import UserSignupView from '../../views/usersignup/UserSignupView';
-import MBEmptyImageView from '../../components/images/MBEmptyImageView';
+import { View, StyleSheet } from 'react-native';
+import MainNavigation from '../navigation/MainNavigation';
+import { PrimaryColors } from '../colors/Colors';
 import { Icons } from '../icons/Icons';
-import MBMainInfoSquareBtn from '../../components/buttons/MBMainInfoSquareBtn';
 
-registerNavigationTarget('UserSignupView', UserSignupView);
+import MBMainBtn from '../../components/buttons/MBMainBtn';
+import MBEmptyImageView from '../../components/images/MBEmptyImageView';
+import MBMainInfoSquareBtn, { MBMainInfoSquareBtnType } from '../../components/buttons/MBMainInfoSquareBtn';
+
+import UserSignupView from '../../views/usersignup/UserSignupView';
+import LoginView from '../../views/login/LoginView';
 
 export function getBlockedTabBottomsheetTitle() {
   return 'Olá estranho, tudo bem?!';
@@ -16,6 +16,14 @@ export function getBlockedTabBottomsheetTitle() {
 
 export function getBlockedTabBottomsheetDescription() {
   return "Se você já conhece a casa, faça login para acessar as sessões. Se for novo por aqui, cadastre-se e conheça mais.";
+}
+
+export function getStoreRequiredBottomsheetTitle() {
+  return 'Minha loja indisponivel';
+}
+
+export function getStoreRequiredBottomsheetDescription() {
+  return 'Voce ainda nao possui uma loja cadastrada. Crie sua loja para acessar essa aba.';
 }
 
 export function renderBlockedTabBottomsheetContent() {
@@ -27,26 +35,18 @@ export function renderBlockedTabBottomsheetContent() {
           icon={<Icons.loginArrow width={26} height={26} strokeColor={PrimaryColors.primary} />}
           title="Fazer Login"
           description="Já possuo conta e conheço o aplicativo."
-          onPress={() => { MainNavigation.navigate('Login'); }}
+          onPress={() => { MainNavigation.push(LoginView); }}
         />
         <MBMainInfoSquareBtn 
           icon={<Icons.plusCircle width={26} height={26} strokeColor={PrimaryColors.primary} />}
           title="Criar Cadastro"
           type={MBMainInfoSquareBtnType.LIGHT}
           description="Não tenho cadastro e quero criar uma conta."
-          onPress={() => { MainNavigation.navigate('UserSignupView'); }}
+          onPress={() => { MainNavigation.push(UserSignupView); }}
         />
       </View>
     </View>
   );
-}
-
-export function getStoreRequiredBottomsheetTitle() {
-  return 'Minha loja indisponivel';
-}
-
-export function getStoreRequiredBottomsheetDescription() {
-  return 'Voce ainda nao possui uma loja cadastrada. Crie sua loja para acessar essa aba.';
 }
 
 export function renderStoreRequiredBottomsheetContent() {

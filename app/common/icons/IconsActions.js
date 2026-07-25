@@ -485,6 +485,26 @@ export const IconsActions = {
       <Path d="M20.2 20.2l1.8 1.8" />
     </Svg>
   ),
+  check: ({ strokeColor = '#000', ...props }) => (
+      <Svg
+      width="24px"
+      height="24px"
+      strokeWidth={3}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      color={strokeColor}
+      {...props}
+    >
+      <Path
+        d="M5 13L9 17L19 7"
+        stroke={strokeColor}
+        strokeWidth={3}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  ),
   checkboxSquareRounded: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
@@ -540,4 +560,5 @@ export const IconsActions = {
       <Path d="M9 18h6" />
     </Svg>
   ),
+
 };

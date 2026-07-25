@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator, Animated, StyleSheet, Text, TextInput, TextInputProps, TouchableOpacity, View,
 } from 'react-native';
@@ -51,11 +51,16 @@ export const MBMainInput = forwardRef<TextInput, AppInputProps>(
   }, ref,) => {
     const [isFocused, setIsFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [internalValue, setInternalValue] = useState(value ?? '');
     const borderAnim = useRef(new Animated.Value(0)).current;
     const internalRef = useRef<TextInput>(null);
     const { scrollToInput } = useKeyboardScroll();
 
-    const isFloated = isFocused || value.length > 0;
+    useEffect(() => {
+      setInternalValue(value ?? '');
+    }, [value]);
+
+    const isFloated = isFocused || internalValue.length > 0;
     // Anima o label independente da borda, pois o label reage a
     // foco OU valor preenchido, enquanto a borda reage só ao foco.
     const labelAnim = useRef(new Animated.Value(isFloated ? 1 : 0)).current;
@@ -104,8 +109,11 @@ export const MBMainInput = forwardRef<TextInput, AppInputProps>(
               <TextInput
                 ref={setRefs}
                 style={styles.input}
-                value={value}
-                onChangeText={onChangeText}
+                value={internalValue}
+                onChangeText={(text) => {
+                  setInternalValue(text);
+                  onChangeText(text);
+                }}
                 placeholderTextColor={NeutralColors.textPlaceholder}
                 secureTextEntry={secureTextEntry && !showPassword}
                 onFocus={(e) => {
@@ -195,11 +203,16 @@ const styles = StyleSheet.create({
     color: NeutralColors.textPlaceholder,
   },
   input: {
-    flex: 1,
+    // flex: 1,
     fontSize: 16,
     color: NeutralColors.text,
     fontFamily: 'SNPro-Regular',
     width: '100%',
+    height: 24,
+    lineHeight: 12,
+    paddingTop: 0,
+    paddingBottom: 0,
+    top: 4,
     backgroundColor: 'transparent',
   },
   adornment: {
@@ -207,7 +220,7 @@ const styles = StyleSheet.create({
   },
   eyeIcon: {
     fontSize: 18,
-    top: 3,
+    top: 16,
   },
   errorText: {
     ...typography.caption,

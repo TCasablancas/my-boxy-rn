@@ -93,16 +93,16 @@ export default function MBMainBtn({
 
 const styles = StyleSheet.create({
   button: {
-    flex: 1,
     backgroundColor: '#6ABA02',
     paddingVertical: 10,
     paddingHorizontal: 26,
     borderRadius: 16,
-    height: 46,
+    height: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },
   buttonContent: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',

@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { NeutralColors } from '../../common/colors/Colors';
 
 interface MBTextBtnProps {
   title?: string;
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   text: {
-    color: '#8E8E93',
+    color: NeutralColors.textSecondary,
     fontSize: 14,
     fontFamily: 'SNPro-Regular',
   },
