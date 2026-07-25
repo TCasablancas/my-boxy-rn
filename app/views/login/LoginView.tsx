@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, Text, KeyboardAvoidingView, StatusBar, } from 'react-native';
+import { View, StyleSheet, Text, KeyboardAvoidingView, StatusBar, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 import { useLoginViewModel } from './LoginViewModel';
 import { IconsSocial } from '../../common/icons/IconsSocial';
 import { Icons } from '../../common/icons/Icons';
+import { MeshGradient } from "@kuss/react-native-mesh-gradient";
 
 import MBMainBtn from '../../components/buttons/MBMainBtn';
 import { MBMainBtnType } from '../../components/buttons/MBMainBtn';
@@ -20,7 +21,6 @@ import MBTitleDescripted from '../../components/texts/MBTitleDescripted';
 import MainNavigation from '../../common/navigation/MainNavigation';
 
 export default function LoginView() {
-  const navigation = useNavigation();
   const {
     formData,
     formErrors,
@@ -33,7 +33,27 @@ export default function LoginView() {
     onChangeKeepConnected,
   } = useLoginViewModel();
 
+  const  MATRIX_DIMENSION  =  3;
+
+const points = [
+    [0.0, 0.0], [0.2, 0.0], [1.0, 0.0],
+    [0.0, 0.3], [0.4, 0.9], [1.0, 0.1],
+    [0.0, 1.0], [0.3, 1.0], [1.0, 1.0],
+];
+
+const primaryColors = [
+    "#E68369", "#E68369", "#B692C2",
+    "#B692C2", "#FBF6E2", "#FBF6E2",
+    "#E68369", "#E68369", "#E68369",
+];
+
+const secondaryColors = [
+    "#000000", "#000000", "#000000",
+    "#FF9F0A", "#FF453A", "#FF9F0A",
+    "#5E5CE6", "#000000", "#30D158",
+];
   const formContentView = (
+    
     <KeyboardAvoidingView style={styles.contentWrapper} behavior="padding">
       {/* <View style={{gap: 18, flexDirection: 'column', alignItems: 'stretch', justifyContent: 'space-around'}}> */}
         <MBMainInput
@@ -97,8 +117,18 @@ export default function LoginView() {
   );
 
   return (
+    <>
     <SafeAreaProvider style={[styles.container]}>
-      <StatusBar barStyle="dark-content" backgroundColor={NeutralColors.backgroundAlt} translucent />
+      <MeshGradient
+        colors={[
+          PrimaryColors.gold, 
+          PrimaryColors.primary, 
+          PrimaryColors.primaryLight,
+          PrimaryColors.primaryDark,
+        ]}
+        style={styles.background}
+      />
+      <StatusBar barStyle="dark-content" backgroundColor={'transparent'} translucent />
       <MBTitledViewHeader 
         title="Login"
         btnsLeft={<MBRoundedIconBtn 
@@ -108,12 +138,13 @@ export default function LoginView() {
       />
       <View style={styles.topContentWrapper}>
         <MBTitleDescripted 
+          colorTitle={NeutralColors.white}
           title="Bem-vindo de volta!"
           description={
             <>
-            <Text>Se você já tem cadastro, faça login para continuar.</Text>
+            <Text style={{color: PrimaryColors.primary}}>Se você já tem cadastro, faça login para continuar.</Text>
             <View style={{ flexDirection: 'row' }}>
-              <Text style={{ fontFamily: 'SNPro-Regular', fontSize: 16, color: NeutralColors.text }}>
+              <Text style={{ fontFamily: 'SNPro-Regular', fontSize: 16, color: NeutralColors.white }}>
                 Se ainda não tem, {''}
               </Text>
               <MBTextBtn title={'clique aqui.'} textColor={PrimaryColors.mainBlue} size={MBTextBtnSize.LARGE} /> 
@@ -130,10 +161,19 @@ export default function LoginView() {
         <MBTextBtn title={' Termos de Serviço'} textColor={NeutralColors.textSecondary} />
       </Text>
     </SafeAreaProvider>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
+  background: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: -1,
+  },
   socialMediaDisclaimer: {
     fontSize: 14,
     fontFamily: 'SNPro-Regular',
