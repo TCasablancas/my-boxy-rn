@@ -52,7 +52,9 @@ export const MBMainInput = forwardRef<TextInput, AppInputProps>(
     const [isFocused, setIsFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [internalValue, setInternalValue] = useState(value ?? '');
+
     const borderAnim = useRef(new Animated.Value(0)).current;
+    const backgroundAnim = useRef(new Animated.Value(0)).current;
     const internalRef = useRef<TextInput>(null);
     const { scrollToInput } = useKeyboardScroll();
 
@@ -76,6 +78,10 @@ export const MBMainInput = forwardRef<TextInput, AppInputProps>(
       Animated.timing(borderAnim, { toValue, duration: 150, useNativeDriver: false }).start();
     };
 
+    const animateBackground = (toValue: number) => {
+      Animated.timing(backgroundAnim, { toValue, duration: 150, useNativeDriver: false }).start();
+    };
+
     const animateLabel = (toValue: number) => {
       Animated.timing(labelAnim, { toValue, duration: 150, useNativeDriver: false }).start();
     };
@@ -88,11 +94,27 @@ export const MBMainInput = forwardRef<TextInput, AppInputProps>(
       ],
     });
 
+    const backgroundColor = backgroundAnim.interpolate({
+      inputRange: [0, 1],
+      outputRange: [
+        error ? StateColors.errorLight : NeutralColors.background,
+        error ? StateColors.errorLight : PrimaryColors.primaryLight,
+      ],
+    });
+
     const inputTranslateY = labelAnim.interpolate({ inputRange: [0, 1], outputRange: [4, 0] });
     const showEyeToggle = secureTextEntry && !rightAdornment && !loading;
 
     return (
-      <View>
+      <>
+      <Animated.View style={[
+        styles.contentWrapper, 
+        { 
+          opacity: loading ? 0.6 : 1, 
+          borderColor, backgroundColor,
+        },
+        
+      ]}>
         <Animated.View
           style={[
             styles.inputContainer,
@@ -119,12 +141,14 @@ export const MBMainInput = forwardRef<TextInput, AppInputProps>(
                 onFocus={(e) => {
                   setIsFocused(true);
                   animateBorder(1);
+                  animateBackground(1);
                   scrollToInput(nodeHandleOf(internalRef));
                   onFocus?.(e);
                 }}
                 onBlur={(e) => {
                   setIsFocused(false);
                   animateBorder(0);
+                  animateBackground(0);
                   onBlur?.(e);
                 }}
                 readOnly={loading || isLocked}
@@ -153,13 +177,13 @@ export const MBMainInput = forwardRef<TextInput, AppInputProps>(
             <View style={styles.adornment}>{rightAdornment}</View>
           )}
         </Animated.View>
-
-        {error ? (
-          <Text style={styles.errorText}>{error}</Text>
-        ) : helperText ? (
-          <Text style={styles.helperText}>{helperText}</Text>
-        ) : null}
-      </View>
+      </Animated.View>
+      {error ? (
+        <Text style={styles.errorText}>{error}</Text>
+      ) : helperText ? (
+        <Text style={styles.helperText}>{helperText}</Text>
+      ) : null}
+      </>
     );
   },
 );
@@ -225,11 +249,16 @@ const styles = StyleSheet.create({
   errorText: {
     ...typography.caption,
     color: StateColors.error,
-    marginTop: spacing.xs,
+    marginTop: -spacing.sm,
   },
   helperText: {
     ...typography.caption,
     color: NeutralColors.textSecondary,
-    marginTop: spacing.xs,
+    marginTop: -spacing.sm,
+  },
+  contentWrapper: {
+    width: '100%',
+    padding: 2,
+    borderRadius: radius.md,
   },
 });

@@ -1,14 +1,17 @@
 import React from 'react';
-import { Animated, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from 'react-native';
+import { Animated, KeyboardAvoidingView, Platform, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { MBStepperHeader } from '../../components/stepper/MBStepperHeader';
-import { GradientColors, NeutralColors } from '../../common/colors/Colors';
 import { spacing } from '../../common/constants/Typgraphy';
 import { KeyboardScrollProvider } from '../../common/contexts/KeyboardScrollContext';
 import { StepSucesso } from './steps/StepSucesso';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CadastroScreenProps, USER_SIGNUP_STEP_LABELS } from './UserSignupModel';
 import { useUserSignupViewModel } from './UserSignupViewModel';
-import LinearGradient from 'react-native-linear-gradient';
+import MainNavigation from '../../common/navigation/MainNavigation';
+import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
+import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
+import { Icons } from '../../common/icons/Icons';
+import { NeutralColors } from '../../common/colors/Colors';
 
 export default function UserSignupView({ onFinish }: CadastroScreenProps) {
   const {
@@ -32,44 +35,46 @@ export default function UserSignupView({ onFinish }: CadastroScreenProps) {
   }
 
   return (
-    <LinearGradient 
-      colors={GradientColors.neutralGradient}
-      start={{ x: 0, y: 1 }}
-      end={{ x: 0, y: 0 }}
-      style={styles.mainWrapper}
-    >
-      <View style={[styles.container, { paddingTop: safeArea.top + 40 }]}>
+    <SafeAreaProvider style={[styles.container, { marginTop: safeArea.top }]}>
+      <StatusBar barStyle="dark-content" backgroundColor={NeutralColors.backgroundAlt} />
+      <MBTitledViewHeader 
+        title="Cadastro"
+        btnsLeft={<MBRoundedIconBtn 
+          icon={<Icons.arrowBack width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+          onPress={() => { MainNavigation.pop(); }}
+        />}
+      />
+      <View style={{ paddingHorizontal: spacing.lg,}}>
         <MBStepperHeader steps={USER_SIGNUP_STEP_LABELS} currentIndex={stepIndex} />
-
-        <KeyboardAvoidingView
-          style={{flex: 1}}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
-        >
-          <KeyboardScrollProvider scrollViewRef={scrollViewRef}>
-            <ScrollView
-              ref={scrollViewRef}
-              contentContainerStyle={styles.scrollContent}
-              keyboardShouldPersistTaps="handled"
-              showsVerticalScrollIndicator={false}
-            >
-              <Animated.View style={{ opacity: fadeAnim, flex: 1 }}>{renderStep()}</Animated.View>
-            </ScrollView>
-          </KeyboardScrollProvider>
-        </KeyboardAvoidingView>
       </View>
-    </LinearGradient>
+
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
+      >
+        <KeyboardScrollProvider scrollViewRef={scrollViewRef}>
+          <ScrollView
+            ref={scrollViewRef}
+            contentContainerStyle={styles.scrollContent}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+          >
+            <Animated.View style={{ opacity: fadeAnim, flex: 1 }}>{renderStep()}</Animated.View>
+          </ScrollView>
+        </KeyboardScrollProvider>
+      </KeyboardAvoidingView>
+    </SafeAreaProvider>
   );
 };
 
 const styles = StyleSheet.create({
   mainWrapper: {
-    flex: 1,
     width: '100%',
     height: '100%',
   },
   container: {
-    flex: 1,
+    // flex: 1,
   },
   leftGlow: {
     position: 'absolute',
@@ -89,7 +94,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
+    paddingBottom: spacing.md,
     paddingHorizontal: spacing.lg,
-    paddingBottom: spacing.xxl,
   },
 });

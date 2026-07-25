@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, KeyboardAvoidingView, StatusBar, useWindowDimensions } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, StyleSheet, Text, KeyboardAvoidingView, StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 import { useLoginViewModel } from './LoginViewModel';
@@ -33,86 +32,64 @@ export default function LoginView() {
     onChangeKeepConnected,
   } = useLoginViewModel();
 
-  const  MATRIX_DIMENSION  =  3;
-
-const points = [
-    [0.0, 0.0], [0.2, 0.0], [1.0, 0.0],
-    [0.0, 0.3], [0.4, 0.9], [1.0, 0.1],
-    [0.0, 1.0], [0.3, 1.0], [1.0, 1.0],
-];
-
-const primaryColors = [
-    "#E68369", "#E68369", "#B692C2",
-    "#B692C2", "#FBF6E2", "#FBF6E2",
-    "#E68369", "#E68369", "#E68369",
-];
-
-const secondaryColors = [
-    "#000000", "#000000", "#000000",
-    "#FF9F0A", "#FF453A", "#FF9F0A",
-    "#5E5CE6", "#000000", "#30D158",
-];
   const formContentView = (
-    
     <KeyboardAvoidingView style={styles.contentWrapper} behavior="padding">
-      {/* <View style={{gap: 18, flexDirection: 'column', alignItems: 'stretch', justifyContent: 'space-around'}}> */}
-        <MBMainInput
-          label={'Email ou usuário'}
-          placeholder="seu_email@exemplo.com.br"
-          value={formData.emailOrUser}
-          onChangeText={onChangeEmailOrUser}
-          error={formErrors.emailOrUser}
-          loading={isSubmitting}
-          autoCapitalize="none"
-          autoCorrect={false}
+      <MBMainInput
+        label={'Email ou usuário'}
+        placeholder="seu_email@exemplo.com.br"
+        value={formData.emailOrUser}
+        onChangeText={onChangeEmailOrUser}
+        error={formErrors.emailOrUser}
+        loading={isSubmitting}
+        autoCapitalize="none"
+        autoCorrect={false}
+      />
+      <MBMainInput
+        label={'Senha'}
+        placeholder="sua senha"
+        value={formData.password}
+        onChangeText={onChangePassword}
+        error={formErrors.password}
+        loading={isSubmitting}
+        secureTextEntry
+      />
+      <View style={styles.actionButtonsWrapper}>
+        <MBTextBtn 
+          title={'Esqueci minha senha'} 
+          textColor={PrimaryColors.mainBlue} 
+          onPress={() => {}}
         />
-        <MBMainInput
-          label={'Senha'}
-          placeholder="sua senha"
-          value={formData.password}
-          onChangeText={onChangePassword}
-          error={formErrors.password}
-          loading={isSubmitting}
-          secureTextEntry
+        <MBTextWithSelect 
+          text="Manter Conectado" 
+          value={isKeepConnectedEnabled ? 'on' : 'off'} 
+          onChange={() => onChangeKeepConnected(!isKeepConnectedEnabled)} 
         />
-        <View style={styles.actionButtonsWrapper}>
-          <MBTextBtn 
-            title={'Esqueci minha senha'} 
-            textColor={PrimaryColors.mainBlue} 
-            onPress={() => {}}
-          />
-          <MBTextWithSelect 
-            text="Manter Conectado" 
-            value={isKeepConnectedEnabled ? 'on' : 'off'} 
-            onChange={() => onChangeKeepConnected(!isKeepConnectedEnabled)} 
-          />
-        </View>
-        <MBMainBtn
-          title="Fazer Login"
-          buttonType={canSubmit ? MBMainBtnType.NORMAL : MBMainBtnType.DISABLED}
-          onPress={() => { onSubmitLogin(); }}
+      </View>
+      <MBMainBtn
+        title="Fazer Login"
+        buttonType={canSubmit ? MBMainBtnType.NORMAL : MBMainBtnType.DISABLED}
+        onPress={() => { onSubmitLogin(); }}
+      />
+      <MBCenterStripeText text="ou" marginVertical={8} />
+      <Text style={styles.socialMediaDisclaimer}>
+        Faça seu login utilizando sua conta em uma das redes sociais abaixo
+      </Text>
+      <View style={styles.loginWithSocialButtonsWrapper}>
+        <MBRoundedIconBtn 
+          icon={<IconsSocial.facebookSquare width={24} height={24} strokeColor="#FFF" />} 
+          backgroundColor={PrimaryColors.mainBlue}
+          onPress={() => {}}
         />
-        <MBCenterStripeText text="ou" marginVertical={8} />
-        <Text style={styles.socialMediaDisclaimer}>
-          Faça seu login utilizando sua conta em uma das redes sociais abaixo
-        </Text>
-        <View style={styles.loginWithSocialButtonsWrapper}>
-          <MBRoundedIconBtn 
-            icon={<IconsSocial.facebookSquare width={24} height={24} strokeColor="#FFF" />} 
-            backgroundColor={PrimaryColors.mainBlue}
-            onPress={() => {}}
-          />
-          <MBRoundedIconBtn 
-            icon={<IconsSocial.googleSquare width={24} height={24} strokeColor="#FFF" />} 
-            backgroundColor={PrimaryColors.mainRed}
-            onPress={() => {}}
-          />
-          <MBRoundedIconBtn 
-            icon={<IconsSocial.apple width={24} height={24} fillColor="#000" strokeColor='#000' />}
-            onPress={() => {}}
-          />
-        </View>
-      {/* </View> */}
+        <MBRoundedIconBtn 
+          icon={<IconsSocial.googleSquare width={24} height={24} strokeColor="#FFF" />} 
+          backgroundColor={PrimaryColors.mainRed}
+          onPress={() => {}}
+        />
+        <MBRoundedIconBtn 
+          icon={<IconsSocial.apple width={24} height={24} fillColor="#000" strokeColor='#000' />}
+          onPress={() => {}}
+        />
+      </View>
     </KeyboardAvoidingView>
   );
 
@@ -144,9 +121,7 @@ const secondaryColors = [
             <>
             <Text style={{color: PrimaryColors.primary}}>Se você já tem cadastro, faça login para continuar.</Text>
             <View style={{ flexDirection: 'row' }}>
-              <Text style={{ fontFamily: 'SNPro-Regular', fontSize: 16, color: NeutralColors.white }}>
-                Se ainda não tem, {''}
-              </Text>
+              <Text style={styles.notSingedUpText}>Se ainda não tem, </Text>
               <MBTextBtn title={'clique aqui.'} textColor={PrimaryColors.mainBlue} size={MBTextBtnSize.LARGE} /> 
             </View>
             </>
@@ -194,7 +169,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   contentWrapper: {
-    // flex: 1,
     gap: 16,
     width: '100%',
     padding: 20,
@@ -215,6 +189,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'SNPro-Light',
     fontSize: 14,
+  },
+  notSingedUpText: { 
+    fontFamily: 'SNPro-Regular', 
+    fontSize: 16, 
+    color: NeutralColors.white 
   },
   actionButtonsWrapper: {
     flexDirection: 'row',

@@ -4,7 +4,7 @@ import MBMainBtn, { MBMainBtnType } from '../../../components/buttons/MBMainBtn'
 import MBTextBtn from '../../../components/buttons/MBTextBtn';
 import DSOtpCodeInput from '../../../components/form/MBOTPCodeInput';
 import DSTitleDescripted from '../../../components/texts/MBTitleDescripted';
-import { NeutralColors } from '../../../common/colors/Colors';
+import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
 import { spacing, typography } from '../../../common/constants/Typgraphy';
 import { StepProps } from '../../../common/types/Types';
 
@@ -78,6 +78,7 @@ export const StepOTP: React.FC<StepOTPProps> = ({ data, updateData, onNext, onBa
     <View style={styles.container}>
       <View style={styles.contentWrapper}>
         <DSTitleDescripted
+          colorTitle={PrimaryColors.primaryDark}
           title="Valide seu código"
           description={`Um código de validação foi enviado para${destinationLabel}.`}
         />
@@ -163,14 +164,13 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     paddingTop: spacing.sm,
-    backgroundColor: NeutralColors.background,
   },
   backButtonWrapper: {
     flex: 1,
     position: 'relative',
     textAlign: 'center',
     width: '100%',
-    marginTop: spacing.sm,
+    marginVertical: spacing.md,
     alignItems: 'center',
   },
 });

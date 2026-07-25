@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MBMainInput } from '../../../components/form/MBMainInput';
-import { NeutralColors } from '../../../common/colors/Colors';
+import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
 import { spacing, typography } from '../../../common/constants/Typgraphy';
 import { isValidCPF } from '../../../common/constants/Validators';
 import { maskCPF } from '../../../common/constants/Masks';
@@ -29,6 +29,7 @@ export const StepDocumento: React.FC<StepProps> = ({ data, updateData, onNext, o
     <View style={styles.container}>
       <View style={styles.contentWrapper}>
         <MBTitleDescripted 
+          colorTitle={PrimaryColors.primaryDark}
           title="Estamos quase lá..."
           description="Pedimos seu CPF para vários itens de segurança. Ele não aparece para outros usuários."
         />
@@ -85,7 +86,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     paddingTop: spacing.sm,
-    backgroundColor: NeutralColors.background,
   },
   lockIcon: {
     fontSize: 16,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     textAlign: 'center',
     width: '100%',
-    marginTop: spacing.sm,
+    marginVertical: spacing.md,
     alignItems: 'center',
   },
 });
