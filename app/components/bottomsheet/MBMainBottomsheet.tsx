@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Modal, PanResponder, Pressable, StyleSheet, Text, View, StatusBar } from 'react-native';
+import { Animated, Modal, PanResponder, Pressable, Platform, StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Icons } from '../../common/icons/Icons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     width: '100%',
+    bottom: Platform.OS === 'ios' ? 20 : 0,
   },
   contentBox: {
     alignSelf: 'stretch',

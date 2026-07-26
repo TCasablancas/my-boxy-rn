@@ -44,26 +44,45 @@ export const useStoreSignupViewModel = () => {
     setIsComplete,
     scrollViewRef,
     fadeAnim,
+    translateXAnim,
   } = useMainStoreSignupHooks();
 
-  const animateStepChange = useCallback((advance: () => void) => {
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 120,
-      useNativeDriver: true,
-    }).start(() => {
+  const animateStepChange = useCallback((direction: 'forward' | 'backward', advance: () => void) => {
+    const exitOffset = direction === 'forward' ? -28 : 28;
+    const enterOffset = direction === 'forward' ? 28 : -28;
+
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 120,
+        useNativeDriver: true,
+      }),
+      Animated.timing(translateXAnim, {
+        toValue: exitOffset,
+        duration: 120,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
       advance();
       scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 180,
-        useNativeDriver: true,
-      }).start();
+      translateXAnim.setValue(enterOffset);
+      Animated.parallel([
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 180,
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateXAnim, {
+          toValue: 0,
+          duration: 180,
+          useNativeDriver: true,
+        }),
+      ]).start();
     });
-  }, [fadeAnim, scrollViewRef]);
+  }, [fadeAnim, scrollViewRef, translateXAnim]);
 
   const goNext = useCallback(() => {
-    animateStepChange(() => {
+    animateStepChange('forward', () => {
       setStepIndex((prev) => {
         const { nextStepIndex, shouldComplete } = resolveStoreSignupNextStepIndex(
           prev,
@@ -78,7 +97,7 @@ export const useStoreSignupViewModel = () => {
   }, [animateStepChange, setIsComplete, setStepIndex]);
 
   const goBack = useCallback(() => {
-    animateStepChange(() => {
+    animateStepChange('backward', () => {
       setStepIndex((prev) => resolveStoreSignupBackStepIndex(prev));
     });
   }, [animateStepChange, setStepIndex]);
@@ -155,6 +174,7 @@ export const useStoreSignupViewModel = () => {
     renderStep,
     scrollViewRef,
     fadeAnim,
+    translateXAnim,
   };
 };
 

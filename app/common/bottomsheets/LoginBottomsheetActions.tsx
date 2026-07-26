@@ -19,11 +19,11 @@ export function getBlockedTabBottomsheetDescription() {
 }
 
 export function getStoreRequiredBottomsheetTitle() {
-  return 'Minha loja indisponivel';
+  return 'Eita, mas você tem loja??';
 }
 
 export function getStoreRequiredBottomsheetDescription() {
-  return 'Voce ainda nao possui uma loja cadastrada. Crie sua loja para acessar essa aba.';
+  return 'Parece que você ainda não possui uma loja cadastrada. Para acessar essa sessão, é necessário criar sua loja primeiro.';
 }
 
 export function renderBlockedTabBottomsheetContent() {
@@ -86,9 +86,11 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     // flex: 1,
     // height: 46,
+    position: 'relative',
     gap: 16,
     width: '100%',
+    alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
 });

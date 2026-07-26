@@ -3,18 +3,18 @@ import MainNavigation, { registerNavigationTarget } from '../../common/navigatio
 import ProductDetailView from '../productdetail/ProductDetailView';
 import UserProfileView from '../userprofile/UserProfileView';
 import NotificationsView from '../notifications/NotificationsView';
-import StoreSignupNavigator from '../storesignup/StoreSignupNavigator';
+import StoreSignupView from '../storesignup/StoreSignupView';
 import type { HomeCarouselItem } from '../../sections/home/HomeCarouselListHeader';
 import SearchView from '../search/SearchView';
 
 export function UserHomeStoreSignupView() {
-  return <StoreSignupNavigator onSubmit={async () => {}} />;
+  return <StoreSignupView />;
 }
 
 registerNavigationTarget('UserProfileView', UserProfileView);
 registerNavigationTarget('NotificationsView', NotificationsView);
 registerNavigationTarget('UserHomeStoreSignupView', UserHomeStoreSignupView);
-registerNavigationTarget('StoreSignupNavigator', StoreSignupNavigator);
+registerNavigationTarget('StoreSignupNavigator', StoreSignupView);
 registerNavigationTarget('ProductDetailView', ProductDetailView);
 registerNavigationTarget('SearchView', SearchView);
 

@@ -39,6 +39,7 @@ export function useMainStoreSignupHooks() {
 
   const scrollViewRef = useRef<ScrollView>(null as unknown as ScrollView);
   const fadeAnim = useRef(new Animated.Value(1)).current;
+  const translateXAnim = useRef(new Animated.Value(0)).current;
 
   const updateData = useCallback((patch: Partial<StoreSignupFormData>) => {
     setFormData((prev) => ({ ...prev, ...patch }));
@@ -53,5 +54,6 @@ export function useMainStoreSignupHooks() {
     setIsComplete,
     scrollViewRef,
     fadeAnim,
+    translateXAnim,
   };
 }

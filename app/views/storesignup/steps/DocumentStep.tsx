@@ -1,6 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { KeyboardAwareScreen } from '../../../sections/global/KeyboarAwareScreen';
+import { View, Text, StyleSheet, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { MBStepperHeader } from '../../../components/stepper/MBStepperHeader';
 import { MBMainInput } from '../../../components/form/MBMainInput';
 import MBOptionToggle from '../../../components/selectors/MBOptionToggle';
@@ -82,9 +81,16 @@ export function DocumentStep({ navigation }: Props) {
   };
 
   return (
-    <View style={styles.container}>
-      <KeyboardAwareScreen>
-        <MBTitledViewHeader
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0} // Adjust based on your header height
+    >
+      <ScrollView 
+        contentContainerStyle={styles.container}
+        keyboardShouldPersistTaps="handled"
+      >
+        {/* <MBTitledViewHeader
           btnsLeft={
             <MBRoundedIconBtn 
               icon={<Icons.arrowBack width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
@@ -92,7 +98,7 @@ export function DocumentStep({ navigation }: Props) {
             />
           }
         />
-        <MBStepperHeader steps={STORE_SIGNUP_STEP_LABELS} currentIndex={0} />
+        <MBStepperHeader steps={STORE_SIGNUP_STEP_LABELS} currentIndex={0} /> */}
         <MBTitleDescripted 
           title="Dados do Proprietário"
           description="Se você já possui uma conta de usuário, podemos preencher automaticamente os dados."
@@ -129,7 +135,6 @@ export function DocumentStep({ navigation }: Props) {
             onChange={handleUseExistingAccount}
           />
         </View>
-      </KeyboardAwareScreen>
       <View style={styles.buttonWrapper}>
         <MBMainBtn 
           title="Continuar" 
@@ -137,13 +142,18 @@ export function DocumentStep({ navigation }: Props) {
           buttonType={ canContinue ? MBMainBtnType.NORMAL : MBMainBtnType.DISABLED } 
         />
       </View>
-    </View>
+    </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: '100%',
+    height: '100%',
+    flexGrow: 1,
+    paddingHorizontal: 8,
   },
   buttonWrapper: {
     position: 'absolute',

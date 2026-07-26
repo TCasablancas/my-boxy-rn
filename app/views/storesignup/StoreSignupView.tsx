@@ -1,11 +1,16 @@
-import { View, Text, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, Animated } from 'react-native';
+import { View, Text, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, Animated, StatusBar } from 'react-native';
 import { STORE_SIGNUP_STEP_LABELS } from './StoreSignupModel';
 import { MBStepperHeader } from '../../components/stepper/MBStepperHeader';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { KeyboardScrollProvider } from '../../common/contexts/KeyboardScrollContext';
 import { spacing } from '../../common/constants/Typgraphy';
 import { useStoreSignupViewModel } from './StoreSignupViewModel';
 import MBMainBtn from '../../components/buttons/MBMainBtn';
+import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
+import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
+import { NeutralColors } from '../../common/colors/Colors';
+import { Icons } from '../../common/icons/Icons';
+import MainNavigation from '../../common/navigation/MainNavigation';
 
 export default function StoreSignupView() {
   const safeArea = useSafeAreaInsets();
@@ -18,6 +23,7 @@ export default function StoreSignupView() {
     renderStep,
     scrollViewRef,
     fadeAnim,
+    translateXAnim,
   } = useStoreSignupViewModel();
 
   if (isComplete) {
@@ -30,7 +36,16 @@ export default function StoreSignupView() {
   }
 
   return (
-    <View style={[styles.container, { paddingTop: safeArea.top + 40 }]}> 
+    <SafeAreaProvider style={[styles.container, { marginTop: safeArea.top }]}>
+      <StatusBar barStyle="dark-content" backgroundColor={NeutralColors.backgroundAlt} />
+    {/* <View style={[styles.container, { paddingTop: safeArea.top + 40 }]}>  */}
+      <MBTitledViewHeader 
+        title="Cadastro"
+        btnsLeft={<MBRoundedIconBtn 
+          icon={<Icons.arrowBack width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+          onPress={() => { MainNavigation.pop(); }}
+        />}
+      />
       <MBStepperHeader steps={STORE_SIGNUP_STEP_LABELS} currentIndex={stepIndex} />
 
       <KeyboardAvoidingView
@@ -45,17 +60,27 @@ export default function StoreSignupView() {
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
           >
-            <Animated.View style={{ opacity: fadeAnim, flex: 1 }}>{renderStep()}</Animated.View>
+            <Animated.View
+              style={{
+                opacity: fadeAnim,
+                flex: 1,
+                transform: [{ translateX: translateXAnim }],
+              }}
+            >
+              {renderStep()}
+            </Animated.View>
           </ScrollView>
         </KeyboardScrollProvider>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
+    // backgroundColor: 'red',
+    // height: '100%',
   },
   keyboardArea: {
     flex: 1,

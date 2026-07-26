@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { StoreSignupProvider } from '../../common/contexts/StoreSignupContext';
 import { StoreSignupStep, StoreSignupModel } from '../../common/types/StoreSignupTypes';
+import StoreSignupView from './StoreSignupView';
 import { DocumentStep } from './steps/DocumentStep';
 import { OwnerStep } from './steps/OwnerStep';
 import { StoreDataStep } from './steps/StoreDataStep';

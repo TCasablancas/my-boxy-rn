@@ -272,10 +272,8 @@
 // Você está sem mensagens gratuitas até 15:20
 
 
-// Claude é uma IA e pode cometer erros. Por favor, verifique as respostas.
-// StoreContactStep · TSX
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView, View, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
  
 import { KeyboardAwareScreen } from '../../../sections/global/KeyboarAwareScreen';
 // import { StepProgressHeader } from '@/components/StepProgressHeader';
@@ -306,9 +304,16 @@ export function StoreContactStep({ navigation }: Props) {
   const canContinue = Boolean(draft.storePhoneNumber && draft.storeEmail && isValidEmail(draft.storeEmail));
  
   return (
-    <KeyboardAwareScreen>
-      {/* <StepProgressHeader title="Contato da loja" subtitle="Como os compradores vão te encontrar" currentStep={4} totalSteps={6} /> */}
-      <View style={{marginVertical: 16}}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+    >
+      <ScrollView 
+        contentContainerStyle={styles.container}
+        keyboardShouldPersistTaps="handled"
+      >
+    <View style={{marginVertical: 16}}>
         <MBTitledViewHeader 
           title="Curtidos"
           btnsRight={<MBRoundedIconBtn 
@@ -354,6 +359,18 @@ export function StoreContactStep({ navigation }: Props) {
         buttonType={MBMainBtnType.DISABLED} 
         onPress={() => goBack(StoreSignupStep.ContatoLoja, navigation)} 
       />
-    </KeyboardAwareScreen>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    flexGrow: 1,
+    paddingHorizontal: 8,
+    // justifyContent: 'center',
+  },
+});
