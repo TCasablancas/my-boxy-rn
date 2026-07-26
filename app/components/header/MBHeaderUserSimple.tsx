@@ -103,7 +103,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'SNPro-Bold',
     textAlign: 'center',
-    lineHeight: 14,
   },
   userEmail: {
     fontSize: 12,

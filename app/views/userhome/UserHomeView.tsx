@@ -213,7 +213,7 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
     <SafeAreaView children={
       <View style={[styles.container]}>
         <View style={[styles.contentWrapper, { paddingTop: safeAreaInsets.top }]}>
-          <View style={{alignItems: 'center', marginBottom: 8, justifyContent: 'center', width: '100%'}}>
+          <View style={styles.headerWrapper}>
             <MBHeaderUserSimple 
               userName={userProfile.userName}
               userAlias={userProfile.userAlias}
@@ -258,6 +258,12 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
 }
 
 const styles = StyleSheet.create({
+  headerWrapper: {
+    alignItems: 'center', 
+    marginBottom: 8, 
+    justifyContent: 'center', 
+    width: '100%'
+  },
   container: {
     flex: 1,
     alignItems: 'center',

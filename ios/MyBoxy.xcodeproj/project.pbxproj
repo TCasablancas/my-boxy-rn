@@ -35,28 +35,28 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MyBoxy/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MyBoxy/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = MyBoxy/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		18A9883E56ED407D825F3354 /* SNPro-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-Black.ttf"; path = "../assets/fonts/SNPro-Black.ttf"; sourceTree = "<group>"; };
+		18A9883E56ED407D825F3354 /* SNPro-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-Black.ttf"; path = "../assets/fonts/SNPro-Black.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-MyBoxy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBoxy.debug.xcconfig"; path = "Target Support Files/Pods-MyBoxy/Pods-MyBoxy.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-MyBoxy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBoxy.release.xcconfig"; path = "Target Support Files/Pods-MyBoxy/Pods-MyBoxy.release.xcconfig"; sourceTree = "<group>"; };
-		57CD45A53D594F079E70B13F /* SNPro-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-ExtraBoldItalic.ttf"; path = "../assets/fonts/SNPro-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		58A8635330474F3D90540F99 /* SNPro-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-ExtraLightItalic.ttf"; path = "../assets/fonts/SNPro-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
-		5BC2660ACBB845A1B1633D63 /* SNPro-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-LightItalic.ttf"; path = "../assets/fonts/SNPro-LightItalic.ttf"; sourceTree = "<group>"; };
+		57CD45A53D594F079E70B13F /* SNPro-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-ExtraBoldItalic.ttf"; path = "../assets/fonts/SNPro-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		58A8635330474F3D90540F99 /* SNPro-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-ExtraLightItalic.ttf"; path = "../assets/fonts/SNPro-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		5BC2660ACBB845A1B1633D63 /* SNPro-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-LightItalic.ttf"; path = "../assets/fonts/SNPro-LightItalic.ttf"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-MyBoxy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyBoxy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MyBoxy/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MyBoxy/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		924A3201B6E04BD9878D4805 /* SNPro-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-SemiBoldItalic.ttf"; path = "../assets/fonts/SNPro-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
-		9FF7D752F2E3437E9BCDE0DE /* SNPro-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-Medium.ttf"; path = "../assets/fonts/SNPro-Medium.ttf"; sourceTree = "<group>"; };
-		B1C258DD987C4DDBBFD4691C /* SNPro-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-BoldItalic.ttf"; path = "../assets/fonts/SNPro-BoldItalic.ttf"; sourceTree = "<group>"; };
-		C1FF2287E097405F81227092 /* SNPro-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-MediumItalic.ttf"; path = "../assets/fonts/SNPro-MediumItalic.ttf"; sourceTree = "<group>"; };
-		C27CBD31211145958FBB5D82 /* SNPro-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-Bold.ttf"; path = "../assets/fonts/SNPro-Bold.ttf"; sourceTree = "<group>"; };
-		CC4AD171971C47828B6C0809 /* SNPro-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-Light.ttf"; path = "../assets/fonts/SNPro-Light.ttf"; sourceTree = "<group>"; };
-		CCA846C9D43341D99EFEEDD3 /* SNPro-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-Regular.ttf"; path = "../assets/fonts/SNPro-Regular.ttf"; sourceTree = "<group>"; };
-		D3397B17645E49FBADAD6609 /* SNPro-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-Italic.ttf"; path = "../assets/fonts/SNPro-Italic.ttf"; sourceTree = "<group>"; };
-		D573829BF8854C6FB547F11E /* SNPro-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-BlackItalic.ttf"; path = "../assets/fonts/SNPro-BlackItalic.ttf"; sourceTree = "<group>"; };
+		924A3201B6E04BD9878D4805 /* SNPro-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-SemiBoldItalic.ttf"; path = "../assets/fonts/SNPro-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		9FF7D752F2E3437E9BCDE0DE /* SNPro-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-Medium.ttf"; path = "../assets/fonts/SNPro-Medium.ttf"; sourceTree = "<group>"; };
+		B1C258DD987C4DDBBFD4691C /* SNPro-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-BoldItalic.ttf"; path = "../assets/fonts/SNPro-BoldItalic.ttf"; sourceTree = "<group>"; };
+		C1FF2287E097405F81227092 /* SNPro-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-MediumItalic.ttf"; path = "../assets/fonts/SNPro-MediumItalic.ttf"; sourceTree = "<group>"; };
+		C27CBD31211145958FBB5D82 /* SNPro-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-Bold.ttf"; path = "../assets/fonts/SNPro-Bold.ttf"; sourceTree = "<group>"; };
+		CC4AD171971C47828B6C0809 /* SNPro-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-Light.ttf"; path = "../assets/fonts/SNPro-Light.ttf"; sourceTree = "<group>"; };
+		CCA846C9D43341D99EFEEDD3 /* SNPro-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-Regular.ttf"; path = "../assets/fonts/SNPro-Regular.ttf"; sourceTree = "<group>"; };
+		D3397B17645E49FBADAD6609 /* SNPro-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-Italic.ttf"; path = "../assets/fonts/SNPro-Italic.ttf"; sourceTree = "<group>"; };
+		D573829BF8854C6FB547F11E /* SNPro-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-BlackItalic.ttf"; path = "../assets/fonts/SNPro-BlackItalic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F04D735B625F4EAB84CEC8E3 /* SNPro-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-SemiBold.ttf"; path = "../assets/fonts/SNPro-SemiBold.ttf"; sourceTree = "<group>"; };
-		F574F1D822C84059AFE56511 /* SNPro-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-ExtraLight.ttf"; path = "../assets/fonts/SNPro-ExtraLight.ttf"; sourceTree = "<group>"; };
-		FC0A538390F948F4A545BF0E /* SNPro-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-ExtraBold.ttf"; path = "../assets/fonts/SNPro-ExtraBold.ttf"; sourceTree = "<group>"; };
+		F04D735B625F4EAB84CEC8E3 /* SNPro-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-SemiBold.ttf"; path = "../assets/fonts/SNPro-SemiBold.ttf"; sourceTree = "<group>"; };
+		F574F1D822C84059AFE56511 /* SNPro-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-ExtraLight.ttf"; path = "../assets/fonts/SNPro-ExtraLight.ttf"; sourceTree = "<group>"; };
+		FC0A538390F948F4A545BF0E /* SNPro-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-ExtraBold.ttf"; path = "../assets/fonts/SNPro-ExtraBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +143,6 @@
 				924A3201B6E04BD9878D4805 /* SNPro-SemiBoldItalic.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -333,6 +332,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F48MGZ2AUR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MyBoxy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -363,6 +363,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F48MGZ2AUR;
 				INFOPLIST_FILE = MyBoxy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (

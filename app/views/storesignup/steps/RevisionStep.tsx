@@ -1,88 +1,71 @@
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
-import { v4 as uuidv4 } from 'uuid';
-import { KeyboardAwareScreen } from '../../../sections/global/KeyboarAwareScreen';
-// import { StepProgressHeader } from '@/components/StepProgressHeader';
+import React from 'react';
+import { StatusBar, StyleSheet, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import ScrollViewKeyboard from '../../../sections/global/ScrollViewKeyboard';
+import { spacing } from '../../../common/constants/Sizes';
+import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
+
+import MBTextBtn from '../../../components/buttons/MBTextBtn';
 import MBSummaryRow from '../../../components/global/MBSummaryRow';
-import MBMainBtn, { MBMainBtnType } from '../../../components/buttons/MBMainBtn';
+import MBMainBtn from '../../../components/buttons/MBMainBtn';
+import MBTitleDescripted from '../../../components/texts/MBTitleDescripted';
 
-import { useStoreSignup } from '../../../common/contexts/StoreSignupContext';
-import { StoreSignupModel, StoreSignupStep } from '../../../common/types/StoreSignupTypes';
+import type { StoreSignupRevisionStepProps } from '../StoreSignupModel';
 
-interface Props {
-  navigation: { goBack: () => void };
-  onSubmit: (payload: StoreSignupModel) => Promise<void>;
-}
-
-export function RevisionStep({ navigation, onSubmit }: Props) {
-  const { state, goBack } = useStoreSignup();
-  const { draft } = state;
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleConfirm = async () => {
-    setIsSubmitting(true);
-    setError(null);
-    try {
-      const now = new Date().toISOString();
-      const payload: StoreSignupModel = {
-        storeId: uuidv4(), // troque pelo gerador de ID já usado no projeto, se houver
-        storeOwner: {
-          userId: draft.storeOwner.userId ?? '',
-          name: draft.storeOwner.name ?? '',
-          email: draft.storeOwner.email ?? '',
-          phoneNumber: draft.storeOwner.phoneNumber ?? '',
-          isWhatsapp: draft.storeOwner.isWhatsapp,
-          profileImageUri: draft.storeOwner.profileImageUri ?? '',
-        },
-        storeName: draft.storeName ?? '',
-        storeAlias: draft.storeAlias ?? '',
-        storeDescription: draft.storeDescription ?? '',
-        storeAddress: draft.storeAddress as StoreSignupModel['storeAddress'],
-        storePhoneNumber: draft.storePhoneNumber ?? '',
-        isWhatsapp: draft.isWhatsapp,
-        storeEmail: draft.storeEmail ?? '',
-        createdAt: now,
-        updatedAt: now,
-      };
-
-      await onSubmit(payload);
-    } catch (e) {
-      setError('Não foi possível concluir o cadastro. Tente novamente.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+export function RevisionStep({ data, onBack, onSubmit }: StoreSignupRevisionStepProps) {
+  const addressLine = [
+    data.storeAddress.logradouro, data.storeAddress.numero
+  ].filter(Boolean).join(', ');
 
   return (
-    <KeyboardAwareScreen>
-      {/* <StepProgressHeader title="Revisão" subtitle="Confira os dados antes de criar sua loja" currentStep={6} totalSteps={6} /> */}
-
-      <View style={{ gap: 12 }}>
-        <MBSummaryRow label="Proprietário" value={draft.storeOwner.name} />
-        <MBSummaryRow label="E-mail do proprietário" value={draft.storeOwner.email} />
-        <MBSummaryRow label="Nome da loja" value={draft.storeName} />
-        <MBSummaryRow label="Alias" value={draft.storeAlias} />
-        <MBSummaryRow label="Telefone da loja" value={draft.storePhoneNumber} />
-        <MBSummaryRow label="E-mail da loja" value={draft.storeEmail} />
-        <MBSummaryRow
-          label="Endereço"
-          value={draft.storeAddress ? `${draft.storeAddress.rua ?? ''}, ${draft.storeAddress.numero ?? ''}` : ''}
-        />
+    <SafeAreaProvider>
+      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+      <ScrollViewKeyboard
+        children={
+          <>
+          <View style={styles.container}>
+            <MBTitleDescripted
+              colorTitle={PrimaryColors.primaryDark}
+              title="Revisão final"
+              description="Confira os dados antes de concluir o cadastro da loja."
+            />
+            <View style={[{ gap: spacing.md }]}>
+              <MBSummaryRow label="Documento" value={data.storeDocument} />
+              <MBSummaryRow label="Proprietário" value={data.ownerName} />
+              <MBSummaryRow label="E-mail do proprietário" value={data.ownerEmail} />
+              <MBSummaryRow label="Telefone do proprietário" value={data.ownerPhoneNumber} />
+              <MBSummaryRow label="Nome da loja" value={data.storeName} />
+              <MBSummaryRow label="Alias" value={data.storeAlias} />
+              <MBSummaryRow label="Descrição" value={data.storeDescription} />
+              <MBSummaryRow label="Telefone da loja" value={data.storePhoneNumber} />
+              <MBSummaryRow label="E-mail da loja" value={data.storeEmail} />
+              <MBSummaryRow label="Endereço" value={addressLine} />
+            </View>
+          </View>
+          </>
+      } />
+      <View style={styles.buttonWrapper}>
+        <MBTextBtn title="Voltar" onPress={onBack} />
+        <MBMainBtn title="Criar loja" onPress={onSubmit} flex={1} />
       </View>
-
-      {error && <Text>{error}</Text>}
-
-      <MBMainBtn 
-        title={isSubmitting ? 'Criando loja...' : 'Criar loja'} 
-        onPress={handleConfirm} 
-        buttonType={isSubmitting ? MBMainBtnType.DISABLED : MBMainBtnType.NORMAL} 
-      />
-      <MBMainBtn 
-        title="Voltar" 
-        buttonType={MBMainBtnType.DISABLED} 
-        onPress={() => goBack(StoreSignupStep.Revisao, navigation)} 
-      />
-    </KeyboardAwareScreen>
+    </SafeAreaProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    gap: spacing.lg,
+  },
+  buttonWrapper: {
+    gap: spacing.xl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingLeft: spacing.xl,
+    paddingRight: spacing.lg,
+    marginTop: spacing.lg,
+    borderTopWidth: 1,
+    borderTopColor: NeutralColors.background,
+    paddingTop: spacing.lg,
+  },
+});

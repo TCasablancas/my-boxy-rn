@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import {
-  ActivityIndicator, Animated, StyleSheet, Text, TextInput, TextInputProps, TouchableOpacity, View,
+  ActivityIndicator, Animated, Platform, StyleSheet, Text, TextInput, TextInputProps, TouchableOpacity, View,
 } from 'react-native';
 import { NeutralColors, OverlayColors, PrimaryColors, StateColors } from '../../common/colors/Colors';
 import { radius, spacing, typography } from '../../common/constants/Typgraphy';
@@ -227,13 +227,12 @@ const styles = StyleSheet.create({
     color: NeutralColors.textPlaceholder,
   },
   input: {
-    // flex: 1,
     fontSize: 16,
     color: NeutralColors.text,
     fontFamily: 'SNPro-Regular',
     width: '100%',
     height: 24,
-    lineHeight: 12,
+    lineHeight: Platform.OS === 'ios' ? 0 : 12,
     paddingTop: 0,
     paddingBottom: 0,
     top: 4,

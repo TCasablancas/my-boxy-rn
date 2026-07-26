@@ -21,6 +21,7 @@ interface MBMainBtnProps {
   onClick?: () => void;
   backgroundColor?: string;
   textColor?: string;
+  flex?: number;
 }
 
 export default function MBMainBtn({
@@ -32,6 +33,7 @@ export default function MBMainBtn({
   buttonType = MBMainBtnType.NORMAL,
   backgroundColor,
   textColor,
+  flex,
 }: MBMainBtnProps) {
 
   const resolvedType = buttonType ?? (backgroundColor || textColor
@@ -72,7 +74,8 @@ export default function MBMainBtn({
   return (
     <Pressable
       style={[
-        styles.button, 
+        styles.button,
+        flex !== undefined && { flex },
         MBMainBtnType.OUTLINED === resolvedType && styles.outlinedButton,
         {
           backgroundColor: resolvedBackgroundColor,

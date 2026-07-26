@@ -1,6 +1,6 @@
 import 'react-native-get-random-values';
 import { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -82,7 +82,7 @@ function MainTabs() {
   const screenOptions = {
     tabBarStyle: {
       backgroundColor: NeutralColors.backgroundAlt,
-      height: 60,
+      height: Platform.OS === 'ios' ? 90 : 60,
       elevation: 0,
       borderTopWidth: 0,
       shadowOpacity: 0,
@@ -126,16 +126,20 @@ function MainTabs() {
               tabBarIcon: ({ color }) => {
                 const IconComponent = screen.icon;
                 const isMinhaLojaDisabled = screen.name === 'minha loja' && !hasRegisteredStore;
-                const iconColor = isMinhaLojaDisabled ? '#9CA3AF' : color;
+                // const iconColor = isMinhaLojaDisabled ? PrimaryColors.primaryLight : color;
 
-                return <IconComponent width={20} height={20} stroke={iconColor} strokeColor={iconColor} />;
+                return <IconComponent width={20} height={20} stroke={color} strokeColor={color} />;
               },
               tabBarButton: (props: any) => {
                 const isMinhaLojaDisabled = screen.name === 'minha loja' && !hasRegisteredStore;
+                const isMinhaLojaTab = screen.name === 'minha loja';
 
                 return tabBarButton({
                   ...props,
-                  style: [props.style, isMinhaLojaDisabled ? styles.disabledTabButton : null],
+                  style: [
+                    props.style, 
+                    isMinhaLojaDisabled && isMinhaLojaTab ? styles.disabledTabButton : null
+                  ],
                 });
               },
             }}
@@ -201,17 +205,17 @@ const styles = StyleSheet.create({
     flex: 1, 
     width: '100%', 
     position: 'absolute', 
-    bottom: 68, 
+    bottom: Platform.OS === 'ios' ? 98 : 68,
     zIndex: 100, 
     alignItems: 'center', 
     justifyContent: 'center',
   },
   disabledTabButton: {
-    opacity: 0.35,
-    backgroundColor: PrimaryColors.primaryLight,
+    opacity: 0.35, 
     borderRadius: 8,
     margin: 4,
     padding: 4,
-    top: -4
+    top: -4,
+    marginBottom: Platform.OS === 'ios' ? -4 : 0,
   },
 });

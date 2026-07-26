@@ -1,11 +1,20 @@
-import { View, Text, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, Animated } from 'react-native';
-import { STORE_SIGNUP_STEP_LABELS } from './StoreSignupModel';
-import { MBStepperHeader } from '../../components/stepper/MBStepperHeader';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { 
+  View, StyleSheet, KeyboardAvoidingView, Platform, Animated, StatusBar 
+} from 'react-native';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { KeyboardScrollProvider } from '../../common/contexts/KeyboardScrollContext';
-import { spacing } from '../../common/constants/Typgraphy';
+import { spacing } from '../../common/constants/Sizes';
+import { NeutralColors } from '../../common/colors/Colors';
+import { Icons } from '../../common/icons/Icons';
+
+import { MBStepperHeader } from '../../components/stepper/MBStepperHeader';
+import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
+import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
+
+import { STORE_SIGNUP_STEP_LABELS } from './StoreSignupModel';
 import { useStoreSignupViewModel } from './StoreSignupViewModel';
-import MBMainBtn from '../../components/buttons/MBMainBtn';
+import MainNavigation from '../../common/navigation/MainNavigation';
+import SignupSuccessSection from '../../sections/signup/SignupSuccessSection';
 
 export default function StoreSignupView() {
   const safeArea = useSafeAreaInsets();
@@ -18,58 +27,64 @@ export default function StoreSignupView() {
     renderStep,
     scrollViewRef,
     fadeAnim,
+    translateXAnim,
   } = useStoreSignupViewModel();
 
   if (isComplete) {
     return (
-      <View style={styles.successContainer}>
-        <Text style={styles.successTitle}>Cadastro da loja concluído</Text>
-        <MBMainBtn title="Voltar para início" onPress={handleFinish} />
-      </View>
+      <SignupSuccessSection />
     );
   }
 
   return (
-    <View style={[styles.container, { paddingTop: safeArea.top + 40 }]}> 
-      <MBStepperHeader steps={STORE_SIGNUP_STEP_LABELS} currentIndex={stepIndex} />
+    <SafeAreaProvider style={[
+      { marginTop: Platform.OS === 'ios' ? safeArea.top : safeArea.top + 40 }
+    ]}>
+      <StatusBar barStyle="dark-content" backgroundColor={NeutralColors.backgroundAlt} />
+      <MBTitledViewHeader 
+        title="Criar Loja"
+        btnsLeft={<MBRoundedIconBtn 
+          icon={<Icons.arrowBack width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
+          onPress={() => { MainNavigation.pop(); }}
+        />}
+      />
+      <View style={styles.stepperWrapper}>
+        <MBStepperHeader steps={STORE_SIGNUP_STEP_LABELS} currentIndex={stepIndex} />
+      </View>
 
       <KeyboardAvoidingView
-        style={styles.keyboardArea}
+        style={[{ flex: 1 }]}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
       >
         <KeyboardScrollProvider scrollViewRef={scrollViewRef}>
-          <ScrollView
-            ref={scrollViewRef}
-            contentContainerStyle={styles.scrollContent}
-            keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}
+          <Animated.View
+            style={{
+              opacity: fadeAnim,
+              flex: 1,
+              transform: [{ translateX: translateXAnim }],
+              bottom: safeArea.bottom,
+            }}
           >
-            <Animated.View style={{ opacity: fadeAnim, flex: 1 }}>{renderStep()}</Animated.View>
-          </ScrollView>
+            {renderStep()}
+          </Animated.View>
         </KeyboardScrollProvider>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  keyboardArea: {
-    flex: 1,
-  },
-  scrollContent: {
-    flexGrow: 1,
-    paddingHorizontal: spacing.lg,
+  stepperWrapper: {
+    marginHorizontal: spacing.md,
+    marginBottom: spacing.lg,
     paddingBottom: spacing.xxl,
   },
   successContainer: {
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: spacing.lg,
-    gap: 12,
+    gap: spacing.md,
   },
   successTitle: {
     fontSize: 18,

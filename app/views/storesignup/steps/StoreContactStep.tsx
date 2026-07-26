@@ -272,88 +272,98 @@
 // Você está sem mensagens gratuitas até 15:20
 
 
-// Claude é uma IA e pode cometer erros. Por favor, verifique as respostas.
-// StoreContactStep · TSX
 import React from 'react';
-import { View } from 'react-native';
- 
-import { KeyboardAwareScreen } from '../../../sections/global/KeyboarAwareScreen';
-// import { StepProgressHeader } from '@/components/StepProgressHeader';
-import MBFloatingLabelInput from '../../../components/labels/MBFloatingLabelInput';
-import MBOptionToggle from '../../../components/selectors/MBOptionToggle';
-import MBMainBtn, { MBMainBtnType } from '../../../components/buttons/MBMainBtn';
+import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import ScrollViewKeyboard from '../../../sections/global/ScrollViewKeyboard';
 import { maskPhone } from '../../../common/constants/Masks';
 import { isValidEmail } from '../../../common/constants/Validators';
- 
-import { useStoreSignup } from '../../../common/contexts/StoreSignupContext';
-import { StoreSignupStep } from '../../../common/types/StoreSignupTypes';
-import MBRoundedIconBtn from '../../../components/buttons/MBRoundedIconBtn';
-import MBTitledViewHeader from '../../../components/header/MBTitledViewHeader';
-import { NeutralColors } from '../../../common/colors/Colors';
-import { IconsActions } from '../../../common/icons/IconsActions';
+import { spacing } from '../../../common/constants/Sizes';
+import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
+import { useKeyboard } from '../../../common/constants/UseKeyboard';
+
+import { MBMainInput } from '../../../components/form/MBMainInput';
 import MBTitleDescripted from '../../../components/texts/MBTitleDescripted';
- 
-interface Props {
-  navigation: { navigate: (screen: string) => void; goBack: () => void };
-}
- 
-export function StoreContactStep({ navigation }: Props) {
-  const { state, dispatch, goNext, goBack } = useStoreSignup();
-  const { draft } = state;
- 
-  const update = (patch: Partial<typeof draft>) => dispatch({ type: 'UPDATE_STORE', patch });
- 
-  const canContinue = Boolean(draft.storePhoneNumber && draft.storeEmail && isValidEmail(draft.storeEmail));
- 
+import MBTextBtn from '../../../components/buttons/MBTextBtn';
+import MBOptionToggle from '../../../components/selectors/MBOptionToggle';
+import MBMainBtn, { MBMainBtnType } from '../../../components/buttons/MBMainBtn';
+
+import type { StoreSignupStepProps } from '../StoreSignupModel';
+
+export function StoreContactStep({ data, updateData, onNext, onBack }: StoreSignupStepProps) {
+  const canContinue = Boolean(data.storePhoneNumber && data.storeEmail && isValidEmail(data.storeEmail));
+
   return (
-    <KeyboardAwareScreen>
-      {/* <StepProgressHeader title="Contato da loja" subtitle="Como os compradores vão te encontrar" currentStep={4} totalSteps={6} /> */}
-      <View style={{marginVertical: 16}}>
-        <MBTitledViewHeader 
-          title="Curtidos"
-          btnsRight={<MBRoundedIconBtn 
-            icon={<IconsActions.filter width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
-            onPress={() => {}}
-          />}
+    <SafeAreaProvider>
+      <StatusBar barStyle={Platform.OS === 'ios' ? 'dark-content' : 'light-content'} />
+      <ScrollViewKeyboard
+        children={
+          <>
+            <View style={styles.container}>
+              <MBTitleDescripted
+                colorTitle={PrimaryColors.primaryDark}
+                title="Contato da loja"
+                description="Informe como os clientes vão falar com sua loja."
+              />
+              <View style={[{ gap: spacing.lg }]}>
+                <MBMainInput
+                  label="Telefone da loja"
+                  value={data.storePhoneNumber}
+                  onChangeText={(value) => updateData({ storePhoneNumber: maskPhone(value) })}
+                  keyboardType="phone-pad"
+                />
+                <MBOptionToggle
+                  label="Esse número é WhatsApp"
+                  value={data.isWhatsapp}
+                  onChange={(value) => updateData({ isWhatsapp: value })}
+                />
+                <MBMainInput
+                  label="E-mail da loja"
+                  value={data.storeEmail}
+                  onChangeText={(value) => updateData({ storeEmail: value })}
+                  onFocus={() => {
+                    if (!data.storeEmail) {
+                      // updateData({ storeEmail: data.storeOwner.email });
+                    }
+                  }}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                />
+              </View>
+            </View>
+          </>
+        }
+      />
+      <View style={[
+        styles.buttonWrapper, 
+        { marginBottom: useKeyboard() ? -46 : 0 }
+      ]}>
+        {onBack ? <MBTextBtn title="Voltar" onPress={onBack} /> : null}
+        <MBMainBtn
+          title="Continuar"
+          onPress={onNext}
+          buttonType={canContinue ? MBMainBtnType.NORMAL : MBMainBtnType.DISABLED}
+          flex={1}
         />
       </View>
-      <MBTitleDescripted 
-        title="Estamos quase lá..."
-        description="Pedimos seu CPF para vários itens de segurança. Ele não aparece para outros usuários."
-      />
-      <View style={{ gap: 16 }}>
-        <MBFloatingLabelInput
-          label="Telefone da loja"
-          value={draft.storePhoneNumber ?? ''}
-          onChangeText={(v) => update({ storePhoneNumber: maskPhone(v) })}
-          keyboardType="phone-pad"
-        />
- 
-        <MBOptionToggle
-          label="Esse número é WhatsApp"
-          value={Boolean(draft.isWhatsapp)}
-          onChange={(v) => update({ isWhatsapp: v })}
-        />
- 
-        <MBFloatingLabelInput
-          label="E-mail da loja"
-          value={draft.storeEmail ?? ''}
-          onChangeText={(v) => update({ storeEmail: v })}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-      </View>
- 
-      <MBMainBtn 
-        title="Continuar" 
-        onPress={() => goNext(StoreSignupStep.ContatoLoja, navigation)} 
-        buttonType={canContinue ? MBMainBtnType.NORMAL : MBMainBtnType.DISABLED} 
-      />
-      <MBMainBtn 
-        title="Voltar" 
-        buttonType={MBMainBtnType.DISABLED} 
-        onPress={() => goBack(StoreSignupStep.ContatoLoja, navigation)} 
-      />
-    </KeyboardAwareScreen>
+    </SafeAreaProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    gap: spacing.lg,
+  },
+  buttonWrapper: {
+    gap: spacing.xl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingLeft: spacing.xl,
+    paddingRight: spacing.lg,
+    marginTop: spacing.lg,
+    borderTopWidth: 1,
+    borderTopColor: NeutralColors.background,
+    paddingTop: spacing.lg,
+  }
+});
