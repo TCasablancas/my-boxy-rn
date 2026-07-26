@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { NeutralColors } from '../../common/colors/Colors';
+import { spacing } from '../../common/constants/Sizes';
 
 interface MBSummaryRowProps {
   label: string;
@@ -21,9 +23,10 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 8,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.lg,
     borderBottomWidth: 1,
-    borderBottomColor: '#EEF0F5',
+    borderBottomColor: NeutralColors.border,
   },
   label: { 
     fontSize: 13, 

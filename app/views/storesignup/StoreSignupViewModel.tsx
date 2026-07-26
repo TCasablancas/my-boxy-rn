@@ -1,7 +1,5 @@
 import { useCallback } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
-import MBMainBtn from '../../components/buttons/MBMainBtn';
-import { MBMainInput } from '../../components/form/MBMainInput';
+import { Animated } from 'react-native';
 import { useMainStoreSignupHooks } from './StoreSignupHooks';
 import { STORE_SIGNUP_TOTAL_FORM_STEPS } from './StoreSignupModel';
 import {
@@ -9,30 +7,13 @@ import {
   resolveStoreSignupBackStepIndex,
   resolveStoreSignupNextStepIndex,
 } from './StoreSignupService';
-
-function StepField({
-  label,
-  value,
-  onChangeText,
-  onNext,
-  onBack,
-}: {
-  label: string;
-  value: string;
-  onChangeText: (value: string) => void;
-  onNext: () => void;
-  onBack?: () => void;
-}) {
-  return (
-    <View style={styles.stepWrapper}>
-      <MBMainInput label={label} value={value} onChangeText={onChangeText} />
-      <View style={styles.actionsWrapper}>
-        {onBack ? <MBMainBtn title="Voltar" onPress={onBack} /> : null}
-        <MBMainBtn title="Continuar" onPress={onNext} />
-      </View>
-    </View>
-  );
-}
+import { DocumentStep } from './steps/DocumentStep';
+import { OwnerStep } from './steps/OwnerStep';
+import { StoreDataStep } from './steps/StoreDataStep';
+import { StoreContactStep } from './steps/StoreContactStep';
+import { AddressStep } from './steps/AddressStep';
+import { RevisionStep } from './steps/RevisionStep';
+import { STORE_SIGNUP_STEP_ORDER, StoreSignupStep } from '../../common/types/StoreSignupTypes';
 
 export const useStoreSignupViewModel = () => {
   const {
@@ -107,64 +88,37 @@ export const useStoreSignupViewModel = () => {
   }, [formData]);
 
   const renderStep = useCallback(() => {
-    switch (stepIndex) {
-      case 0:
+    const currentStep = STORE_SIGNUP_STEP_ORDER[stepIndex];
+
+    switch (currentStep) {
+      case StoreSignupStep.Documento:
         return (
-          <StepField
-            label="Documento"
-            value={formData.storeDocument}
-            onChangeText={(value) => updateData({ storeDocument: value })}
-            onNext={goNext}
-          />
+          <DocumentStep data={formData} updateData={updateData} onNext={goNext} />
         );
-      case 1:
+      case StoreSignupStep.Proprietario:
         return (
-          <StepField
-            label="Nome da loja"
-            value={formData.storeName}
-            onChangeText={(value) => updateData({ storeName: value })}
-            onNext={goNext}
-            onBack={goBack}
-          />
+          <OwnerStep data={formData} updateData={updateData} onNext={goNext} onBack={goBack} />
         );
-      case 2:
+      case StoreSignupStep.DadosLoja:
         return (
-          <StepField
-            label="Descrição da loja"
-            value={formData.storeDescription}
-            onChangeText={(value) => updateData({ storeDescription: value })}
-            onNext={goNext}
-            onBack={goBack}
-          />
+          <StoreDataStep data={formData} updateData={updateData} onNext={goNext} onBack={goBack} />
         );
-      case 3:
+      case StoreSignupStep.ContatoLoja:
         return (
-          <StepField
-            label="Contato da loja"
-            value={formData.storeEmail}
-            onChangeText={(value) => updateData({ storeEmail: value })}
-            onNext={goNext}
-            onBack={goBack}
-          />
+          <StoreContactStep data={formData} updateData={updateData} onNext={goNext} onBack={goBack} />
         );
-      case 4:
+      case StoreSignupStep.Endereco:
         return (
-          <View style={styles.stepWrapper}>
-            <Text style={styles.reviewTitle}>Revise os dados e finalize o cadastro</Text>
-            <Text style={styles.reviewText}>Documento: {formData.storeDocument || '-'}</Text>
-            <Text style={styles.reviewText}>Loja: {formData.storeName || '-'}</Text>
-            <Text style={styles.reviewText}>Descrição: {formData.storeDescription || '-'}</Text>
-            <Text style={styles.reviewText}>Contato: {formData.storeEmail || '-'}</Text>
-            <View style={styles.actionsWrapper}>
-              <MBMainBtn title="Voltar" onPress={goBack} />
-              <MBMainBtn title="Finalizar" onPress={goNext} />
-            </View>
-          </View>
+          <AddressStep data={formData} updateData={updateData} onNext={goNext} onBack={goBack} />
+        );
+      case StoreSignupStep.Revisao:
+        return (
+          <RevisionStep data={formData} onBack={goBack} onSubmit={() => setIsComplete(true)} />
         );
       default:
         return null;
     }
-  }, [formData, goBack, goNext, stepIndex, updateData]);
+  }, [formData, goBack, goNext, setIsComplete, stepIndex, updateData]);
 
   return {
     stepIndex,
@@ -177,22 +131,3 @@ export const useStoreSignupViewModel = () => {
     translateXAnim,
   };
 };
-
-const styles = StyleSheet.create({
-  stepWrapper: {
-    gap: 12,
-    paddingTop: 16,
-  },
-  actionsWrapper: {
-    gap: 8,
-    marginTop: 8,
-  },
-  reviewTitle: {
-    fontSize: 16,
-    fontFamily: 'SNPro-Bold',
-  },
-  reviewText: {
-    fontSize: 14,
-    fontFamily: 'SNPro-Regular',
-  },
-});

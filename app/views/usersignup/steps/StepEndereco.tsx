@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import { MBMainInput } from '../../../components/form/MBMainInput';
 import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
 import { spacing, typography } from '../../../common/constants/Typgraphy';
@@ -10,6 +10,9 @@ import { StepProps } from '../../../common/types/Types';
 import MBMainBtn from '../../../components/buttons/MBMainBtn';
 import MBTextBtn from '../../../components/buttons/MBTextBtn';
 import MBTitleDescripted from '../../../components/texts/MBTitleDescripted';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import ScrollViewKeyboard from '../../../sections/global/ScrollViewKeyboard';
+import { useKeyboard } from '../../../common/constants/UseKeyboard';
 
 export const StepEndereco: React.FC<StepProps> = ({ data, updateData, onNext, onBack }) => {
   const [buscandoCEP, setBuscandoCEP] = useState(false);
@@ -60,88 +63,97 @@ export const StepEndereco: React.FC<StepProps> = ({ data, updateData, onNext, on
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.contentWrapper}>
-        <MBTitleDescripted 
-          colorTitle={PrimaryColors.primaryDark}
-          title="Seu local principal"
-          description="Isso ajuda a calcular fretes e onde seus produtos serão entregues. Você pode preencher depois, se preferir."
-        />
+    <SafeAreaProvider style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+      <ScrollViewKeyboard
+        children={
+          <>
+            <View style={styles.contentWrapper}>
+              <MBTitleDescripted 
+                colorTitle={PrimaryColors.primaryDark}
+                title="Seu local principal"
+                description="Isso ajuda a calcular fretes e onde seus produtos serão entregues. Você pode preencher depois, se preferir."
+              />
 
-        <MBMainInput
-          label="CEP"
-          placeholder="00000-000"
-          value={data.endereco.cep}
-          onChangeText={handleChangeCEP}
-          error={cepError}
-          loading={buscandoCEP}
-          keyboardType="number-pad"
-          maxLength={9}
-          returnKeyType="next"
-        />
-
-      {hasEndereco && (
-        <>
-          <MBMainInput
-            label="Endereço"
-            value={data.endereco.logradouro}
-            onChangeText={(text) => updateData({ endereco: { ...data.endereco, logradouro: text } })}
-            returnKeyType="next"
-          />
-
-          <View style={styles.row}>
-            <View style={styles.numeroField}>
               <MBMainInput
-                label="Número"
-                value={data.endereco.numero}
-                onChangeText={(text) => updateData({ endereco: { ...data.endereco, numero: text } })}
+                label="CEP"
+                placeholder="00000-000"
+                value={data.endereco.cep}
+                onChangeText={handleChangeCEP}
+                error={cepError}
+                loading={buscandoCEP}
                 keyboardType="number-pad"
+                maxLength={9}
                 returnKeyType="next"
               />
-            </View>
-            <View style={styles.complementoField}>
-              <MBMainInput
-                label="Complemento"
-                placeholder="Opcional"
-                value={data.endereco.complemento}
-                onChangeText={(text) => updateData({ endereco: { ...data.endereco, complemento: text } })}
-                returnKeyType="next"
-              />
-            </View>
-          </View>
 
-          <MBMainInput
-            label="Bairro"
-            value={data.endereco.bairro}
-            onChangeText={(text) => updateData({ endereco: { ...data.endereco, bairro: text } })}
-            returnKeyType="next"
-          />
+            {hasEndereco && (
+              <>
+                <MBMainInput
+                  label="Endereço"
+                  value={data.endereco.logradouro}
+                  onChangeText={(text) => updateData({ endereco: { ...data.endereco, logradouro: text } })}
+                  returnKeyType="next"
+                />
 
-          <View style={styles.row}>
-            <View style={styles.cidadeField}>
-              <MBMainInput
-                label="Cidade"
-                value={data.endereco.cidade}
-                onChangeText={(text) => updateData({ endereco: { ...data.endereco, cidade: text } })}
-                returnKeyType="next"
-              />
-            </View>
-            <View style={styles.ufField}>
-              <MBMainInput
-                label="UF"
-                value={data.endereco.uf}
-                onChangeText={(text) => updateData({ endereco: { ...data.endereco, uf: text.toUpperCase() } })}
-                maxLength={2}
-                autoCapitalize="characters"
-                returnKeyType="done"
-              />
-            </View>
-          </View>
-        </>
-      )}
-      </View>
+                <View style={styles.row}>
+                  <View style={styles.numeroField}>
+                    <MBMainInput
+                      label="Número"
+                      value={data.endereco.numero}
+                      onChangeText={(text) => updateData({ endereco: { ...data.endereco, numero: text } })}
+                      keyboardType="number-pad"
+                      returnKeyType="next"
+                    />
+                  </View>
+                  <View style={styles.complementoField}>
+                    <MBMainInput
+                      label="Complemento"
+                      placeholder="Opcional"
+                      value={data.endereco.complemento}
+                      onChangeText={(text) => updateData({ endereco: { ...data.endereco, complemento: text } })}
+                      returnKeyType="next"
+                    />
+                  </View>
+                </View>
 
-      <View style={styles.footerDock}>
+                <MBMainInput
+                  label="Bairro"
+                  value={data.endereco.bairro}
+                  onChangeText={(text) => updateData({ endereco: { ...data.endereco, bairro: text } })}
+                  returnKeyType="next"
+                />
+
+                <View style={styles.row}>
+                  <View style={styles.cidadeField}>
+                    <MBMainInput
+                      label="Cidade"
+                      value={data.endereco.cidade}
+                      onChangeText={(text) => updateData({ endereco: { ...data.endereco, cidade: text } })}
+                      returnKeyType="next"
+                    />
+                  </View>
+                  <View style={styles.ufField}>
+                    <MBMainInput
+                      label="UF"
+                      value={data.endereco.uf}
+                      onChangeText={(text) => updateData({ endereco: { ...data.endereco, uf: text.toUpperCase() } })}
+                      maxLength={2}
+                      autoCapitalize="characters"
+                      returnKeyType="done"
+                    />
+                  </View>
+                </View>
+              </>
+            )}
+            </View>
+          </>
+      } />
+
+      <View style={[
+        styles.buttonWrapper, 
+        { marginBottom: useKeyboard() ? -46 : 0 }
+      ]}>
         <MBMainBtn 
           title={'continuar'}
           onPress={handleContinue}
@@ -151,7 +163,7 @@ export const StepEndereco: React.FC<StepProps> = ({ data, updateData, onNext, on
           <MBTextBtn title="pular esta etapa" onPress={handleSkip} />
         </View>
       </View>
-    </View>
+    </SafeAreaProvider>
   );
 };
 
@@ -180,16 +192,17 @@ const styles = StyleSheet.create({
   complementoField: { flex: 2 },
   cidadeField: { flex: 2 },
   ufField: { flex: 1 },
-  footerDock: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    paddingTop: spacing.sm,
-  },
   subButtonRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: spacing.md,
+    paddingHorizontal: spacing.md,
   },
+  buttonWrapper: {
+    gap: spacing.xs,
+    paddingHorizontal: spacing.md,
+    borderTopWidth: 1,
+    borderTopColor: NeutralColors.background,
+    paddingTop: spacing.lg,
+  }
 });

@@ -1,108 +1,98 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-
-import { KeyboardAwareScreen } from '../../../sections/global/KeyboarAwareScreen';
-// import { StepProgressHeader } from '@/components/StepProgressHeader';
-import MBFloatingLabelInput from '../../../components/labels/MBFloatingLabelInput';
+import { StyleSheet, View, Platform } from 'react-native';
+import { spacing } from '../../../common/constants/Sizes';
 import MBOptionToggle from '../../../components/selectors/MBOptionToggle';
 import MBProfileImagePicker from '../../../components/images/MBProfileImagePicker';
 import MBMainBtn, { MBMainBtnType } from '../../../components/buttons/MBMainBtn';
 import { maskPhone } from '../../../common/constants/Masks';
 import { isValidEmail } from '../../../common/constants/Validators';
-
-import { useStoreSignup } from '../../../common/contexts/StoreSignupContext';
-import { StoreSignupStep } from '../../../common/types/StoreSignupTypes';
 import MBTitleDescripted from '../../../components/texts/MBTitleDescripted';
-import MBTitledViewHeader from '../../../components/header/MBTitledViewHeader';
-import MBRoundedIconBtn from '../../../components/buttons/MBRoundedIconBtn';
-import { IconsActions } from '../../../common/icons/IconsActions';
-import { NeutralColors } from '../../../common/colors/Colors';
-import { Icons } from '../../../common/icons/Icons';
-import MainNavigation from '../../../common/navigation/MainNavigation';
 import { MBMainInput } from '../../../components/form/MBMainInput';
-import { STORE_SIGNUP_STEP_LABELS } from '../StoreSignupModel';
-import { MBStepperHeader } from '../../../components/stepper/MBStepperHeader';
+import type { StoreSignupStepProps } from '../StoreSignupModel';
+import MBTextBtn from '../../../components/buttons/MBTextBtn';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import ScrollViewKeyboard from '../../../sections/global/ScrollViewKeyboard';
+import { useKeyboard } from '../../../common/constants/UseKeyboard';
+import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
 
-interface Props {
-  navigation: { navigate: (screen: string) => void; goBack: () => void };
-}
-
-export function OwnerStep({ navigation }: Props) {
-  const { state, dispatch, goNext, goBack } = useStoreSignup();
-  const owner = state.draft.storeOwner;
-
-  const update = (patch: Partial<typeof owner>) => dispatch({ type: 'UPDATE_OWNER', patch });
+export function OwnerStep({ data, updateData, onNext, onBack }: StoreSignupStepProps) {
 
   const canContinue = Boolean(
-    owner.name && owner.email && isValidEmail(owner.email) && owner.phoneNumber
+    data.ownerName && data.ownerEmail && isValidEmail(data.ownerEmail) && data.ownerPhoneNumber
   );
 
   return (
-    <View style={styles.container}>
-      <KeyboardAwareScreen>
-        <MBTitledViewHeader 
-          btnsLeft={<MBRoundedIconBtn 
-            icon={<Icons.arrowBack width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
-            onPress={() => goBack(StoreSignupStep.Documento, navigation)}
-          />}
-        />
-        <MBStepperHeader steps={STORE_SIGNUP_STEP_LABELS} currentIndex={1} />
-        <MBTitleDescripted 
-          title="Dados da sua loja"
-          description="Pedimos seu CPF para vários itens de segurança. Ele não aparece para outros usuários."
-        />
-        <View style={{ gap: 16 }}>
-          <MBProfileImagePicker
-            value={owner.profileImageUri}
-            onChange={(uri) => update({ profileImageUri: uri })}
+    <SafeAreaProvider>
+      <ScrollViewKeyboard children={
+        <>
+        <View style={styles.container}>
+          <MBTitleDescripted
+            colorTitle={PrimaryColors.primaryDark}
+            title="Dados do proprietário"
+            description="Essas informações ficarão vinculadas à conta de loja."
           />
-
-          <MBMainInput
-            label="Nome completo" 
-            value={owner.name ?? ''} 
-            onChangeText={(v) => update({ name: v })} 
-          />
-          <MBMainInput
-            label="E-mail"
-            value={owner.email ?? ''}
-            onChangeText={(v) => update({ email: v })}
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-          <MBMainInput
-            label="Telefone"
-            value={owner.phoneNumber ?? ''}
-            onChangeText={(v) => update({ phoneNumber: maskPhone(v) })}
-            keyboardType="phone-pad"
-          />
-
-          <MBOptionToggle
-            label="Esse número é WhatsApp"
-            value={Boolean(owner.isWhatsapp)}
-            onChange={(v) => update({ isWhatsapp: v })}
-          />
+          <View style={[{ gap: spacing.lg }]}>
+            {/* <MBProfileImagePicker
+              value={data.ownerProfileImageUri}
+              onChange={(uri) => updateData({ ownerProfileImageUri: uri })}
+            /> */}
+            <MBMainInput
+              label="Nome completo"
+              value={data.ownerName}
+              onChangeText={(value) => updateData({ ownerName: value })}
+            />
+            <MBMainInput
+              label="E-mail"
+              value={data.ownerEmail}
+              onChangeText={(value) => updateData({ ownerEmail: value })}
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+            <MBMainInput
+              label="Telefone"
+              value={data.ownerPhoneNumber}
+              onChangeText={(value) => updateData({ ownerPhoneNumber: maskPhone(value) })}
+              keyboardType="phone-pad"
+            />
+            <MBOptionToggle
+              label="Esse número é WhatsApp"
+              value={data.ownerIsWhatsapp}
+              onChange={(value) => updateData({ ownerIsWhatsapp: value })}
+            />
+          </View>
         </View>
-      </KeyboardAwareScreen>
-      <View style={styles.buttonWrapper}>
-        <MBMainBtn 
-          title="Continuar" 
-          onPress={() => goNext(StoreSignupStep.Proprietario, navigation)} 
-          buttonType={ canContinue ? MBMainBtnType.NORMAL : MBMainBtnType.DISABLED }
+        </>
+      }/>
+      <View style={[
+        styles.buttonWrapper, 
+        { marginBottom: useKeyboard() ? -46 : 0 }
+      ]}>
+        {onBack ? <MBTextBtn title="Voltar" onPress={onBack} /> : null}
+        <MBMainBtn
+          title="Continuar"
+          onPress={onNext}
+          buttonType={canContinue ? MBMainBtnType.NORMAL : MBMainBtnType.DISABLED}
+          flex={1}
         />
       </View>
-    </View>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    height: '100%',
+    gap: spacing.lg,
   },
   buttonWrapper: {
-    position: 'absolute',
-    bottom: 16,
-    left: 16,
-    right: 16,
+    gap: spacing.xl,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingLeft: spacing.xl,
+    paddingRight: spacing.lg,
+    marginTop: spacing.lg,
+    borderTopWidth: 1,
+    borderTopColor: NeutralColors.background,
+    paddingTop: spacing.lg,
   }
 });
