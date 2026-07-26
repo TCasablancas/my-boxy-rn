@@ -13,7 +13,9 @@ import MBTitleDescripted from '../../../components/texts/MBTitleDescripted';
 import type { StoreSignupRevisionStepProps } from '../StoreSignupModel';
 
 export function RevisionStep({ data, onBack, onSubmit }: StoreSignupRevisionStepProps) {
-  const addressLine = [data.storeAddress.logradouro, data.storeAddress.numero].filter(Boolean).join(', ');
+  const addressLine = [
+    data.storeAddress.logradouro, data.storeAddress.numero
+  ].filter(Boolean).join(', ');
 
   return (
     <SafeAreaProvider>

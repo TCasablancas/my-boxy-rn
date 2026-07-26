@@ -1,5 +1,5 @@
 import { 
-  View, Text, StyleSheet, KeyboardAvoidingView, Platform, Animated, StatusBar 
+  View, StyleSheet, KeyboardAvoidingView, Platform, Animated, StatusBar 
 } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { KeyboardScrollProvider } from '../../common/contexts/KeyboardScrollContext';
@@ -8,13 +8,13 @@ import { NeutralColors } from '../../common/colors/Colors';
 import { Icons } from '../../common/icons/Icons';
 
 import { MBStepperHeader } from '../../components/stepper/MBStepperHeader';
-import MBMainBtn from '../../components/buttons/MBMainBtn';
 import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
 
 import { STORE_SIGNUP_STEP_LABELS } from './StoreSignupModel';
 import { useStoreSignupViewModel } from './StoreSignupViewModel';
 import MainNavigation from '../../common/navigation/MainNavigation';
+import SignupSuccessSection from '../../sections/signup/SignupSuccessSection';
 
 export default function StoreSignupView() {
   const safeArea = useSafeAreaInsets();
@@ -32,10 +32,7 @@ export default function StoreSignupView() {
 
   if (isComplete) {
     return (
-      <View style={styles.successContainer}>
-        <Text style={styles.successTitle}>Cadastro da loja concluído</Text>
-        <MBMainBtn title="Voltar para início" onPress={handleFinish} />
-      </View>
+      <SignupSuccessSection />
     );
   }
 
