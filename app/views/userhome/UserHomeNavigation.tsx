@@ -18,31 +18,6 @@ registerNavigationTarget('StoreSignupNavigator', StoreSignupView);
 registerNavigationTarget('ProductDetailView', ProductDetailView);
 registerNavigationTarget('SearchView', SearchView);
 
-export const userHomeCarouselItems: HomeCarouselItem[] = [
-  {
-    id: 'home-hero-1',
-    title: 'Sua próxima escolha favorita',
-    imageUri:
-      'https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1600&auto=format&fit=crop',
-    targetView: ProductDetailView,
-    targetParams: { productId: '1' },
-  },
-  {
-    id: 'home-hero-2',
-    title: 'Descubra novidades na loja',
-    imageUri:
-      'https://images.unsplash.com/photo-1470246973918-29a93221c455?q=80&w=1600&auto=format&fit=crop',
-    targetView: UserHomeStoreSignupView,
-  },
-  {
-    id: 'home-hero-3',
-    title: 'Promoções e avisos da semana',
-    imageUri:
-      'https://images.unsplash.com/photo-1459156212016-c812468e2115?q=80&w=1600&auto=format&fit=crop',
-    targetView: NotificationsView,
-  },
-];
-
 export function openNotifications() {
   MainNavigation.push(NotificationsView);
 }

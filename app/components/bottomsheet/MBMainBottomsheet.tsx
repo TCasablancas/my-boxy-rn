@@ -10,6 +10,7 @@ interface MBMainBottomsheetProps {
   headerImage?: React.ReactNode;
   visible?: boolean;
   content: React.ReactNode;
+  contentBgNull?: boolean;
   onClose?: () => void;
   headerAlign?: 'center' | 'left';
   actionButton?: React.ReactNode;
@@ -22,6 +23,7 @@ export default function MBMainBottomsheet({
   headerImage,
   visible = false, 
   content, 
+  contentBgNull,
   onClose, 
   headerAlign = 'center', 
   actionButton,
@@ -124,7 +126,12 @@ export default function MBMainBottomsheet({
                     <Text style={[styles.title, { textAlign: headerAlign }]}>{title}</Text>}
                   {description && 
                     <Text style={[styles.description, { textAlign: headerAlign }]}>{description}</Text>}
-                  <View style={styles.contentBox}>{content}</View>
+                  <View style={[
+                    styles.contentBox,
+                    { backgroundColor: contentBgNull ? 'transparent' : NeutralColors.systemBackground || NeutralColors.systemBackground }
+                  ]}>
+                    {content}
+                  </View>
                   {actionButton && <View style={styles.actionButton}>{actionButton}</View>}
                 </Pressable>
               </Animated.View>
@@ -168,7 +175,6 @@ const styles = StyleSheet.create({
   contentBox: {
     alignSelf: 'stretch',
     padding: 8,
-    backgroundColor: '#f0f0f0',
     borderRadius: 16,
     marginTop: 16,
     alignItems: 'stretch',

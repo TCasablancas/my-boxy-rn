@@ -36,32 +36,32 @@ type VirtualCarouselItem = HomeCarouselItem & {
   virtualKey: string;
 };
 
-const DEFAULT_ITEMS: HomeCarouselItem[] = [
-  {
-    id: 'hero-1',
-    title: 'Plantas para renovar sua sala',
-    imageUri:
-      'https://images.unsplash.com/photo-1459156212016-c812468e2115?q=80&w=1600&auto=format&fit=crop',
-    targetView: ProductDetailView,
-    targetParams: { productId: '1' },
-  },
-  {
-    id: 'hero-2',
-    title: 'Semana verde com ate 40% off',
-    imageUri:
-      'https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1600&auto=format&fit=crop',
-    targetView: ProductDetailView,
-    targetParams: { productId: '2' },
-  },
-  {
-    id: 'hero-3',
-    title: 'Terrarios artesanais em destaque',
-    imageUri:
-      'https://images.unsplash.com/photo-1470246973918-29a93221c455?q=80&w=1600&auto=format&fit=crop',
-    targetView: ProductDetailView,
-    targetParams: { productId: '3' },
-  },
-];
+// const DEFAULT_ITEMS: HomeCarouselItem[] = [
+//   {
+//     id: 'hero-1',
+//     title: 'Promoção em Hogwarts',
+//     imageUri:
+//       'https://thestoreofrequirement.com.au/cdn/shop/files/The_Store_Of_Requirement_-4996.jpg?v=1707128526&width=1420',
+//     targetView: ProductDetailView,
+//     targetParams: { productId: '1' },
+//   },
+//   {
+//     id: 'hero-2',
+//     title: 'Semana verde com ate 40% off',
+//     imageUri:
+//       'https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1600&auto=format&fit=crop',
+//     targetView: ProductDetailView,
+//     targetParams: { productId: '2' },
+//   },
+//   {
+//     id: 'hero-3',
+//     title: 'Terrarios artesanais em destaque',
+//     imageUri:
+//       'https://images.unsplash.com/photo-1470246973918-29a93221c455?q=80&w=1600&auto=format&fit=crop',
+//     targetView: ProductDetailView,
+//     targetParams: { productId: '3' },
+//   },
+// ];
 
 export default function HomeCarouselListHeader({
   items,
@@ -69,7 +69,7 @@ export default function HomeCarouselListHeader({
   onPressItem,
 }: HomeCarouselListHeaderProps) {
   const sourceItems = useMemo(() => {
-    const baseItems = items && items.length > 0 ? items : DEFAULT_ITEMS;
+    const baseItems = items && items.length > 0 ? items : [];
     return baseItems.slice(0, 8);
   }, [items]);
 
@@ -308,6 +308,9 @@ export default function HomeCarouselListHeader({
                   {item.title}
                 </Text>
               </View>
+              <View style={{ backgroundColor: 'white', position: 'absolute', bottom: 16, left: 16, padding: 8, borderRadius: 100 }}>
+                <Text>Lorem Ipsum</Text>
+              </View>
             </ImageBackground>
           </TouchableOpacity>
         )}
@@ -353,7 +356,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: 'rgba(0, 0, 0, 0.24)',
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
   },
   textWrapper: {
     paddingHorizontal: 16,
@@ -361,10 +364,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#FFFFFF',
-    fontSize: 32,
+    fontFamily: 'Anton-Regular',
+    fontSize: 28,
     fontWeight: 'bold',
     left: 8,
-    textShadowColor: 'rgba(0, 0, 0, 0.1)',
+    paddingRight: '33%',
+    textShadowColor: 'rgba(0, 0, 0, 0.2)',
     textShadowOffset: { width: 0, height: 2 },
     textShadowRadius: 12,
   },

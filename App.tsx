@@ -91,11 +91,11 @@ function MainTabs() {
   };
 
   const tabScreenOptions = {
-    tabBarInactiveTintColor: 'gray',
+    tabBarInactiveTintColor: NeutralColors.textPlaceholder,
     tabBarActiveTintColor: PrimaryColors.primary,
     tabBarLabelStyle: {
       fontSize: 11,
-      fontFamily: 'SNPro-Bold',
+      fontFamily: 'SNPro-Regular',
     },
   };
 
@@ -125,20 +125,15 @@ function MainTabs() {
               ...tabScreenOptions,
               tabBarIcon: ({ color }) => {
                 const IconComponent = screen.icon;
-                const isMinhaLojaDisabled = screen.name === 'minha loja' && !hasRegisteredStore;
-                // const iconColor = isMinhaLojaDisabled ? PrimaryColors.primaryLight : color;
-
                 return <IconComponent width={20} height={20} stroke={color} strokeColor={color} />;
               },
               tabBarButton: (props: any) => {
                 const isMinhaLojaDisabled = screen.name === 'minha loja' && !hasRegisteredStore;
-                const isMinhaLojaTab = screen.name === 'minha loja';
-
                 return tabBarButton({
                   ...props,
                   style: [
                     props.style, 
-                    isMinhaLojaDisabled && isMinhaLojaTab ? styles.disabledTabButton : null
+                    { opacity: isMinhaLojaDisabled ? 0.35 : 1 },
                   ],
                 });
               },
@@ -174,6 +169,7 @@ function MainTabs() {
         onClose={closeLoginBottomsheet}
         headerAlign="left"
         closeButton={true}
+        contentBgNull
       />
     </>
   );
@@ -209,13 +205,5 @@ const styles = StyleSheet.create({
     zIndex: 100, 
     alignItems: 'center', 
     justifyContent: 'center',
-  },
-  disabledTabButton: {
-    opacity: 0.35, 
-    borderRadius: 8,
-    margin: 4,
-    padding: 4,
-    top: -4,
-    marginBottom: Platform.OS === 'ios' ? -4 : 0,
   },
 });

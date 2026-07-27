@@ -11,6 +11,8 @@ import MBOutlinedSmBtn from '../../components/buttons/MBOutlinedSmBtn';
 import MBHomeStoreItemCarousel from '../../components/carousel/MBHomeStoreItemCarousel';
 import MBMainProductCard from '../../components/cards/MBMainProductCard';
 
+import { userHomeCarouselItems } from '../../common/UserHomeData';
+
 import {
   openCarouselTarget,
   openNotifications,
@@ -18,7 +20,6 @@ import {
   openSearchView,
   openStoreSignup,
   openUserProfile,
-  userHomeCarouselItems,
 } from './UserHomeNavigation';
 import {
   DEFAULT_HOME_USER_PROFILE,

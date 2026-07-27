@@ -10,6 +10,7 @@
 		0C80B921A6F3F58F76C31292 /* libPods-MyBoxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-MyBoxy.a */; };
 		135F01EEA22C4D98B1731D1E /* SNPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C27CBD31211145958FBB5D82 /* SNPro-Bold.ttf */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		14637D10B0B64A918A5FD72A /* Anton-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68A05D45712E47B184EE27E6 /* Anton-Regular.ttf */; };
 		199A4D1AA5464131A49E54B9 /* SNPro-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58A8635330474F3D90540F99 /* SNPro-ExtraLightItalic.ttf */; };
 		1F965AC6167E471A959C70AC /* SNPro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F574F1D822C84059AFE56511 /* SNPro-ExtraLight.ttf */; };
 		2A16B0147A6E48D8BB5A0D4F /* SNPro-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 924A3201B6E04BD9878D4805 /* SNPro-SemiBoldItalic.ttf */; };
@@ -42,6 +43,7 @@
 		58A8635330474F3D90540F99 /* SNPro-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-ExtraLightItalic.ttf"; path = "../assets/fonts/SNPro-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		5BC2660ACBB845A1B1633D63 /* SNPro-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-LightItalic.ttf"; path = "../assets/fonts/SNPro-LightItalic.ttf"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-MyBoxy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyBoxy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68A05D45712E47B184EE27E6 /* Anton-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Anton-Regular.ttf"; path = "../assets/fonts/Anton-Regular.ttf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MyBoxy/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MyBoxy/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		924A3201B6E04BD9878D4805 /* SNPro-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SNPro-SemiBoldItalic.ttf"; path = "../assets/fonts/SNPro-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				CCA846C9D43341D99EFEEDD3 /* SNPro-Regular.ttf */,
 				F04D735B625F4EAB84CEC8E3 /* SNPro-SemiBold.ttf */,
 				924A3201B6E04BD9878D4805 /* SNPro-SemiBoldItalic.ttf */,
+				68A05D45712E47B184EE27E6 /* Anton-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				50B72D14A3AD4E5BBC4B7CE9 /* SNPro-SemiBold.ttf in Resources */,
 				2A16B0147A6E48D8BB5A0D4F /* SNPro-SemiBoldItalic.ttf in Resources */,
 				3EA1C7E203B924AD7E09E0C0 /* PrivacyInfo.xcprivacy in Resources */,
+				14637D10B0B64A918A5FD72A /* Anton-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

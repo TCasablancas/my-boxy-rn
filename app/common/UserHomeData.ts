@@ -1,6 +1,35 @@
 import { Icons } from './icons/Icons';
 import { ProductDetailProps } from '../views/productdetail/ProductDetailModel';
 import { v4 as uuidv4 } from 'uuid';
+import NotificationsView from '../views/notifications/NotificationsView';
+import ProductDetailView from '../views/productdetail/ProductDetailView';
+import { UserHomeStoreSignupView } from '../views/userhome/UserHomeNavigation';
+import { HomeCarouselItem } from '../sections/home/HomeCarouselListHeader';
+
+export const userHomeCarouselItems: HomeCarouselItem[] = [
+  {
+    id: 'home-hero-1',
+    title: 'Promoção em Hogwarts',
+    imageUri:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdAmS7St9lVWfFDMOjWtPEuntoWHgcD_P3muUsW0nuLhE_Gxudes4f53E&s=10',
+    targetView: ProductDetailView,
+    targetParams: { productId: '1' },
+  },
+  {
+    id: 'home-hero-2',
+    title: 'Coleção de acessórios da estação',
+    imageUri:
+      'https://www.baublebar.com/cdn/shop/files/GoodThingsAheadBraceletSet.png?crop=center&height=1448&v=1779283978&width=1086',
+    targetView: UserHomeStoreSignupView,
+  },
+  {
+    id: 'home-hero-3',
+    title: 'Bolsas para todos os gostos, na boutique Sassy',
+    imageUri:
+      'https://shopsassyboutique.com/cdn/shop/files/17794714796d05712619adbbc1e0a3de2f0554519a3e0b748931afee883a170f5d5b40daec.png?v=1779472201&width=533',
+    targetView: NotificationsView,
+  },
+];
 
 export const homeProducts: ProductDetailProps[] = [
   {

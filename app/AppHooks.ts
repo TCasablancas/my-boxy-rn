@@ -20,7 +20,7 @@ import UserSignupView from './views/usersignup/UserSignupView';
 type AppBottomsheetType = 'login' | 'store-required' | null;
 
 export function useAppHooks() {
-  const [isUserLoggedIn] = useState(false);
+  const [isUserLoggedIn] = useState(true);
   const [isStoreLoggedIn] = useState(false);
   const [hasRegisteredStore] = useState(false);
   const [isLoginBottomsheetVisible, setIsLoginBottomsheetVisible] = useState(false);

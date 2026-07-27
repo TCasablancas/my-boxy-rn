@@ -6,7 +6,7 @@ import type {
   HomeCarouselStoreBlock,
 } from './UserHomeModel';
 
-import { homeProducts } from '../../common/UserHomeData';
+import { homeProducts, userHomeCarouselItems } from '../../common/UserHomeData';
 
 
 type RawHomeEntity = Record<string, unknown>;

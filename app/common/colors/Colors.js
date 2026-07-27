@@ -28,6 +28,7 @@ export const StateColors = {
 export const NeutralColors = {
   background: '#EBEBEB',
   backgroundAlt: '#FAFAFA',
+  systemBackground: '#f0f0f0',
   border: '#E5E7EB',
   borderFocus: '#6ABA02',
   text: '#111827',

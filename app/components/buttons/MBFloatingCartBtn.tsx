@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   cartButtonText: {
     fontSize: 16,
-    color: PrimaryColors.primary, 
+    color: PrimaryColors.primaryDark, 
     fontFamily: 'SNPro-Bold',
   },
   cartCountWrapper: {
