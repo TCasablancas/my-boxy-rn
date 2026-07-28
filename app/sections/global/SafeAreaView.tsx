@@ -7,7 +7,7 @@ export default function SafeAreaView({ children }: { children: React.ReactNode }
 
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={'light-content'} backgroundColor={NeutralColors.backgroundAlt} translucent={true} />
+      <StatusBar barStyle={'dark-content'} backgroundColor={NeutralColors.backgroundAlt} translucent={true} />
       {children}
     </SafeAreaProvider>
   );

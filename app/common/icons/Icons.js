@@ -557,6 +557,23 @@ export const Icons = {
       />
     </Svg>
   ),
+  chevronUp: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke={strokeColor}
+      className="size-6"
+      {...props}
+    >
+      <Path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="m4.5 15.75 7.5-7.5 7.5 7.5"
+      />
+    </Svg>
+  ),
   chevronDown: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
@@ -1103,6 +1120,26 @@ export const Icons = {
         strokeLinejoin="round"
         d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z"
       />
+    </Svg>
+  ),
+  ticketPercent: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-ticket-percent-icon lucide-ticket-percent"
+      {...props}
+    >
+      <Path d="M2 9a3 3 0 1 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 1 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+      <Path d="M9 9h.01" />
+      <Path d="m15 9-6 6" />
+      <Path d="M15 15h.01" />
     </Svg>
   ),
   check: ({ strokeColor = '#000', fillColor = 'none', ...props }) => (
