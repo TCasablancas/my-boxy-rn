@@ -14,6 +14,8 @@ export const userHomeCarouselItems: HomeCarouselItem[] = [
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdAmS7St9lVWfFDMOjWtPEuntoWHgcD_P3muUsW0nuLhE_Gxudes4f53E&s=10',
     targetView: ProductDetailView,
     targetParams: { productId: '1' },
+    storeImageUri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdAmS7St9lVWfFDMOjWtPEuntoWHgcD_P3muUsW0nuLhE_Gxudes4f53E&s=10',
+    storeName: 'Hogwarts Store',
   },
   {
     id: 'home-hero-2',
@@ -21,6 +23,8 @@ export const userHomeCarouselItems: HomeCarouselItem[] = [
     imageUri:
       'https://www.baublebar.com/cdn/shop/files/GoodThingsAheadBraceletSet.png?crop=center&height=1448&v=1779283978&width=1086',
     targetView: UserHomeStoreSignupView,
+    storeImageUri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdAmS7St9lVWfFDMOjWtPEuntoWHgcD_P3muUsW0nuLhE_Gxudes4f53E&s=10',
+    storeName: 'Baublebar Store',
   },
   {
     id: 'home-hero-3',
@@ -28,6 +32,8 @@ export const userHomeCarouselItems: HomeCarouselItem[] = [
     imageUri:
       'https://shopsassyboutique.com/cdn/shop/files/17794714796d05712619adbbc1e0a3de2f0554519a3e0b748931afee883a170f5d5b40daec.png?v=1779472201&width=533',
     targetView: NotificationsView,
+    storeImageUri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdAmS7St9lVWfFDMOjWtPEuntoWHgcD_P3muUsW0nuLhE_Gxudes4f53E&s=10',
+    storeName: 'Sassy Boutique',
   },
 ];
 

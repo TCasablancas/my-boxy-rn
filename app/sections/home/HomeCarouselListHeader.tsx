@@ -7,6 +7,8 @@ import MainNavigation from '../../common/navigation/MainNavigation';
 import { setTabSwipeLocked } from '../../common/navigation/tabSwipeLock';
 import ProductDetailView from '../../views/productdetail/ProductDetailView';
 import { MBProgressDot } from '../../components/carousel/MBProgressDot';
+import MBProductRatingContainer from '../../components/containers/MBProductRatingContainer';
+import MBStoreProductContainer from '../../components/containers/MBStoreProductContainer';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SIDE_PEEK_PERCENT = 0.1;
@@ -24,6 +26,8 @@ export interface HomeCarouselItem {
   imageUri: string;
   targetView?: CarouselTargetView;
   targetParams?: Record<string, unknown>;
+  storeImageUri?: string;
+  storeName?: string;
 }
 
 interface HomeCarouselListHeaderProps {
@@ -304,12 +308,20 @@ export default function HomeCarouselListHeader({
             >
               <View style={styles.overlay} />
               <View style={styles.textWrapper}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <View style={{ flexDirection: 'row', gap: 8 }}>
+                    <MBStoreProductContainer
+                      storeImageUri={item.storeImageUri || ''}
+                      storeName={item.storeName || ''}
+                      background
+                    />
+                    <MBProductRatingContainer reviewCount={12} />
+                  </View>
+                  <Text>Lorem Ipsum</Text>
+                </View>
                 <Text numberOfLines={3} style={styles.title}>
                   {item.title}
                 </Text>
-              </View>
-              <View style={{ backgroundColor: 'white', position: 'absolute', bottom: 16, left: 16, padding: 8, borderRadius: 100 }}>
-                <Text>Lorem Ipsum</Text>
               </View>
             </ImageBackground>
           </TouchableOpacity>
@@ -361,6 +373,9 @@ const styles = StyleSheet.create({
   textWrapper: {
     paddingHorizontal: 16,
     paddingVertical: 12,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    flex: 1,
   },
   title: {
     color: '#FFFFFF',
