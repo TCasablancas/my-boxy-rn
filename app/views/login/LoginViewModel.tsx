@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useLoginHooks } from './LoginHooks';
 import { LoginViewModel } from './LoginModel';
 import { submitLogin, validateLoginForm } from './LoginService';
+import MainNavigation from '../../common/navigation/MainNavigation';
 
 export function useLoginViewModel(): LoginViewModel {
 	const {
@@ -16,6 +17,7 @@ export function useLoginViewModel(): LoginViewModel {
 	} = useLoginHooks();
 
 	const [hasSubmitted, setHasSubmitted] = useState(false);
+	const [loginError, setLoginError] = useState<string | null>(null);
   const [hasEnabledKeepConnected, setHasEnabledKeepConnected] = useState(false);
 
 	const formErrors = useMemo(() => {
@@ -32,6 +34,7 @@ export function useLoginViewModel(): LoginViewModel {
 
 	async function onSubmitLogin() {
 		setHasSubmitted(true);
+    setLoginError(null);
 		const currentErrors = validateLoginForm(formData);
 
 		if (Object.keys(currentErrors).length > 0) {
@@ -40,7 +43,13 @@ export function useLoginViewModel(): LoginViewModel {
 
 		try {
 			setIsSubmitting(true);
-			await submitLogin(formData);
+			const user = await submitLogin(formData);
+
+			if (user) {
+				MainNavigation.pop();
+			}
+		} catch (error) {
+			setLoginError(error instanceof Error ? error.message : 'Não foi possível fazer login.');
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -55,6 +64,7 @@ export function useLoginViewModel(): LoginViewModel {
 		formData,
 		formErrors,
 		isSubmitting,
+		loginError,
 		canSubmit,
 		onChangeEmailOrUser,
 		onChangePassword,

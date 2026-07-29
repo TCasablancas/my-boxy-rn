@@ -24,6 +24,7 @@ export default function LoginView() {
     formData,
     formErrors,
     isSubmitting,
+    loginError,
     canSubmit,
     onChangeEmailOrUser,
     onChangePassword,
@@ -70,6 +71,7 @@ export default function LoginView() {
         buttonType={canSubmit ? MBMainBtnType.NORMAL : MBMainBtnType.DISABLED}
         onPress={() => { onSubmitLogin(); }}
       />
+      {loginError ? <Text style={styles.loginErrorText}>{loginError}</Text> : null}
       <MBCenterStripeText text="ou" marginVertical={8} />
       <Text style={styles.socialMediaDisclaimer}>
         Faça seu login utilizando sua conta em uma das redes sociais abaixo
@@ -201,6 +203,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginVertical: 8,
+  },
+  loginErrorText: {
+    color: PrimaryColors.mainRed,
+    fontSize: 13,
+    fontFamily: 'SNPro-Regular',
+    textAlign: 'center',
   },
   loginWithSocialButtonsWrapper: {
     flexDirection: 'row',

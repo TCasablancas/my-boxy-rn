@@ -1,13 +1,13 @@
 import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
-import MBFavoriteBtn from '../buttons/MBFavoriteBtn';
 import { Icons } from '../../common/icons/Icons';
-import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
-import { ProductProps } from '../../models/ProductCardModel';
-import MBRoundedIconBtn from '../buttons/MBRoundedIconBtn';
-import { IconsActions } from '../../common/icons/IconsActions';
-import type { CartItemProps } from '../../views/cart/CartModel';
 import { addItemToCartAndSelect } from '../../common/store/cartStore';
 import { formatCurrencyBRL, parsePriceToNumber } from '../../common/constants/Currency';
+import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
+
+import MBFavoriteBtn from '../buttons/MBFavoriteBtn';
+
+import { ProductProps } from '../../models/ProductCardModel';
+import type { CartItemProps } from '../../views/cart/CartModel';
 
 export default function MBMainProductCard({ 
     product

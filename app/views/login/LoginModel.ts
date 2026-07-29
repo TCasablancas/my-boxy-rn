@@ -12,6 +12,7 @@ export interface LoginViewModel {
 	formData: LoginFormData;
 	formErrors: LoginFormErrors;
 	isSubmitting: boolean;
+	loginError: string | null;
 	canSubmit: boolean;
 	onChangeEmailOrUser: (value: string) => void;
 	onChangePassword: (value: string) => void;
