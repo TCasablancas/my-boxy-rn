@@ -5,7 +5,9 @@ import {
 import type { ComponentType } from 'react';
 import MainNavigation from '../../common/navigation/MainNavigation';
 import { setTabSwipeLocked } from '../../common/navigation/tabSwipeLock';
-import ProductDetailView from '../../views/productdetail/ProductDetailView';
+import { BlurView } from '@react-native-community/blur';
+import { PrimaryColors } from '../../common/colors/Colors';
+
 import { MBProgressDot } from '../../components/carousel/MBProgressDot';
 import MBProductRatingContainer from '../../components/containers/MBProductRatingContainer';
 import MBStoreProductContainer from '../../components/containers/MBStoreProductContainer';
@@ -39,33 +41,6 @@ interface HomeCarouselListHeaderProps {
 type VirtualCarouselItem = HomeCarouselItem & {
   virtualKey: string;
 };
-
-// const DEFAULT_ITEMS: HomeCarouselItem[] = [
-//   {
-//     id: 'hero-1',
-//     title: 'Promoção em Hogwarts',
-//     imageUri:
-//       'https://thestoreofrequirement.com.au/cdn/shop/files/The_Store_Of_Requirement_-4996.jpg?v=1707128526&width=1420',
-//     targetView: ProductDetailView,
-//     targetParams: { productId: '1' },
-//   },
-//   {
-//     id: 'hero-2',
-//     title: 'Semana verde com ate 40% off',
-//     imageUri:
-//       'https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1600&auto=format&fit=crop',
-//     targetView: ProductDetailView,
-//     targetParams: { productId: '2' },
-//   },
-//   {
-//     id: 'hero-3',
-//     title: 'Terrarios artesanais em destaque',
-//     imageUri:
-//       'https://images.unsplash.com/photo-1470246973918-29a93221c455?q=80&w=1600&auto=format&fit=crop',
-//     targetView: ProductDetailView,
-//     targetParams: { productId: '3' },
-//   },
-// ];
 
 export default function HomeCarouselListHeader({
   items,
@@ -102,6 +77,8 @@ export default function HomeCarouselListHeader({
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [virtualIndex, setVirtualIndex] = useState(middleStartIndex);
+
+  const targetRef = useRef<View | null>(null);
 
   const stopTimer = useCallback(() => {
     autoPlayRef.current?.stop();
@@ -317,11 +294,15 @@ export default function HomeCarouselListHeader({
                     />
                     <MBProductRatingContainer reviewCount={12} />
                   </View>
-                  <Text>Lorem Ipsum</Text>
                 </View>
-                <Text numberOfLines={3} style={styles.title}>
-                  {item.title}
-                </Text>
+                <BlurView blurType="light" blurAmount={5} style={styles.blurWrapper}>
+                  <Text numberOfLines={3} style={styles.title}>
+                    {item.title}
+                  </Text>
+                  <Text style={styles.description}>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </Text>
+                </BlurView>
               </View>
             </ImageBackground>
           </TouchableOpacity>
@@ -377,16 +358,28 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flex: 1,
   },
+  blurWrapper: { 
+    borderRadius: 16,
+    boxShadow: '0px 2px 15px rgba(0, 0, 0, 0.4)',
+  },
   title: {
-    color: '#FFFFFF',
-    fontFamily: 'Anton-Regular',
-    fontSize: 28,
-    fontWeight: 'bold',
-    left: 8,
-    paddingRight: '33%',
+    color: PrimaryColors.gold,
+    fontSize: 22,
+    fontFamily: 'SNPro-Bold',
+    lineHeight: 22,
+    paddingHorizontal: 12,
+    paddingTop: 12,
     textShadowColor: 'rgba(0, 0, 0, 0.2)',
     textShadowOffset: { width: 0, height: 2 },
     textShadowRadius: 12,
+  },
+  description: {
+    fontFamily: 'SNPro-Regular',
+    // color: PrimaryColors.limeGreen,
+    color: 'white',
+    fontSize: 14,
+    paddingHorizontal: 12,
+    paddingBottom: 8,
   },
   bulletsContainer: {
     flexDirection: 'row',

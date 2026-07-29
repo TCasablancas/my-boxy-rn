@@ -3,6 +3,8 @@ import { homeProducts } from '../../common/UserHomeData';
 import type { ProductCarouselItem, ProductDetailContent } from './ProductDetailModel';
 import { Alert } from 'react-native';
 import { Icons } from '../../common/icons/Icons';
+import type { CartItemProps } from '../cart/CartModel';
+import { addItemToCartAndSelect } from '../../common/store/cartStore';
 
 const MIN_QUANTITY = 1;
 const MAX_QUANTITY = 99;
@@ -42,8 +44,18 @@ export const useProductDetailViewModel = () => {
 	}, []);
 
 	const addToCart = useCallback(() => {
-		Alert.alert('Login', 'Função de login acionada!');
-	}, []);
+		const cartItem: CartItemProps = {
+			product_id: `product-detail-${PRODUCT_DETAIL_CONTENT.title}`,
+			name: PRODUCT_DETAIL_CONTENT.title,
+			price: PRODUCT_DETAIL_CONTENT.price,
+			quantity,
+			imageUri: carouselItems[0]?.imageUri ?? '',
+			shipping: 'Frete grátis',
+		};
+
+		addItemToCartAndSelect(cartItem);
+		Alert.alert('Carrinho', 'Item adicionado e selecionado no carrinho.');
+	}, [carouselItems, quantity]);
 
 	return {
 		quantity,

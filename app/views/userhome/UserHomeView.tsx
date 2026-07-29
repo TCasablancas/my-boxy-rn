@@ -250,7 +250,7 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
             maxToRenderPerBatch={4}
             windowSize={7}
             removeClippedSubviews
-            contentContainerStyle={{ paddingBottom: 16 }}
+            contentContainerStyle={{ paddingBottom: 46 }}
           />
         </View>
       </View>

@@ -6,13 +6,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PlatformPressable } from '@react-navigation/elements';
 import { MainTabParamList, RootStackParamList } from './app/navigation/types';
-import {
+import MainNavigation, {
   DYNAMIC_COMPONENT_ROUTE_NAME,
   navigationRef,
   setMainNavigationReady,
 } from './app/common/navigation/MainNavigation';
 import { useAppHooks } from './app/AppHooks';
 import { NeutralColors, PrimaryColors } from './app/common/colors/Colors';
+import MainDynamicRouteScreen from './app/common/navigation/MainDynamicRouteScreen';
 import SplashScreen from 'react-native-splash-screen';
 
 import MBMainBottomsheet from './app/components/bottomsheet/MBMainBottomsheet';
@@ -30,7 +31,8 @@ import UserSignupView from './app/views/usersignup/UserSignupView';
 import LoginView from './app/views/login/LoginView';
 import { UserHomeStoreSignupView } from './app/views/userhome/UserHomeNavigation';
 import MBFloatingCartBtn from './app/components/buttons/MBFloatingCartBtn';
-import MainDynamicRouteScreen from './app/common/navigation/MainDynamicRouteScreen';
+import CartView from './app/views/cart/CartView';
+import { useCartStore } from './app/common/store/cartStore';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -57,6 +59,7 @@ const MORE_CONFIG_PATHS = [
   'PrivacyView',
   'TermsAndConditionsView',
   'AboutMyBoxyView',
+  'CartView',
 ] as const;
 
 function MainTabs() {
@@ -78,6 +81,7 @@ function MainTabs() {
     tabMenuData,
   } = useAppHooks();
   const [activeTabName, setActiveTabName] = useState<string>('início');
+  const selectedItemsCount = useCartStore((snapshot) => snapshot.selectedIds.length);
 
   const screenOptions = {
     tabBarStyle: {
@@ -112,7 +116,10 @@ function MainTabs() {
     <>
       {activeTabName !== 'mais' && (
         <View style={styles.cartButtonWrapper}> 
-          <MBFloatingCartBtn />
+          <MBFloatingCartBtn
+            items={selectedItemsCount}
+            onPress={() => { MainNavigation.push(CartView); }}
+          />
         </View>
       )}
       <Tab.Navigator screenOptions={screenOptions}>

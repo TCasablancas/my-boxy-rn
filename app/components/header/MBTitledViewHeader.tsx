@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text } from 'react-native';
 import { NeutralColors } from '../../common/colors/Colors';
+import { spacing } from '../../common/constants/Sizes';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface MBTitledViewHeaderProps {
@@ -32,16 +33,16 @@ export default function MBTitledViewHeader({
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 16,
-    paddingHorizontal: 8,
-    marginVertical: 16,
+    paddingVertical: spacing.lg,
+    paddingHorizontal: spacing.lg,
+    marginVertical: spacing.lg,
     marginTop: 18,
     height: 40,
     width: '100%',
     justifyContent: 'center',
   },
   contentWrapper: {
-    paddingHorizontal: 16,
+    paddingHorizontal: spacing.lg,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

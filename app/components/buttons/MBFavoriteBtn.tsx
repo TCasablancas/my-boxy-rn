@@ -1,17 +1,22 @@
 import { StyleSheet, View } from 'react-native';
 import MBFavoriteIconBtn from './MBFavoriteIconBtn';
+import { NeutralColors } from '../../common/colors/Colors';
 
-export default function MBFavoriteBtn({
-  isActive,
-  defaultActive,
-  onPress,
-}: {
+interface MBFavoriteBtnProps {
   isActive?: boolean;
+  background?: boolean;
   defaultActive?: boolean;
   onPress?: (nextActive: boolean) => void;
-}) {
+}
+
+export default function MBFavoriteBtn({
+  isActive, background, defaultActive, onPress,
+}: MBFavoriteBtnProps) {
   return (
-    <View style={styles.favoriteBtnContainer}>
+    <View style={[
+      styles.favoriteBtnContainer, 
+      { backgroundColor: background ? NeutralColors.backgroundAlt : 'transparent' }
+    ]}>
       <MBFavoriteIconBtn
         isActive={isActive}
         defaultActive={defaultActive}
@@ -26,7 +31,6 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 12,
-    backgroundColor: '#EBEBEB',
     alignItems: 'center',
     justifyContent: 'center',
   },

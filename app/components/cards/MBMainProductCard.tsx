@@ -1,12 +1,33 @@
 import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
 import MBFavoriteBtn from '../buttons/MBFavoriteBtn';
 import { Icons } from '../../common/icons/Icons';
-import { PrimaryColors } from '../../common/colors/Colors';
+import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 import { ProductProps } from '../../models/ProductCardModel';
+import MBRoundedIconBtn from '../buttons/MBRoundedIconBtn';
+import { IconsActions } from '../../common/icons/IconsActions';
+import type { CartItemProps } from '../../views/cart/CartModel';
+import { addItemToCartAndSelect } from '../../common/store/cartStore';
+import { formatCurrencyBRL, parsePriceToNumber } from '../../common/constants/Currency';
 
 export default function MBMainProductCard({ 
     product
 }: { product: ProductProps }) {
+  const handleAddToCart = () => {
+    const cartItem: CartItemProps = {
+      product_id: product.productId,
+      name: product.title,
+      price: product.price,
+      quantity: 1,
+      imageUri: product.imageUri,
+      store_id: product.storeName,
+      store_name: product.storeName,
+    };
+
+    addItemToCartAndSelect(cartItem);
+  };
+
+  const priceToNumber = parsePriceToNumber(product.price);
+
   return (
     <Pressable style={styles.productContainer} onPress={product.onPress}>
       <View style={styles.storeInfoWrapper}>
@@ -32,9 +53,16 @@ export default function MBMainProductCard({
           </View>
           <Image source={{ uri: product.imageUri }} style={styles.productImage} />
         </View>
-        <View style={styles.textWrapper}>
-          <Text style={styles.productTitle}>{product.title}</Text>
-          <Text style={styles.productPrice}><Text style={styles.currency}>R$ </Text>{product.price}</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View style={styles.textWrapper}>
+            <Text style={styles.productTitle}>{product.title}</Text>
+            <Text style={styles.productPrice}>
+              <Text style={styles.currency}>R$</Text>{formatCurrencyBRL(priceToNumber)}
+            </Text>
+          </View>
+          <Pressable style={styles.addToCartBtn} onPress={handleAddToCart}>
+            <Icons.simpleCart width={16} height={16} strokeColor={PrimaryColors.primary} />
+          </Pressable>
         </View>
       </View>
     </Pressable>
@@ -54,6 +82,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     overflow: 'hidden',
     borderRadius: 8,
+    marginBottom: 4,
   },
   nameImageWrapper: {
     flexDirection: 'row',
@@ -84,7 +113,8 @@ const styles = StyleSheet.create({
   currency: {
     fontSize: 12,
     color: PrimaryColors.mainBlue,
-    fontFamily: 'SNPro-Regular'
+    fontFamily: 'SNPro-Regular',
+    opacity: 0.5,
   },
   storeInfoWrapper: {
     flexDirection: 'row',
@@ -98,7 +128,7 @@ const styles = StyleSheet.create({
   },
   storeName: {
     fontSize: 10,
-    color: '#4c4c4c',
+    color: NeutralColors.text,
     fontFamily: 'SNPro-Regular',
   },
   storeImage: {
@@ -111,13 +141,17 @@ const styles = StyleSheet.create({
   },
   favoriteBtnWrapper: {
     position: 'absolute',
-    bottom: 12,
-    right: 10,
+    right: 0,
     zIndex: 1,
   },
   ratingText: {
     fontSize: 11,
     color: '#4c4c4c',
     fontFamily: 'SNPro-Regular',
+  },
+  addToCartBtn: {
+    backgroundColor: PrimaryColors.primaryLight,
+    padding: 8,
+    borderRadius: 8,
   },
 });
