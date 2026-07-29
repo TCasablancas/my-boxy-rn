@@ -1,10 +1,10 @@
-import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable } from 'react-native';
+import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
 import { CartItemProps } from '../../views/cart/CartModel';
 import { spacing } from '../../common/constants/Sizes';
-import { Icons } from '../../common/icons/Icons';
 import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
-import { IconsActions } from '../../common/icons/IconsActions';
+
 import MBMainSelector from '../../components/selectors/MBMainSelector';
+import MBCartItemCounter from '../../components/counter/MBCartItemCounter';
 
 interface ProductOnCartSectionProps {
   product: CartItemProps,
@@ -21,7 +21,7 @@ export default function ProductOnCartSection({
     <>
       <View style={styles.container}>
         <View style={{ flexDirection: 'row' }}>
-          <Pressable style={{marginRight: spacing.md}}>
+          <Pressable style={{ marginRight: spacing.md }}>
             <MBMainSelector 
               value={isItemSelected ? 'on' : 'off'} 
               onChange={() => { onItemSelectedChange?.() || console.log('onItemSelectedChange not provided') }} 
@@ -40,14 +40,7 @@ export default function ProductOnCartSection({
             <Text style={styles.shippingLabel}>{product.shipping}</Text>
           </View>
           <View style={styles.productActionsWrapper}>
-            {/* <Pressable>
-              <IconsActions.trash width={16} height={16} strokeColor={NeutralColors.textSecondary} />
-            </Pressable> */}
-            <View style={styles.productCounterWrapper}>
-              <Pressable><Text style={styles.counterLabel}>- </Text></Pressable>
-              <Text style={styles.quantityLabel}>{product.quantity}</Text>
-              <Pressable><Text style={styles.counterLabel}> +</Text></Pressable>
-            </View>
+            <MBCartItemCounter quantity={product.quantity}/>
           </View>
         </View>
       </View>
@@ -62,16 +55,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   container: {
-    // flex: 1,
     justifyContent: 'space-between',
-    // alignItems: 'center',
-    // backgroundColor: 'white',
     paddingHorizontal: spacing.lg,
     paddingBottom: spacing.md,
     borderRadius: 8,
-    // marginBottom: 16,
-    // flexDirection: 'row',
-    // alignItems: 'center',
   },
   productInfoWrapper: {
     flexDirection: 'column',
@@ -103,32 +90,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'SNPro-Regular',
     color: NeutralColors.text,
+    paddingRight: 40,
+    overflow: 'hidden',
+    width: '96%',
   },
   productActionsWrapper: { 
     position: 'absolute', 
-    right: 0, top: 0, bottom: 0, 
-    flexDirection: 'column',
-    alignItems: 'flex-end', 
-    justifyContent: 'flex-end', 
-    gap: spacing.md 
-  },
-  productCounterWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: spacing.sm,
-    backgroundColor: 'white',
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.xs,
-    borderRadius: 100,
-    width: 80,
-  },
-  quantityLabel: {
-    fontSize: 14,
-    color: PrimaryColors.mainBlue,
-  },
-  counterLabel: {
-    fontSize: 14,
-    color: NeutralColors.textSecondary,
+    right: 0, 
+    bottom: 0, 
   },
 });

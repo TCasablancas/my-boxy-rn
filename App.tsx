@@ -32,6 +32,7 @@ import LoginView from './app/views/login/LoginView';
 import { UserHomeStoreSignupView } from './app/views/userhome/UserHomeNavigation';
 import MBFloatingCartBtn from './app/components/buttons/MBFloatingCartBtn';
 import CartView from './app/views/cart/CartView';
+import { useCartStore } from './app/common/store/cartStore';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -80,6 +81,7 @@ function MainTabs() {
     tabMenuData,
   } = useAppHooks();
   const [activeTabName, setActiveTabName] = useState<string>('início');
+  const selectedItemsCount = useCartStore((snapshot) => snapshot.selectedIds.length);
 
   const screenOptions = {
     tabBarStyle: {
@@ -114,7 +116,10 @@ function MainTabs() {
     <>
       {activeTabName !== 'mais' && (
         <View style={styles.cartButtonWrapper}> 
-          <MBFloatingCartBtn onPress={() => { MainNavigation.push(CartView); }} />
+          <MBFloatingCartBtn
+            items={selectedItemsCount}
+            onPress={() => { MainNavigation.push(CartView); }}
+          />
         </View>
       )}
       <Tab.Navigator screenOptions={screenOptions}>

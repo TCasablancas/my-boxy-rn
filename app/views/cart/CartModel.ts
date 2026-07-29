@@ -3,7 +3,7 @@ export interface CartItemProps {
   product_id: string;
   name: string;
   price: string;
-  quantity: string | number;
+  quantity: number;
   imageUri: string;
   store_id?: string;
   store_name?: string;

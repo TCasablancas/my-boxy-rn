@@ -1,8 +1,8 @@
 
 import { useState } from 'react';
 import type { CartItemProps } from './CartModel';
-import { CartItemsData } from '../../common/CartItemsData';
 import { useCartHooks } from './CartHooks';
+import { cartStoreActions, useCartStore } from '../../common/store/cartStore';
 
 export default function useCartViewModel() {
   const {
@@ -10,50 +10,54 @@ export default function useCartViewModel() {
     setToggleDisplayBottomInfo,
     bottomContainerHeight,
     setBottomContainerHeight,
+    availableCoupons,
+    setAvailableCoupons,
     handleBottomContainerHeight,
-    selectedIds,
-    toggleSelect,
-    toggleSelectAll,
-    removeSelectedIds,
-    clearSelectedIds,
   } = useCartHooks();
 
-  const [cartItems, setCartItems] = useState<CartItemProps[]>(CartItemsData);
+  const cartItems = useCartStore((snapshot) => snapshot.cartItems);
+  const selectedIds = useCartStore((snapshot) => snapshot.selectedIds);
 
   const isAllItemsSelected = cartItems.length > 0 && cartItems.every(item => selectedIds.includes(item.product_id));
 
   const toggleSelectAllItems = () => {
-    toggleSelectAll(cartItems.map(item => item.product_id));
+    cartStoreActions.toggleSelectAll();
+  };
+
+  const toggleSelect = (productId: string) => {
+    cartStoreActions.toggleSelect(productId);
   };
 
   const getCartTotal = () => {
     return cartItems.reduce((total, item) => {
       const price = parseFloat(item.price);
-      const quantity = typeof item.quantity === 'string' ? parseInt(item.quantity) : item.quantity;
+      const quantity = item.quantity;
       return total + (price * quantity);
     }, 0);
   };
 
+  const getTotalCoupons = () => {
+    return availableCoupons.length;
+  };
+
   const addItemToCart = (item: CartItemProps) => {
-    setCartItems((prevItems) => [...prevItems, item]);
+    cartStoreActions.addItem(item, { select: true });
   };
 
   const removeItemFromCart = (productId: string) => {
-    setCartItems((prevItems) => prevItems.filter(item => item.product_id !== productId));
-    removeSelectedIds([productId]);
+    cartStoreActions.removeItem(productId);
   };
 
   const removeSelectedItemsFromCart = () => {
-    setCartItems((prevItems) => prevItems.filter(item => !selectedIds.includes(item.product_id)));
-    clearSelectedIds();
+    cartStoreActions.removeSelectedItems();
   };
 
-  const updateItemQuantity = (productId: string, quantity: number | string) => {
-    setCartItems((prevItems) =>
-      prevItems.map(item =>
-        item.product_id === productId ? { ...item, quantity } : item
-      )
-    );
+  const checkoutSelectedItems = () => {
+    cartStoreActions.checkoutSelectedItems();
+  };
+
+  const updateItemQuantity = (productId: string, quantity: number) => {
+    cartStoreActions.updateItemQuantity(productId, quantity);
   };
 
   const toggleBottomInfoView = () => {
@@ -62,13 +66,14 @@ export default function useCartViewModel() {
 
   return {
     cartItems,
-    setCartItems,
     selectedIds,
     toggleSelect,
+    getTotalCoupons,
     isAllItemsSelected,
     toggleSelectAllItems,
     removeItemFromCart,
     removeSelectedItemsFromCart,
+    checkoutSelectedItems,
     updateItemQuantity,
     getCartTotal,
     addItemToCart,

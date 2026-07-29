@@ -22,11 +22,13 @@ export default function CartView() {
   const {
     cartItems,
     selectedIds,
+    getTotalCoupons,
     toggleSelect,
     isAllItemsSelected,
     toggleSelectAllItems,
     removeItemFromCart,
     removeSelectedItemsFromCart,
+    checkoutSelectedItems,
     toggleDisplayBottomInfo,
     setToggleDisplayBottomInfo,
     bottomContainerHeight,
@@ -34,7 +36,7 @@ export default function CartView() {
   } = useCartViewModel();
 
   // REMOVER
-    const emptyCartImage = 'https://cdn3d.iconscout.com/3d/premium/thumb/empty-shopping-basket-3d-icon-png-download-10058965.png';
+  const emptyCartImage = 'https://cdn3d.iconscout.com/3d/premium/thumb/empty-shopping-basket-3d-icon-png-download-10058965.png';
 
   const emptyCartView = () => {
     return (
@@ -64,27 +66,43 @@ export default function CartView() {
             icon={<Icons.arrowBack width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
             onPress={() => { MainNavigation.pop(); }}
           />}
-          btnsRight={<MBRoundedIconBtn 
-            icon={<Icons.ticketPercent width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
-            onPress={() => {}}
-          />}
+          btnsRight={
+            <MBRoundedIconBtn 
+              icon={
+                <Icons.ticketPercent width={16} height={16} 
+                  strokeColor={getTotalCoupons() > 0 ? 'white' : NeutralColors.textSecondary} 
+                />
+              } 
+              qty={getTotalCoupons() > 0 ? getTotalCoupons() : undefined}
+              backgroundColor={getTotalCoupons() > 0 ? PrimaryColors.primary : NeutralColors.border}
+              onPress={() => {}}
+            />
+          }
         />
         {cartItems.length > 0 && (
-          <Pressable style={styles.selectAllWrapper} onPress={toggleSelectAllItems}>
-            <MBMainSelector
-              value={isAllItemsSelected ? 'on' : 'off'}
-              onChange={toggleSelectAllItems}
-            />
-            <Text style={styles.selectAllLabel}>Selecionar todos</Text>
-          </Pressable>
+          <View style={styles.subHeaderWrapper}>
+            <Pressable style={styles.selectAllWrapper} onPress={toggleSelectAllItems}>
+              <MBMainSelector
+                value={isAllItemsSelected ? 'on' : 'off'}
+                onChange={toggleSelectAllItems}
+              />
+              <Text style={styles.selectAllLabel}>Selecionar todos</Text>
+            </Pressable>
+          </View>
         )}
-        <View style={{ marginBottom: bottomContainerHeight + 100 }}>
+        <View
+          style={[
+            styles.listWrapper,
+            { marginBottom: cartItems.length > 0 ? bottomContainerHeight : 0 },
+          ]}
+        >
           <FlatList
             data={cartItems}
             keyExtractor={(item) => item.product_id}
             ItemSeparatorComponent={
               <View style={{height: 2, width: '100%', backgroundColor: 'white'}} />
             }
+            showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
               <ProductOnCartSection
                 product={item}
@@ -111,7 +129,7 @@ export default function CartView() {
                 <Icons.chevronUp width={16} height={16} strokeColor={NeutralColors.textSecondary} />
               }
             </Pressable>
-            <View style={{ marginBottom: 16 }}>
+            <View>
               <View style={{ display: toggleDisplayBottomInfo ? 'flex' : 'none'}}>
                 <MBCartAmmountDescLbl label="Subtotal" amount="350,00" size="medium" />
                 <MBCartAmmountDescLbl label="Desconto" amount="0,00" size="medium" />
@@ -124,13 +142,15 @@ export default function CartView() {
               <MBMainBtn
                 title="Finalizar Compra"
                 flex={1}
-                onPress={() => { removeSelectedItemsFromCart(); }}
+                onPress={() => { checkoutSelectedItems(); }}
               />
-              <MBRoundedIconBtn 
-                backgroundColor={PrimaryColors.mainRed}
-                icon={<IconsActions.trash width={16} height={16} strokeColor={'white'} />} 
-                onPress={() => { removeSelectedItemsFromCart(); }} 
-              />
+              {selectedIds.length > 0 && (
+                <MBRoundedIconBtn 
+                  backgroundColor={PrimaryColors.mainRed}
+                  icon={<IconsActions.trash width={16} height={16} strokeColor={'white'} />} 
+                  onPress={() => { removeSelectedItemsFromCart(); }} 
+                />
+              )}
             </View>
           </View>
         )}
@@ -146,11 +166,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     alignItems: 'center' 
   },
+  listWrapper: {
+    flex: 1,
+  },
   container: {
     rowGap: 12,
     justifyContent: 'flex-start',
-    height: '100%',
+    flexGrow: 1,
     paddingTop: spacing.md,
+    paddingBottom: spacing.md,
   },
   title: {
     fontSize: 24,
@@ -170,10 +194,14 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
   },
   toggleItemsBtn: {
+    alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#f0f0f0',
+    borderRadius: 100,
+    width: 32,
   },
-  selectAllWrapper: {
+  subHeaderWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.md,
@@ -181,6 +209,15 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xs,
     height: 50,
     backgroundColor: 'white',
+  },
+  selectAllWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+    // paddingHorizontal: spacing.lg,
+    // paddingVertical: spacing.xs,
+    // height: 50,
+    // backgroundColor: 'white',
   },
   selectAllLabel: {
     fontSize: 14,
