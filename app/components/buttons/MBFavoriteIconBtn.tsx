@@ -44,12 +44,21 @@ export default function MBFavoriteIconBtn({
 
   return (
     <TouchableOpacity style={styles.btnWrapper} onPress={handlePress}>
-      <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
+      <Animated.View style={
+        { opacity: resolvedIsActive ? 1 : 0.7, 
+          transform: [{ scale: scaleValue }],
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 4 },
+          shadowOpacity: 0.4,
+          shadowRadius: 6,
+          elevation: 12,
+        }
+      }>
         <Icons.heart 
           width={24} height={24} 
           color={PrimaryColors.primary} 
           strokeColor={resolvedIsActive ? PrimaryColors.mainRed : NeutralColors.textSecondary} 
-          fillColor={resolvedIsActive ? PrimaryColors.mainRed : 'transparent'}
+          fillColor={resolvedIsActive ? PrimaryColors.mainRed : 'white'}
         />
       </Animated.View>
     </TouchableOpacity>

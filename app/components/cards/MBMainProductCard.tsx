@@ -7,6 +7,7 @@ import MBRoundedIconBtn from '../buttons/MBRoundedIconBtn';
 import { IconsActions } from '../../common/icons/IconsActions';
 import type { CartItemProps } from '../../views/cart/CartModel';
 import { addItemToCartAndSelect } from '../../common/store/cartStore';
+import { formatCurrencyBRL, parsePriceToNumber } from '../../common/constants/Currency';
 
 export default function MBMainProductCard({ 
     product
@@ -24,6 +25,8 @@ export default function MBMainProductCard({
 
     addItemToCartAndSelect(cartItem);
   };
+
+  const priceToNumber = parsePriceToNumber(product.price);
 
   return (
     <Pressable style={styles.productContainer} onPress={product.onPress}>
@@ -53,7 +56,9 @@ export default function MBMainProductCard({
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View style={styles.textWrapper}>
             <Text style={styles.productTitle}>{product.title}</Text>
-            <Text style={styles.productPrice}><Text style={styles.currency}>R$ </Text>{product.price}</Text>
+            <Text style={styles.productPrice}>
+              <Text style={styles.currency}>R$</Text>{formatCurrencyBRL(priceToNumber)}
+            </Text>
           </View>
           <Pressable style={styles.addToCartBtn} onPress={handleAddToCart}>
             <Icons.simpleCart width={16} height={16} strokeColor={PrimaryColors.primary} />
@@ -108,7 +113,8 @@ const styles = StyleSheet.create({
   currency: {
     fontSize: 12,
     color: PrimaryColors.mainBlue,
-    fontFamily: 'SNPro-Regular'
+    fontFamily: 'SNPro-Regular',
+    opacity: 0.5,
   },
   storeInfoWrapper: {
     flexDirection: 'row',
