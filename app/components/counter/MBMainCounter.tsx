@@ -5,12 +5,11 @@ interface MBMainCounterProps {
   value: number;
   onDecrement: () => void;
   onIncrement: () => void;
+  reset?: () => void;
 }
 
 export default function MBMainCounter({
-  value,
-  onDecrement,
-  onIncrement,
+  value, onDecrement, onIncrement, reset,
 }: MBMainCounterProps) {
   return (
     <View style={styles.container}>
@@ -23,6 +22,11 @@ export default function MBMainCounter({
       <Pressable onPress={onIncrement} style={styles.button}>
         <Text style={styles.buttonText}>+</Text>
       </Pressable>
+      {reset && (
+        <Pressable onPress={reset} style={styles.button}>
+          <Text style={styles.buttonText}>R</Text>
+        </Pressable>
+      )}
     </View>
    );
 }

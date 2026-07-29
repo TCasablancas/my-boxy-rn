@@ -8,11 +8,9 @@ interface MBCartItemCounterProps {
   onDecrement?: () => void;
 }
 
-export default function MBCartItemCounter({ 
-  quantity,
-  onIncrement,
-  onDecrement,
-}: MBCartItemCounterProps) {
+export const MBCartItemCounter = ({ 
+  quantity, onIncrement, onDecrement,
+}: MBCartItemCounterProps) => {
   const canDecrement = quantity > 1;
 
   return (

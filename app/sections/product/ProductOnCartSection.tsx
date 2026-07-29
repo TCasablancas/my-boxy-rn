@@ -1,10 +1,11 @@
 import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
+import { useCounter } from '../../states/useCounter';
 import { CartItemProps } from '../../views/cart/CartModel';
 import { spacing } from '../../common/constants/Sizes';
 import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 
 import MBMainSelector from '../../components/selectors/MBMainSelector';
-import MBCartItemCounter from '../../components/counter/MBCartItemCounter';
+import { MBCartItemCounter } from '../../components/counter/MBCartItemCounter';
 
 interface ProductOnCartSectionProps {
   product: CartItemProps,
@@ -17,16 +18,18 @@ interface ProductOnCartSectionProps {
 export default function ProductOnCartSection({ 
   product, isItemSelected, onItemSelectedChange, onQuantityChange, onRemoveItem,
 }: ProductOnCartSectionProps) {
-  const handleIncrement = () => {
-    onQuantityChange?.(product.quantity + 1);
-  };
+  // const handleIncrement = () => {
+  //   onQuantityChange?.(product.quantity + 1);
+  // };
 
-  const handleDecrement = () => {
-    if (product.quantity <= 1) {
-      return;
-    }
-    onQuantityChange?.(product.quantity - 1);
-  };
+  // const handleDecrement = () => {
+  //   if (product.quantity <= 1) {
+  //     return;
+  //   }
+  //   onQuantityChange?.(product.quantity - 1);
+  // };
+
+  const { count, increment, decrement } = useCounter(product.quantity);
 
   return (
     <>
@@ -52,9 +55,9 @@ export default function ProductOnCartSection({
           </View>
           <View style={styles.productActionsWrapper}>
             <MBCartItemCounter
-              quantity={product.quantity}
-              onIncrement={handleIncrement}
-              onDecrement={handleDecrement}
+              quantity={count}
+              onIncrement={increment}
+              onDecrement={decrement}
             />
           </View>
         </View>
