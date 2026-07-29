@@ -1,32 +1,27 @@
-import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable } from 'react-native';
-import { useState } from 'react';
+import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { spacing } from '../../common/constants/Sizes';
 import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 
 interface MBCartItemCounterProps {
   quantity: number;
+  onIncrement?: () => void;
+  onDecrement?: () => void;
 }
 
 export default function MBCartItemCounter({ 
-  quantity
+  quantity,
+  onIncrement,
+  onDecrement,
 }: MBCartItemCounterProps) {
-  const [currentQuantity, setCurrentQuantity] = useState(quantity);
-
-  const handleIncrement = () => {
-    setCurrentQuantity(currentQuantity + 1);
-  };
-
-  const handleDecrement = () => {
-    if (currentQuantity > 1) {
-      setCurrentQuantity(currentQuantity - 1);
-    }
-  };
+  const canDecrement = quantity > 1;
 
   return (
     <View style={styles.productCounterWrapper}>
-      <Pressable onPress={handleDecrement}><Text style={styles.counterLabel}>- </Text></Pressable>
-      <Text style={styles.quantityLabel}>{currentQuantity}</Text>
-      <Pressable onPress={handleIncrement}><Text style={styles.counterLabel}> +</Text></Pressable>
+      <Pressable disabled={!canDecrement} onPress={onDecrement}>
+        <Text style={[styles.counterLabel, !canDecrement ? styles.counterLabelDisabled : null]}>- </Text>
+      </Pressable>
+      <Text style={styles.quantityLabel}>{quantity}</Text>
+      <Pressable onPress={onIncrement}><Text style={styles.counterLabel}> +</Text></Pressable>
     </View>
   );
 }
@@ -50,5 +45,8 @@ const styles = StyleSheet.create({
   counterLabel: {
     fontSize: 14,
     color: NeutralColors.textSecondary,
+  },
+  counterLabelDisabled: {
+    opacity: 0.35,
   },
 });

@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, Platform, Pressable, FlatList } from 'react-native';
 import EmptyViewSection from '../../sections/empty/EmptyViewSection';
 import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
+import { DiscountType } from '../../components/cards/MBCouponCard';
 import SafeAreaView from '../../sections/global/SafeAreaView';
 import { Icons } from '../../common/icons/Icons';
 import { spacing } from '../../common/constants/Sizes';
@@ -16,6 +17,8 @@ import MBMainSelector from '../../components/selectors/MBMainSelector';
 import useCartViewModel from './CartViewModel';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { IconsActions } from '../../common/icons/IconsActions';
+import MBMainBottomsheet from '../../components/bottomsheet/MBMainBottomsheet';
+import MBCouponCard from '../../components/cards/MBCouponCard';
 
 export default function CartView() {
   const safeAreaInsets = useSafeAreaInsets();
@@ -29,10 +32,15 @@ export default function CartView() {
     removeItemFromCart,
     removeSelectedItemsFromCart,
     checkoutSelectedItems,
+    isCheckingOut,
+    updateItemQuantity,
+    checkoutSummary,
     toggleDisplayBottomInfo,
     setToggleDisplayBottomInfo,
     bottomContainerHeight,
     handleBottomContainerHeight,
+    isBottomSheetVisible,
+    toggleBottomSheet,
   } = useCartViewModel();
 
   // REMOVER
@@ -57,6 +65,15 @@ export default function CartView() {
     );
   };
 
+  const couponsBottomSheetContent = () => {
+    return (
+      <View style={{ padding: spacing.md }}>
+        <MBCouponCard couponCode={'PRIMEIRACOMPRA120'} type={DiscountType.FixedAmount} discountValue={120} />
+        <MBCouponCard couponCode={'PRIMEIRACOMPRA120'} type={DiscountType.Percentage} discountValue={120} />
+      </View>
+    );
+  };
+
   return (
     <SafeAreaView children={
       <>
@@ -75,7 +92,7 @@ export default function CartView() {
               } 
               qty={getTotalCoupons() > 0 ? getTotalCoupons() : undefined}
               backgroundColor={getTotalCoupons() > 0 ? PrimaryColors.primary : NeutralColors.border}
-              onPress={() => {}}
+              onPress={() => { toggleBottomSheet(); }}
             />
           }
         />
@@ -108,7 +125,7 @@ export default function CartView() {
                 product={item}
                 isItemSelected={selectedIds.includes(item.product_id)}
                 onItemSelectedChange={() => { toggleSelect(item.product_id); }}
-                onQuantityChange={(quantity) => { console.log(`Item ${item.product_id} quantity changed to ${quantity}`) }}
+                onQuantityChange={(quantity) => { updateItemQuantity(item.product_id, quantity); }}
                 onRemoveItem={() => { removeItemFromCart(item.product_id); }}
               />
             )}
@@ -131,16 +148,16 @@ export default function CartView() {
             </Pressable>
             <View>
               <View style={{ display: toggleDisplayBottomInfo ? 'flex' : 'none'}}>
-                <MBCartAmmountDescLbl label="Subtotal" amount="350,00" size="medium" />
-                <MBCartAmmountDescLbl label="Desconto" amount="0,00" size="medium" />
-                <MBCartAmmountDescLbl label="Taxas" amount="0,00" size="medium" />
+                <MBCartAmmountDescLbl label="Subtotal" amount={checkoutSummary.subtotal} size="medium" />
+                <MBCartAmmountDescLbl label="Desconto" amount={checkoutSummary.discount} size="medium" />
+                <MBCartAmmountDescLbl label="Taxas" amount={checkoutSummary.fees} size="medium" />
               </View>
               <MBCartAmmountDescLbl 
-                label="Total" amount="350,00" size="large" isLast />
+                label="Total" amount={checkoutSummary.total} size="large" isLast />
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: spacing.md }}>
               <MBMainBtn
-                title="Finalizar Compra"
+                title={isCheckingOut ? 'Processando...' : 'Finalizar Compra'}
                 flex={1}
                 onPress={() => { checkoutSelectedItems(); }}
               />
@@ -154,6 +171,22 @@ export default function CartView() {
             </View>
           </View>
         )}
+        <MBMainBottomsheet 
+          visible={isBottomSheetVisible}
+          title={'Cupons Disponíveis'}
+          description={'Selecione os cupons que deseja aplicar à sua compra.'}
+          onClose={() => { toggleBottomSheet(); }}
+          closeButton={true}
+          content={couponsBottomSheetContent()}
+          actionButton={
+            <View style={{ width: '100%' }}>
+              <MBMainBtn
+                title="Usar Cupom"
+                onPress={() => { toggleBottomSheet(); }}
+              />
+            </View>
+          }
+        />
       </>
     } />
   );

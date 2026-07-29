@@ -17,6 +17,17 @@ interface ProductOnCartSectionProps {
 export default function ProductOnCartSection({ 
   product, isItemSelected, onItemSelectedChange, onQuantityChange, onRemoveItem,
 }: ProductOnCartSectionProps) {
+  const handleIncrement = () => {
+    onQuantityChange?.(product.quantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (product.quantity <= 1) {
+      return;
+    }
+    onQuantityChange?.(product.quantity - 1);
+  };
+
   return (
     <>
       <View style={styles.container}>
@@ -40,7 +51,11 @@ export default function ProductOnCartSection({
             <Text style={styles.shippingLabel}>{product.shipping}</Text>
           </View>
           <View style={styles.productActionsWrapper}>
-            <MBCartItemCounter quantity={product.quantity}/>
+            <MBCartItemCounter
+              quantity={product.quantity}
+              onIncrement={handleIncrement}
+              onDecrement={handleDecrement}
+            />
           </View>
         </View>
       </View>

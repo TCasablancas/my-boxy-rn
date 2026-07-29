@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: PrimaryColors.primaryLight, 
     borderRadius: 100, 
     paddingHorizontal: 12,
+    boxShadow: '0px 4px 12px rgba(23, 149, 19, 0.3)',
   },
   cartButtonContent: {
     flex: 1, 

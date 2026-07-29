@@ -1,8 +1,10 @@
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import type { CartItemProps } from './CartModel';
 import { useCartHooks } from './CartHooks';
 import { cartStoreActions, useCartStore } from '../../common/store/cartStore';
+import { formatCurrencyBRL, parsePriceToNumber, } from '../../common/constants/Currency';
+import { buildCheckoutPayload, resolveCartTotals, submitCheckoutPayload } from './CartService';
 
 export default function useCartViewModel() {
   const {
@@ -11,12 +13,44 @@ export default function useCartViewModel() {
     bottomContainerHeight,
     setBottomContainerHeight,
     availableCoupons,
-    setAvailableCoupons,
+    shippingFee,
+    setShippingFee,
+    serviceFee,
+    setServiceFee,
+    discountValue,
+    setDiscountValue,
     handleBottomContainerHeight,
   } = useCartHooks();
 
   const cartItems = useCartStore((snapshot) => snapshot.cartItems);
   const selectedIds = useCartStore((snapshot) => snapshot.selectedIds);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
+  
+  const selectedCartItems = useMemo(
+    () => cartItems.filter((item) => selectedIds.includes(item.product_id)),
+    [cartItems, selectedIds],
+  );
+
+  const cartTotals = useMemo(
+    () => resolveCartTotals(selectedCartItems, { shipping: shippingFee, serviceFee, discount: discountValue }),
+    [discountValue, selectedCartItems, serviceFee, shippingFee],
+  );
+
+  const checkoutPayload = useMemo(
+    () => buildCheckoutPayload(selectedCartItems, { shipping: shippingFee, serviceFee, discount: discountValue }),
+    [discountValue, selectedCartItems, serviceFee, shippingFee],
+  );
+
+  const checkoutSummary = useMemo(
+    () => ({
+      subtotal: formatCurrencyBRL(cartTotals.subtotal),
+      discount: formatCurrencyBRL(cartTotals.discount),
+      fees: formatCurrencyBRL(cartTotals.fees),
+      total: formatCurrencyBRL(cartTotals.total),
+    }),
+    [cartTotals.discount, cartTotals.fees, cartTotals.subtotal, cartTotals.total],
+  );
 
   const isAllItemsSelected = cartItems.length > 0 && cartItems.every(item => selectedIds.includes(item.product_id));
 
@@ -30,7 +64,7 @@ export default function useCartViewModel() {
 
   const getCartTotal = () => {
     return cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price);
+      const price = parsePriceToNumber(item.price);
       const quantity = item.quantity;
       return total + (price * quantity);
     }, 0);
@@ -52,8 +86,20 @@ export default function useCartViewModel() {
     cartStoreActions.removeSelectedItems();
   };
 
-  const checkoutSelectedItems = () => {
-    cartStoreActions.checkoutSelectedItems();
+  const checkoutSelectedItems = async () => {
+    if (selectedCartItems.length === 0 || isCheckingOut) {
+      return;
+    }
+
+    setIsCheckingOut(true);
+    try {
+      const result = await submitCheckoutPayload(checkoutPayload);
+      if (result.success) {
+        cartStoreActions.checkoutSelectedItems();
+      }
+    } finally {
+      setIsCheckingOut(false);
+    }
   };
 
   const updateItemQuantity = (productId: string, quantity: number) => {
@@ -62,6 +108,10 @@ export default function useCartViewModel() {
 
   const toggleBottomInfoView = () => {
     setToggleDisplayBottomInfo((prev) => !prev);
+  };
+
+  const toggleBottomSheet = () => {
+    setIsBottomSheetVisible((prev) => !prev);
   };
 
   return {
@@ -74,6 +124,10 @@ export default function useCartViewModel() {
     removeItemFromCart,
     removeSelectedItemsFromCart,
     checkoutSelectedItems,
+    isCheckingOut,
+    cartTotals,
+    checkoutSummary,
+    checkoutPayload,
     updateItemQuantity,
     getCartTotal,
     addItemToCart,
@@ -82,5 +136,13 @@ export default function useCartViewModel() {
     setToggleDisplayBottomInfo,
     bottomContainerHeight,
     handleBottomContainerHeight,
+    shippingFee,
+    setShippingFee,
+    serviceFee,
+    setServiceFee,
+    discountValue,
+    setDiscountValue,
+    isBottomSheetVisible,
+    toggleBottomSheet,
   };
 }
