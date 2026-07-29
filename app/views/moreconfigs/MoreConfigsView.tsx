@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import { View, StyleSheet, ScrollView, Pressable, StatusBar } from 'react-native';
+import { useMemo, useState } from 'react';
+import { View, StyleSheet, ScrollView, StatusBar, Text } from 'react-native';
 import MBTitledViewHeader from '../../components/header/MBTitledViewHeader';
 import MBMenuNestedList from '../../components/navigation/MBMenuNestedList';
 import MainNavigation from '../../common/navigation/MainNavigation';
@@ -9,11 +9,16 @@ import { IconsActions } from '../../common/icons/IconsActions';
 import MBRoundedIconBtn from '../../components/buttons/MBRoundedIconBtn';
 import MBIconInfoContainer from '../../components/containers/MBIconInfoContainer';
 import { Icons } from '../../common/icons/Icons';
-import MBMainBtn from '../../components/buttons/MBMainBtn';
+import MBMainBtn, { MBMainBtnType } from '../../components/buttons/MBMainBtn';
 import { NeutralColors } from '../../common/colors/Colors';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { handleSignOut as performSignOut } from '../login/LoginService';
+
 
 export default function MoreConfigsView() {
+  const [isSigningOut, setIsSigningOut] = useState(false);
+  const [signOutError, setSignOutError] = useState<string | null>(null);
+
   const menuItemPathById = useMemo(() => {
     return nestedListItems
       .flatMap((nestedList) => nestedList.items)
@@ -27,6 +32,24 @@ export default function MoreConfigsView() {
     const targetPath = menuItemPathById[itemId];
     if (!targetPath) return;
     MainNavigation.push(targetPath);
+  }
+
+
+  async function handleSignOut() {
+    if (isSigningOut) {
+      return;
+    }
+
+    setSignOutError(null);
+    setIsSigningOut(true);
+    try {
+      await performSignOut();
+      MainNavigation.resetTo('MainTabs');
+    } catch (error) {
+      setSignOutError(error instanceof Error ? error.message : 'Não foi possível sair da conta.');
+    } finally {
+      setIsSigningOut(false);
+    }
   }
 
   return (
@@ -75,7 +98,12 @@ export default function MoreConfigsView() {
                 {nestedList.items.length-1  && <View style={{ marginBottom: 16 }} />}
               </>
             ))}
-            <MBMainBtn title="Sair" onPress={() => {}} />
+            <MBMainBtn
+              title={isSigningOut ? 'Saindo...' : 'Sair'}
+              buttonType={isSigningOut ? MBMainBtnType.DISABLED : MBMainBtnType.NORMAL}
+              onPress={handleSignOut}
+            />
+            {signOutError ? <Text style={styles.signOutErrorText}>{signOutError}</Text> : null}
           </View>
         </ScrollView>
       </View>
@@ -86,7 +114,6 @@ export default function MoreConfigsView() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: NeutralColors.backgroundAlt,
     backgroundColor: 'white',
   },
   contentWrapper: {
@@ -113,5 +140,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', 
     gap: 16, 
     marginBottom: 16,
+  },
+  signOutErrorText: {
+    marginTop: 8,
+    textAlign: 'center',
+    fontSize: 13,
+    fontFamily: 'SNPro-Regular',
+    color: '#C70000',
   },
 });
