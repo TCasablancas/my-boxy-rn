@@ -223,13 +223,15 @@ const styles = StyleSheet.create({
   floatingLabel: {
     flex: 1,
     ...typography.label,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: NeutralColors.textPlaceholder,
   },
   input: {
     fontSize: 16,
     color: NeutralColors.text,
-    fontFamily: 'SNPro-Regular',
+    // fontFamily: 'SFMonoRegular',
+    letterSpacing: 0.5,
     width: '100%',
     height: 24,
     lineHeight: Platform.OS === 'ios' ? 0 : 12,

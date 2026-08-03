@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     color: NeutralColors.textSecondary,
     fontSize: 12,
     textAlign: 'center',
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
 });

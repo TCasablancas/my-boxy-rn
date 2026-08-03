@@ -365,7 +365,8 @@ const styles = StyleSheet.create({
   title: {
     color: PrimaryColors.gold,
     fontSize: 22,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     lineHeight: 22,
     paddingHorizontal: 12,
     paddingTop: 12,
@@ -374,7 +375,8 @@ const styles = StyleSheet.create({
     textShadowRadius: 12,
   },
   description: {
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     // color: PrimaryColors.limeGreen,
     color: 'white',
     fontSize: 14,

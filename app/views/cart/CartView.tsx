@@ -254,7 +254,8 @@ const styles = StyleSheet.create({
   },
   selectAllLabel: {
     fontSize: 14,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: NeutralColors.text,
   },
 });

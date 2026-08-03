@@ -64,13 +64,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 20,
-    fontFamily: 'SNPro-Bold',
+    fontSize: 16,
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: NeutralColors.textSecondary,
   },
   description: {
     fontSize: 16,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: NeutralColors.textPlaceholder,
   },
   midComponentWrapper: {

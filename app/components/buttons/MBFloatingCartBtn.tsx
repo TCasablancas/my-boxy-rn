@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
   cartButtonText: {
     fontSize: 16,
     color: PrimaryColors.primaryDark, 
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
   },
   cartCountWrapper: {
     backgroundColor: PrimaryColors.mainRed,
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
   cartButtonBadgeText: {
     color: 'white',
     fontSize: 14,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
 });

@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
   },
   storeName: {
     fontSize: 12,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     lineHeight: 14,
   },
   storeNameWrapper: {
@@ -47,7 +48,8 @@ const styles = StyleSheet.create({
   },
   storeAlias: {
     fontSize: 10,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: '#4c4c4c',
     lineHeight: 12,
   },

@@ -113,11 +113,13 @@ const styles = StyleSheet.create({
   },
   storeName: {
     fontSize: 16,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
   },
   description: {
     fontSize: 12,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: '#666',
     lineHeight: 14,
   },

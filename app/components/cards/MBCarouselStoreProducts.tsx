@@ -52,18 +52,21 @@ const styles = StyleSheet.create({
   productTitle: {
     fontSize: 14,
     color: '#4c4c4c',
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     lineHeight: 16,
   },
   productPrice: {
     fontSize: 16,
     color: PrimaryColors.primary,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     lineHeight: 20,
   },
   currency: {
     fontSize: 12,
     color: PrimaryColors.primary,
-    fontFamily: 'SNPro-Regular'
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
 });

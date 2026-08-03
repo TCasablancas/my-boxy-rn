@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontSize: 24,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: '#000',
     marginLeft: 4,
   },
@@ -67,7 +68,8 @@ const styles = StyleSheet.create({
   },
   ratingQtyText: {
     fontSize: 14,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: '#000',
   },
 });

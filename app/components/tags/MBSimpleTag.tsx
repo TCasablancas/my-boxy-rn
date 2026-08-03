@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
   tagText: {
     fontSize: 12,
     color: '#555',
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
 });

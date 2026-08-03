@@ -37,18 +37,19 @@ const styles = StyleSheet.create({
   },
   titleLabel: {
     fontSize: 14,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: NeutralColors.textSecondary,
   },
   ammountLabel: {
     fontSize: 16,
-    // fontFamily: 'SNPro-Bold',
-    // fontWeight: 'bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: PrimaryColors.mainBlue,
   },
   currencySymbol: {
     fontSize: 12,
-    // fontFamily: 'SNPro-Bold',
+    // fontFamily: 'SFMonoBold',
     fontWeight: '400',
     color: PrimaryColors.mainBlue,
     opacity: 0.5,

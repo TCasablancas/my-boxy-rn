@@ -130,7 +130,8 @@ const styles = StyleSheet.create({
   },
   categoryTitle: {
     color: '#5A5A5A',
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     fontSize: 14,
   },
   categoryScrollContent: {
@@ -145,7 +146,8 @@ const styles = StyleSheet.create({
   resultsSummary: {
     color: '#666',
     fontSize: 12,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
   emptyStateWrapper: {
     width: '100%',
@@ -156,13 +158,15 @@ const styles = StyleSheet.create({
   },
   emptyStateTitle: {
     color: PrimaryColors.primary,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     fontSize: 16,
     marginBottom: 4,
   },
   emptyStateDescription: {
     color: '#777',
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     fontSize: 13,
     textAlign: 'center',
   },

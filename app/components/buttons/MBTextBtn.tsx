@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
   text: {
     color: NeutralColors.textSecondary,
     fontSize: 14,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
 
   },
 });

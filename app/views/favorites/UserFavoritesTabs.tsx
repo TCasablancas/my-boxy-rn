@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
   tabLabel: {
     width: '100%',
     fontSize: 24,
-    fontFamily: 'SNPro-ExtraLight',
+    fontFamily: 'SFMonoLight',
+    letterSpacing: -0.5,
     color: NeutralColors.textPlaceholder,
     textAlign: 'left',
     paddingHorizontal: 8,
@@ -48,6 +49,7 @@ const styles = StyleSheet.create({
   },
   activeTabLabel: {
     color: PrimaryColors.primary,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
   },
 });

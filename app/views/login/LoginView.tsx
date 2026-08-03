@@ -153,7 +153,8 @@ const styles = StyleSheet.create({
   },
   socialMediaDisclaimer: {
     fontSize: 14,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: NeutralColors.textSecondary,
     textAlign: 'center',
   },
@@ -189,11 +190,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    fontFamily: 'SNPro-Light',
+    fontFamily: 'SFMonoLight',
+    letterSpacing: -0.5,
     fontSize: 14,
   },
   notSingedUpText: { 
-    fontFamily: 'SNPro-Regular', 
+    fontFamily: 'SFMonoRegular', 
+    letterSpacing: -0.5,
     fontSize: 16, 
     color: NeutralColors.white 
   },
@@ -207,7 +210,8 @@ const styles = StyleSheet.create({
   loginErrorText: {
     color: PrimaryColors.mainRed,
     fontSize: 13,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     textAlign: 'center',
   },
   loginWithSocialButtonsWrapper: {

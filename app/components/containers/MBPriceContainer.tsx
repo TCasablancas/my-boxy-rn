@@ -36,12 +36,14 @@ const styles = StyleSheet.create({
   },
   priceCurrencyText: {
     fontSize: 14,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: '#1F6607',
   },
   priceText: {
     fontSize: 36,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: '#1F6607',
   },
   tagsContainer: {

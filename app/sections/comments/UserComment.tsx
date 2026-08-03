@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
   },
   comment: {
     fontSize: 14,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: '#000',
     marginLeft: 4,
   },

@@ -161,7 +161,8 @@ const styles = StyleSheet.create({
   emptyText: {
     textAlign: 'center',
     marginTop: 32,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: NeutralColors.textSecondary,
   },
   storeCard: {
@@ -190,13 +191,15 @@ const styles = StyleSheet.create({
   },
   storeName: {
     fontSize: 16,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: '#1F2937',
   },
   storeMeta: {
     marginTop: 2,
     fontSize: 12,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: NeutralColors.textSecondary,
   },
   storeStatus: {

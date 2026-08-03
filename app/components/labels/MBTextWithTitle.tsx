@@ -24,13 +24,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontFamily: 'SNPro-ExtraBold',
+    fontFamily: 'SFMonoHeavy',
+    letterSpacing: -0.5,
     color: '#b7b7b7',
     marginBottom: 4,
   },
   text: {
     fontSize: 14,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: '#000',
   },
   textWithAction: {

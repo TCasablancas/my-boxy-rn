@@ -39,23 +39,19 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SNPro-Black.ttf</string>
-		<string>SNPro-BlackItalic.ttf</string>
-		<string>SNPro-Bold.ttf</string>
-		<string>SNPro-BoldItalic.ttf</string>
-		<string>SNPro-ExtraBold.ttf</string>
-		<string>SNPro-ExtraBoldItalic.ttf</string>
-		<string>SNPro-ExtraLight.ttf</string>
-		<string>SNPro-ExtraLightItalic.ttf</string>
-		<string>SNPro-Italic.ttf</string>
-		<string>SNPro-Light.ttf</string>
-		<string>SNPro-LightItalic.ttf</string>
-		<string>SNPro-Medium.ttf</string>
-		<string>SNPro-MediumItalic.ttf</string>
-		<string>SNPro-Regular.ttf</string>
-		<string>SNPro-SemiBold.ttf</string>
-		<string>SNPro-SemiBoldItalic.ttf</string>
 		<string>Anton-Regular.ttf</string>
+		<string>SFMonoBold.otf</string>
+		<string>SFMonoBoldItalic.otf</string>
+		<string>SFMonoHeavy.otf</string>
+		<string>SFMonoHeavyItalic.otf</string>
+		<string>SFMonoLight.otf</string>
+		<string>SFMonoLightItalic.otf</string>
+		<string>SFMonoMedium.otf</string>
+		<string>SFMonoMediumItalic.otf</string>
+		<string>SFMonoRegular.otf</string>
+		<string>SFMonoRegularItalic.otf</string>
+		<string>SFMonoSemibold.otf</string>
+		<string>SFMonoSemiboldItalic.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

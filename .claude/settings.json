@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -)",
+      "Bash(python3 -c \"import fontTools; print\\(fontTools.version\\)\")",
+      "Bash(pip3 show *)",
+      "Bash(pip3 install *)",
+      "Bash(python3 -m venv /private/tmp/claude-501/-Volumes-thiagoHD-Projects-my-boxy-rn/64237f98-fe6b-438b-94c0-54bd11a3a177/scratchpad/fontenv)",
+      "Bash(/private/tmp/claude-501/-Volumes-thiagoHD-Projects-my-boxy-rn/64237f98-fe6b-438b-94c0-54bd11a3a177/scratchpad/fontenv/bin/pip install *)",
+      "Bash(/private/tmp/claude-501/-Volumes-thiagoHD-Projects-my-boxy-rn/64237f98-fe6b-438b-94c0-54bd11a3a177/scratchpad/fontenv/bin/python -c \"import fontTools; print\\(fontTools.version\\)\")",
+      "Bash(/private/tmp/claude-501/-Volumes-thiagoHD-Projects-my-boxy-rn/64237f98-fe6b-438b-94c0-54bd11a3a177/scratchpad/fontenv/bin/python -)",
+      "Bash(xargs perl -pi -e ' *)",
+      "Bash(plutil -lint ios/MyBoxy.xcodeproj/project.pbxproj)",
+      "Bash(plutil -lint ios/MyBoxy/Info.plist)",
+      "Bash(git rm *)",
+      "Bash(xcodebuild -workspace MyBoxy.xcworkspace -scheme MyBoxy -configuration Debug -destination 'generic/platform=iOS Simulator' build)",
+      "Bash(xcrun simctl *)",
+      "Bash(open -a Simulator)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8081/status)"
+    ]
+  }
+}

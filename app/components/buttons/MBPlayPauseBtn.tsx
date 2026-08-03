@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   playPauseText: {
     color: '#FFFFFF',
     fontSize: 12,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
 });

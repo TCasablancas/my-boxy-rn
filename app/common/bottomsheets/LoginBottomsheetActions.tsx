@@ -72,14 +72,16 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     fontSize: 16,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: '#1F2A44',
     width: '100%',
     textAlign: 'left',
   },
   description: {
     fontSize: 13,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: '#4B5875',
     lineHeight: 18,
   },
