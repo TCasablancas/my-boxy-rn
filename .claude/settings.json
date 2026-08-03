@@ -16,7 +16,8 @@
       "Bash(xcodebuild -workspace MyBoxy.xcworkspace -scheme MyBoxy -configuration Debug -destination 'generic/platform=iOS Simulator' build)",
       "Bash(xcrun simctl *)",
       "Bash(open -a Simulator)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8081/status)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8081/status)",
+      "Bash(claude plugin *)"
     ]
   }
 }
