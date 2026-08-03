@@ -32,12 +32,14 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   title: {
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     fontSize: 26,
     marginBottom: 8,
   },
   description: {
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     fontSize: 16,
   },
 });

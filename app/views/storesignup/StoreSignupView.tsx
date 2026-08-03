@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
   },
   successTitle: {
     fontSize: 18,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     textAlign: 'center',
   },
 });

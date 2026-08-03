@@ -224,18 +224,21 @@ const styles = StyleSheet.create({
   subtitleText: {
     color: 'gray',
     fontSize: 12,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
   titleText: {
     color: 'black',
     fontSize: 22,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     lineHeight: 24,
   },
   descriptionText: {
     color: 'gray',
     fontSize: 14,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
   mainActionRow: {
     flexDirection: 'row',

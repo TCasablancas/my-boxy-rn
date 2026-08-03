@@ -101,13 +101,16 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: 16,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     textAlign: 'center',
+    letterSpacing: -0.5,
   },
   userEmail: {
     fontSize: 12,
     color: '#666',
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     textAlign: 'center',
     lineHeight: 14,
   },

@@ -89,20 +89,23 @@ const styles = StyleSheet.create({
   },
   itemName: {
     fontSize: 14,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: NeutralColors.textSecondary,
     lineHeight: 16,
   },
   itemPrice: {
     fontSize: 20,
     color: PrimaryColors.primary,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     lineHeight: 24,
   },
   currency: {
     fontSize: 11,
     color: NeutralColors.textSecondary,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
   actionsWrapper: {
     flexDirection: 'column',
@@ -119,7 +122,8 @@ const styles = StyleSheet.create({
   },
   squareButtonText: {
     fontSize: 18,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
   },
   bottomRow: {
     flexDirection: 'row',
@@ -143,7 +147,8 @@ const styles = StyleSheet.create({
   },
   storeName: {
     fontSize: 12,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: NeutralColors.textSecondary,
   },
 });

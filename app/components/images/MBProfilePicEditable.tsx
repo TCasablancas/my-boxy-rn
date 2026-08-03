@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
   editButtonText: {
     color: '#fff',
     fontSize: 12,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
   editIconWrapper: {
     position: 'absolute',

@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     fontSize: 14, 
     flex: 1, 
     marginRight: 12,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: NeutralColors.textSecondary,
   },
 });

@@ -101,19 +101,24 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 4,
     color: '#4c4c4c',
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     lineHeight: 12,
+    letterSpacing: -0.5,
   },
   productPrice: {
     fontSize: 16,
     color: PrimaryColors.mainBlue,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     lineHeight: 20,
+    letterSpacing: -0.5,
   },
   currency: {
     fontSize: 12,
     color: PrimaryColors.mainBlue,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     opacity: 0.5,
   },
   storeInfoWrapper: {
@@ -129,7 +134,8 @@ const styles = StyleSheet.create({
   storeName: {
     fontSize: 10,
     color: NeutralColors.text,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
   storeImage: {
     width: 16,
@@ -147,7 +153,8 @@ const styles = StyleSheet.create({
   ratingText: {
     fontSize: 11,
     color: '#4c4c4c',
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
   addToCartBtn: {
     backgroundColor: PrimaryColors.primaryLight,

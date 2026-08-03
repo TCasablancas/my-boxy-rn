@@ -98,17 +98,20 @@ const productItemStyles = StyleSheet.create({
   },
   productName: {
     fontSize: 13,
-    fontFamily: 'SNPro-Light',
+    fontFamily: 'SFMonoLight',
+    letterSpacing: -0.5,
     textAlign: 'left',
   },
   productPrice: {
     fontSize: 12,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: PrimaryColors.mainBlue,
   },
   productShopDate: {
     fontSize: 12,
-    fontFamily: 'SNPro-Light',
+    fontFamily: 'SFMonoLight',
+    letterSpacing: -0.5,
     color: NeutralColors.textSecondary,
   },
 });

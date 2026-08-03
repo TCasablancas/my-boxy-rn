@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   labelText: {
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
   iconContainer: {
     marginRight: 4,

@@ -46,12 +46,14 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 26,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: '#6C6E6B',
   },
   subtitleText: {
     fontSize: 12,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: '#979696',
   },
 });

@@ -60,12 +60,14 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 16,
     color: '#333',
-    fontFamily: 'SNPro-ExtraBold'
+    fontFamily: 'SFMonoHeavy'
+    letterSpacing: -0.5,
   },
   userEmail: {
     fontSize: 12,
     color: '#666',
-    fontFamily: 'SNPro-Extra'
+    fontFamily: 'SFMonoRegular'
+    letterSpacing: -0.5,
   },
   iconsWrapper: {
     marginLeft: 'auto',

@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
   },
   readMore: {
     fontSize: 14,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: '#007AFF', // Blue color
     marginTop: 4,
   },
@@ -56,12 +57,14 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: 14,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: '#000',
   },
   commentTime: {
     fontSize: 12,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: '#b7b7b7',
   },
   userDataWrapper: {

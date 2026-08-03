@@ -175,13 +175,15 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: 20,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     textAlign: 'center',
   },
   userAlias: {
     fontSize: 16,
     color: 'gray',
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     textAlign: 'center',
   },
   headerWrapper: {

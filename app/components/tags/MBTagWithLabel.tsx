@@ -46,14 +46,16 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   label: {
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     fontSize: 12,
     color: '#333333',
     marginRight: 8,
   },
   tag: {
     fontSize: 12,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: PrimaryColors.primary,
   },
 });

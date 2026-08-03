@@ -53,7 +53,8 @@ export default function EntryTabView() {
     tabBarActiveTintColor: PrimaryColors.primary,
     tabBarLabelStyle: {
       fontSize: 11,
-      fontFamily: 'SNPro-Regular',
+      fontFamily: 'SFMonoRegular',
+      letterSpacing: -0.5,
     },
   };
 

@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
   },
   nestTitle: {
     fontSize: 18,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: NeutralColors.textSecondary,
   },
   nestItemWrapper: {
@@ -69,7 +70,8 @@ const styles = StyleSheet.create({
   },
   nestItemText: {
     fontSize: 16,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
   textWrapper: {
     flex: 1,

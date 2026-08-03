@@ -31,12 +31,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontFamily: 'SNPro-ExtraBold',
+    fontFamily: 'SFMonoHeavy',
+    letterSpacing: -0.5,
     color: '#000',
   },
   linkText: {
     fontSize: 14,
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
     color: '#007AFF', // Blue color
   },
   linkContainer: {

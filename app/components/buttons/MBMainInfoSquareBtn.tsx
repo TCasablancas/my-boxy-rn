@@ -120,17 +120,21 @@ const styles = StyleSheet.create({
   squareActionButtonText: {
     flex: 1,
     fontSize: 14,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: NeutralColors.text,
   },
   squareActionButtonTitle: {
     fontSize: 14,
-    fontFamily: 'SNPro-Bold',
+    fontFamily: 'SFMonoBold',
+    letterSpacing: -0.5,
     color: NeutralColors.text,
+    marginBottom: 8,
   },
   squareActionButtonDescription: {
     fontSize: 12,
-    fontFamily: 'SNPro-Regular',
+    fontWeight: '400',
+    // fontFamily: 'SFMonoRegular',
     color: NeutralColors.textSecondary,
   },
 });

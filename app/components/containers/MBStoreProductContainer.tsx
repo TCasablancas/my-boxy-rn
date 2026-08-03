@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
   storeName: {
     fontSize: 10,
     color: '#4c4c4c',
-    fontFamily: 'SNPro-Regular',
+    fontFamily: 'SFMonoRegular',
+    letterSpacing: -0.5,
   },
   storeImage: {
     width: 16,

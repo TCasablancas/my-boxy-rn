@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   reviewCountText: {
     fontSize: 12,
-    // fontFamily: 'SNPro-Regular',
+    // fontFamily: 'SFMonoRegular',
     fontWeight: 'bold',
     color: '#007BFF',
     marginLeft: 2,
