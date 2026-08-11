@@ -19,6 +19,9 @@ ios/.prev_diff_args
 # android/app/build/outputs/apk/debug/app-debug.apk
 # android/build/
 # android/app/build/
+**/android/app/.cxx/
+**/.cxx/
+*.cxx
 android/app/.cxx/
 # android/.gradle/
 # android/local.properties
