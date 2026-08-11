@@ -11,7 +11,7 @@ import { MBMainInput } from '../../../components/ui/form/MBMainInput';
 import type { StoreSignupStepProps } from '../StoreSignupModel';
 import MBTextBtn from '../../../components/ui/buttons/MBTextBtn';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import ScrollViewKeyboard from '../../../sections/global/ScrollViewKeyboard';
+import ScrollViewKeyboard from '../../../components/sections/global/ScrollViewKeyboard';
 import { useKeyboard } from '../../../common/constants/UseKeyboard';
 import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
 

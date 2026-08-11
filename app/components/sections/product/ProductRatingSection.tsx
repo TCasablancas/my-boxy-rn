@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native';
-import MBTitleWithLinkRight from '../../components/ui/header/MBTitleWithLinkRight';
-import { Icons } from '../../common/icons/Icons';
+import MBTitleWithLinkRight from '../../ui/header/MBTitleWithLinkRight';
+import { Icons } from '../../../common/icons/Icons';
 
 interface ProductRatingSectionProps {
   rating: number;

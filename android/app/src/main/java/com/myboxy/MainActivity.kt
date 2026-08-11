@@ -16,7 +16,7 @@ class MainActivity : ReactActivity() {
 
   override fun onCreate(savedInstanceState: android.os.Bundle?) {
     installSplashScreen()
-    super.onCreate(savedInstanceState)
+    super.onCreate(null)
   }
   
   override fun getMainComponentName(): String = "MyBoxy"

@@ -14,7 +14,7 @@ import MBRoundedIconBtn from '../../components/ui/buttons/MBRoundedIconBtn';
 import { STORE_SIGNUP_STEP_LABELS } from './StoreSignupModel';
 import { useStoreSignupViewModel } from './StoreSignupViewModel';
 import MainNavigation from '../../common/navigation/MainNavigation';
-import SignupSuccessSection from '../../sections/signup/SignupSuccessSection';
+import SignupSuccessSection from '../../components/sections/signup/SignupSuccessSection';
 import { Fonts } from '../../common/constants/Fonts';
 
 export default function StoreSignupView() {

@@ -3,7 +3,7 @@ import { IconsActions } from '../../common/icons/IconsActions';
 import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 import { ShopItemProps } from './MyShopModel';
 import { Icons } from '../../common/icons/Icons';
-import SafeAreaView from '../../sections/global/SafeAreaView';
+import SafeAreaView from '../../components/sections/global/SafeAreaView';
 import { formatDate } from '../../common/constants/DateFormatter';
 
 import MBIconInfoContainer from '../../components/ui/containers/MBIconInfoContainer';

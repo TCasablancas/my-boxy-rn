@@ -1,7 +1,7 @@
 import React from 'react';
 import { StatusBar, StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import ScrollViewKeyboard from '../../../sections/global/ScrollViewKeyboard';
+import ScrollViewKeyboard from '../../../components/sections/global/ScrollViewKeyboard';
 import { spacing } from '../../../common/constants/Sizes';
 import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
 

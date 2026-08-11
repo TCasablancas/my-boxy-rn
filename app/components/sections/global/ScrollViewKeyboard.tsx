@@ -1,5 +1,5 @@
 import { StyleSheet, Platform, KeyboardAvoidingView, StatusBar, ScrollView, Keyboard } from 'react-native';
-import { spacing } from '../../common/constants/Typgraphy';
+import { spacing } from '../../../common/constants/Typgraphy';
 
 export default function ScrollViewKeyboard({ children }: { children: React.ReactNode }) {
   const verticalOffset = Platform.OS === 'ios' ? 0 : StatusBar.currentHeight || 0;

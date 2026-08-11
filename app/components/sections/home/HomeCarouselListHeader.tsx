@@ -3,14 +3,14 @@ import {
   Animated, Dimensions, FlatList, ImageBackground, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import type { ComponentType } from 'react';
-import MainNavigation from '../../common/navigation/MainNavigation';
-import { setTabSwipeLocked } from '../../common/navigation/tabSwipeLock';
+import MainNavigation from '../../../common/navigation/MainNavigation';
+import { setTabSwipeLocked } from '../../../common/navigation/tabSwipeLock';
 import { BlurView } from '@react-native-community/blur';
-import { PrimaryColors } from '../../common/colors/Colors';
+import { PrimaryColors } from '../../../common/colors/Colors';
 
-import { MBProgressDot } from '../../components/ui/carousel/MBProgressDot';
-import MBProductRatingContainer from '../../components/ui/containers/MBProductRatingContainer';
-import MBStoreProductContainer from '../../components/ui/containers/MBStoreProductContainer';
+import { MBProgressDot } from '../../ui/carousel/MBProgressDot';
+import MBProductRatingContainer from '../../ui/containers/MBProductRatingContainer';
+import MBStoreProductContainer from '../../ui/containers/MBStoreProductContainer';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SIDE_PEEK_PERCENT = 0.1;

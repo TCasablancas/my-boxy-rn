@@ -1,8 +1,8 @@
 import { StyleSheet, View, Text, Platform, Pressable, FlatList } from 'react-native';
-import EmptyViewSection from '../../sections/empty/EmptyViewSection';
+import EmptyViewSection from '../../components/sections/empty/EmptyViewSection';
 import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 import { DiscountType } from '../../components/ui/cards/MBCouponCard';
-import SafeAreaView from '../../sections/global/SafeAreaView';
+import SafeAreaView from '../../components/sections/global/SafeAreaView';
 import { Icons } from '../../common/icons/Icons';
 import { spacing } from '../../common/constants/Sizes';
 
@@ -10,7 +10,7 @@ import MBTitledViewHeader from '../../components/ui/header/MBTitledViewHeader';
 import MBRoundedIconBtn from '../../components/ui/buttons/MBRoundedIconBtn';
 import MainNavigation from '../../common/navigation/MainNavigation';
 import MBMainBtn from '../../components/ui/buttons/MBMainBtn';
-import ProductOnCartSection from '../../sections/product/ProductOnCartSection';
+import ProductOnCartSection from '../../components/sections/product/ProductOnCartSection';
 import MBCartAmmountDescLbl from '../../components/ui/labels/MBCartAmmountDescLbl';
 import MBMainSelector from '../../components/ui/selectors/MBMainSelector';
 

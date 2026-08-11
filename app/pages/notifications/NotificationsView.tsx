@@ -1,11 +1,11 @@
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Icons } from 'MyBoxyUI/icons/Icons';
-import { NeutralColors } from 'MyBoxyUI/colors/Colors';
+import { Icons } from '../../common/icons/Icons';
+import { NeutralColors } from '../../common/colors/Colors';
 
-import EmptyViewSection from '../../sections/empty/EmptyViewSection';
-import MBTitledViewHeader from 'MyBoxyUI/components/header/MBTitledViewHeader';
-import MBRoundedIconBtn from 'MyBoxyUI/components/buttons/MBRoundedIconBtn';
+import EmptyViewSection from '../../components/sections/empty/EmptyViewSection';
+import MBTitledViewHeader from '../../components/ui/header/MBTitledViewHeader';
+import MBRoundedIconBtn from '../../components/ui/buttons/MBRoundedIconBtn';
 
 import MainNavigation from '../../common/navigation/MainNavigation';
 import { Fonts } from '../../common/constants/Fonts';

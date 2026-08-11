@@ -2,11 +2,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { View, StyleSheet, FlatList, Animated } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NeutralColors } from '../../common/colors/Colors';
-import SafeAreaView from '../../sections/global/SafeAreaView';
+import SafeAreaView from '../../components/sections/global/SafeAreaView';
 
 import MBHeaderUserSimple from '../../components/ui/header/MBHeaderUserSimple';
 import MBLocationTag from '../../components/ui/tags/MBLocationTag';
-import HomeCarouselListHeader from '../../sections/home/HomeCarouselListHeader';
+import HomeCarouselListHeader from '../../components/sections/home/HomeCarouselListHeader';
 import MBOutlinedSmBtn from '../../components/ui/buttons/MBOutlinedSmBtn';
 import MBHomeStoreItemCarousel from '../../components/ui/carousel/MBHomeStoreItemCarousel';
 import MBMainProductCard from '../../components/ui/cards/MBMainProductCard';
@@ -62,6 +62,16 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
   useEffect(() => {
     let isActive = true;
 
+    if (!isUserLoggedIn) {
+      setUserProfile(DEFAULT_HOME_USER_PROFILE);
+      setRandomProducts([]);
+      setUseMockFallback(true);
+
+      return () => {
+        isActive = false;
+      };
+    }
+
     async function loadUserHomeData() {
       try {
         const { user, profile, randomProducts: nextRandomProducts } = await getUserHomeData();
@@ -91,7 +101,7 @@ export default function UserHomeView({ isUserLoggedIn }: UserHomeViewProps) {
     return () => {
       isActive = false;
     };
-  }, []);
+  }, [isUserLoggedIn]);
 
   function openUserData() {
     userDataHeight.stopAnimation((currentValue) => {

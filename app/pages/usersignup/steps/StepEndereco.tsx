@@ -11,7 +11,7 @@ import MBMainBtn from '../../../components/ui/buttons/MBMainBtn';
 import MBTextBtn from '../../../components/ui/buttons/MBTextBtn';
 import MBTitleDescripted from '../../../components/ui/texts/MBTitleDescripted';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import ScrollViewKeyboard from '../../../sections/global/ScrollViewKeyboard';
+import ScrollViewKeyboard from '../../../components/sections/global/ScrollViewKeyboard';
 import { useKeyboard } from '../../../common/constants/UseKeyboard';
 
 export const StepEndereco: React.FC<StepProps> = ({ data, updateData, onNext, onBack }) => {

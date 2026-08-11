@@ -9,7 +9,7 @@ import { isValidCPF } from '../../../common/constants/Validators';
 import MBTitleDescripted from '../../../components/ui/texts/MBTitleDescripted';
 import type { StoreSignupStepProps } from '../StoreSignupModel';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
-import ScrollViewKeyboard from '../../../sections/global/ScrollViewKeyboard';
+import ScrollViewKeyboard from '../../../components/sections/global/ScrollViewKeyboard';
 
 export function DocumentStep({ data, updateData, onNext }: StoreSignupStepProps) {
   const safeAreaInsets = useSafeAreaInsets();

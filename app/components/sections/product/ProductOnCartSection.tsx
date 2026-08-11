@@ -1,11 +1,11 @@
 import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
-import { useCounter } from '../../states/useCounter';
-import { CartItemProps } from '../../pages/cart/CartModel';
-import { spacing } from '../../common/constants/Sizes';
-import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
+import { useCounter } from '../../../states/useCounter';
+import { CartItemProps } from '../../../pages/cart/CartModel';
+import { spacing } from '../../../common/constants/Sizes';
+import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
 
-import MBMainSelector from '../../components/ui/selectors/MBMainSelector';
-import { MBCartItemCounter } from '../../components/ui/counter/MBCartItemCounter';
+import MBMainSelector from '../../ui/selectors/MBMainSelector';
+import { MBCartItemCounter } from '../../ui/counter/MBCartItemCounter';
 
 interface ProductOnCartSectionProps {
   product: CartItemProps,

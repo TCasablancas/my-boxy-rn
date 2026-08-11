@@ -1,12 +1,12 @@
 import { View, StyleSheet, Text, Image, StatusBar } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { spacing } from '../../common/constants/Sizes';
-import { PrimaryColors } from '../../common/colors/Colors';
+import { spacing } from '../../../common/constants/Sizes';
+import { PrimaryColors } from '../../../common/colors/Colors';
 
-import MBMainBtn from '../../components/ui/buttons/MBMainBtn';
-import MBTitleDescripted from '../../components/ui/texts/MBTitleDescripted';
-import MBTextBtn from '../../components/ui/buttons/MBTextBtn';
-import MainNavigation from '../../common/navigation/MainNavigation';
+import MBMainBtn from '../../ui/buttons/MBMainBtn';
+import MBTitleDescripted from '../../ui/texts/MBTitleDescripted';
+import MBTextBtn from '../../ui/buttons/MBTextBtn';
+import MainNavigation from '../../../common/navigation/MainNavigation';
 
 interface SignupSuccessSectionProps {
 

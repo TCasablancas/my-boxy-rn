@@ -1,7 +1,7 @@
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
-import MBHeaderUserComment from '../../components/ui/header/MBHeaderUserComment';
-import { IconsNavigation } from '../../common/icons/IconsNavigation';
-import { NeutralColors } from '../../common/colors/Colors';
+import { View, Text, StyleSheet } from 'react-native';
+import MBHeaderUserComment from '../../ui/header/MBHeaderUserComment';
+import { IconsNavigation } from '../../../common/icons/IconsNavigation';
+import { NeutralColors } from '../../../common/colors/Colors';
 
 interface UserCommentProps {
   userName: string;

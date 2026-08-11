@@ -18,10 +18,10 @@ import { IconsActions } from '../../common/icons/IconsActions';
 import MBSimpleLabel from '../../components/ui/labels/MBSimpleLabel';
 import MBStoreProductHeader from '../../components/ui/header/MBStoreProductHeader';
 import MBTextWithTitle from '../../components/ui/labels/MBTextWithTitle';
-import ProductCommentsSection from '../../sections/comments/ProductCommentsSection';
-import ProductRatingSection from '../../sections/product/ProductRatingSection';
+import ProductCommentsSection from '../../components/sections/comments/ProductCommentsSection';
+import ProductRatingSection from '../../components/sections/product/ProductRatingSection';
 import MBIconInfoContainer from '../../components/ui/containers/MBIconInfoContainer';
-import ProductCarouselSmSection from '../../sections/product/ProductCarouselSmSection';
+import ProductCarouselSmSection from '../../components/sections/product/ProductCarouselSmSection';
 import { Fonts } from '../../common/constants/Fonts';
 
 export default function ProductDetailView() {

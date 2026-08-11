@@ -5,7 +5,7 @@ import {
 import { MBProgressDot } from './MBProgressDot';
 import { Icons } from '../../../common/icons/Icons';
 import { setTabSwipeLocked } from '../../../common/navigation/tabSwipeLock';
-import MBTagWithLabel from '../../components/tags/MBTagWithLabel';
+import MBTagWithLabel from '../tags/MBTagWithLabel';
 import { PrimaryColors } from '../../../common/colors/Colors';
 import MBPlayPauseBtn from '../buttons/MBPlayPauseBtn';
 

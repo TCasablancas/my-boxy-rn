@@ -1,6 +1,6 @@
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'react-native';
-import { NeutralColors } from '../../common/colors/Colors';
+import { NeutralColors } from '../../../common/colors/Colors';
 
 export default function SafeAreaView({ children }: { children: React.ReactNode }) {
   const insets = useSafeAreaInsets();
