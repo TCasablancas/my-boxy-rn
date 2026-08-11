@@ -7,7 +7,7 @@
     "**/*.ts", 
     "**/*.tsx", 
     "**/*.d.ts", 
-    "app/views/storesignup/StoreSignupNavigator.tss"
+    "app/pages/storesignup/StoreSignupNavigator.tss"
   ],
   "exclude": ["**/node_modules", "**/Pods"]
 }

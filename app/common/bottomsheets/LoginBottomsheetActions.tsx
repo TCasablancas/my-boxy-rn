@@ -3,12 +3,12 @@ import MainNavigation from '../navigation/MainNavigation';
 import { PrimaryColors } from '../colors/Colors';
 import { Icons } from '../icons/Icons';
 
-import MBMainBtn from '../../components/buttons/MBMainBtn';
-import MBEmptyImageView from '../../components/images/MBEmptyImageView';
-import MBMainInfoSquareBtn, { MBMainInfoSquareBtnType } from '../../components/buttons/MBMainInfoSquareBtn';
+import MBMainBtn from '../../components/ui/buttons/MBMainBtn';
+import MBEmptyImageView from '../../components/ui/images/MBEmptyImageView';
+import MBMainInfoSquareBtn, { MBMainInfoSquareBtnType } from '../../components/ui/buttons/MBMainInfoSquareBtn';
 
-import UserSignupView from '../../views/usersignup/UserSignupView';
-import LoginView from '../../views/login/LoginView';
+import UserSignupView from '../../pages/usersignup/UserSignupView';
+import LoginView from '../../pages/Login/login.view';
 
 export function getBlockedTabBottomsheetTitle() {
   return 'Olá estranho, tudo bem?!';

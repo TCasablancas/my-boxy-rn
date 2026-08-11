@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type { CartItemProps } from '../../views/cart/CartModel';
+import type { CartItemProps } from '../../pages/cart/CartModel';
 import { CartItemsData } from '../CartItemsData';
 
 const CART_STORE_STORAGE_KEY = '@myboxy/cart-store-v1';

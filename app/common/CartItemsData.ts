@@ -1,4 +1,4 @@
-import { CartItemProps } from '../views/cart/CartModel';
+import { CartItemProps } from '../pages/cart/CartModel';
 import { v4 as uuidv4 } from 'uuid';
 
 export const CartItemsData: CartItemProps[] = [

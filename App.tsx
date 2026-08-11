@@ -6,15 +6,15 @@ import MainNavigation, {
 } from './app/common/navigation/MainNavigation';
 import MainDynamicRouteScreen from './app/common/navigation/MainDynamicRouteScreen';
 
-import UserProfileView from './app/views/userprofile/UserProfileView';
-import SearchView from './app/views/search/SearchView';
-import NotificationsView from './app/views/notifications/NotificationsView';
-import MoreConfigsPlaceholderView from './app/views/moreconfigs/MoreConfigsPlaceholderView';
-import ProductDetailView from './app/views/productdetail/ProductDetailView';
-import UserSignupView from './app/views/usersignup/UserSignupView';
-import LoginView from './app/views/login/LoginView';
-import { UserHomeStoreSignupView } from './app/views/userhome/UserHomeNavigation';
-import EntryTabView from './app/views/main/EntryTabView';
+import UserProfileView from './app/pages/userprofile/UserProfileView';
+import SearchView from './app/pages/search/SearchView';
+import NotificationsView from './app/pages/notifications/NotificationsView';
+import MoreConfigsPlaceholderView from './app/pages/moreconfigs/MoreConfigsPlaceholderView';
+import ProductDetailView from './app/pages/productdetail/ProductDetailView';
+import UserSignupView from './app/pages/usersignup/UserSignupView';
+import LoginView from './app/pages/Login/login.view';
+import { UserHomeStoreSignupView } from './app/pages/userhome/UserHomeNavigation';
+import EntryTabView from './app/pages/main/EntryTabView';
 import { RootStackParamList } from './app/navigation/types';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();

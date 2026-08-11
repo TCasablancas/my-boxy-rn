@@ -1,4 +1,4 @@
-import { ShopItemProps } from '../views/myshop/MyShopModel';
+import { ShopItemProps } from '../pages/myshop/MyShopModel';
 import { Icons } from './icons/Icons';
 import { ProductStatus } from '../models/StatusModel';
 

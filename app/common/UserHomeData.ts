@@ -1,9 +1,9 @@
 import { Icons } from './icons/Icons';
-import { ProductDetailProps } from '../views/productdetail/ProductDetailModel';
+import { ProductDetailProps } from '../pages/productdetail/ProductDetailModel';
 import { v4 as uuidv4 } from 'uuid';
-import NotificationsView from '../views/notifications/NotificationsView';
-import ProductDetailView from '../views/productdetail/ProductDetailView';
-import { UserHomeStoreSignupView } from '../views/userhome/UserHomeNavigation';
+import NotificationsView from '../pages/notifications/NotificationsView';
+import ProductDetailView from '../pages/productdetail/ProductDetailView';
+import { UserHomeStoreSignupView } from '../pages/userhome/UserHomeNavigation';
 import { HomeCarouselItem } from '../sections/home/HomeCarouselListHeader';
 
 export const userHomeCarouselItems: HomeCarouselItem[] = [

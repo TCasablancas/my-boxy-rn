@@ -18,6 +18,9 @@
       "Bash(open -a Simulator)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8081/status)",
       "Bash(claude plugin *)"
+    ],
+    "additionalDirectories": [
+      "/Volumes/thiagoHD/Projects/my-boxy-design-system/components/ui"
     ]
   }
 }
