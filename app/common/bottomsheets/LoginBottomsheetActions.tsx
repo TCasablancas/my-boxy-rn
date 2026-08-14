@@ -8,25 +8,8 @@ import MBEmptyImageView from '../../components/ui/images/MBEmptyImageView';
 import MBMainInfoSquareBtn, { MBMainInfoSquareBtnType } from '../../components/ui/buttons/MBMainInfoSquareBtn';
 
 import UserSignupView from '../../pages/usersignup/UserSignupView';
-import LoginView from '../../pages/Login/login.view';
 
-export function getBlockedTabBottomsheetTitle() {
-  return 'Olá estranho, tudo bem?!';
-}
-
-export function getBlockedTabBottomsheetDescription() {
-  return "Se você já conhece a casa, faça login para acessar as sessões. Se for novo por aqui, cadastre-se e conheça mais.";
-}
-
-export function getStoreRequiredBottomsheetTitle() {
-  return 'Eita, mas você tem loja??';
-}
-
-export function getStoreRequiredBottomsheetDescription() {
-  return 'Parece que você ainda não possui uma loja cadastrada. Para acessar essa sessão, é necessário criar sua loja primeiro.';
-}
-
-export function renderBlockedTabBottomsheetContent() {
+export function renderBlockedTabBottomsheetContent(onLoginPress: () => void) {
   return (
     <View style={[styles.container]}>
       {/* <MBEmptyImageView /> */}
@@ -35,7 +18,7 @@ export function renderBlockedTabBottomsheetContent() {
           icon={<Icons.loginArrow width={26} height={26} strokeColor={PrimaryColors.primary} />}
           title="Fazer Login"
           description="Já possuo conta e conheço o aplicativo."
-          onPress={() => { MainNavigation.push(LoginView); }}
+          onPress={onLoginPress}
         />
         <MBMainInfoSquareBtn 
           icon={<Icons.plusCircle width={26} height={26} strokeColor={PrimaryColors.primary} />}

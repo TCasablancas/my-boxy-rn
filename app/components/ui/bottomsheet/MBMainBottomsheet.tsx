@@ -3,6 +3,7 @@ import { Animated, Modal, PanResponder, Pressable, Platform, StyleSheet, Text, V
 import { Icons } from '../../../common/icons/Icons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
+import styles from './styles';
 
 interface MBMainBottomsheetProps {
   title?: string;
@@ -52,41 +53,40 @@ export default function MBMainBottomsheet({
     }).start(() => { onClose?.() });
   }, [onClose, sheetHeight, translateY]);
 
-  const panResponder = useMemo(
-    () => PanResponder.create({
-      onMoveShouldSetPanResponder: (_, gestureState) => (
-        Math.abs(gestureState.dy) > Math.abs(gestureState.dx) && gestureState.dy > 2
-      ),
-      onPanResponderGrant: () => {
-        translateY.stopAnimation();
-      },
-      onPanResponderMove: (_, gestureState) => {
-        translateY.setValue(Math.max(0, gestureState.dy));
-      },
-      onPanResponderRelease: (_, gestureState) => {
-        const threshold = Math.max(90, sheetHeight * 0.25);
-        const shouldClose = gestureState.dy > threshold || gestureState.vy > 1.2;
+  const panResponder = useMemo(() => PanResponder.create({
+    onMoveShouldSetPanResponder: (_, gestureState) => (
+      Math.abs(gestureState.dy) > Math.abs(gestureState.dx) && gestureState.dy > 2
+    ),
+    onPanResponderGrant: () => {
+      translateY.stopAnimation();
+    },
+    onPanResponderMove: (_, gestureState) => {
+      translateY.setValue(Math.max(0, gestureState.dy));
+    },
+    onPanResponderRelease: (_, gestureState) => {
+      const threshold = Math.max(90, sheetHeight * 0.25);
+      const shouldClose = gestureState.dy > threshold || gestureState.vy > 1.2;
 
-        if (shouldClose) {
-          closeBottomsheet();
-          return;
-        }
+      if (shouldClose) {
+        closeBottomsheet();
+        return;
+      }
 
-        Animated.spring(translateY, {
-          toValue: 0,
-          useNativeDriver: true,
-          friction: 7,
-          tension: 80,
-        }).start();
-      },
-      onPanResponderTerminate: () => {
-        Animated.spring(translateY, {
-          toValue: 0,
-          useNativeDriver: true,
-          friction: 7,
-          tension: 80,
-        }).start();
-      },
+      Animated.spring(translateY, {
+        toValue: 0,
+        useNativeDriver: true,
+        friction: 7,
+        tension: 80,
+      }).start();
+    },
+    onPanResponderTerminate: () => {
+      Animated.spring(translateY, {
+        toValue: 0,
+        useNativeDriver: true,
+        friction: 7,
+        tension: 80,
+      }).start();
+    },
     }),
     [closeBottomsheet, sheetHeight, translateY],
   );
@@ -97,10 +97,7 @@ export default function MBMainBottomsheet({
 
   return (
       <Modal 
-        animationType="slide"
-        transparent={true}
-        visible={visible}
-        onRequestClose={closeBottomsheet}
+        animationType="slide" transparent={true} visible={visible} onRequestClose={closeBottomsheet}
       >
         <SafeAreaProvider>
           <StatusBar barStyle="light-content" backgroundColor="rgba(0, 0, 0, 0.75)" />
@@ -122,8 +119,7 @@ export default function MBMainBottomsheet({
                 <Pressable onPress={() => {}} style={{ width: '100%', alignItems: 'center' }}>
                   <View style={styles.handleCap} />
                   {headerImage && <View style={styles.headerImage}>{headerImage}</View>}
-                  {title && 
-                    <Text style={[styles.title, { textAlign: headerAlign }]}>{title}</Text>}
+                  {title && <Text style={[styles.title, { textAlign: headerAlign }]}>{title}</Text>}
                   {description && 
                     <Text style={[styles.description, { textAlign: headerAlign }]}>{description}</Text>}
                   <View style={[
@@ -141,84 +137,3 @@ export default function MBMainBottomsheet({
       </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
-    height: '100%',
-    width: '100%',
-  },
-  sheetHost: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    paddingHorizontal: 8,
-    paddingBottom: 16,
-  },
-  backdrop: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-  content: {
-    backgroundColor: '#fff',
-    borderRadius: 24,
-    padding: 8,
-    paddingTop: 16,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    width: '100%',
-    bottom: Platform.OS === 'ios' ? 20 : 0,
-  },
-  contentBox: {
-    alignSelf: 'stretch',
-    padding: 8,
-    borderRadius: 16,
-    marginTop: 16,
-    alignItems: 'stretch',
-  },
-  closeBtn: {
-    position: 'absolute',
-    top: 32,
-    right: 16,
-    zIndex: 10,
-  },
-  handleCap: {
-    width: 50,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: NeutralColors.border,
-  },
-  title: {
-    width: '100%',
-    fontFamily: 'SFMonoBold',
-    letterSpacing: -0.5,
-    fontSize: 18,
-    marginTop: 16,
-    paddingHorizontal: 16,
-    color: PrimaryColors.primaryDark,
-  },
-  description: {
-    width: '100%',
-    fontWeight: '400',
-    // fontFamily: 'SFMonoLight',
-    fontSize: 14,
-    letterSpacing: -0.5,
-    color: NeutralColors.textPlaceholder,
-    paddingHorizontal: 16,
-    lineHeight: 18,
-    marginTop: 8,
-  },
-  headerImage: {
-    marginVertical: 12,
-    width: '100%',
-    alignItems: 'center',
-  },
-  actionButton: {
-    marginTop: 16,
-    width: '100%',
-    alignItems: 'center',
-  },
-});

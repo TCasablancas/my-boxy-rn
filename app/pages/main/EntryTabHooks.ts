@@ -1,14 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
 import { 
-  getBlockedTabBottomsheetDescription,
-  getBlockedTabBottomsheetTitle,
-  getStoreRequiredBottomsheetDescription,
-  getStoreRequiredBottomsheetTitle,
-  renderBlockedTabBottomsheetContent,
-  renderStoreRequiredBottomsheetContent,
+  renderBlockedTabBottomsheetContent, renderStoreRequiredBottomsheetContent,
 } from '../../common/bottomsheets/LoginBottomsheetActions';
+import { 
+  USER_LOGIN_BOTTOMSHEET_DESCRIPTION, USER_LOGIN_BOTTOMSHEET_TITLE,
+} from '../../common/strings/MainUserStrings';
+import {
+  STORE_SIGNUP_BOTTOMSHEET_TITLE, STORE_SIGNUP_BOTTOMSHEET_DESCRIPTION
+} from '../../common/strings/StoreStrings';
+
 import { supabase } from '../../service/supabase/supabase';
+import MainNavigation from '../../common/navigation/MainNavigation';
 import type { AppBottomsheetType } from './EntryTabModel';
+import LoginPage from '../Login/index';
 
 export function useEntryTabHooks() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -73,25 +77,24 @@ export function useEntryTabHooks() {
     setActiveBottomsheetType(null);
   }, []);
 
+  const openLoginPage = useCallback(() => {
+    closeLoginBottomsheet();
+    requestAnimationFrame(() => {
+      MainNavigation.replace(LoginPage);
+    });
+  }, [closeLoginBottomsheet]);
+
   const allowProtectedTabAccess = isUserLoggedIn;
 
-  const blockedBottomsheetTitle = getBlockedTabBottomsheetTitle();
-  const blockedBottomsheetDescription = getBlockedTabBottomsheetDescription();
-
-  const storeRequiredBottomsheetTitle = getStoreRequiredBottomsheetTitle();
-  const storeRequiredBottomsheetDescription = getStoreRequiredBottomsheetDescription();
-
   const resolvedBottomsheetTitle = activeBottomsheetType === 'store-required'
-    ? storeRequiredBottomsheetTitle
-    : blockedBottomsheetTitle;
+    ? STORE_SIGNUP_BOTTOMSHEET_TITLE : USER_LOGIN_BOTTOMSHEET_TITLE;
 
   const resolvedBottomsheetDescription = activeBottomsheetType === 'store-required'
-    ? storeRequiredBottomsheetDescription
-    : blockedBottomsheetDescription;
+    ? STORE_SIGNUP_BOTTOMSHEET_DESCRIPTION : USER_LOGIN_BOTTOMSHEET_DESCRIPTION;
 
   const resolvedBottomsheetContent = activeBottomsheetType === 'store-required'
     ? renderStoreRequiredBottomsheetContent()
-    : renderBlockedTabBottomsheetContent();
+    : renderBlockedTabBottomsheetContent(openLoginPage);
 
   return {
     isUserLoggedIn,

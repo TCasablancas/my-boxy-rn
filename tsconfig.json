@@ -8,6 +8,6 @@
     "**/*.tsx", 
     "**/*.d.ts", 
     "app/pages/storesignup/StoreSignupNavigator.tss"
-  ],
+, "app/common/strings/MainUserStrings.js"  ],
   "exclude": ["**/node_modules", "**/Pods"]
 }
