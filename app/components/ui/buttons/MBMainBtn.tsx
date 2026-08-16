@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { PrimaryColors } from '../../../common/colors/Colors';
 import getContrastingTextColor from '../../../common/constants/ColorsHandler';
+import { Fonts } from '../../../common/constants/Fonts';
 
 export enum MBMainBtnType {
   NORMAL = 'normal',
@@ -88,7 +89,10 @@ export default function MBMainBtn({
     >
       <View style={styles.buttonContent}>
         {icon && <View style={styles.iconContainer}>{icon}</View>}
-        <Text style={[styles.buttonText, { textAlign, color: resolvedTextColor }]}>{title}</Text>
+        <Text style={[
+          styles.buttonText, 
+          { textAlign, color: resolvedTextColor, ...Fonts.LexendRegular16, }
+        ]}>{title}</Text>
       </View>
     </Pressable>
   );
@@ -112,9 +116,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontSize: 16,
-    fontFamily: 'SFMonoRegular',
-    letterSpacing: -0.5,
   },
   iconContainer: {
     marginRight: 8,

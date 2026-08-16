@@ -34,7 +34,6 @@ export default function MBTitledViewHeader({
 const styles = StyleSheet.create({
   container: {
     paddingVertical: spacing.lg,
-    paddingHorizontal: spacing.lg,
     marginVertical: spacing.lg,
     marginTop: 18,
     height: 40,

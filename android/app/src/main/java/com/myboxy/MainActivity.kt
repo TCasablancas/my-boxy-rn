@@ -16,6 +16,7 @@ class MainActivity : ReactActivity() {
 
   override fun onCreate(savedInstanceState: android.os.Bundle?) {
     installSplashScreen()
+    setTheme(R.style.AppTheme)
     super.onCreate(null)
   }
   

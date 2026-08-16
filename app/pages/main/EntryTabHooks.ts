@@ -80,7 +80,7 @@ export function useEntryTabHooks() {
   const openLoginPage = useCallback(() => {
     closeLoginBottomsheet();
     requestAnimationFrame(() => {
-      MainNavigation.replace(LoginPage);
+      MainNavigation.push(LoginPage);
     });
   }, [closeLoginBottomsheet]);
 

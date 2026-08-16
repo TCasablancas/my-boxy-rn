@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     zIndex: -1,
   },
   socialMediaDisclaimer: {
-    ...Fonts.regular14,
+    ...Fonts.LexendRegular14,
     color: NeutralColors.textSecondary,
     textAlign: 'center',
   },
@@ -22,12 +22,13 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'stretch',
     justifyContent: 'space-around',
-    // backgroundColor: NeutralColors.backgroundAlt,
+    backgroundColor: NeutralColors.backgroundAlt,
   },
   topContentWrapper: {
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 16,
   },
   contentWrapper: {
     gap: 16,
@@ -39,7 +40,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
     backgroundColor: 'white',
     borderRadius: 16,
-    // boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.2)',
   },
   footerButtonsWrapper: {
     flexDirection: 'row', 
@@ -70,6 +70,6 @@ export const styles = StyleSheet.create({
     gap: 16,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 24,
+    marginBottom: 24,
   },
 });

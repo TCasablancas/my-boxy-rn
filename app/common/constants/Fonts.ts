@@ -15,12 +15,29 @@ export const Fonts = {
     fontSize: 12,
     letterSpacing: -0.5,
   },
+  LexendRegular12: {
+    fontFamily: "Lexend-Regular",
+    fontSize: 12,
+  },
+  SFRegular12: {
+    fontFamily: "SFMonoRegular",
+    fontSize: 12,
+    letterSpacing: -0.5,
+  },
   regular13: {
     fontFamily: "SFMonoRegular",
     fontSize: 13,
     letterSpacing: -0.5,
   },
   regular14: {
+    fontWeight: "400",
+    fontSize: 14,
+  },
+  LexendRegular14: {
+    fontFamily: "Lexend-Regular",
+    fontSize: 14,
+  },
+  SFRegular14: {
     fontFamily: "SFMonoRegular",
     fontSize: 14,
     letterSpacing: -0.5,
@@ -32,11 +49,29 @@ export const Fonts = {
     lineHeight: 20,
   },
   regular16: {
+    fontWeight: "400",
+    fontSize: 16,
+  },
+  LexendRegular16: {
+    fontFamily: "Lexend-Regular",
+    fontSize: 16,
+  },
+  SFRegular16: {
     fontFamily: "SFMonoRegular",
     fontSize: 16,
     letterSpacing: -0.5,
   },
   light12: {
+    fontFamily: "SFMonoLight",
+    fontSize: 12,
+    letterSpacing: -0.5,
+  },
+  LexendLight12: {
+    fontFamily: "Lexend-Light",
+    fontSize: 12,
+    letterSpacing: 0.5,
+  },
+  SFLight12: {
     fontFamily: "SFMonoLight",
     fontSize: 12,
     letterSpacing: -0.5,
@@ -47,9 +82,9 @@ export const Fonts = {
     letterSpacing: -0.5,
   },
   light14: {
-    fontFamily: "SFMonoLight",
+    // fontFamily: "SFMonoLight",
     fontSize: 14,
-    letterSpacing: -0.5,
+    // letterSpacing: -0.5,
   },
   bold12: {
     fontFamily: "SFMonoBold",
@@ -66,10 +101,14 @@ export const Fonts = {
     fontSize: 18,
     letterSpacing: -0.5,
   },
-  bold20: {
+  SFBold20: {
     fontFamily: "SFMonoBold",
     fontSize: 20,
     letterSpacing: -0.5,
+  },
+  bold20: {
+    fontSize: 20,
+    fontWeight: "bold",
   },
   bold22Line24: {
     fontFamily: "SFMonoBold",

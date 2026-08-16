@@ -13,3 +13,9 @@ export type MainTabParamList = {
 export type RootStackParamList = {
   MainTabs: NavigatorScreenParams<MainTabParamList> | undefined;
 } & Record<string, undefined>;
+
+export type AppStackParamList = {
+  HomeView: undefined;
+  UserLoginView: undefined;
+  UserRegisterView: undefined;
+};

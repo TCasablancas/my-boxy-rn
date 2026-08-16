@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   container: {
-    // flex: 1,
+    flex: 1,
+    backgroundColor: NeutralColors.backgroundAlt,
   },
   leftGlow: {
     position: 'absolute',

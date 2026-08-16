@@ -1,4 +1,5 @@
 import { KeyboardAvoidingView, View, Text } from 'react-native';
+import { MBTextBtnSize } from '../../../components/ui/buttons/MBTextBtn';
 import { PrimaryColors } from '../../../common/colors/Colors';
 import { IconsSocial } from '../../../common/icons/IconsSocial';
 import { styles } from '../styles';
@@ -30,7 +31,7 @@ export default function LoginForm() {
     <KeyboardAvoidingView style={styles.contentWrapper} behavior="padding">
       <MBMainInput
         label={'Email ou usuário'}
-        placeholder="seu_email@exemplo.com.br"
+        // placeholder="seu_email@exemplo.com.br"
         value={formData.emailOrUser}
         onChangeText={onChangeEmailOrUser}
         error={formErrors.emailOrUser}
@@ -40,7 +41,7 @@ export default function LoginForm() {
       />
       <MBMainInput
         label={'Senha'}
-        placeholder="sua senha"
+        // placeholder="sua senha"
         value={formData.password}
         onChangeText={onChangePassword}
         error={formErrors.password}
@@ -51,10 +52,11 @@ export default function LoginForm() {
         <MBTextBtn 
           title={'Esqueci minha senha'} 
           textColor={PrimaryColors.mainBlue} 
+          size={MBTextBtnSize.XSMALL}
           onPress={() => {}}
         />
         <MBTextWithSelect 
-          text="Manter Conectado" 
+          text="manter conectado" 
           value={isKeepConnectedEnabled ? 'on' : 'off'} 
           onChange={() => onChangeKeepConnected(!isKeepConnectedEnabled)} 
         />
@@ -65,10 +67,7 @@ export default function LoginForm() {
         onPress={() => { onSubmitLogin(); }}
       />
       {loginError ? <Text style={styles.loginErrorText}>{loginError}</Text> : null}
-      <MBCenterStripeText text="ou" marginVertical={8} />
-      <Text style={styles.socialMediaDisclaimer}>
-        Faça seu login utilizando sua conta em uma das redes sociais abaixo
-      </Text>
+      <MBCenterStripeText text="ou entre com" marginVertical={8} />
       <View style={styles.loginWithSocialButtonsWrapper}>
         <MBRoundedIconBtn 
           icon={<IconsSocial.facebookSquare width={24} height={24} strokeColor="#FFF" />} 

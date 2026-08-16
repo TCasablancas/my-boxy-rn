@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { NeutralColors, PrimaryColors } from '../../common/colors/Colors';
 import { Icons } from '../../common/icons/Icons';
 import { styles } from './styles';
+import { USER_LOGIN_VIEW_TITLE, USER_LOGIN_VIEW_DESCRIPTION } from '../../common/strings/MainUserStrings';
 
 import MBTitleDescripted from '../../components/ui/texts/MBTitleDescripted';
 import MBRoundedIconBtn from '../../components/ui/buttons/MBRoundedIconBtn';
@@ -11,41 +12,39 @@ import MBTextBtn, { MBTextBtnSize } from '../../components/ui/buttons/MBTextBtn'
 
 import MainNavigation from '../../common/navigation/MainNavigation';
 import LoginForm from './component/login.form';
+import { Fonts } from '../../common/constants/Fonts';
 
 export default function LoginView() {
   return (
     <>
-      <MBTitledViewHeader 
-        title="Login"
-        btnsLeft={<MBRoundedIconBtn 
-          icon={<Icons.arrowBack width={16} height={16} strokeColor={NeutralColors.textSecondary} />} 
-          onPress={() => { MainNavigation.pop(); }}
-        />}
-      />
       <View style={styles.topContentWrapper}>
-        <MBTitleDescripted 
-          colorTitle={NeutralColors.white}
-          title="Bem-vindo de volta!"
-          description={
-            <>
-            <Text style={{color: PrimaryColors.primary}}>Se você já tem cadastro, faça login para continuar.</Text>
-            <View style={{ flexDirection: 'row' }}>
-              <Text style={styles.notSingedUpText}>Se ainda não tem, </Text>
-              <MBTextBtn title={'clique aqui.'} textColor={PrimaryColors.mainBlue} size={MBTextBtnSize.LARGE} /> 
-            </View>
-            </>
-          }
-          alignment="center"
-        />
+        <MBTitleDescripted description={<Text>{USER_LOGIN_VIEW_DESCRIPTION}</Text>} />
       </View>
       
       <LoginForm />
 
-      <Text style={styles.footerButtonsWrapper}>
-        Ao criar sua conta, você concorda com a nossa.
-        <MBTextBtn title={'Política de Privacidade e'} textColor={NeutralColors.textSecondary} />
-        <MBTextBtn title={' Termos de Serviço'} textColor={NeutralColors.textSecondary} />
-      </Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4, marginTop: 16 }}>
+        <Text style={{...Fonts.LexendLight12}}>ainda não possui uma conta?</Text>
+        <MBTextBtn 
+          title={'cadastre-se agora.'} 
+          size={MBTextBtnSize.XSMALL}
+          textColor={PrimaryColors.mainBlue} 
+          onPress={() => { MainNavigation.navigate('RegisterView'); }}
+        />
+      </View>
+
+      <View style={styles.footerButtonsWrapper}>
+        <MBTextBtn 
+          title={'Política de Privacidade'} 
+          size={MBTextBtnSize.XSMALL}
+          textColor={NeutralColors.textSecondary} 
+        />
+        <MBTextBtn 
+          title={' Termos de Serviço'} 
+          size={MBTextBtnSize.XSMALL}
+          // textColor={NeutralColors.textSecondary} 
+        />
+      </View>
     </>
   );
 }

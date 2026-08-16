@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { Text, StyleSheet, Pressable } from 'react-native';
 import MBMainSelector from './MBMainSelector';
-import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
+import { NeutralColors } from '../../../common/colors/Colors';
+import { Fonts } from '../../../common/constants/Fonts';
 
 interface MBTextWithSelectProps {
   text: string;
@@ -13,8 +14,10 @@ export default function MBTextWithSelect({
 }: MBTextWithSelectProps) {
   return (
     <Pressable style={styles.container} onPress={onChange}>
-      <Text style={styles.text}>{text}</Text>
       <MBMainSelector value={value ?? 'off'} onChange={onChange} />
+      <Text style={{ color: NeutralColors.textSecondary, ...Fonts.LexendRegular12 }}>
+        {text}
+      </Text> 
     </Pressable>
   );
 }
@@ -24,12 +27,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: 8,
-  },
-  text: {
-    fontSize: 14,
-    fontFamily: 'SFMonoRegular',
-    letterSpacing: -0.5,
-    color: NeutralColors.text,
+    gap: 4,
   },
 });

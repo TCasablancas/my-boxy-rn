@@ -39,7 +39,7 @@ export default function StoreSignupView() {
 
   return (
     <SafeAreaProvider style={[
-      { marginTop: Platform.OS === 'ios' ? safeArea.top : safeArea.top + 40 }
+      { marginTop: Platform.OS === 'ios' ? safeArea.top : safeArea.top + 40, backgroundColor: NeutralColors.backgroundAlt }
     ]}>
       <StatusBar barStyle="dark-content" backgroundColor={NeutralColors.backgroundAlt} />
       <MBTitledViewHeader 

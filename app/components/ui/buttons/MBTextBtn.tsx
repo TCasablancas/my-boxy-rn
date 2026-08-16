@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { NeutralColors } from '../../../common/colors/Colors';
 
 export enum MBTextBtnSize {
+  XSMALL = 'xs',
   SMALL = 'sm',
   MEDIUM = 'md',
   LARGE = 'lg',
@@ -21,8 +22,10 @@ export default function MBTextBtn({
 
   function getFontSize(size: MBTextBtnSize | undefined): number {
     switch (size) {
-      case MBTextBtnSize.SMALL:
+      case MBTextBtnSize.XSMALL:
         return 12;
+      case MBTextBtnSize.SMALL:
+        return 14;
       case MBTextBtnSize.LARGE:
         return 16;
       case MBTextBtnSize.EXTRA_LARGE:
@@ -53,9 +56,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: NeutralColors.textSecondary,
-    fontSize: 14,
-    fontFamily: 'SFMonoRegular',
-    letterSpacing: -0.5,
-
+    fontFamily: 'Lexend-Regular',
   },
 });

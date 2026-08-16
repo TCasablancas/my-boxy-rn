@@ -9,7 +9,7 @@ interface MBMainSelectorProps {
 }
 
 export default function MBMainSelector({ value, onChange }: MBMainSelectorProps) {
-
+  const size = 12;
   const isSelected = value === 'on';
   const fadeAnim = useRef(new Animated.Value(isSelected ? 1 : 0)).current;
   const colorAnim = useRef(new Animated.Value(isSelected ? 1 : 0)).current;
@@ -45,8 +45,7 @@ export default function MBMainSelector({ value, onChange }: MBMainSelectorProps)
       ]}>
         <Animated.View style={{ opacity: fadeAnim }}>
           <IconsActions.check
-            strokeColor={PrimaryColors.primaryDark}
-            width="16" height="16"
+            strokeColor={PrimaryColors.primaryDark} width={size} height={size}
           />
         </Animated.View>
       </Animated.View>
@@ -56,9 +55,9 @@ export default function MBMainSelector({ value, onChange }: MBMainSelectorProps)
 
 const styles = StyleSheet.create({
   container: {
-    width: 20,
-    height: 20,
-    borderRadius: 6,
+    width: 16,
+    height: 16,
+    borderRadius: 4,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,

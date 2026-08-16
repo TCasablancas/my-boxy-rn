@@ -6,116 +6,88 @@
       "sha1": "726b5b90799781efcdbea11b90722cea38c9d8c7"
     },
     {
+      "path": "assets/fonts/Lexend-Black.ttf",
+      "sha1": "99bd69de20e74410418467b26a8429b992fa5a3f"
+    },
+    {
+      "path": "assets/fonts/Lexend-Bold.ttf",
+      "sha1": "c3006fdc382624dd82e1fdec223e432d1c5efed2"
+    },
+    {
+      "path": "assets/fonts/Lexend-ExtraBold.ttf",
+      "sha1": "b122c62f12996016805a82b14f2359b68d9f7611"
+    },
+    {
+      "path": "assets/fonts/Lexend-ExtraLight.ttf",
+      "sha1": "258f3926a52b38b23138a6226fd16a1e48e0425d"
+    },
+    {
+      "path": "assets/fonts/Lexend-Light.ttf",
+      "sha1": "68eaa46bda17b37e57df8dc2f2db9e546e5b15a8"
+    },
+    {
+      "path": "assets/fonts/Lexend-Medium.ttf",
+      "sha1": "ecb541adfb5e827e3de237308772e103a553544d"
+    },
+    {
+      "path": "assets/fonts/Lexend-Regular.ttf",
+      "sha1": "6b1a67df80ac5b837be9112bf27e6c718ed36c08"
+    },
+    {
+      "path": "assets/fonts/Lexend-SemiBold.ttf",
+      "sha1": "6a67f0e2d1549f7a69c8caa2bbc04abe61e15bc9"
+    },
+    {
+      "path": "assets/fonts/Lexend-Thin.ttf",
+      "sha1": "2b79dbe78e4afcc7689d893791afb1960068a6b5"
+    },
+    {
       "path": "assets/fonts/SFMonoBold.otf",
-      "sha1": "34de7382df9cd780395fac283b3786a9c55f5daa"
+      "sha1": "511432c53ad1b6bd2cf2a4ee577b896485fb21a0"
     },
     {
       "path": "assets/fonts/SFMonoBoldItalic.otf",
-      "sha1": "d006346f80af547d936fbd942185027e07d7c4d4"
+      "sha1": "544375d8575fe6f88016e032025fe575f52b3e95"
     },
     {
       "path": "assets/fonts/SFMonoHeavy.otf",
-      "sha1": "2907ab5d6446a7a18a45b422f3b1356e695ff7af"
+      "sha1": "ac72a6724e20ae69cf9aa990ced829f974d7208e"
     },
     {
       "path": "assets/fonts/SFMonoHeavyItalic.otf",
-      "sha1": "818f23cf12898a65a9274620f8fab2314b62bbfa"
+      "sha1": "8ebb0485f992006530f31e0667d4f7dab0ce1689"
     },
     {
       "path": "assets/fonts/SFMonoLight.otf",
-      "sha1": "232f6c9ac378edbd52b20ba438832f56bc223827"
+      "sha1": "f0a5e91b9a7aa323a3cf8fe9ef5f42433e1384a3"
     },
     {
       "path": "assets/fonts/SFMonoLightItalic.otf",
-      "sha1": "e3e39ae25f1829d033ca7338cf6b3b29ec6a1b53"
+      "sha1": "ca62e243edd3d819df74af97055c949939e68715"
     },
     {
       "path": "assets/fonts/SFMonoMedium.otf",
-      "sha1": "40b82256fa902fc0304143ab4e946584abf20ae1"
+      "sha1": "7f620eb58624f1f8f044d70338e07d89e4e8bffb"
     },
     {
       "path": "assets/fonts/SFMonoMediumItalic.otf",
-      "sha1": "f16f3cbe26d3e41ebc225b9fce74448fb4a9f56f"
+      "sha1": "e5a92e46fde8e06dfd53ee03dd7c446f84eac105"
     },
     {
       "path": "assets/fonts/SFMonoRegular.otf",
-      "sha1": "4fe5bd007afdbb1b6864c5627e7825703cf1d784"
+      "sha1": "2992e9738eef45d6d23017612b873e6cb7da3500"
     },
     {
       "path": "assets/fonts/SFMonoRegularItalic.otf",
-      "sha1": "aa6ae33e9dfb6d0d282504b10a5ab85903d53b61"
+      "sha1": "409fa7cdc7a4ebb8764736778de0559e84503436"
     },
     {
       "path": "assets/fonts/SFMonoSemibold.otf",
-      "sha1": "5b4878cf740457ceaf8de253ba4210f2836589b6"
+      "sha1": "0cf963e93fb25d4979726b2d1c431771e19df628"
     },
     {
       "path": "assets/fonts/SFMonoSemiboldItalic.otf",
-      "sha1": "eb17f340fb8957575a85c6583a13696efc34f31d"
-    },
-    {
-      "path": "assets/fonts/SNPro-Black.ttf",
-      "sha1": "9194e015624c3b16cfcd7c217d3367df3a97a237"
-    },
-    {
-      "path": "assets/fonts/SNPro-BlackItalic.ttf",
-      "sha1": "b64f253c1b2ae574a139a3b91af30036414e73aa"
-    },
-    {
-      "path": "assets/fonts/SNPro-Bold.ttf",
-      "sha1": "5a8261caaf202efb795fd6801222da6864836e39"
-    },
-    {
-      "path": "assets/fonts/SNPro-BoldItalic.ttf",
-      "sha1": "9fbbc0ab28fc33ae93e678511d0f999a633ff055"
-    },
-    {
-      "path": "assets/fonts/SNPro-ExtraBold.ttf",
-      "sha1": "04dd910951a7527817df1bf1a1a9b1f837597a75"
-    },
-    {
-      "path": "assets/fonts/SNPro-ExtraBoldItalic.ttf",
-      "sha1": "f38b7e049bd33d5d91fecfbb4fce8b9ba489699a"
-    },
-    {
-      "path": "assets/fonts/SNPro-ExtraLight.ttf",
-      "sha1": "f5759c3ea4644986a04378d7ff7cd479e6362d6e"
-    },
-    {
-      "path": "assets/fonts/SNPro-ExtraLightItalic.ttf",
-      "sha1": "5a8be8ca86a4480159c98147cc0d286b56e1d7cd"
-    },
-    {
-      "path": "assets/fonts/SNPro-Italic.ttf",
-      "sha1": "18d2d58dccfc10721c4c6dd8fc2d2040f683002e"
-    },
-    {
-      "path": "assets/fonts/SNPro-Light.ttf",
-      "sha1": "ad2b810f1aae229d37c53486f85a3f38d0e4a075"
-    },
-    {
-      "path": "assets/fonts/SNPro-LightItalic.ttf",
-      "sha1": "016f40adb6fba2a7007d62923fe91246d9d0f58d"
-    },
-    {
-      "path": "assets/fonts/SNPro-Medium.ttf",
-      "sha1": "8ed77e192534abf4d494536520f52f3fb154157a"
-    },
-    {
-      "path": "assets/fonts/SNPro-MediumItalic.ttf",
-      "sha1": "452bb5ae3f6514e749981803da7d3154aa5884d9"
-    },
-    {
-      "path": "assets/fonts/SNPro-Regular.ttf",
-      "sha1": "853bb792b0b0c2185a79ebbea951e68ff393f5ad"
-    },
-    {
-      "path": "assets/fonts/SNPro-SemiBold.ttf",
-      "sha1": "6ce306d85350b40d7640397ee2a6682ef9de1252"
-    },
-    {
-      "path": "assets/fonts/SNPro-SemiBoldItalic.ttf",
-      "sha1": "258ea2190d39ce3f31f50d3a77da72094e5e8905"
+      "sha1": "61d87d2f88eefa9bb421d252cf4c8e2f69e7236c"
     }
   ]
 }

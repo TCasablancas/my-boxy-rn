@@ -1,8 +1,9 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { NeutralColors, PrimaryColors } from '../../../common/colors/Colors';
+import { Fonts } from '../../../common/constants/Fonts';
 
 interface MBTitleDescriptedProps {
-  title: string;
+  title?: string;
   description?: any;
   colorTitle?: string;
   colorDescription?: string;
@@ -15,14 +16,14 @@ export default function MBTitleDescripted({
 }: MBTitleDescriptedProps) {
   return (
     <View style={[styles.container, style]}>
-      <Text style={[
-        styles.title, 
-        { color: colorTitle ? colorTitle : PrimaryColors.primary, textAlign: alignment }
-      ]}>{title}</Text>
-      <Text style={[
-        styles.description, 
-        { color: colorDescription ? colorDescription : NeutralColors.textSecondary, textAlign: alignment }
-      ]}>{description}</Text>
+      <Text style={[{ 
+        color: colorTitle ? colorTitle : PrimaryColors.primary, 
+        textAlign: alignment, ...Fonts.SFBold20, 
+      }]}>{title && title}</Text>
+      <Text style={[{ 
+        color: colorDescription ? colorDescription : NeutralColors.textSecondary, 
+        textAlign: alignment, ...Fonts.LexendRegular16, 
+      }]}>{description}</Text>
     </View>
   );
 }
@@ -30,16 +31,5 @@ export default function MBTitleDescripted({
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 8,
-  },
-  title: {
-    fontFamily: 'SFMonoBold',
-    letterSpacing: -0.5,
-    fontSize: 26,
-    marginBottom: 8,
-  },
-  description: {
-    fontFamily: 'SFMonoRegular',
-    letterSpacing: -0.5,
-    fontSize: 16,
   },
 });

@@ -52,6 +52,15 @@
 		<string>SFMonoRegularItalic.otf</string>
 		<string>SFMonoSemibold.otf</string>
 		<string>SFMonoSemiboldItalic.otf</string>
+		<string>Lexend-Black.ttf</string>
+		<string>Lexend-Bold.ttf</string>
+		<string>Lexend-ExtraBold.ttf</string>
+		<string>Lexend-ExtraLight.ttf</string>
+		<string>Lexend-Light.ttf</string>
+		<string>Lexend-Medium.ttf</string>
+		<string>Lexend-Regular.ttf</string>
+		<string>Lexend-SemiBold.ttf</string>
+		<string>Lexend-Thin.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

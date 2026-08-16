@@ -6,6 +6,7 @@ import { NeutralColors, OverlayColors, PrimaryColors, StateColors } from '../../
 import { radius, spacing, typography } from '../../../common/constants/Typgraphy';
 import { nodeHandleOf, useKeyboardScroll } from '../../../common/contexts/KeyboardScrollContext';
 import { IconsActions } from '../../../common/icons/IconsActions';
+import { Fonts } from '../../../common/constants/Fonts';
 
 interface AppInputProps extends Omit<TextInputProps, 'onChangeText'> {
   label: string;
@@ -222,16 +223,19 @@ const styles = StyleSheet.create({
   },
   floatingLabel: {
     flex: 1,
-    ...typography.label,
-    fontFamily: 'SFMonoRegular',
-    letterSpacing: -0.5,
+    ...Fonts.LexendLight12,
+    // ...typography.label,
+    // fontFamily: 'SFMonoRegular',
+    // letterSpacing: -0.5,
+    lineHeight: 16,
     color: NeutralColors.textPlaceholder,
   },
   input: {
-    fontSize: 16,
+    // fontSize: 16,
     color: NeutralColors.text,
     // fontFamily: 'SFMonoRegular',
-    letterSpacing: 0.5,
+    // letterSpacing: 0.5,
+    ...Fonts.LexendRegular16,
     width: '100%',
     height: 24,
     lineHeight: Platform.OS === 'ios' ? 0 : 12,
